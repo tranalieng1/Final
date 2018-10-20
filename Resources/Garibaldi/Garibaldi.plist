@@ -7,7 +7,7 @@
 			<key>Garibaldi_Cup_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{150,232},{20,32}}</string>
+				<string>{{259,473},{20,32}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -21,7 +21,7 @@
 			<key>Garibaldi_Cup_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{186,75},{20,32}}</string>
+				<string>{{238,473},{20,32}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -35,7 +35,7 @@
 			<key>Garibaldi_Cup_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{186,108},{20,32}}</string>
+				<string>{{193,68},{20,32}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -49,7 +49,7 @@
 			<key>Garibaldi_HP_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,8},{214,15}}</string>
+				<string>{{0,0},{214,15}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -63,7 +63,7 @@
 			<key>Garibaldi_HP_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,0},{214,7}}</string>
+				<string>{{0,16},{214,7}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -77,7 +77,7 @@
 			<key>Garibaldi_SkillFire_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{152,978},{32,39}}</string>
+				<string>{{308,0},{32,39}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -91,7 +91,7 @@
 			<key>Garibaldi_SkillFire_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{152,933},{32,44}}</string>
+				<string>{{308,40},{32,44}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -105,7 +105,7 @@
 			<key>Garibaldi_SkillFire_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{178,372},{32,49}}</string>
+				<string>{{374,208},{32,49}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -119,7 +119,7 @@
 			<key>Garibaldi_SkillFire_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{186,24},{26,50}}</string>
+				<string>{{341,44},{26,50}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -130,136 +130,192 @@
 				<string>{26,50}</string>
 			</dict>
 
-			<key>Garibaldi_SkillIce_1.png</key>
+			<key>Garibaldi_SkillFire_5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{92,815},{36,8}}</string>
+				<string>{{280,473},{16,32}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{36,8}}</string>
+				<string>{{1,1},{16,32}}</string>
 				<key>sourceSize</key>
-				<string>{36,8}</string>
+				<string>{20,35}</string>
+			</dict>
+
+			<key>Garibaldi_SkillIce_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{34,489},{32,14}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{0,1},{32,14}}</string>
+				<key>sourceSize</key>
+				<string>{32,16}</string>
+			</dict>
+
+			<key>Garibaldi_SkillIce_10.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{397,258},{20,46}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{0,0},{20,46}}</string>
+				<key>sourceSize</key>
+				<string>{20,46}</string>
+			</dict>
+
+			<key>Garibaldi_SkillIce_11.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{374,258},{22,45}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{1,0},{22,45}}</string>
+				<key>sourceSize</key>
+				<string>{23,45}</string>
+			</dict>
+
+			<key>Garibaldi_SkillIce_12.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{405,420},{17,41}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{1,1},{17,41}}</string>
+				<key>sourceSize</key>
+				<string>{20,42}</string>
 			</dict>
 
 			<key>Garibaldi_SkillIce_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{89,933},{36,14}}</string>
+				<string>{{0,489},{33,8}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{36,14}}</string>
+				<string>{{0,2},{33,8}}</string>
 				<key>sourceSize</key>
-				<string>{36,14}</string>
+				<string>{33,11}</string>
 			</dict>
 
 			<key>Garibaldi_SkillIce_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{104,477},{40,31}}</string>
+				<string>{{341,0},{27,43}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{40,31}}</string>
+				<string>{{0,0},{27,43}}</string>
 				<key>sourceSize</key>
-				<string>{40,31}</string>
+				<string>{27,43}</string>
 			</dict>
 
 			<key>Garibaldi_SkillIce_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{178,422},{32,46}}</string>
+				<string>{{372,420},{32,43}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{32,46}}</string>
+				<string>{{1,0},{32,43}}</string>
 				<key>sourceSize</key>
-				<string>{32,46}</string>
+				<string>{33,44}</string>
 			</dict>
 
 			<key>Garibaldi_SkillIce_5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{185,970},{29,48}}</string>
+				<string>{{152,68},{40,43}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{29,48}}</string>
+				<string>{{1,0},{40,43}}</string>
 				<key>sourceSize</key>
-				<string>{29,48}</string>
+				<string>{42,43}</string>
 			</dict>
 
-			<key>Garibaldi_SkillJumpIce_1 (1).png</key>
+			<key>Garibaldi_SkillIce_6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{117,232},{32,26}}</string>
+				<string>{{152,24},{52,43}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{32,26}}</string>
+				<string>{{0,0},{52,43}}</string>
 				<key>sourceSize</key>
-				<string>{32,26}</string>
+				<string>{52,44}</string>
 			</dict>
 
-			<key>Garibaldi_SkillJumpIce_1 (2).png</key>
+			<key>Garibaldi_SkillIce_7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{92,824},{31,15}}</string>
+				<string>{{404,464},{30,34}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{31,15}}</string>
+				<string>{{0,2},{30,34}}</string>
 				<key>sourceSize</key>
-				<string>{31,15}</string>
+				<string>{31,37}</string>
 			</dict>
 
-			<key>Garibaldi_SkillJumpIce_1 (3).png</key>
+			<key>Garibaldi_SkillIce_8.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{117,259},{20,9}}</string>
+				<string>{{226,329},{32,27}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{20,9}}</string>
+				<string>{{5,2},{32,27}}</string>
 				<key>sourceSize</key>
-				<string>{20,9}</string>
+				<string>{37,29}</string>
 			</dict>
 
-			<key>Garibaldi_SkillJumpIce_1 (4).png</key>
+			<key>Garibaldi_SkillIce_9.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{126,933},{21,19}}</string>
+				<string>{{205,473},{32,29}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{21,19}}</string>
+				<string>{{0,1},{32,29}}</string>
 				<key>sourceSize</key>
-				<string>{21,19}</string>
+				<string>{32,30}</string>
 			</dict>
 
 			<key>Garibaldi_SkillSword.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{185,923},{31,46}}</string>
+				<string>{{372,464},{31,46}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -273,7 +329,7 @@
 			<key>Garibaldi_attack_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,751},{91,88}}</string>
+				<string>{{113,418},{91,88}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -281,13 +337,13 @@
 				<key>sourceColorRect</key>
 				<string>{{0,0},{91,88}}</string>
 				<key>sourceSize</key>
-				<string>{91,88}</string>
+				<string>{109,88}</string>
 			</dict>
 
 			<key>Garibaldi_attack_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,649},{92,101}}</string>
+				<string>{{215,0},{92,101}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -295,21 +351,21 @@
 				<key>sourceColorRect</key>
 				<string>{{0,0},{92,101}}</string>
 				<key>sourceSize</key>
-				<string>{92,101}</string>
+				<string>{113,101}</string>
 			</dict>
 
 			<key>Garibaldi_comboattack1_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,509},{92,139}}</string>
+				<string>{{124,113},{92,139}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{92,139}}</string>
+				<string>{{20,0},{92,139}}</string>
 				<key>sourceSize</key>
-				<string>{92,139}</string>
+				<string>{122,139}</string>
 			</dict>
 
 			<key>Garibaldi_comboattack1_2.png</key>
@@ -323,80 +379,94 @@
 				<key>sourceColorRect</key>
 				<string>{{0,0},{123,88}}</string>
 				<key>sourceSize</key>
-				<string>{123,88}</string>
+				<string>{171,88}</string>
 			</dict>
 
 			<key>Garibaldi_comboattack1_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{93,722},{66,92}}</string>
+				<string>{{306,315},{66,92}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{66,92}}</string>
+				<string>{{12,0},{66,92}}</string>
 				<key>sourceSize</key>
-				<string>{66,92}</string>
+				<string>{78,92}</string>
 			</dict>
 
 			<key>Garibaldi_comboattack1_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{89,840},{80,92}}</string>
+				<string>{{217,102},{80,92}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{80,92}}</string>
+				<string>{{3,0},{80,92}}</string>
 				<key>sourceSize</key>
-				<string>{80,92}</string>
+				<string>{83,92}</string>
 			</dict>
 
 			<key>Garibaldi_comboattack2_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,840},{88,112}}</string>
+				<string>{{217,360},{88,112}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{88,112}}</string>
+				<string>{{34,0},{88,112}}</string>
 				<key>sourceSize</key>
-				<string>{88,112}</string>
+				<string>{122,112}</string>
 			</dict>
 
 			<key>Garibaldi_comboattack2_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{179,232},{54,128}}</string>
+				<string>{{0,360},{112,128}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{54,128}}</string>
+				<string>{{0,1},{112,128}}</string>
 				<key>sourceSize</key>
-				<string>{54,128}</string>
+				<string>{112,131}</string>
 			</dict>
 
 			<key>Garibaldi_comboattack2_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,24},{123,88}}</string>
+				<string>{{0,24},{151,88}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{123,88}}</string>
+				<string>{{0,1},{151,88}}</string>
 				<key>sourceSize</key>
-				<string>{123,88}</string>
+				<string>{175,89}</string>
 			</dict>
 
 			<key>Garibaldi_defeat_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{113,269},{112,90}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{0,0},{112,90}}</string>
+				<key>sourceSize</key>
+				<string>{132,90}</string>
+			</dict>
+
+			<key>Garibaldi_defeatshadow_2.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{0,269},{112,90}}</string>
@@ -410,24 +480,10 @@
 				<string>{112,90}</string>
 			</dict>
 
-			<key>Garibaldi_defeatshadow_2.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{0,360},{112,90}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{{0,0},{112,90}}</string>
-				<key>sourceSize</key>
-				<string>{112,90}</string>
-			</dict>
-
 			<key>Garibaldi_die_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,953},{75,66}}</string>
+				<string>{{217,195},{75,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -441,7 +497,7 @@
 			<key>Garibaldi_die_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,451},{103,57}}</string>
+				<string>{{113,360},{103,57}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -469,7 +525,7 @@
 			<key>Garibaldi_dieshadow_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{76,953},{75,66}}</string>
+				<string>{{226,262},{75,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -483,7 +539,7 @@
 			<key>Garibaldi_jump_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{165,477},{56,151}}</string>
+				<string>{{435,350},{56,151}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -497,7 +553,7 @@
 			<key>Garibaldi_jump_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{93,620},{71,101}}</string>
+				<string>{{298,102},{71,101}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -511,7 +567,7 @@
 			<key>Garibaldi_jumpshadow_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{170,771},{56,151}}</string>
+				<string>{{436,0},{56,151}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -525,7 +581,7 @@
 			<key>Garibaldi_stand_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{93,509},{71,110}}</string>
+				<string>{{302,204},{71,110}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -533,13 +589,13 @@
 				<key>sourceColorRect</key>
 				<string>{{0,0},{71,110}}</string>
 				<key>sourceSize</key>
-				<string>{71,110}</string>
+				<string>{91,110}</string>
 			</dict>
 
 			<key>Garibaldi_walk_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{113,269},{65,102}}</string>
+				<string>{{306,408},{65,102}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -553,7 +609,7 @@
 			<key>Garibaldi_walk_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{113,372},{64,104}}</string>
+				<string>{{370,0},{64,104}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -561,13 +617,13 @@
 				<key>sourceColorRect</key>
 				<string>{{0,0},{64,104}}</string>
 				<key>sourceSize</key>
-				<string>{64,104}</string>
+				<string>{78,104}</string>
 			</dict>
 
 			<key>Garibaldi_walk_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{124,24},{61,104}}</string>
+				<string>{{373,315},{61,104}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -575,13 +631,13 @@
 				<key>sourceColorRect</key>
 				<string>{{0,0},{61,104}}</string>
 				<key>sourceSize</key>
-				<string>{61,104}</string>
+				<string>{75,104}</string>
 			</dict>
 
 			<key>Garibaldi_walk_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{124,129},{61,102}}</string>
+				<string>{{374,105},{61,102}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -589,13 +645,13 @@
 				<key>sourceColorRect</key>
 				<string>{{0,0},{61,102}}</string>
 				<key>sourceSize</key>
-				<string>{61,102}</string>
+				<string>{75,102}</string>
 			</dict>
 
 			<key>Garibaldi_win.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{165,629},{56,141}}</string>
+				<string>{{435,208},{56,141}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -613,7 +669,7 @@
 			<key>format</key>
 			<integer>2</integer>
 			<key>size</key>
-			<string>{256,1024}</string>
+			<string>{512,512}</string>
 			<key>textureFileName</key>
 			<string>sprites.png</string>
 			</dict>
