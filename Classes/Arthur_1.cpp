@@ -21,7 +21,7 @@ void Arthur_1::Attack()
 	Animation* animation = Animation::create();
 	for (int i = 1; i < 4; i++)
 	{
-		std::string name = StringUtils::format("Arthur_0_attack_d.png", i);
+		std::string name = StringUtils::format("Arthur_0_attack_%d.png", i);
 		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
 	}
 	animation->setDelayPerUnit(1 / 12.0f);

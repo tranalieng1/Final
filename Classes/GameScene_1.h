@@ -4,6 +4,13 @@
 
 #include "cocos2d.h"
 
+enum _State
+{
+	STATE_ATTACKING,
+	STATE_JUMPING,
+	STATE_STANDING,
+	STATE_WALKING
+};
 
 class GameScene_1 : public cocos2d::Layer
 {
@@ -23,6 +30,13 @@ private:
 	cocos2d::Size visibleSize;
 	cocos2d::TMXTiledMap *_tileMap;
 	Arthur_1 *_Arthur;
+
+	cocos2d::Camera *cam;
+	cocos2d::Vec3 campos;
+	
+	_State _state;
+
+	int _checkwalk;
 
 	bool moveup;
 	bool movedown;
