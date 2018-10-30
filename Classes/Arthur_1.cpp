@@ -24,7 +24,7 @@ void Arthur_1::Attack()
 		std::string name = StringUtils::format("Arthur_0_attack_%d.png", i);
 		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
 	}
-	animation->setDelayPerUnit(1 / 12.0f);
+	animation->setDelayPerUnit(1 /12);
 
 	Animate* animate = Animate::create(animation);
 	_ArthurSprite->runAction(RepeatForever::create(animate));
@@ -37,10 +37,10 @@ bool Arthur_1::init()
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl1.plist", "ArthurLvl1.png");
 	_ArthurSprite = Sprite::createWithSpriteFrameName("Arthur_0_stand_1.png");
 	this->addChild(_ArthurSprite);
-	_ArthurSprite->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
+	_ArthurSprite->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
 	this->setContentSize(_ArthurSprite->getContentSize());
 	//this->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
-	_ArthurSprite->setPosition(this->getContentSize() * 0.0f);
+	_ArthurSprite->setPosition(Vec2(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.0f));
 	this->setScale(2.0);
 
 	return true;
@@ -48,9 +48,12 @@ bool Arthur_1::init()
 
 void Arthur_1::Jump()
 {
-	_ArthurSprite->setSpriteFrame("Arthur_0_stand_1.png");
+	//_ArthurSprite->setSpriteFrame("Arthur_0_stand_1.png");
+	_ArthurSprite->stopAllActions();
+	_ArthurSprite->setSpriteFrame("Arthur_0_jump_1.png");
 	_Jump = JumpBy::create(1.0f, Vec2(0.0f,0.0f),  this->getContentSize().height*ARTHUR_JUMP, 1);
 	this->runAction(_Jump);
+
 }
 
 void Arthur_1::Attack1Animation()
@@ -63,7 +66,7 @@ void Arthur_1::Attack1Animation()
 		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
 	}
 	animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("Arthur_0_stand_1.png"));
-	animation->setDelayPerUnit(1 / 20.0f);
+	animation->setDelayPerUnit(1/12.0f );
 
 	Animate* animate = Animate::create(animation);
 	//_WalkAction = RepeatForever::create(animate);
@@ -88,6 +91,7 @@ void Arthur_1::WalkAnimation()
 
 void Arthur_1::StopAction()
 {
-	_ArthurSprite->stopAllActions();
+	_ArthurSprite->stopAction(_WalkAction);
+	
 	_ArthurSprite->setSpriteFrame("Arthur_0_stand_1.png");
 }

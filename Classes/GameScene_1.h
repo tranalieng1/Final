@@ -1,9 +1,10 @@
 #ifndef __GAMESCENE1_H__
 #define __GAMESCENE1_H__
 #include"Arthur_1.h"
-
+#include "MoonBlade.h"
 #include "cocos2d.h"
-
+#include "MoonBlade.h"
+#include "FanMan.h"
 enum _State
 {
 	STATE_ATTACKING,
@@ -30,18 +31,23 @@ private:
 	cocos2d::Size visibleSize;
 	cocos2d::TMXTiledMap *_tileMap;
 	Arthur_1 *_Arthur;
+	FanMan *_FanMan;
+
+	MoonBlade *moonblade;
 
 	cocos2d::Camera *cam;
 	cocos2d::Vec3 campos;
 	
 	_State _state;
-
 	int _checkwalk;
 
 	bool moveup;
 	bool movedown;
 	bool moveleft;
 	bool moveright;
+
+	cocos2d::Node *_nodePosPlayer;
+	bool CheckJump(cocos2d::Node *v1,cocos2d::Node *v2);
 };
 
 

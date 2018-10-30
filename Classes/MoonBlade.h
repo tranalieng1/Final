@@ -9,12 +9,17 @@ public:
 	MoonBlade();
 	~MoonBlade();
 	virtual bool init();
+	void flySkill();
 
 	CREATE_FUNC(MoonBlade);
 private:
 
-	std::vector<cocos2d::Sprite*> _MBSprite[2];
+	cocos2d::Sprite* _MBSprite1;
+	cocos2d::Sprite* _MBSprite2;
+	cocos2d::Sprite* _MBSprite3;
 
 
 };
+
+
 #endif //
