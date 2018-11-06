@@ -43,8 +43,8 @@ bool GameScene_1::init()
 
 	
 
-	_state = STATE_STANDING;
-	_checkwalk = 0;
+	
+	
 
 	visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -148,79 +148,9 @@ void GameScene_1::menuCloseCallback(Ref* pSender)
 }
 void GameScene_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
 {
-	switch (_state)
-	{
-	case STATE_ATTACKING:
-		break;
-	case STATE_JUMPING:
-		break;
-	case STATE_STANDING:
-		if (kc == EventKeyboard::KeyCode::KEY_D || kc == EventKeyboard::KeyCode::KEY_A || kc == EventKeyboard::KeyCode::KEY_S
-			|| kc == EventKeyboard::KeyCode::KEY_W)
-		{
-			if (kc == EventKeyboard::KeyCode::KEY_D)
-			{
-
-				//_Arthur->setScaleX(2.0f);
-				if (_checkwalk == 0)
-					_Arthur->WalkAnimation();
-				moveright = true;
-
-				_checkwalk++;
-			}
-			if (kc == EventKeyboard::KeyCode::KEY_A)
-			{
-				//_Arthur->setScaleX(-2.0f);
-
-				moveleft = true;
-				if (_checkwalk == 0)
-					_Arthur->WalkAnimation();
-				_checkwalk++;
-			}
-			if (kc == EventKeyboard::KeyCode::KEY_S)
-			{
-				movedown = true;
-				if (_checkwalk == 0)
-					_Arthur->WalkAnimation();
-				_checkwalk++;
-			}
-			if (kc == EventKeyboard::KeyCode::KEY_W)
-			{
-				moveup = true;
-				if (_checkwalk == 0)
-					_Arthur->WalkAnimation();
-				_checkwalk++;
-			}
-		}
-		else if (kc == EventKeyboard::KeyCode::KEY_K)
-		{
-			
-			_Arthur->Attack1Animation();
-			_state = STATE_ATTACKING;
-			//_Arthur->StopAction();
-		}
-		else if (kc == EventKeyboard::KeyCode::KEY_J)
-		{
-
-			moonblade->setPosition(Vec2(_Arthur->getPositionX() + _Arthur->getContentSize().width / 2 + 20, _Arthur->getPositionY() + +10));
-			moonblade->setVisible(true);
-			moonblade->flySkill();
-		}
-		else if (kc == EventKeyboard::KeyCode::KEY_L)
-		{
-			if (CheckJump(_Arthur, _nodePosPlayer) == true)
-			{
-				_Arthur->Jump();
-				_state = STATE_JUMPING;
-			}
-		}
-		break;
-	case STATE_WALKING:
-		break;
-	default:
-		break;
-	}
-	//if (_state == STATE_STANDING)
+	
+	//
+	//if (_Arthur->GetState() == STATE_STANDING)
 	//{
 	//	if (kc == EventKeyboard::KeyCode::KEY_D)
 	//	{
@@ -260,7 +190,7 @@ void GameScene_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Even
 	//		if (CheckJump(_Arthur, _nodePosPlayer) == true)
 	//		{
 	//			_Arthur->Jump();
-	//			_state = STATE_JUMPING;
+	//			_Arthur->SetState(STATE_JUMPING);
 	//		}
 
 
@@ -268,62 +198,23 @@ void GameScene_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Even
 	//}
 	//	if (kc == EventKeyboard::KeyCode::KEY_K)
 	//	{
-
 	//		_Arthur->Attack1Animation();
-	//		_state = STATE_ATTACKING;
+	//		_Arthur->SetState(STATE_ATTACKING);
 	//		//_Arthur->StopAction();
 	//	}
 	//
 	//	if (kc == EventKeyboard::KeyCode::KEY_J)
 	//	{
-
 	//		moonblade->setPosition(Vec2(_Arthur->getPositionX() + _Arthur->getContentSize().width / 2 + 20, _Arthur->getPositionY() + +10));
 	//		moonblade->setVisible(true);
 	//		moonblade->flySkill();
-
-
-
 	//	}
 	
 }
 
 void GameScene_1::onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
 {
-	if (kc == EventKeyboard::KeyCode::KEY_D)
-	{
-		
-		moveright = false;
-		_checkwalk--;
-		if(_checkwalk==0)
-		_Arthur->StopAction();
-		
-	}
-	if (kc == EventKeyboard::KeyCode::KEY_A)
-	{
-		
-		moveleft = false;
-		_checkwalk--;
-		if (_checkwalk == 0)
-		_Arthur->StopAction();
-	}
-	if (kc == EventKeyboard::KeyCode::KEY_S)
-	{
-		movedown = false;
-		_checkwalk--;
-		if (_checkwalk == 0)
-		_Arthur->StopAction();
-	}
-	if (kc == EventKeyboard::KeyCode::KEY_W)
-	{
-		moveup = false;
-		_checkwalk--;
-		if (_checkwalk == 0)
-		_Arthur->StopAction();
-	}
-	if (kc == EventKeyboard::KeyCode::KEY_K)
-	{
-		_state = STATE_STANDING;
-	}
+	
 	
 }
 
@@ -338,7 +229,7 @@ void GameScene_1::update(float dt)
 		campos.x = visibleSize.width / 2;
 	campos.y = this->getContentSize().height/2;
 	cam->setPosition3D(campos);
-	if (_state == STATE_STANDING)
+	if (_Arthur->GetState() == STATE_STANDING)
 	{
 		if (moveright == true)
 		{
@@ -387,11 +278,17 @@ void GameScene_1::update(float dt)
 			}
 		}
 	}
-	if (CheckJump(_Arthur, _nodePosPlayer) != true)
+	/*if (_Arthur->getPosition() == _nodePosPlayer->getPosition())
 	{
-	
-		_state = STATE_STANDING;
+		_Arthur->SetState(STATE_STANDING);
 	}
+	else
+	{
+		_Arthur->SetState(STATE_JUMPING);
+	}*/
+	
+	
+	
 	//
 	//_nodePosPlayer->setPosition(_Arthur->getPosition());
 	//if (CheckJump(_Arthur,_nodePosPlayer)==true)
@@ -403,16 +300,16 @@ void GameScene_1::update(float dt)
 	//	cocos2d::log("0");
 	//}
 	//cocos2d::log("%d  -   %d",_Arthur->getPositionX(),_nodePosPlayer->getPositionX());
-	/*cocos2d::log("%f-%f //   %f-%f",(float)_Arthur->getPositionX(), (float)_Arthur->getPositionY()
-									,(float)_nodePosPlayer->getPositionX(), (float)_nodePosPlayer->getPositionY());*/
-	cocos2d::log("%d ", _state);
+	cocos2d::log("%f-%f //   %f-%f",(float)_Arthur->getPositionX(), (float)_Arthur->getPositionY()
+									,(float)_nodePosPlayer->getPositionX(), (float)_nodePosPlayer->getPositionY());
+	//cocos2d::log("%d ", _state);
 
 }
 
 bool GameScene_1::CheckJump(cocos2d::Node * v1, cocos2d::Node * v2)
 {
-	if ((v1->getPositionX() - v2->getPositionX() < 1 && v1->getPositionX() - v2->getPositionX() > -1) &&
-		(v1->getPositionY() - v2->getPositionY() < 1 && v1->getPositionY() - v2->getPositionY() > -1))
+	if ((v1->getPositionX() - v2->getPositionX() < 0.1 && v1->getPositionX() - v2->getPositionX() > -0.001) &&
+		(v1->getPositionY() - v2->getPositionY() < 0.1 && v1->getPositionY() - v2->getPositionY() > -0.001))
 		return true;
 	else
 		return false;

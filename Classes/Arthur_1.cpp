@@ -34,6 +34,8 @@ bool Arthur_1::init()
 {
 	if (!Node::init())
 		return false;
+	_state = STATE_STANDING;
+	_checkwalk = 0;
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl1.plist", "ArthurLvl1.png");
 	_ArthurSprite = Sprite::createWithSpriteFrameName("Arthur_0_stand_1.png");
 	this->addChild(_ArthurSprite);
@@ -95,3 +97,87 @@ void Arthur_1::StopAction()
 	
 	_ArthurSprite->setSpriteFrame("Arthur_0_stand_1.png");
 }
+
+_State Arthur_1::GetState()
+{
+	return this->_state;
+}
+
+void Arthur_1::SetState(_State state)
+{
+	this->_state = state;
+}
+
+void Arthur_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
+{
+	switch (this->GetState())
+	{
+	case STATE_ATTACKING:
+		break;
+	case STATE_JUMPING:
+		break;
+	case STATE_STANDING:
+		if (kc == EventKeyboard::KeyCode::KEY_D)
+		{
+
+			//_Arthur->setScaleX(2.0f);
+			if (_checkwalk == 0)
+				_Arthur->WalkAnimation();
+			moveright = true;
+
+			_checkwalk++;
+		}
+		if (kc == EventKeyboard::KeyCode::KEY_A)
+		{
+			//_Arthur->setScaleX(-2.0f);
+
+			moveleft = true;
+			if (_checkwalk == 0)
+				_Arthur->WalkAnimation();
+			_checkwalk++;
+		}
+		if (kc == EventKeyboard::KeyCode::KEY_S)
+		{
+			movedown = true;
+			if (_checkwalk == 0)
+				_Arthur->WalkAnimation();
+			_checkwalk++;
+		}
+		if (kc == EventKeyboard::KeyCode::KEY_W)
+		{
+			moveup = true;
+			if (_checkwalk == 0)
+				_Arthur->WalkAnimation();
+			_checkwalk++;
+		}
+		else if (kc == EventKeyboard::KeyCode::KEY_K)
+		{
+
+			_Arthur->Attack1Animation();
+			_Arthur->SetState(STATE_ATTACKING);
+			//_Arthur->StopAction();
+		}
+		else if (kc == EventKeyboard::KeyCode::KEY_J)
+		{
+
+			moonblade->setPosition(Vec2(_Arthur->getPositionX() + _Arthur->getContentSize().width / 2 + 20, _Arthur->getPositionY() + +10));
+			moonblade->setVisible(true);
+			moonblade->flySkill();
+		}
+		else if (kc == EventKeyboard::KeyCode::KEY_L)
+		{
+			/*if (CheckJump(_Arthur, _nodePosPlayer) == true)
+			{*/
+			_Arthur->Jump();
+			_Arthur->SetState(STATE_JUMPING);
+			/*}*/
+		}
+		break;
+	case STATE_WALKING:
+		break;
+	default:
+		break;
+	}
+
+}
+
