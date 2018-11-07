@@ -42,7 +42,7 @@ void SplashScene::createSprSplash()
 {
 	//Back Ground
 	Size winSize = Director::getInstance()->getWinSize();
-	auto backgound = Sprite::create("Background.png");
+	auto backgound = Sprite::create("bgSplash.png");
 	this->addChild(backgound);
 	backgound->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 	backgound->setPosition(this->getContentSize() * 0.5f);
