@@ -1,23 +1,27 @@
-#ifndef __SPLASHSCENE_H__
-#define __SPLASHCENE_H__
-
+#ifndef _PLASH_SCENE_H_
+#define	_PLASH_SCENE_H_
+#include "ui/CocosGUI.h"
 #include "cocos2d.h"
-
-class SplashScene: public cocos2d::Layer
+class SplashScene : public cocos2d::Scene
 {
 public:
-	
-	
-	static cocos2d::Scene* createScene();
+	SplashScene();
+	~SplashScene();
+	void	createSprSplash();
+	static cocos2d::Scene* createSplScene();
 	virtual bool init();
-	void menuCloseCallback(cocos2d::Ref* pSender);
-
 	CREATE_FUNC(SplashScene);
 private:
-	
-	void GotoMainMenuScene(float dt);
+	//void GotoMainMenuScene(float dt);
+
 };
-
-
-#endif // !__SPLASHSCENE_H__
-
+//auto loadingBar = LoadingBar::create("LoadingBarFile.png");
+//
+//loadingBar->setDirection(LoadingBar::Direction::RIGHT);
+//
+//// something happened, change the percentage of the loading bar
+//loadingBar->setPercent(40);
+//
+//this->addChild(loadingBar);
+#endif 
+#pragma once
