@@ -8,7 +8,7 @@ public:
 	SplashScene();
 	~SplashScene();
 	void	createSprSplash();
-	static cocos2d::Scene* createSplScene();
+	static cocos2d::Scene* createScene();
 	virtual bool init();
 	CREATE_FUNC(SplashScene);
 private:
@@ -24,4 +24,3 @@ private:
 //
 //this->addChild(loadingBar);
 #endif 
-#pragma once

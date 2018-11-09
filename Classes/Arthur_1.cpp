@@ -122,7 +122,7 @@ void Arthur_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event *
 
 			//_Arthur->setScaleX(2.0f);
 			if (_checkwalk == 0)
-				_Arthur->WalkAnimation();
+				this->WalkAnimation();
 			moveright = true;
 
 			_checkwalk++;
@@ -133,43 +133,43 @@ void Arthur_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event *
 
 			moveleft = true;
 			if (_checkwalk == 0)
-				_Arthur->WalkAnimation();
+				this->WalkAnimation();
 			_checkwalk++;
 		}
 		if (kc == EventKeyboard::KeyCode::KEY_S)
 		{
 			movedown = true;
 			if (_checkwalk == 0)
-				_Arthur->WalkAnimation();
+				this->WalkAnimation();
 			_checkwalk++;
 		}
 		if (kc == EventKeyboard::KeyCode::KEY_W)
 		{
 			moveup = true;
 			if (_checkwalk == 0)
-				_Arthur->WalkAnimation();
+				this->WalkAnimation();
 			_checkwalk++;
 		}
 		else if (kc == EventKeyboard::KeyCode::KEY_K)
 		{
 
-			_Arthur->Attack1Animation();
-			_Arthur->SetState(STATE_ATTACKING);
+			this->Attack1Animation();
+			this->SetState(STATE_ATTACKING);
 			//_Arthur->StopAction();
 		}
 		else if (kc == EventKeyboard::KeyCode::KEY_J)
 		{
 
-			moonblade->setPosition(Vec2(_Arthur->getPositionX() + _Arthur->getContentSize().width / 2 + 20, _Arthur->getPositionY() + +10));
+		/*	moonblade->setPosition(Vec2(_Arthur->getPositionX() + _Arthur->getContentSize().width / 2 + 20, _Arthur->getPositionY() + +10));
 			moonblade->setVisible(true);
-			moonblade->flySkill();
+			moonblade->flySkill();*/
 		}
 		else if (kc == EventKeyboard::KeyCode::KEY_L)
 		{
 			/*if (CheckJump(_Arthur, _nodePosPlayer) == true)
 			{*/
-			_Arthur->Jump();
-			_Arthur->SetState(STATE_JUMPING);
+			this->Jump();
+			this->SetState(STATE_JUMPING);
 			/*}*/
 		}
 		break;

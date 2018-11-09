@@ -35,5 +35,10 @@ private:
 	cocos2d::JumpBy* _Jump;
 	int _checkwalk;
 
+	bool moveup;
+	bool movedown;
+	bool moveleft;
+	bool moveright;
+
 };
 #endif //

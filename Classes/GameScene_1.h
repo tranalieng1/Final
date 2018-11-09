@@ -35,10 +35,6 @@ private:
 
 	
 
-	bool moveup;
-	bool movedown;
-	bool moveleft;
-	bool moveright;
 
 	cocos2d::Node *_nodePosPlayer;
 	bool CheckJump(cocos2d::Node *v1,cocos2d::Node *v2);

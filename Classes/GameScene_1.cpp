@@ -220,64 +220,65 @@ void GameScene_1::onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Eve
 
 void GameScene_1::update(float dt)
 {
-	cam = Camera::getDefaultCamera();
+	//cam = Camera::getDefaultCamera();
 
-	campos = cam->getPosition3D();
-	if (_Arthur->getPositionX() > visibleSize.width / 2)
-		campos.x = _Arthur->getPositionX();
-	else
-		campos.x = visibleSize.width / 2;
-	campos.y = this->getContentSize().height/2;
-	cam->setPosition3D(campos);
-	if (_Arthur->GetState() == STATE_STANDING)
-	{
-		if (moveright == true)
-		{
-			_Arthur->setScaleX(2.0f);
-			_nodePosPlayer->setPosition(Vec2(_nodePosPlayer->getPositionX() + visibleSize.width*SPEED_MOVE_HORIZONTAL, _nodePosPlayer->getPositionY()));
-			_Arthur->setPosition(Vec2(_Arthur->getPositionX() + visibleSize.width*SPEED_MOVE_HORIZONTAL, _Arthur->getPositionY()));
-			
-		}
-		if (moveleft == true)
-		{
-			_Arthur->setScaleX(-2.0f);
-			if (_Arthur->getPositionX() - _Arthur->getContentSize().width / 2 > 0)
-			{
-				_nodePosPlayer->setPosition(Vec2(_nodePosPlayer->getPositionX() - visibleSize.width*SPEED_MOVE_HORIZONTAL, _nodePosPlayer->getPositionY()));
+	//campos = cam->getPosition3D();
+	//if (_Arthur->getPositionX() > visibleSize.width / 2)
+	//	campos.x = _Arthur->getPositionX();
+	//else
+	//	campos.x = visibleSize.width / 2;
+	//campos.y = this->getContentSize().height/2;
+	//cam->setPosition3D(campos);
+	//if (_Arthur->GetState() == STATE_STANDING)
+	//{
+	//	if (moveright == true)
+	//	{
+	//		_Arthur->setScaleX(2.0f);
+	//		_nodePosPlayer->setPosition(Vec2(_nodePosPlayer->getPositionX() + visibleSize.width*SPEED_MOVE_HORIZONTAL, _nodePosPlayer->getPositionY()));
+	//		_Arthur->setPosition(Vec2(_Arthur->getPositionX() + visibleSize.width*SPEED_MOVE_HORIZONTAL, _Arthur->getPositionY()));
+	//		
+	//	}
+	//	if (moveleft == true)
+	//	{
+	//		_Arthur->setScaleX(-2.0f);
+	//		if (_Arthur->getPositionX() - _Arthur->getContentSize().width / 2 > 0)
+	//		{
+	//			_nodePosPlayer->setPosition(Vec2(_nodePosPlayer->getPositionX() - visibleSize.width*SPEED_MOVE_HORIZONTAL, _nodePosPlayer->getPositionY()));
 
-				_Arthur->setPosition(Vec2(_Arthur->getPositionX() - visibleSize.width*SPEED_MOVE_HORIZONTAL, _Arthur->getPositionY()));
-			}
-				
-			else
-			{
-				_nodePosPlayer->setPosition(Vec2(0 + _Arthur->getContentSize().width / 2, _nodePosPlayer->getPositionY()));
-				_Arthur->setPosition(Vec2(0 + _Arthur->getContentSize().width / 2, _Arthur->getPositionY()));
-				
-			}
+	//			_Arthur->setPosition(Vec2(_Arthur->getPositionX() - visibleSize.width*SPEED_MOVE_HORIZONTAL, _Arthur->getPositionY()));
+	//		}
+	//			
+	//		else
+	//		{
+	//			_nodePosPlayer->setPosition(Vec2(0 + _Arthur->getContentSize().width / 2, _nodePosPlayer->getPositionY()));
+	//			_Arthur->setPosition(Vec2(0 + _Arthur->getContentSize().width / 2, _Arthur->getPositionY()));
+	//			
+	//		}
 
-		}
-		if (moveup == true)
-		{
-			_nodePosPlayer->setPosition(Vec2(_nodePosPlayer->getPositionX(), _nodePosPlayer->getPositionY() + visibleSize.height*SPEED_MOVE_VERTICAL));
-			_Arthur->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY() + visibleSize.height*SPEED_MOVE_VERTICAL));
-			
-		}
-		if (movedown == true)
-		{
-			if (_Arthur->getPositionY() > 0)
-			{
-				_nodePosPlayer->setPosition(Vec2(_nodePosPlayer->getPositionX(), _nodePosPlayer->getPositionY() - visibleSize.height*SPEED_MOVE_VERTICAL));
-				_Arthur->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY() - visibleSize.height*SPEED_MOVE_VERTICAL));
-				
-			}
-			else
-			{
-				_nodePosPlayer->setPosition(Vec2(_nodePosPlayer->getPositionX(), 0));
-				_Arthur->setPosition(Vec2(_Arthur->getPositionX(), 0));
-				
-			}
-		}
-	}
+	//	}
+	//	if (moveup == true)
+	//	{
+	//		_nodePosPlayer->setPosition(Vec2(_nodePosPlayer->getPositionX(), _nodePosPlayer->getPositionY() + visibleSize.height*SPEED_MOVE_VERTICAL));
+	//		_Arthur->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY() + visibleSize.height*SPEED_MOVE_VERTICAL));
+	//		
+	//	}
+	//	if (movedown == true)
+	//	{
+	//		if (_Arthur->getPositionY() > 0)
+	//		{
+	//			_nodePosPlayer->setPosition(Vec2(_nodePosPlayer->getPositionX(), _nodePosPlayer->getPositionY() - visibleSize.height*SPEED_MOVE_VERTICAL));
+	//			_Arthur->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY() - visibleSize.height*SPEED_MOVE_VERTICAL));
+	//			
+	//		}
+	//		else
+	//		{
+	//			_nodePosPlayer->setPosition(Vec2(_nodePosPlayer->getPositionX(), 0));
+	//			_Arthur->setPosition(Vec2(_Arthur->getPositionX(), 0));
+	//			
+	//		}
+	//	}
+	//}
+	/////--------------------------
 	/*if (_Arthur->getPosition() == _nodePosPlayer->getPosition())
 	{
 		_Arthur->SetState(STATE_STANDING);

@@ -9,7 +9,7 @@ SplashScene::SplashScene()
 SplashScene::~SplashScene()
 {
 }
-Scene* SplashScene::createSplScene()
+Scene* SplashScene::createScene()
 {
 	auto scene = Scene::create();
 
@@ -42,7 +42,7 @@ void SplashScene::createSprSplash()
 {
 	//Back Ground
 	Size winSize = Director::getInstance()->getWinSize();
-	auto backgound = Sprite::create("bgSplash.png");
+	auto backgound = Sprite::create("Background.png");
 	this->addChild(backgound);
 	backgound->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 	backgound->setPosition(this->getContentSize() * 0.5f);
@@ -51,11 +51,11 @@ void SplashScene::createSprSplash()
 	backgound->setScaleX(scaleX);
 	backgound->setScaleY(scaleY);
 	//cái vỏ 
-	auto bgLoading = Sprite::create("LoadingBar.png");
+	auto bgLoading = Sprite::create("LoadingBar1.png");
 	this->addChild(bgLoading);
 	bgLoading->setPosition(Vec2(winSize.width * 0.5f, winSize.height * 0.05f));
 	//cái ruột
-	auto loadingBar = ui::LoadingBar::create("LoadingBar1.png");
+	auto loadingBar = ui::LoadingBar::create("LoadingBar2.png");
 	loadingBar->setPosition(Vec2(winSize.width * 0.5f, winSize.height * 0.05f));
 	loadingBar->setDirection(ui::LoadingBar::Direction::LEFT);
 	loadingBar->setPercent(0);
@@ -69,17 +69,10 @@ void SplashScene::createSprSplash()
 			this->unschedule("updateloadingBar");
 		}
 	}, 0.1f, "updateloadingBar"); //thời gian
-	
-	//this->runAction(Repeat::create(Sequence::createWithTwoActions(countDown,
-	//	DelayTime::create(0.01f)), 40));
 
-	//
+								  //this->runAction(Repeat::create(Sequence::createWithTwoActions(countDown,
+								  //	DelayTime::create(0.01f)), 40));
+
+								  //
 
 }
-
-
-
-
-
-
-
