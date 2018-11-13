@@ -11,6 +11,7 @@ public:
 	~Arthur_1();
 
 
+	CREATE_FUNC(Arthur_1);
 
 	void Attack();
 	virtual bool init();
@@ -19,9 +20,14 @@ public:
 	void WalkAnimation();
 	void StopAction();
 	
-	void onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event);
-	void onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event);
-	CREATE_FUNC(Arthur_1);
+	void onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event) override;
+	void onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event) override;
+
+	void onContactBeganWith(Player* obj) override;
+	void onContactPostSolveWith(Player* obj, cocos2d::PhysicsContact& contact, const cocos2d::PhysicsContactPostSolve& solve) override;
+	void onContactPreSolveWith(Player* obj, cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve) override;
+	void onContactSeparateWith(Player* obj, cocos2d::PhysicsContact& contact) override;
+	
 private:
 	
 

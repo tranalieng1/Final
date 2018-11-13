@@ -15,9 +15,13 @@ using namespace cocos2d;
 
 Scene* GameScene_1::createScene()
 {
-	auto scene = Scene::create();
+	auto scene = Scene::createWithPhysics();
+	scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+	//scene->getPhysicsWorld()->setGravity(Vect(0, 0));
 
 	auto layer = GameScene_1::create();
+	layer->SetPhysicsWorld(scene->getPhysicsWorld());
+
 
 	scene->addChild(layer);
 	return scene;
@@ -220,15 +224,15 @@ void GameScene_1::onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Eve
 
 void GameScene_1::update(float dt)
 {
-	//cam = Camera::getDefaultCamera();
+	cam = Camera::getDefaultCamera();
 
-	//campos = cam->getPosition3D();
-	//if (_Arthur->getPositionX() > visibleSize.width / 2)
-	//	campos.x = _Arthur->getPositionX();
-	//else
-	//	campos.x = visibleSize.width / 2;
-	//campos.y = this->getContentSize().height/2;
-	//cam->setPosition3D(campos);
+	campos = cam->getPosition3D();
+	if (_Arthur->getPositionX() > visibleSize.width / 2)
+		campos.x = _Arthur->getPositionX();
+	else
+		campos.x = visibleSize.width / 2;
+	campos.y = this->getContentSize().height/2;
+	cam->setPosition3D(campos);
 	//if (_Arthur->GetState() == STATE_STANDING)
 	//{
 	//	if (moveright == true)
@@ -305,6 +309,11 @@ void GameScene_1::update(float dt)
 									,(float)_nodePosPlayer->getPositionX(), (float)_nodePosPlayer->getPositionY());
 	//cocos2d::log("%d ", _state);
 
+}
+
+void GameScene_1::SetPhysicsWorld(cocos2d::PhysicsWorld * world)
+{
+	sceneWorld = world;
 }
 
 bool GameScene_1::CheckJump(cocos2d::Node * v1, cocos2d::Node * v2)

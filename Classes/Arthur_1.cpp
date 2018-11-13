@@ -16,6 +16,8 @@ Arthur_1::Arthur_1()
 
 
 
+
+
 void Arthur_1::Attack()
 {
 	Animation* animation = Animation::create();
@@ -36,15 +38,20 @@ bool Arthur_1::init()
 		return false;
 	_state = STATE_STANDING;
 	_checkwalk = 0;
+	
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl1.plist", "ArthurLvl1.png");
 	_PlayerSprite = Sprite::createWithSpriteFrameName("Arthur_0_stand_1.png");
+	
 	this->addChild(_PlayerSprite);
 	_PlayerSprite->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
 	this->setContentSize(_PlayerSprite->getContentSize());
 	//this->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
 	_PlayerSprite->setPosition(Vec2(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.0f));
 	this->setScale(2.0);
-
+	_Physicbody = cocos2d::PhysicsBody::createBox(this->getContentSize());
+	this->setPhysicsBody(_Physicbody);
+	_Physicbody->setDynamic(false);
+	_Physicbody->setGravityEnable(false);
 	return true;
 }
 
@@ -101,78 +108,111 @@ void Arthur_1::StopAction()
 
 void Arthur_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
 {
-	switch (this->GetState())
+	//switch (this->_state)
+	//{
+	//case STATE_ATTACKING:
+	//	break;
+	//case STATE_JUMPING:
+	//	break;
+	//case STATE_STANDING:
+	//	if (kc == EventKeyboard::KeyCode::KEY_D)
+	//	{
+
+	//		//_Arthur->setScaleX(2.0f);
+	//		if (_checkwalk == 0)
+	//			this->WalkAnimation();
+	//		moveright = true;
+
+	//		_checkwalk++;
+	//	}
+	//	if (kc == EventKeyboard::KeyCode::KEY_A)
+	//	{
+	//		//_Arthur->setScaleX(-2.0f);
+
+	//		moveleft = true;
+	//		if (_checkwalk == 0)
+	//			this->WalkAnimation();
+	//		_checkwalk++;
+	//	}
+	//	if (kc == EventKeyboard::KeyCode::KEY_S)
+	//	{
+	//		movedown = true;
+	//		if (_checkwalk == 0)
+	//			this->WalkAnimation();
+	//		_checkwalk++;
+	//	}
+	//	if (kc == EventKeyboard::KeyCode::KEY_W)
+	//	{
+	//		moveup = true;
+	//		if (_checkwalk == 0)
+	//			this->WalkAnimation();
+	//		_checkwalk++;
+	//	}
+	//	else if (kc == EventKeyboard::KeyCode::KEY_K)
+	//	{
+
+	//		this->Attack1Animation();
+	//		this->SetState(STATE_ATTACKING);
+	//		//_Arthur->StopAction();
+	//	}
+	//	else if (kc == EventKeyboard::KeyCode::KEY_J)
+	//	{
+
+	//	/*	moonblade->setPosition(Vec2(_Arthur->getPositionX() + _Arthur->getContentSize().width / 2 + 20, _Arthur->getPositionY() + +10));
+	//		moonblade->setVisible(true);
+	//		moonblade->flySkill();*/
+	//	}
+	//	else if (kc == EventKeyboard::KeyCode::KEY_L)
+	//	{
+	//		/*if (CheckJump(_Arthur, _nodePosPlayer) == true)
+	//		{*/
+	//		this->Jump();
+	//		this->SetState(STATE_JUMPING);
+	//		/*}*/
+	//	}
+	//	break;
+	//case STATE_WALKING:
+	//	break;
+	//default:
+	//	break;
+	//}
+
+	if (kc == EventKeyboard::KeyCode::KEY_A)
 	{
-	case STATE_ATTACKING:
-		break;
-	case STATE_JUMPING:
-		break;
-	case STATE_STANDING:
-		if (kc == EventKeyboard::KeyCode::KEY_D)
-		{
-
-			//_Arthur->setScaleX(2.0f);
-			if (_checkwalk == 0)
-				this->WalkAnimation();
-			moveright = true;
-
-			_checkwalk++;
-		}
-		if (kc == EventKeyboard::KeyCode::KEY_A)
-		{
-			//_Arthur->setScaleX(-2.0f);
-
-			moveleft = true;
-			if (_checkwalk == 0)
-				this->WalkAnimation();
-			_checkwalk++;
-		}
-		if (kc == EventKeyboard::KeyCode::KEY_S)
-		{
-			movedown = true;
-			if (_checkwalk == 0)
-				this->WalkAnimation();
-			_checkwalk++;
-		}
-		if (kc == EventKeyboard::KeyCode::KEY_W)
-		{
-			moveup = true;
-			if (_checkwalk == 0)
-				this->WalkAnimation();
-			_checkwalk++;
-		}
-		else if (kc == EventKeyboard::KeyCode::KEY_K)
-		{
-
-			this->Attack1Animation();
-			this->SetState(STATE_ATTACKING);
-			//_Arthur->StopAction();
-		}
-		else if (kc == EventKeyboard::KeyCode::KEY_J)
-		{
-
-		/*	moonblade->setPosition(Vec2(_Arthur->getPositionX() + _Arthur->getContentSize().width / 2 + 20, _Arthur->getPositionY() + +10));
-			moonblade->setVisible(true);
-			moonblade->flySkill();*/
-		}
-		else if (kc == EventKeyboard::KeyCode::KEY_L)
-		{
-			/*if (CheckJump(_Arthur, _nodePosPlayer) == true)
-			{*/
-			this->Jump();
-			this->SetState(STATE_JUMPING);
-			/*}*/
-		}
-		break;
-	case STATE_WALKING:
-		break;
-	default:
-		break;
+		this->WalkAnimation();
+	}
+	else if (kc == EventKeyboard::KeyCode::KEY_S)
+	{
+		this->WalkAnimation();
+	}
+	else if (kc == EventKeyboard::KeyCode::KEY_D)
+	{
+		this->WalkAnimation();
+	}
+	else if (kc == EventKeyboard::KeyCode::KEY_W)
+	{
+		this->WalkAnimation();
 	}
 
 }
 
 void Arthur_1::onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
+{
+}
+
+void Arthur_1::onContactBeganWith(Player * obj)
+{
+}
+
+void Arthur_1::onContactPostSolveWith(Player * obj, cocos2d::PhysicsContact & contact, const cocos2d::PhysicsContactPostSolve & solve)
+{
+}
+
+void Arthur_1::onContactPreSolveWith(Player * obj, cocos2d::PhysicsContact & contact, cocos2d::PhysicsContactPreSolve & solve)
+{
+}
+
+void Arthur_1::onContactSeparateWith(Player * obj, cocos2d::PhysicsContact & contact)
 {
 }
 
