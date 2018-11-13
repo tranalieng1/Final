@@ -16,9 +16,7 @@ public:
 	CREATE_FUNC(FanMan);
 private:
 
-	cocos2d::Sprite* _FanManSprite;
-	cocos2d::Action *_WalkAction;
-	cocos2d::JumpBy* _Jump;
+	
 
 };
 #endif //

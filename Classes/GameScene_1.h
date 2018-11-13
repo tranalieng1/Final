@@ -5,7 +5,7 @@
 #include "cocos2d.h"
 #include "MoonBlade.h"
 #include "FanMan.h"
-
+#include "Player.h"
 
 class GameScene_1 : public cocos2d::Layer
 {
@@ -26,7 +26,7 @@ public:
 private:
 	cocos2d::Size visibleSize;
 	cocos2d::TMXTiledMap *_tileMap;
-	Arthur_1 *_Arthur;
+	Player *_Arthur;
 	FanMan *_FanMan;
 	cocos2d::PhysicsWorld *sceneWorld;
 	MoonBlade *moonblade;
