@@ -49,7 +49,7 @@ bool FanMan::init()
 void FanMan::Jump()
 {
 	_FanManSprite->setSpriteFrame("FatMan_stand_1.png");
-	_Jump = JumpBy::create(1.0f, Vec2(0.0f, 0.0f), this->getContentSize().height*ARTHUR_JUMP, 1);
+	_Jump = JumpBy::create(1.0f, Vec2(0.0f, 0.0f), this->getContentSize().height*PLAYER_JUMP, 1);
 	this->runAction(_Jump);
 }
 

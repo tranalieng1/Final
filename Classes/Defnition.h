@@ -10,7 +10,7 @@
 #define SPEED_MOVE_HORIZONTAL 0.0035
 #define SPEED_MOVE_VERTICAL 0.002
 
-#define ARTHUR_JUMP 1.5f
+#define PLAYER_JUMP 1.5f
 //vertical
 
 #endif // !__DEFNITION_H__

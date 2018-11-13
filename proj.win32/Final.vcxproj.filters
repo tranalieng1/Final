@@ -45,6 +45,12 @@
     <ClCompile Include="..\Classes\FanMan.cpp">
       <Filter>src\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Percival.cpp">
+      <Filter>src\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Player.cpp">
+      <Filter>src\Characters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -73,6 +79,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\FanMan.h">
       <Filter>src\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Percival.h">
+      <Filter>src\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Player.h">
+      <Filter>src\Characters</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

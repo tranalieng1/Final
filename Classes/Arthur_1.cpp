@@ -27,7 +27,7 @@ void Arthur_1::Attack()
 	animation->setDelayPerUnit(1 /12);
 
 	Animate* animate = Animate::create(animation);
-	_ArthurSprite->runAction(RepeatForever::create(animate));
+	_PlayerSprite->runAction(RepeatForever::create(animate));
 }
 
 bool Arthur_1::init()
@@ -37,12 +37,12 @@ bool Arthur_1::init()
 	_state = STATE_STANDING;
 	_checkwalk = 0;
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl1.plist", "ArthurLvl1.png");
-	_ArthurSprite = Sprite::createWithSpriteFrameName("Arthur_0_stand_1.png");
-	this->addChild(_ArthurSprite);
-	_ArthurSprite->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
-	this->setContentSize(_ArthurSprite->getContentSize());
+	_PlayerSprite = Sprite::createWithSpriteFrameName("Arthur_0_stand_1.png");
+	this->addChild(_PlayerSprite);
+	_PlayerSprite->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
+	this->setContentSize(_PlayerSprite->getContentSize());
 	//this->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
-	_ArthurSprite->setPosition(Vec2(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.0f));
+	_PlayerSprite->setPosition(Vec2(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.0f));
 	this->setScale(2.0);
 
 	return true;
@@ -51,9 +51,9 @@ bool Arthur_1::init()
 void Arthur_1::Jump()
 {
 	//_ArthurSprite->setSpriteFrame("Arthur_0_stand_1.png");
-	_ArthurSprite->stopAllActions();
-	_ArthurSprite->setSpriteFrame("Arthur_0_jump_1.png");
-	_Jump = JumpBy::create(1.0f, Vec2(0.0f,0.0f),  this->getContentSize().height*ARTHUR_JUMP, 1);
+	_PlayerSprite->stopAllActions();
+	_PlayerSprite->setSpriteFrame("Arthur_0_jump_1.png");
+	_Jump = JumpBy::create(1.0f, Vec2(0.0f,0.0f),  this->getContentSize().height*PLAYER_JUMP, 1);
 	this->runAction(_Jump);
 
 }
@@ -72,7 +72,7 @@ void Arthur_1::Attack1Animation()
 
 	Animate* animate = Animate::create(animation);
 	//_WalkAction = RepeatForever::create(animate);
-	_ArthurSprite->runAction(animate);
+	_PlayerSprite->runAction(animate);
 	
 }
 
@@ -88,25 +88,16 @@ void Arthur_1::WalkAnimation()
 
 	Animate* animate = Animate::create(animation);
 	_WalkAction = RepeatForever::create(animate);
-	_ArthurSprite->runAction(_WalkAction);
+	_PlayerSprite->runAction(_WalkAction);
 }
 
 void Arthur_1::StopAction()
 {
-	_ArthurSprite->stopAction(_WalkAction);
+	_PlayerSprite->stopAction(_WalkAction);
 	
-	_ArthurSprite->setSpriteFrame("Arthur_0_stand_1.png");
+	_PlayerSprite->setSpriteFrame("Arthur_0_stand_1.png");
 }
 
-_State Arthur_1::GetState()
-{
-	return this->_state;
-}
-
-void Arthur_1::SetState(_State state)
-{
-	this->_state = state;
-}
 
 void Arthur_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
 {
@@ -179,5 +170,9 @@ void Arthur_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event *
 		break;
 	}
 
+}
+
+void Arthur_1::onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
+{
 }
 
