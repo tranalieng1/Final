@@ -41,13 +41,15 @@ bool Arthur_1::init()
 	
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl1.plist", "ArthurLvl1.png");
 	_PlayerSprite = Sprite::createWithSpriteFrameName("Arthur_0_stand_1.png");
-	
+	//Set sprite
 	this->addChild(_PlayerSprite);
 	_PlayerSprite->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
-	this->setContentSize(_PlayerSprite->getContentSize());
-	//this->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
+	this->setContentSize(Size(_PlayerSprite->getContentSize().width, _PlayerSprite->getContentSize().height - 30));
+	this->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
 	_PlayerSprite->setPosition(Vec2(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.0f));
 	this->setScale(2.0);
+
+	//Setbody
 	_Physicbody = cocos2d::PhysicsBody::createBox(this->getContentSize());
 	this->setPhysicsBody(_Physicbody);
 	_Physicbody->setDynamic(false);
@@ -200,19 +202,19 @@ void Arthur_1::onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event 
 {
 }
 
-void Arthur_1::onContactBeganWith(Player * obj)
+void Arthur_1::onContactBeganWith(GameObject * obj)
 {
 }
 
-void Arthur_1::onContactPostSolveWith(Player * obj, cocos2d::PhysicsContact & contact, const cocos2d::PhysicsContactPostSolve & solve)
+void Arthur_1::onContactPostSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, const cocos2d::PhysicsContactPostSolve & solve)
 {
 }
 
-void Arthur_1::onContactPreSolveWith(Player * obj, cocos2d::PhysicsContact & contact, cocos2d::PhysicsContactPreSolve & solve)
+void Arthur_1::onContactPreSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, cocos2d::PhysicsContactPreSolve & solve)
 {
 }
 
-void Arthur_1::onContactSeparateWith(Player * obj, cocos2d::PhysicsContact & contact)
+void Arthur_1::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact & contact)
 {
 }
 

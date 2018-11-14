@@ -172,18 +172,18 @@ void Percival::onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event 
 {
 }
 
-void Percival::onContactBeganWith(Player * obj)
+void Percival::onContactBeganWith(GameObject * obj)
 {
 }
 
-void Percival::onContactPostSolveWith(Player * obj, cocos2d::PhysicsContact & contact, const cocos2d::PhysicsContactPostSolve & solve)
+void Percival::onContactPostSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, const cocos2d::PhysicsContactPostSolve & solve)
 {
 }
 
-void Percival::onContactPreSolveWith(Player * obj, cocos2d::PhysicsContact & contact, cocos2d::PhysicsContactPreSolve & solve)
+void Percival::onContactPreSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, cocos2d::PhysicsContactPreSolve & solve)
 {
 }
 
-void Percival::onContactSeparateWith(Player * obj, cocos2d::PhysicsContact & contact)
+void Percival::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact & contact)
 {
 }

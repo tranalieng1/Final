@@ -1,6 +1,7 @@
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 #include "cocos2d.h"
+#include "GameObject.h"
 enum _State
 {
 	STATE_ATTACKING,
@@ -8,7 +9,7 @@ enum _State
 	STATE_STANDING,
 	STATE_WALKING
 };
-class Player : public cocos2d::Node
+class Player : public GameObject
 {
 
 public:
@@ -18,16 +19,16 @@ public:
 
 
 	//virtual void Attack();
-	virtual bool init();
+	virtual bool init() override;
 	//virtual void Jump();
 	//virtual void Attack1Animation();
 	//virtual void WalkAnimation();
 	//virtual void StopAction();
 	
-	virtual void onContactBeganWith(Player* obj) = 0;
-	virtual void onContactPostSolveWith(Player* obj, cocos2d::PhysicsContact& contact, const cocos2d::PhysicsContactPostSolve& solve) = 0;
-	virtual void onContactPreSolveWith(Player* obj, cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve) = 0;
-	virtual void onContactSeparateWith(Player* obj, cocos2d::PhysicsContact& contact) = 0;
+	virtual void onContactBeganWith(GameObject* obj) = 0;
+	virtual void onContactPostSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, const cocos2d::PhysicsContactPostSolve& solve) = 0;
+	virtual void onContactPreSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve) = 0;
+	virtual void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) = 0;
 
 
 	virtual void onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)  =0;

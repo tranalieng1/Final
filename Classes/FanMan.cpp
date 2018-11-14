@@ -34,14 +34,20 @@ bool FanMan::init()
 {
 	if (!Node::init())
 		return false;
+	//Set sprite
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("FatMan.plist", "FatMan.png");
-	_EnemySprite = Sprite::createWithSpriteFrameName("FatMan_stand_1.png");
+	_EnemySprite = Sprite::createWithSpriteFrameName("FatMan_default_3.png");
 	this->addChild(_EnemySprite);
 	_EnemySprite->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
-	this->setContentSize(_EnemySprite->getContentSize());
-	//this->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
+	this->setContentSize(Size(_EnemySprite->getContentSize().width,_EnemySprite->getContentSize().height-20));
+	this->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
 	_EnemySprite->setPosition(Vec2(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.0f));
 	this->setScale(2.0);
+	//Set physicbody
+	_physicsBody = PhysicsBody::createBox(this->getContentSize());
+	this->setPhysicsBody(_physicsBody);
+	_physicsBody->setGravityEnable(false);
+	_physicsBody->setDynamic(false);
 
 	return true;
 }
@@ -92,18 +98,18 @@ void FanMan::StopAction()
 	_EnemySprite->setSpriteFrame("FatMan_stand_1.png");
 }
 
-void FanMan::onContactBeganWith(Enemy * obj)
+void FanMan::onContactBeganWith(GameObject * obj)
 {
 }
 
-void FanMan::onContactPostSolveWith(Enemy * obj, cocos2d::PhysicsContact & contact, const cocos2d::PhysicsContactPostSolve & solve)
+void FanMan::onContactPostSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, const cocos2d::PhysicsContactPostSolve & solve)
 {
 }
 
-void FanMan::onContactPreSolveWith(Enemy * obj, cocos2d::PhysicsContact & contact, cocos2d::PhysicsContactPreSolve & solve)
+void FanMan::onContactPreSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, cocos2d::PhysicsContactPreSolve & solve)
 {
 }
 
-void FanMan::onContactSeparateWith(Enemy * obj, cocos2d::PhysicsContact & contact)
+void FanMan::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact & contact)
 {
 }

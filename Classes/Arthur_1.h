@@ -23,10 +23,10 @@ public:
 	void onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event) override;
 	void onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event) override;
 
-	void onContactBeganWith(Player* obj) override;
-	void onContactPostSolveWith(Player* obj, cocos2d::PhysicsContact& contact, const cocos2d::PhysicsContactPostSolve& solve) override;
-	void onContactPreSolveWith(Player* obj, cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve) override;
-	void onContactSeparateWith(Player* obj, cocos2d::PhysicsContact& contact) override;
+	void onContactBeganWith(GameObject* obj) override;
+	void onContactPostSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, const cocos2d::PhysicsContactPostSolve& solve) override;
+	void onContactPreSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve) override;
+	void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) override;
 	
 private:
 	
