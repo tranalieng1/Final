@@ -137,7 +137,7 @@ void MainMenuScene::menuCloseCallback(Ref* pSender)
 void MainMenuScene::GoToGameScene(cocos2d::Ref * pSender)
 {
 	auto game = GameScene_1::createScene();
-	Director::getInstance()->replaceScene(game);
+	Director::getInstance()->replaceScene(TransitionFade::create(1, game));
 }
 
 void MainMenuScene::GoToGameOptions(cocos2d::Ref * pSender)

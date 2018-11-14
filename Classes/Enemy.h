@@ -11,12 +11,12 @@ public:
 
 
 
-	//virtual void Attack();
-	virtual bool init();
-	//virtual void Jump();
-	//virtual void Attack1Animation();
-	//virtual void WalkAnimation();
-	//virtual void StopAction();
+	virtual void Attack() = 0;
+	virtual bool init() = 0;
+	virtual void Jump() = 0;
+	virtual void Attack1Animation() = 0;
+	virtual void WalkAnimation() = 0;
+	virtual void StopAction() = 0;
 
 	virtual void onContactBeganWith(Enemy* obj) = 0;
 	virtual void onContactPostSolveWith(Enemy* obj, cocos2d::PhysicsContact& contact, const cocos2d::PhysicsContactPostSolve& solve) = 0;
@@ -24,8 +24,7 @@ public:
 	virtual void onContactSeparateWith(Enemy* obj, cocos2d::PhysicsContact& contact) = 0;
 
 
-	virtual void onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event) = 0;
-	virtual void onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event) = 0;
+	
 
 protected:
 	

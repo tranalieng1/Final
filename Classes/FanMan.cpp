@@ -27,7 +27,7 @@ void FanMan::Attack()
 	animation->setDelayPerUnit(1 /12);//1:12
 
 	Animate* animate = Animate::create(animation);
-	_FanManSprite->runAction(RepeatForever::create(animate));
+	_EnemySprite->runAction(RepeatForever::create(animate));
 }
 
 bool FanMan::init()
@@ -35,12 +35,12 @@ bool FanMan::init()
 	if (!Node::init())
 		return false;
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("FatMan.plist", "FatMan.png");
-	_FanManSprite = Sprite::createWithSpriteFrameName("FatMan_stand_1.png");
-	this->addChild(_FanManSprite);
-	_FanManSprite->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
-	this->setContentSize(_FanManSprite->getContentSize());
+	_EnemySprite = Sprite::createWithSpriteFrameName("FatMan_stand_1.png");
+	this->addChild(_EnemySprite);
+	_EnemySprite->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
+	this->setContentSize(_EnemySprite->getContentSize());
 	//this->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
-	_FanManSprite->setPosition(Vec2(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.0f));
+	_EnemySprite->setPosition(Vec2(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.0f));
 	this->setScale(2.0);
 
 	return true;
@@ -48,7 +48,7 @@ bool FanMan::init()
 
 void FanMan::Jump()
 {
-	_FanManSprite->setSpriteFrame("FatMan_stand_1.png");
+	_EnemySprite->setSpriteFrame("FatMan_stand_1.png");
 	_Jump = JumpBy::create(1.0f, Vec2(0.0f, 0.0f), this->getContentSize().height*PLAYER_JUMP, 1);
 	this->runAction(_Jump);
 }
@@ -67,7 +67,7 @@ void FanMan::Attack1Animation()
 
 	Animate* animate = Animate::create(animation);
 	//_WalkAction = RepeatForever::create(animate);
-	_FanManSprite->runAction(animate);
+	_EnemySprite->runAction(animate);
 
 }
 
@@ -83,11 +83,27 @@ void FanMan::WalkAnimation()
 
 	Animate* animate = Animate::create(animation);
 	_WalkAction = RepeatForever::create(animate);
-	_FanManSprite->runAction(_WalkAction);
+	_EnemySprite->runAction(_WalkAction);
 }
 
 void FanMan::StopAction()
 {
-	_FanManSprite->stopAllActions();
-	_FanManSprite->setSpriteFrame("FatMan_stand_1.png");
+	_EnemySprite->stopAllActions();
+	_EnemySprite->setSpriteFrame("FatMan_stand_1.png");
+}
+
+void FanMan::onContactBeganWith(Enemy * obj)
+{
+}
+
+void FanMan::onContactPostSolveWith(Enemy * obj, cocos2d::PhysicsContact & contact, const cocos2d::PhysicsContactPostSolve & solve)
+{
+}
+
+void FanMan::onContactPreSolveWith(Enemy * obj, cocos2d::PhysicsContact & contact, cocos2d::PhysicsContactPreSolve & solve)
+{
+}
+
+void FanMan::onContactSeparateWith(Enemy * obj, cocos2d::PhysicsContact & contact)
+{
 }

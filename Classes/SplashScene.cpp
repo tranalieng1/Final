@@ -1,6 +1,7 @@
 ﻿#include "SimpleAudioEngine.h"
 #include "SplashScene.h"
 #include "ui/CocosGUI.h"
+#include "MainMenuScene.h"
 USING_NS_CC;
 
 SplashScene::SplashScene()
@@ -38,6 +39,11 @@ bool SplashScene::init()
 	/*createSprSplash();*/
 	return true;
 }
+void SplashScene::goToMainMenuScene()
+{
+	auto scene = MainMenuScene::createScene();
+	Director::getInstance()->replaceScene(TransitionFade::create(1,scene));
+}
 void SplashScene::createSprSplash()
 {
 	//Back Ground
@@ -62,11 +68,12 @@ void SplashScene::createSprSplash()
 	this->addChild(loadingBar);
 	this->schedule([=](float delta) {
 		float percen = loadingBar->getPercent();
-		percen++;
+		percen+=2;
 		loadingBar->setPercent(percen);
 		if (percen >= 100.0f)
 		{
 			this->unschedule("updateloadingBar");
+			this->goToMainMenuScene();
 		}
 	}, 0.1f, "updateloadingBar"); //thời gian
 

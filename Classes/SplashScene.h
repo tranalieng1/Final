@@ -10,6 +10,7 @@ public:
 	void	createSprSplash();
 	static cocos2d::Scene* createScene();
 	virtual bool init();
+	void goToMainMenuScene();
 	CREATE_FUNC(SplashScene);
 private:
 	//void GotoMainMenuScene(float dt);
