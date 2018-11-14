@@ -12,6 +12,9 @@ Arthur_1::~Arthur_1()
 
 Arthur_1::Arthur_1()
 {
+	_checkwalk = 0;
+	_velocityX = 0;
+	_velocityY = 0;
 }
 
 
@@ -54,6 +57,8 @@ bool Arthur_1::init()
 	this->setPhysicsBody(_Physicbody);
 	_Physicbody->setDynamic(false);
 	_Physicbody->setGravityEnable(false);
+	
+	
 	return true;
 }
 
@@ -98,11 +103,12 @@ void Arthur_1::WalkAnimation()
 	Animate* animate = Animate::create(animation);
 	_WalkAction = RepeatForever::create(animate);
 	_PlayerSprite->runAction(_WalkAction);
+	_WalkAction->setTag(1);
 }
 
 void Arthur_1::StopAction()
 {
-	_PlayerSprite->stopAction(_WalkAction);
+	_PlayerSprite->stopActionByTag(1);
 	
 	_PlayerSprite->setSpriteFrame("Arthur_0_stand_1.png");
 }
@@ -181,25 +187,82 @@ void Arthur_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event *
 
 	if (kc == EventKeyboard::KeyCode::KEY_A)
 	{
-		this->WalkAnimation();
+		if(_checkwalk==0)
+			this->WalkAnimation();
+		_checkwalk++;
+		_velocityX -= VELOCITY_VALUE_X;
+		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
 	}
 	else if (kc == EventKeyboard::KeyCode::KEY_S)
 	{
-		this->WalkAnimation();
+		_velocityY -= VELOCITY_VALUE_Y;
+		if (_checkwalk == 0)
+			this->WalkAnimation();
+		_checkwalk++;
+		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
 	}
 	else if (kc == EventKeyboard::KeyCode::KEY_D)
 	{
-		this->WalkAnimation();
+		_velocityX += VELOCITY_VALUE_X;
+		if (_checkwalk == 0)
+			this->WalkAnimation();
+		_checkwalk++;
+		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
 	}
 	else if (kc == EventKeyboard::KeyCode::KEY_W)
 	{
-		this->WalkAnimation();
+		_velocityY += VELOCITY_VALUE_Y;
+		if (_checkwalk == 0)
+			this->WalkAnimation();
+		_checkwalk++;
+		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+	}
+	else if (kc == EventKeyboard::KeyCode::KEY_K)
+	{
+		this->Attack1Animation();
 	}
 
 }
 
 void Arthur_1::onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
 {
+	if (kc == EventKeyboard::KeyCode::KEY_A)
+	{
+		_velocityX += VELOCITY_VALUE_X;
+		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+		_checkwalk--;
+		if (_checkwalk == 0)
+			this->StopAction();
+
+		
+	}
+	else if (kc == EventKeyboard::KeyCode::KEY_S)
+	{
+		_velocityY += VELOCITY_VALUE_Y;
+		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+		_checkwalk--;
+		if (_checkwalk == 0)
+			this->StopAction();
+		
+	}
+	else if (kc == EventKeyboard::KeyCode::KEY_D)
+	{
+		_velocityX -= VELOCITY_VALUE_X;
+		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+		_checkwalk--;
+		if (_checkwalk == 0)
+			this->StopAction();
+		
+	}
+	else if (kc == EventKeyboard::KeyCode::KEY_W)
+	{
+		_velocityY -= VELOCITY_VALUE_Y;
+		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+		_checkwalk--;
+		if (_checkwalk == 0)
+			this->StopAction();
+		
+	}
 }
 
 void Arthur_1::onContactBeganWith(GameObject * obj)

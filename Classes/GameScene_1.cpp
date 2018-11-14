@@ -152,7 +152,7 @@ void GameScene_1::menuCloseCallback(Ref* pSender)
 }
 void GameScene_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
 {
-	
+	_Arthur->onKeyPressed(kc, event);
 	//
 	//if (_Arthur->GetState() == STATE_STANDING)
 	//{
@@ -218,8 +218,7 @@ void GameScene_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Even
 
 void GameScene_1::onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
 {
-	
-	
+	_Arthur->onKeyReleased(kc, event);
 }
 
 void GameScene_1::update(float dt)

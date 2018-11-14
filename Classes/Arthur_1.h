@@ -29,7 +29,9 @@ public:
 	void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) override;
 	
 private:
-	
+	int _checkwalk;
+	int _velocityX;
+	int _velocityY;
 
 };
 #endif //

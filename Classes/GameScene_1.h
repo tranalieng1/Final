@@ -27,7 +27,7 @@ private:
 	cocos2d::Size visibleSize;
 	cocos2d::TMXTiledMap *_tileMap;
 	Player *_Arthur;
-	FanMan *_FanMan;
+	Enemy *_FanMan;
 	cocos2d::PhysicsWorld *sceneWorld;
 	MoonBlade *moonblade;
 
