@@ -161,6 +161,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\MoonBlade.cpp" />
     <ClCompile Include="..\Classes\Percival.cpp" />
     <ClCompile Include="..\Classes\Player.cpp" />
+    <ClCompile Include="..\Classes\SKeyboard.cpp" />
     <ClCompile Include="..\Classes\SplashScene.cpp" />
     <ClCompile Include="..\Classes\Wall.cpp" />
     <ClCompile Include="main.cpp" />
@@ -180,6 +181,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\MoonBlade.h" />
     <ClInclude Include="..\Classes\Percival.h" />
     <ClInclude Include="..\Classes\Player.h" />
+    <ClInclude Include="..\Classes\SKeyboard.h" />
     <ClInclude Include="..\Classes\SplashScene.h" />
     <ClInclude Include="..\Classes\Wall.h" />
     <ClInclude Include="main.h" />

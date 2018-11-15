@@ -1,9 +1,16 @@
 #include "Arthur_1.h"
 #include "cocos2d.h"
 #include"Defnition.h"
+#include "SKeyboard.h"
 USING_NS_CC;
 
+#define TAG_ANIMATION 10
 
+std::map<AnimationType, AnimationInfo> s_mapAnimations = 
+{
+	{AnimationType::WALKING, AnimationInfo(4, "Arthur_0_walk_%d.png", 1.0f / 12.0f)},
+	{ AnimationType::ATTACKING, AnimationInfo(4, "Arthur_0_walk_%d.png", 1.0f / 12.0f) },
+};
 
 Arthur_1::~Arthur_1()
 {
@@ -15,6 +22,8 @@ Arthur_1::Arthur_1()
 	_checkwalk = 0;
 	_velocityX = 0;
 	_velocityY = 0;
+	_horizonDirection = Direction::RIGHT;
+	_verticalDirection = Direction::TOP;
 }
 
 
@@ -62,7 +71,7 @@ bool Arthur_1::init()
 	_Physicbody->setCollisionBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
 	_Physicbody->setContactTestBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
 	
-	
+	scheduleUpdate();
 	return true;
 }
 
@@ -78,7 +87,6 @@ void Arthur_1::Jump()
 
 void Arthur_1::Attack1Animation()
 {
-	
 	Animation* animation = Animation::create();
 	for (int i = 1; i < 4; i++)
 	{
@@ -89,9 +97,13 @@ void Arthur_1::Attack1Animation()
 	animation->setDelayPerUnit(1/12.0f );
 
 	Animate* animate = Animate::create(animation);
-	//_WalkAction = RepeatForever::create(animate);
-	_PlayerSprite->runAction(animate);
-	
+	auto seq = Sequence::create(animate, CallFunc::create([=]()
+	{
+		this->onFinishAnimation();
+	}), NULL);
+	_PlayerSprite->stopActionByTag(TAG_ANIMATION);
+	seq->setTag(TAG_ANIMATION);
+	_PlayerSprite->runAction(seq);
 }
 
 void Arthur_1::WalkAnimation()
@@ -102,12 +114,13 @@ void Arthur_1::WalkAnimation()
 		std::string name = StringUtils::format("Arthur_0_walk_%d.png", i);
 		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
 	}
-	animation->setDelayPerUnit(1 / 12.0f);
+	animation->setDelayPerUnit(1.0f / 12.0f);
 
 	Animate* animate = Animate::create(animation);
 	_WalkAction = RepeatForever::create(animate);
+	_WalkAction->setTag(TAG_ANIMATION);
+	_PlayerSprite->stopActionByTag(TAG_ANIMATION);
 	_PlayerSprite->runAction(_WalkAction);
-	_WalkAction->setTag(1);
 }
 
 void Arthur_1::StopAction()
@@ -116,7 +129,6 @@ void Arthur_1::StopAction()
 	
 	_PlayerSprite->setSpriteFrame("Arthur_0_stand_1.png");
 }
-
 
 void Arthur_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
 {
@@ -191,12 +203,18 @@ void Arthur_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event *
 
 	if (kc == EventKeyboard::KeyCode::KEY_A)
 	{
-		this->setScaleX(-2.0f);
-		if(_checkwalk==0)
+		SetState(_State::STATE_WALKING);
+		if (_checkwalk == 0)
 			this->WalkAnimation();
 		_checkwalk++;
 		_velocityX -= VELOCITY_VALUE_X;
 		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+		//this->setScaleX(-2.0f);
+		//if(_checkwalk==0)
+		//	this->WalkAnimation();
+		//_checkwalk++;
+		//_velocityX -= VELOCITY_VALUE_X;
+		//this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
 	}
 	else if (kc == EventKeyboard::KeyCode::KEY_S)
 	{
@@ -287,3 +305,101 @@ void Arthur_1::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact &
 {
 }
 
+void Arthur_1::SetState(_State state)
+{
+	if (_state != state)
+	{
+		_state = state;
+		switch (state)
+		{
+		case STATE_ATTACKING:
+			this->Attack1Animation();
+			this->_Physicbody->setVelocity(Vec2(0, 0));
+			break;
+		case STATE_JUMPING:
+			break;
+		case STATE_STANDING:
+			this->_Physicbody->setVelocity(Vec2(0, 0));
+			this->StopAction();
+			break;
+		case STATE_WALKING:
+		{
+			this->WalkAnimation();
+		}
+		break;
+		default:
+			break;
+		}
+	}
+}
+
+void Arthur_1::update(float delta)
+{
+	processInput();
+}
+
+void Arthur_1::processInput()
+{
+	if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_A) == KeyState::KS_DOWN 
+		&& SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_D) == KeyState::KS_DOWN)
+	{
+		SetState(_State::STATE_STANDING);
+	}
+	else if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_A) == KeyState::KS_DOWN)
+	{
+		if (_state != STATE_ATTACKING)
+		{
+			_checkwalk++;
+			_velocityX = -VELOCITY_VALUE_X;
+			this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+			this->setScaleX(-2.0f);
+			SetState(_State::STATE_WALKING);
+		}
+	}
+	else if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_D) == KeyState::KS_DOWN)
+	{
+		if (_state != STATE_ATTACKING)
+		{
+			_velocityX = VELOCITY_VALUE_X;
+			this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+			_checkwalk--;
+			this->setScaleX(2.0f);
+			SetState(_State::STATE_WALKING);
+		}
+	}
+	
+	if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_K) == KeyState::KS_PRESS)
+	{
+		SetState(_State::STATE_ATTACKING);
+	}
+}
+
+void Arthur_1::onFinishAnimation()
+{
+	if (_state == _State::STATE_ATTACKING)
+	{
+		SetState(_State::STATE_STANDING);
+	}
+}
+
+void Arthur_1::PlayAnimation()
+{
+	AnimationInfo info = s_mapAnimations.at(AnimationType::WALKING);
+	Animation* animation = Animation::create();
+	for (int i = 1; i < info.numFrame; i++)
+	{
+		std::string name = StringUtils::format(info.filePath.c_str(), i);
+		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
+	}
+	animation->setDelayPerUnit(1 / info.fps);
+
+	Animate* animate = Animate::create(animation);
+	auto seq = Sequence::create(animate, CallFunc::create([=]()
+	{
+		_PlayerSprite->setSpriteFrame("Arthur_0_stand_1.png");
+		this->onFinishAnimation();
+	}), NULL);
+	_PlayerSprite->stopActionByTag(TAG_ANIMATION);
+	seq->setTag(TAG_ANIMATION);
+	_PlayerSprite->runAction(seq);
+}

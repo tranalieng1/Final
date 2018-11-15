@@ -6,6 +6,7 @@
 #include "MoonBlade.h"
 #include <string>
 #include "Wall.h"
+#include "SKeyboard.h"
 //#define schedule_selector CC_SCHEDULE_SELECTOR
 USING_NS_CC;
 using namespace cocos2d;
@@ -130,14 +131,18 @@ bool GameScene_1::init()
 
 
 
+	// dunglq3
+	// IMPORTANT: The scheduleUpdate must be called right before this->addChild(SKeyboard::get()),
+	// or the SKeyboard::getEvents always return a vector of nothing because of SKeyboard::update
+	scheduleUpdate();
+	this->addChild(SKeyboard::get());
 	
-	
-	auto listener = EventListenerKeyboard::create();
-	listener->onKeyPressed = CC_CALLBACK_2(GameScene_1::onKeyPressed, this);
-	listener->onKeyReleased = CC_CALLBACK_2(GameScene_1::onKeyReleased, this);
+	//auto listener = EventListenerKeyboard::create();
+	//listener->onKeyPressed = CC_CALLBACK_2(GameScene_1::onKeyPressed, this);
+	//listener->onKeyReleased = CC_CALLBACK_2(GameScene_1::onKeyReleased, this);
 
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-	this->scheduleUpdate();
+	//_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+	//this->scheduleUpdate();
 
 	/*listener->onKeyPressed = [](EventKeyboard::KeyCode keyCode, Event* event)
 	{
@@ -343,8 +348,8 @@ void GameScene_1::update(float dt)
 	//	cocos2d::log("0");
 	//}
 	//cocos2d::log("%d  -   %d",_Arthur->getPositionX(),_nodePosPlayer->getPositionX());
-	cocos2d::log("%f-%f //   %f-%f",(float)_Arthur->getPositionX(), (float)_Arthur->getPositionY()
-									,(float)_nodePosPlayer->getPositionX(), (float)_nodePosPlayer->getPositionY());
+	/*cocos2d::log("%f-%f //   %f-%f",(float)_Arthur->getPositionX(), (float)_Arthur->getPositionY()
+									,(float)_nodePosPlayer->getPositionX(), (float)_nodePosPlayer->getPositionY());*/
 	//cocos2d::log("%d ", _state);
 
 }

@@ -23,5 +23,27 @@
 #define WALL_CATEGORY_BITMASK 0x000003
 #define WALL_COLLISION_AND_CONTACT_TEST_BIT_MASK 0xFFFF
 
+enum	KeyState
+{
+	KS_UP = 0,
+	KS_DOWN,
+	KS_PRESS,
+	KS_RELEASE
+};
+
+struct	KeyBoardEvent
+{
+	cocos2d::EventKeyboard::KeyCode	keyCode;
+	KeyState				stateEvent;
+
+	KeyBoardEvent(cocos2d::EventKeyboard::KeyCode code, KeyState sEvent)
+	{
+		keyCode = code;
+		stateEvent = sEvent;
+	}
+};
+
+#define KEYMAP_SIZE			255
+
 #endif // !__DEFNITION_H__
 

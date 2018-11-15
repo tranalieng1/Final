@@ -52,6 +52,6 @@ protected:
 	int _Mana;
 
 	_State GetState();
-	void SetState(_State state);
+	virtual void SetState(_State state);
 };
 #endif //

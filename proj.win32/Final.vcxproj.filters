@@ -34,6 +34,9 @@
     <Filter Include="src\HandlePhysic">
       <UniqueIdentifier>{5da6d966-8ae6-41fc-bc3a-c3948fe87475}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\KeyBoard">
+      <UniqueIdentifier>{3ea43c91-1726-480a-84f0-af87bacf92ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -83,6 +86,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Garibaldi.cpp">
       <Filter>src\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SKeyboard.cpp">
+      <Filter>src\KeyBoard</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +142,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Garibaldi.h">
       <Filter>src\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SKeyboard.h">
+      <Filter>src\KeyBoard</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
