@@ -28,6 +28,12 @@
     <Filter Include="src\GameScene">
       <UniqueIdentifier>{35936b92-a1f4-4b88-bc04-b4e40f6e00af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Boss">
+      <UniqueIdentifier>{c556cedc-a5e7-4101-94c0-7a80d461a83f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\HandlePhysic">
+      <UniqueIdentifier>{5da6d966-8ae6-41fc-bc3a-c3948fe87475}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -65,6 +71,18 @@
     </ClCompile>
     <ClCompile Include="..\Classes\MainMenuScene.cpp">
       <Filter>src\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Wall.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HandlePhysics.cpp">
+      <Filter>src\HandlePhysic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Boss.cpp">
+      <Filter>src\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Garibaldi.cpp">
+      <Filter>src\Boss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +124,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\MainMenuScene.h">
       <Filter>src\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Wall.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HandlePhysics.h">
+      <Filter>src\HandlePhysic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Boss.h">
+      <Filter>src\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Garibaldi.h">
+      <Filter>src\Boss</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

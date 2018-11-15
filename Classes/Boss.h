@@ -1,13 +1,13 @@
-#ifndef __ENEMY_H__
-#define __ENEMY_H__
+#ifndef __BOSS_H__
+#define __BOSS_H__
 #include "cocos2d.h"
 #include "GameObject.h"
-class Enemy : public GameObject
+class Boss : public GameObject
 {
 
 public:
-	Enemy();
-	~Enemy();
+	Boss();
+	~Boss();
 
 
 
@@ -24,21 +24,21 @@ public:
 	virtual void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) = 0;
 
 
-	
+
 
 protected:
-	
-	cocos2d::Sprite *_EnemySprite;
+
+	cocos2d::Sprite *_BossSprite;
 	cocos2d::Action *_WalkAction;
 	cocos2d::JumpBy *_Jump;
 	int _checkwalk;
 
-	
+
 	cocos2d::PhysicsBody *_Physicbody;
 
 	int _Health;
 	int _Strenght;
+	int _Mana;
 
-	
 };
 #endif //

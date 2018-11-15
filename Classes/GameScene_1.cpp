@@ -5,7 +5,7 @@
 #include "Arthur_1.h"
 #include "MoonBlade.h"
 #include <string>
-
+#include "Wall.h"
 //#define schedule_selector CC_SCHEDULE_SELECTOR
 USING_NS_CC;
 using namespace cocos2d;
@@ -58,20 +58,59 @@ bool GameScene_1::init()
 	
 	//cam->setAnchorPoint(Vec2(campos.x*POSITION_BEGIN_WIDTH, campos.y*POSITION_BEGIN_HEIGHT));
 
-	
+	//Map
 
 	auto _tileMap = TMXTiledMap::create("Game_1_1.tmx");
-
+	
 	_tileMap->setScale(3.0f);
 	addChild(_tileMap,0,99);
+	auto ObjectWall = _tileMap->getObjectGroup("Wall");
+	auto Wall = ObjectWall->getObjects();
+
+	for (int i = 0; i < Wall.size(); i++)
+	{
+		auto objInfo = Wall.at(i).asValueMap();
+		int type = objInfo.at("type").asInt();
+		if (type == 1)
+		{
+			int x = objInfo.at("x").asInt();
+			int y = objInfo.at("y").asInt();
+			int width = objInfo.at("width").asInt();
+			int height = objInfo.at("height").asInt();
+
+			auto wall = Wall::create();
+			this->addChild(wall);
+			wall->setPosition(x, y);
+
+			PhysicsBody* tilePhysics = PhysicsBody::createBox(Size(width, height), PhysicsMaterial(100.0f, 0.0f, 0.0f));
+			tilePhysics->setDynamic(false);  
+			tilePhysics->setGravityEnable(false);
+			tilePhysics->setRotationEnable(false);
+			tilePhysics->setCategoryBitmask(WALL_CATEGORY_BITMASK);
+			tilePhysics->setCollisionBitmask(WALL_COLLISION_AND_CONTACT_TEST_BIT_MASK);
+			tilePhysics->setContactTestBitmask(WALL_COLLISION_AND_CONTACT_TEST_BIT_MASK);
+			wall->setPhysicsBody(tilePhysics);
+
+			//auto node = Node::create();
+			//this->addChild(node);
+			//node->setPosition(x, y);
+
+			//PhysicsBody* tilePhysics = PhysicsBody::createBox(Size(width, height), PhysicsMaterial(1.0f, 0.0f, 0.0f));
+			//tilePhysics->setDynamic(false);   //static is good enough for walls
+			//tilePhysics->setGravityEnable(false);
+			//tilePhysics->setRotationEnable(false);
+			//node->setPhysicsBody(tilePhysics);
+		}
+	}
+
 	//_Arthur
 	_Arthur = Arthur_1::create();
-	_Arthur->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
+
 	_Arthur->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH,visibleSize.height*POSITION_BEGIN_HEIGHT));
 	this->addChild(_Arthur,2);
 	//FanMan
 	_FanMan = FanMan::create();
-	_FanMan->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
+
 	_FanMan->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH+200, visibleSize.height*POSITION_BEGIN_HEIGHT));
 	this->addChild(_FanMan,1);
 	//_nodeposplayer

@@ -57,6 +57,10 @@ bool Arthur_1::init()
 	this->setPhysicsBody(_Physicbody);
 	_Physicbody->setDynamic(false);
 	_Physicbody->setGravityEnable(false);
+	_Physicbody->setRotationEnable(false);
+	_Physicbody->setCategoryBitmask(ARTHUR_CATEGORY_BITMASK);
+	_Physicbody->setCollisionBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
+	_Physicbody->setContactTestBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
 	
 	
 	return true;
@@ -187,6 +191,7 @@ void Arthur_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event *
 
 	if (kc == EventKeyboard::KeyCode::KEY_A)
 	{
+		this->setScaleX(-2.0f);
 		if(_checkwalk==0)
 			this->WalkAnimation();
 		_checkwalk++;
@@ -203,6 +208,7 @@ void Arthur_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event *
 	}
 	else if (kc == EventKeyboard::KeyCode::KEY_D)
 	{
+		this->setScaleX(2.0f);
 		_velocityX += VELOCITY_VALUE_X;
 		if (_checkwalk == 0)
 			this->WalkAnimation();
