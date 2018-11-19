@@ -6,7 +6,7 @@ USING_NS_CC;
 
 #define TAG_ANIMATION 10
 
-std::map<AnimationType, AnimationInfo> s_mapAnimations = 
+std::map<AnimationType, AnimationInfo> Arthur_1::s_mapAnimations = 
 {
 	{AnimationType::WALKING, AnimationInfo(4, "Arthur_0_walk_%d.png", 1.0f / 12.0f)},
 	{ AnimationType::ATTACKING, AnimationInfo(4, "Arthur_0_walk_%d.png", 1.0f / 12.0f) },
@@ -24,6 +24,8 @@ Arthur_1::Arthur_1()
 	_velocityY = 0;
 	_horizonDirection = Direction::RIGHT;
 	_verticalDirection = Direction::TOP;
+	_left = false;
+	_right = true;
 }
 
 
@@ -71,7 +73,7 @@ bool Arthur_1::init()
 	_Physicbody->setCollisionBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
 	_Physicbody->setContactTestBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
 	
-	scheduleUpdate();
+	//scheduleUpdate();
 	return true;
 }
 
@@ -125,91 +127,27 @@ void Arthur_1::WalkAnimation()
 
 void Arthur_1::StopAction()
 {
-	_PlayerSprite->stopActionByTag(1);
+	_PlayerSprite->stopActionByTag(TAG_ANIMATION);
 	
 	_PlayerSprite->setSpriteFrame("Arthur_0_stand_1.png");
 }
 
 void Arthur_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
 {
-	//switch (this->_state)
-	//{
-	//case STATE_ATTACKING:
-	//	break;
-	//case STATE_JUMPING:
-	//	break;
-	//case STATE_STANDING:
-	//	if (kc == EventKeyboard::KeyCode::KEY_D)
-	//	{
 
-	//		//_Arthur->setScaleX(2.0f);
-	//		if (_checkwalk == 0)
-	//			this->WalkAnimation();
-	//		moveright = true;
-
-	//		_checkwalk++;
-	//	}
-	//	if (kc == EventKeyboard::KeyCode::KEY_A)
-	//	{
-	//		//_Arthur->setScaleX(-2.0f);
-
-	//		moveleft = true;
-	//		if (_checkwalk == 0)
-	//			this->WalkAnimation();
-	//		_checkwalk++;
-	//	}
-	//	if (kc == EventKeyboard::KeyCode::KEY_S)
-	//	{
-	//		movedown = true;
-	//		if (_checkwalk == 0)
-	//			this->WalkAnimation();
-	//		_checkwalk++;
-	//	}
-	//	if (kc == EventKeyboard::KeyCode::KEY_W)
-	//	{
-	//		moveup = true;
-	//		if (_checkwalk == 0)
-	//			this->WalkAnimation();
-	//		_checkwalk++;
-	//	}
-	//	else if (kc == EventKeyboard::KeyCode::KEY_K)
-	//	{
-
-	//		this->Attack1Animation();
-	//		this->SetState(STATE_ATTACKING);
-	//		//_Arthur->StopAction();
-	//	}
-	//	else if (kc == EventKeyboard::KeyCode::KEY_J)
-	//	{
-
-	//	/*	moonblade->setPosition(Vec2(_Arthur->getPositionX() + _Arthur->getContentSize().width / 2 + 20, _Arthur->getPositionY() + +10));
-	//		moonblade->setVisible(true);
-	//		moonblade->flySkill();*/
-	//	}
-	//	else if (kc == EventKeyboard::KeyCode::KEY_L)
-	//	{
-	//		/*if (CheckJump(_Arthur, _nodePosPlayer) == true)
-	//		{*/
-	//		this->Jump();
-	//		this->SetState(STATE_JUMPING);
-	//		/*}*/
-	//	}
-	//	break;
-	//case STATE_WALKING:
-	//	break;
-	//default:
-	//	break;
-	//}
+		
 
 	if (kc == EventKeyboard::KeyCode::KEY_A)
 	{
-		SetState(_State::STATE_WALKING);
 		if (_checkwalk == 0)
-			this->WalkAnimation();
+		{
+			SetState(_State::STATE_WALKING);
+		}
+		_left = true;
 		_checkwalk++;
 		_velocityX -= VELOCITY_VALUE_X;
 		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
-		//this->setScaleX(-2.0f);
+		this->setScaleX(-2.0f);
 		//if(_checkwalk==0)
 		//	this->WalkAnimation();
 		//_checkwalk++;
@@ -218,32 +156,46 @@ void Arthur_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event *
 	}
 	else if (kc == EventKeyboard::KeyCode::KEY_S)
 	{
-		_velocityY -= VELOCITY_VALUE_Y;
 		if (_checkwalk == 0)
-			this->WalkAnimation();
+		{
+			SetState(_State::STATE_WALKING);
+		}
+		_velocityY -= VELOCITY_VALUE_Y;
+	/*	if (_checkwalk == 0)
+			this->WalkAnimation();*/
 		_checkwalk++;
 		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
 	}
 	else if (kc == EventKeyboard::KeyCode::KEY_D)
 	{
+		_right = true;
+		if (_checkwalk == 0)
+		{
+			SetState(_State::STATE_WALKING);
+		}
 		this->setScaleX(2.0f);
 		_velocityX += VELOCITY_VALUE_X;
-		if (_checkwalk == 0)
+		/*if (_checkwalk == 0)*/
 			this->WalkAnimation();
 		_checkwalk++;
 		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
 	}
 	else if (kc == EventKeyboard::KeyCode::KEY_W)
 	{
-		_velocityY += VELOCITY_VALUE_Y;
 		if (_checkwalk == 0)
-			this->WalkAnimation();
+		{
+			SetState(_State::STATE_WALKING);
+		}
+		_velocityY += VELOCITY_VALUE_Y;
+		/*if (_checkwalk == 0)
+			this->WalkAnimation();*/
 		_checkwalk++;
 		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
 	}
 	else if (kc == EventKeyboard::KeyCode::KEY_K)
 	{
-		this->Attack1Animation();
+		SetState(_State::STATE_ATTACKING);
+		
 	}
 
 }
@@ -252,30 +204,37 @@ void Arthur_1::onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event 
 {
 	if (kc == EventKeyboard::KeyCode::KEY_A)
 	{
+		_left = false;
+		if (_right == true)
+			this->setScaleX(2.0f);
 		_velocityX += VELOCITY_VALUE_X;
 		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
 		_checkwalk--;
 		if (_checkwalk == 0)
-			this->StopAction();
+			SetState(_State::STATE_STANDING);
 
 		
 	}
 	else if (kc == EventKeyboard::KeyCode::KEY_S)
 	{
+
 		_velocityY += VELOCITY_VALUE_Y;
 		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
 		_checkwalk--;
 		if (_checkwalk == 0)
-			this->StopAction();
+			SetState(_State::STATE_STANDING);
 		
 	}
 	else if (kc == EventKeyboard::KeyCode::KEY_D)
 	{
+		_right = false;
+		if (_left == true)
+			this->setScaleX(-2.0f);
 		_velocityX -= VELOCITY_VALUE_X;
 		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
 		_checkwalk--;
 		if (_checkwalk == 0)
-			this->StopAction();
+			SetState(_State::STATE_STANDING);
 		
 	}
 	else if (kc == EventKeyboard::KeyCode::KEY_W)
@@ -284,8 +243,7 @@ void Arthur_1::onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event 
 		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
 		_checkwalk--;
 		if (_checkwalk == 0)
-			this->StopAction();
-		
+			SetState(_State::STATE_STANDING);
 	}
 }
 
@@ -333,17 +291,19 @@ void Arthur_1::SetState(_State state)
 	}
 }
 
-void Arthur_1::update(float delta)
-{
-	processInput();
-}
+//void Arthur_1::update(float delta)
+//{
+//	//processInput();
+//	//releaseInput();
+//	//cocos2d::log("checkwalk = %d", +_checkwalk);
+//}
 
 void Arthur_1::processInput()
 {
 	if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_A) == KeyState::KS_DOWN 
 		&& SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_D) == KeyState::KS_DOWN)
 	{
-		SetState(_State::STATE_STANDING);
+		/*SetState(_State::STATE_STANDING);*/
 	}
 	else if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_A) == KeyState::KS_DOWN)
 	{
@@ -362,8 +322,30 @@ void Arthur_1::processInput()
 		{
 			_velocityX = VELOCITY_VALUE_X;
 			this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
-			_checkwalk--;
+			_checkwalk++;
 			this->setScaleX(2.0f);
+			SetState(_State::STATE_WALKING);
+		}
+	}
+	else if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_S) == KeyState::KS_DOWN)
+	{
+		if (_state != STATE_ATTACKING)
+		{
+			_velocityY = -VELOCITY_VALUE_Y;
+			this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+			_checkwalk++;
+			//this->setScaleX(2.0f);
+			SetState(_State::STATE_WALKING);
+		}
+	}
+	else if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_W) == KeyState::KS_DOWN)
+	{
+		if (_state != STATE_ATTACKING)
+		{
+			_velocityY = VELOCITY_VALUE_Y;
+			this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+			_checkwalk++;
+			//this->setScaleX(2.0f);
 			SetState(_State::STATE_WALKING);
 		}
 	}
@@ -371,6 +353,42 @@ void Arthur_1::processInput()
 	if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_K) == KeyState::KS_PRESS)
 	{
 		SetState(_State::STATE_ATTACKING);
+	}
+}
+
+void Arthur_1::releaseInput()
+{
+	if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_A) == KeyState::KS_RELEASE)
+	{
+		_velocityX = 0;
+		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+		_checkwalk--;
+		if (_checkwalk == 0)
+			this->SetState(_State::STATE_STANDING);
+	}
+	else if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_D) == KeyState::KS_RELEASE)
+	{
+		_velocityX = 0;
+		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+		_checkwalk--;
+		if (_checkwalk == 0)
+			this->SetState(_State::STATE_STANDING);
+	}
+	else if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_S) == KeyState::KS_RELEASE)
+	{
+		_velocityY = 0;
+		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+		_checkwalk--;
+		if (_checkwalk == 0)
+			this->SetState(_State::STATE_STANDING);
+	}
+	else if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_W) == KeyState::KS_RELEASE)
+	{
+		_velocityY = 0;
+		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+		_checkwalk--;
+		if (_checkwalk == 0)
+			this->SetState(_State::STATE_STANDING);
 	}
 }
 
@@ -403,3 +421,4 @@ void Arthur_1::PlayAnimation()
 	seq->setTag(TAG_ANIMATION);
 	_PlayerSprite->runAction(seq);
 }
+//tao vector state

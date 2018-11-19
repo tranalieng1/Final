@@ -137,12 +137,12 @@ bool GameScene_1::init()
 	scheduleUpdate();
 	this->addChild(SKeyboard::get());
 	
-	//auto listener = EventListenerKeyboard::create();
-	//listener->onKeyPressed = CC_CALLBACK_2(GameScene_1::onKeyPressed, this);
-	//listener->onKeyReleased = CC_CALLBACK_2(GameScene_1::onKeyReleased, this);
+	auto listener = EventListenerKeyboard::create();
+	listener->onKeyPressed = CC_CALLBACK_2(GameScene_1::onKeyPressed, this);
+	listener->onKeyReleased = CC_CALLBACK_2(GameScene_1::onKeyReleased, this);
 
-	//_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-	//this->scheduleUpdate();
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+	this->scheduleUpdate();
 
 	/*listener->onKeyPressed = [](EventKeyboard::KeyCode keyCode, Event* event)
 	{
@@ -197,66 +197,6 @@ void GameScene_1::menuCloseCallback(Ref* pSender)
 void GameScene_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
 {
 	_Arthur->onKeyPressed(kc, event);
-	//
-	//if (_Arthur->GetState() == STATE_STANDING)
-	//{
-	//	if (kc == EventKeyboard::KeyCode::KEY_D)
-	//	{
-
-	//		//_Arthur->setScaleX(2.0f);
-	//		if (_checkwalk == 0)
-	//			_Arthur->WalkAnimation();
-	//		moveright = true;
-
-	//		_checkwalk++;
-	//	}
-	//	if (kc == EventKeyboard::KeyCode::KEY_A)
-	//	{
-	//		//_Arthur->setScaleX(-2.0f);
-
-	//		moveleft = true;
-	//		if (_checkwalk == 0)
-	//			_Arthur->WalkAnimation();
-	//		_checkwalk++;
-	//	}
-	//	if (kc == EventKeyboard::KeyCode::KEY_S)
-	//	{
-	//		movedown = true;
-	//		if (_checkwalk == 0)
-	//			_Arthur->WalkAnimation();
-	//		_checkwalk++;
-	//	}
-	//	if (kc == EventKeyboard::KeyCode::KEY_W)
-	//	{
-	//		moveup = true;
-	//		if (_checkwalk == 0)
-	//			_Arthur->WalkAnimation();
-	//		_checkwalk++;
-	//	}
-	//	if (kc == EventKeyboard::KeyCode::KEY_L)
-	//	{
-	//		if (CheckJump(_Arthur, _nodePosPlayer) == true)
-	//		{
-	//			_Arthur->Jump();
-	//			_Arthur->SetState(STATE_JUMPING);
-	//		}
-
-
-	//	}
-	//}
-	//	if (kc == EventKeyboard::KeyCode::KEY_K)
-	//	{
-	//		_Arthur->Attack1Animation();
-	//		_Arthur->SetState(STATE_ATTACKING);
-	//		//_Arthur->StopAction();
-	//	}
-	//
-	//	if (kc == EventKeyboard::KeyCode::KEY_J)
-	//	{
-	//		moonblade->setPosition(Vec2(_Arthur->getPositionX() + _Arthur->getContentSize().width / 2 + 20, _Arthur->getPositionY() + +10));
-	//		moonblade->setVisible(true);
-	//		moonblade->flySkill();
-	//	}
 	
 }
 

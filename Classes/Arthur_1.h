@@ -32,7 +32,7 @@ class Arthur_1: public Player
 	};
 
 public:
-	static std::map<AnimationType, AnimationInfo> s_mapAnimations;
+	static std::map<AnimationType, AnimationInfo>s_mapAnimations;
 
 	Arthur_1();
 	~Arthur_1();
@@ -56,14 +56,17 @@ public:
 	void onContactPreSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve) override;
 	void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) override;
 	virtual void SetState(_State state) override;
-	void update(float delta);
+	//void update(float delta);
 	void processInput();
+	void releaseInput();
 private:
 	int _checkwalk;
 	int _velocityX;
 	int _velocityY;
 	Direction _horizonDirection;
 	Direction _verticalDirection;
+	bool _right;
+	bool _left;
 
 private:
 	void onFinishAnimation();
