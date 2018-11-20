@@ -7,6 +7,7 @@
 #include <string>
 #include "Wall.h"
 #include "SKeyboard.h"
+#include "UIGameScene.h"
 //#define schedule_selector CC_SCHEDULE_SELECTOR
 USING_NS_CC;
 using namespace cocos2d;
@@ -103,7 +104,8 @@ bool GameScene_1::init()
 			//node->setPhysicsBody(tilePhysics);
 		}
 	}
-
+	//UIScene
+	//_UIGameScene = UIGameScene::create();
 	//_Arthur
 	_Arthur = Arthur_1::create();
 

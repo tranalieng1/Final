@@ -6,7 +6,8 @@
 #include "MoonBlade.h"
 #include "FanMan.h"
 #include "Player.h"
-
+#include "UIGameScene.h"
+class UIGameScene;
 class GameScene_1 : public cocos2d::Layer
 {
 public:
@@ -33,8 +34,9 @@ private:
 	cocos2d::Camera *cam;
 	cocos2d::Vec3 campos;
 	
-
+	UIGameScene *_UIGameScene;
 	
+
 
 
 	cocos2d::Node *_nodePosPlayer;

@@ -2,6 +2,8 @@
 #define __PLAYER_H__
 #include "cocos2d.h"
 #include "GameObject.h"
+#include <vector>
+
 enum _State
 {
 	STATE_ATTACKING,
@@ -35,7 +37,8 @@ public:
 	virtual void onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event) =0;
 	
 protected:
-	_State _state;
+	std::vector<_State> _state;
+	
 	cocos2d::Sprite* _PlayerSprite;
 	cocos2d::Action *_WalkAction;
 	cocos2d::JumpBy* _Jump;
@@ -51,6 +54,7 @@ protected:
 	int _Strenght;
 	int _Mana;
 
+	float _Score;	
 	_State GetState();
 	virtual void SetState(_State state);
 };
