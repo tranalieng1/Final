@@ -1,5 +1,5 @@
-#ifndef __GAMESCENE1_H__
-#define __GAMESCENE1_H__
+#ifndef _UI_GAME_SCENE_H
+#define _UI_GAME_SCENE_H
 #include "ui/CocosGUI.h"
 #include "cocos2d.h"
 
@@ -32,5 +32,5 @@ private:
 };
 
 
-#endif //G__GAMESCENE1_H__
+#endif //_UI_GAME_SCENE_H
 
