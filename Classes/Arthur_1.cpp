@@ -8,8 +8,8 @@ USING_NS_CC;
 
 std::map<AnimationType, AnimationInfo> Arthur_1::s_mapAnimations = 
 {
-	{AnimationType::WALKING, AnimationInfo(4, "Arthur_0_walk_%d.png", 1.0f / 12.0f)},
-	{ AnimationType::ATTACKING, AnimationInfo(4, "Arthur_0_attack_%d.png", 1.0f / 12.0f) },
+	{AnimationType::WALKING, AnimationInfo(4, "Arthur_0_walk_%d.png", 1.0f / 12.0f, CC_REPEAT_FOREVER)},
+	{ AnimationType::ATTACKING, AnimationInfo(4, "Arthur_0_attack_%d.png", 1.0f / 12.0f, 1) },
 };
 
 Arthur_1::~Arthur_1()
@@ -242,8 +242,8 @@ void Arthur_1::SetState(_State state)
 		switch (state)
 		{
 		case STATE_ATTACKING:
-			//this->PlayAnimation(AnimationType::ATTACKING);
-			this->Attack1Animation();
+			this->PlayAnimation(AnimationType::ATTACKING);
+			//this->Attack1Animation();
 			this->_Physicbody->setVelocity(Vec2(0, 0));
 			break;
 		case STATE_JUMPING:
@@ -254,8 +254,8 @@ void Arthur_1::SetState(_State state)
 			break;
 		case STATE_WALKING:
 		{
-			this->WalkAnimation();
-			//this->PlayAnimation(AnimationType::WALKING);
+			//this->WalkAnimation();
+			this->PlayAnimation(AnimationType::WALKING);
 			this->_physicsBody->setVelocity(Vec2(_velocityX, _velocityY));
 		}
 		break;
@@ -368,12 +368,10 @@ void Arthur_1::SetState(_State state)
 
 void Arthur_1::onFinishAnimation()
 {
-	
 	if (_state[2] == _State::STATE_ATTACKING)
 	{
 		SetState(_state[1]);
 	}
-	
 }
 
 void Arthur_1::PlayAnimation(AnimationType type)
@@ -385,13 +383,11 @@ void Arthur_1::PlayAnimation(AnimationType type)
 		std::string name = StringUtils::format(info.filePath.c_str(), i);
 		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
 	}
-	animation->setDelayPerUnit(1.0f / info.fps);
+	animation->setDelayPerUnit(info.fps);
 
 	Animate* animate = Animate::create(animation);
-	
-	auto seq = Sequence::create(animate, CallFunc::create([=]()
+	auto seq = Sequence::create(Repeat::create(animate, info.loopTime), CallFunc::create([=]()
 	{
-	
 		//_PlayerSprite->setSpriteFrame("Arthur_0_stand_1.png");
 		this->onFinishAnimation();
 	}), NULL);
