@@ -88,7 +88,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libcurl.lib;%(AdditionalDependencies);$(_COCOS_LIB_WIN32_BEGIN);$(_COCOS_LIB_WIN32_END)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl.lib;shell32.lib;%(AdditionalDependencies);$(_COCOS_LIB_WIN32_BEGIN);$(_COCOS_LIB_WIN32_END)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories);$(_COCOS_LIB_PATH_WIN32_BEGIN);$(_COCOS_LIB_PATH_WIN32_END)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -163,6 +163,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Player.cpp" />
     <ClCompile Include="..\Classes\SKeyboard.cpp" />
     <ClCompile Include="..\Classes\SplashScene.cpp" />
+    <ClCompile Include="..\Classes\UIGameScene.cpp" />
     <ClCompile Include="..\Classes\Wall.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -183,6 +184,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Player.h" />
     <ClInclude Include="..\Classes\SKeyboard.h" />
     <ClInclude Include="..\Classes\SplashScene.h" />
+    <ClInclude Include="..\Classes\UIGameScene.h" />
     <ClInclude Include="..\Classes\Wall.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>

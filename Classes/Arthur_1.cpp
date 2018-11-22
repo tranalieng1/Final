@@ -8,8 +8,8 @@ USING_NS_CC;
 
 std::map<AnimationType, AnimationInfo> Arthur_1::s_mapAnimations = 
 {
-	{AnimationType::WALKING, AnimationInfo(4, "Arthur_0_walk_%d.png", 1.0f / 12.0f)},
-	{ AnimationType::ATTACKING, AnimationInfo(4, "Arthur_0_walk_%d.png", 1.0f / 12.0f) },
+	{AnimationType::WALKING, AnimationInfo(4, "Arthur_0_walk_%d.png", 1.0f / 12.0f, CC_REPEAT_FOREVER)},
+	{ AnimationType::ATTACKING, AnimationInfo(4, "Arthur_0_attack_%d.png", 1.0f / 12.0f, 1) },
 };
 
 Arthur_1::~Arthur_1()
@@ -19,6 +19,9 @@ Arthur_1::~Arthur_1()
 
 Arthur_1::Arthur_1()
 {
+	_state.resize(2);
+	_state.push_back(_State::STATE_STANDING);
+	_state.push_back(_State::STATE_STANDING);
 	_checkwalk = 0;
 	_velocityX = 0;
 	_velocityY = 0;
@@ -48,9 +51,10 @@ void Arthur_1::Attack()
 
 bool Arthur_1::init()
 {
+	
 	if (!Node::init())
 		return false;
-	_state = STATE_STANDING;
+	//_state = STATE_STANDING;
 	_checkwalk = 0;
 	
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl1.plist", "ArthurLvl1.png");
@@ -87,43 +91,9 @@ void Arthur_1::Jump()
 
 }
 
-void Arthur_1::Attack1Animation()
-{
-	Animation* animation = Animation::create();
-	for (int i = 1; i < 4; i++)
-	{
-		std::string name = StringUtils::format("Arthur_0_attack_%d.png", i);
-		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
-	}
-	animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("Arthur_0_stand_1.png"));
-	animation->setDelayPerUnit(1/12.0f );
 
-	Animate* animate = Animate::create(animation);
-	auto seq = Sequence::create(animate, CallFunc::create([=]()
-	{
-		this->onFinishAnimation();
-	}), NULL);
-	_PlayerSprite->stopActionByTag(TAG_ANIMATION);
-	seq->setTag(TAG_ANIMATION);
-	_PlayerSprite->runAction(seq);
-}
 
-void Arthur_1::WalkAnimation()
-{
-	Animation* animation = Animation::create();
-	for (int i = 1; i < 4; i++)
-	{
-		std::string name = StringUtils::format("Arthur_0_walk_%d.png", i);
-		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
-	}
-	animation->setDelayPerUnit(1.0f / 12.0f);
 
-	Animate* animate = Animate::create(animation);
-	_WalkAction = RepeatForever::create(animate);
-	_WalkAction->setTag(TAG_ANIMATION);
-	_PlayerSprite->stopActionByTag(TAG_ANIMATION);
-	_PlayerSprite->runAction(_WalkAction);
-}
 
 void Arthur_1::StopAction()
 {
@@ -176,7 +146,7 @@ void Arthur_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event *
 		this->setScaleX(2.0f);
 		_velocityX += VELOCITY_VALUE_X;
 		/*if (_checkwalk == 0)*/
-			this->WalkAnimation();
+			/*this->WalkAnimation();*/
 		_checkwalk++;
 		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
 	}
@@ -265,13 +235,15 @@ void Arthur_1::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact &
 
 void Arthur_1::SetState(_State state)
 {
-	if (_state != state)
+	if (_state[2] != state)
 	{
-		_state = state;
+		_state[1] = _state[2];
+		_state[2] = state;
 		switch (state)
 		{
 		case STATE_ATTACKING:
-			this->Attack1Animation();
+			this->PlayAnimation(AnimationType::ATTACKING);
+			//this->Attack1Animation();
 			this->_Physicbody->setVelocity(Vec2(0, 0));
 			break;
 		case STATE_JUMPING:
@@ -282,7 +254,9 @@ void Arthur_1::SetState(_State state)
 			break;
 		case STATE_WALKING:
 		{
-			this->WalkAnimation();
+			//this->WalkAnimation();
+			this->PlayAnimation(AnimationType::WALKING);
+			this->_physicsBody->setVelocity(Vec2(_velocityX, _velocityY));
 		}
 		break;
 		default:
@@ -298,123 +272,162 @@ void Arthur_1::SetState(_State state)
 //	//cocos2d::log("checkwalk = %d", +_checkwalk);
 //}
 
-void Arthur_1::processInput()
-{
-	if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_A) == KeyState::KS_DOWN 
-		&& SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_D) == KeyState::KS_DOWN)
-	{
-		/*SetState(_State::STATE_STANDING);*/
-	}
-	else if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_A) == KeyState::KS_DOWN)
-	{
-		if (_state != STATE_ATTACKING)
-		{
-			_checkwalk++;
-			_velocityX = -VELOCITY_VALUE_X;
-			this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
-			this->setScaleX(-2.0f);
-			SetState(_State::STATE_WALKING);
-		}
-	}
-	else if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_D) == KeyState::KS_DOWN)
-	{
-		if (_state != STATE_ATTACKING)
-		{
-			_velocityX = VELOCITY_VALUE_X;
-			this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
-			_checkwalk++;
-			this->setScaleX(2.0f);
-			SetState(_State::STATE_WALKING);
-		}
-	}
-	else if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_S) == KeyState::KS_DOWN)
-	{
-		if (_state != STATE_ATTACKING)
-		{
-			_velocityY = -VELOCITY_VALUE_Y;
-			this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
-			_checkwalk++;
-			//this->setScaleX(2.0f);
-			SetState(_State::STATE_WALKING);
-		}
-	}
-	else if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_W) == KeyState::KS_DOWN)
-	{
-		if (_state != STATE_ATTACKING)
-		{
-			_velocityY = VELOCITY_VALUE_Y;
-			this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
-			_checkwalk++;
-			//this->setScaleX(2.0f);
-			SetState(_State::STATE_WALKING);
-		}
-	}
-	
-	if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_K) == KeyState::KS_PRESS)
-	{
-		SetState(_State::STATE_ATTACKING);
-	}
-}
-
-void Arthur_1::releaseInput()
-{
-	if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_A) == KeyState::KS_RELEASE)
-	{
-		_velocityX = 0;
-		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
-		_checkwalk--;
-		if (_checkwalk == 0)
-			this->SetState(_State::STATE_STANDING);
-	}
-	else if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_D) == KeyState::KS_RELEASE)
-	{
-		_velocityX = 0;
-		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
-		_checkwalk--;
-		if (_checkwalk == 0)
-			this->SetState(_State::STATE_STANDING);
-	}
-	else if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_S) == KeyState::KS_RELEASE)
-	{
-		_velocityY = 0;
-		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
-		_checkwalk--;
-		if (_checkwalk == 0)
-			this->SetState(_State::STATE_STANDING);
-	}
-	else if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_W) == KeyState::KS_RELEASE)
-	{
-		_velocityY = 0;
-		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
-		_checkwalk--;
-		if (_checkwalk == 0)
-			this->SetState(_State::STATE_STANDING);
-	}
-}
+//void Arthur_1::processInput()
+//{
+//	if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_A) == KeyState::KS_DOWN 
+//		&& SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_D) == KeyState::KS_DOWN)
+//	{
+//		/*SetState(_State::STATE_STANDING);*/
+//	}
+//	else if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_A) == KeyState::KS_DOWN)
+//	{
+//		if (_state[2] != STATE_ATTACKING)
+//		{
+//			_checkwalk++;
+//			_velocityX = -VELOCITY_VALUE_X;
+//			this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+//			this->setScaleX(-2.0f);
+//			SetState(_State::STATE_WALKING);
+//		}
+//	}
+//	else if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_D) == KeyState::KS_DOWN)
+//	{
+//		if (_state[2] != STATE_ATTACKING)
+//		{
+//			_velocityX = VELOCITY_VALUE_X;
+//			this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+//			_checkwalk++;
+//			this->setScaleX(2.0f);
+//			SetState(_State::STATE_WALKING);
+//		}
+//	}
+//	else if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_S) == KeyState::KS_DOWN)
+//	{
+//		if (_state[2] != STATE_ATTACKING)
+//		{
+//			_velocityY = -VELOCITY_VALUE_Y;
+//			this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+//			_checkwalk++;
+//			//this->setScaleX(2.0f);
+//			SetState(_State::STATE_WALKING);
+//		}
+//	}
+//	else if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_W) == KeyState::KS_DOWN)
+//	{
+//		if (_state[2] != STATE_ATTACKING)
+//		{
+//			_velocityY = VELOCITY_VALUE_Y;
+//			this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+//			_checkwalk++;
+//			//this->setScaleX(2.0f);
+//			SetState(_State::STATE_WALKING);
+//		}
+//	}
+//	
+//	if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_K) == KeyState::KS_PRESS)
+//	{
+//		SetState(_State::STATE_ATTACKING);
+//	}
+//}
+//
+//void Arthur_1::releaseInput()
+//{
+//	if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_A) == KeyState::KS_RELEASE)
+//	{
+//		_velocityX = 0;
+//		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+//		_checkwalk--;
+//		if (_checkwalk == 0)
+//			this->SetState(_State::STATE_STANDING);
+//	}
+//	else if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_D) == KeyState::KS_RELEASE)
+//	{
+//		_velocityX = 0;
+//		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+//		_checkwalk--;
+//		if (_checkwalk == 0)
+//			this->SetState(_State::STATE_STANDING);
+//	}
+//	else if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_S) == KeyState::KS_RELEASE)
+//	{
+//		_velocityY = 0;
+//		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+//		_checkwalk--;
+//		if (_checkwalk == 0)
+//			this->SetState(_State::STATE_STANDING);
+//	}
+//	else if (SKeyboard::getKeyState(EventKeyboard::KeyCode::KEY_W) == KeyState::KS_RELEASE)
+//	{
+//		_velocityY = 0;
+//		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+//		_checkwalk--;
+//		if (_checkwalk == 0)
+//			this->SetState(_State::STATE_STANDING);
+//	}
+//}
 
 void Arthur_1::onFinishAnimation()
 {
-	if (_state == _State::STATE_ATTACKING)
+	if (_state[2] == _State::STATE_ATTACKING)
 	{
-		SetState(_State::STATE_STANDING);
+		SetState(_state[1]);
 	}
 }
 
-void Arthur_1::PlayAnimation()
+void Arthur_1::PlayAnimation(AnimationType type)
 {
-	AnimationInfo info = s_mapAnimations.at(AnimationType::WALKING);
+	AnimationInfo info = s_mapAnimations.at(type);
 	Animation* animation = Animation::create();
 	for (int i = 1; i < info.numFrame; i++)
 	{
 		std::string name = StringUtils::format(info.filePath.c_str(), i);
 		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
 	}
-	animation->setDelayPerUnit(1 / info.fps);
+	animation->setDelayPerUnit(info.fps);
+
+	Animate* animate = Animate::create(animation);
+	auto seq = Sequence::create(Repeat::create(animate, info.loopTime), CallFunc::create([=]()
+	{
+		//_PlayerSprite->setSpriteFrame("Arthur_0_stand_1.png");
+		this->onFinishAnimation();
+	}), NULL);
+	
+	seq->setTag(TAG_ANIMATION);
+	_PlayerSprite->stopActionByTag(TAG_ANIMATION);
+	_PlayerSprite->runAction(seq);
+}
+void Arthur_1::WalkAnimation()
+{
+	Animation* animation = Animation::create();
+	for (int i = 1; i < 4; i++)
+	{
+		std::string name = StringUtils::format("Arthur_0_walk_%d.png", i);
+		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
+	}
+	animation->setDelayPerUnit(1.0f / 12.0f);
+
+	Animate* animate = Animate::create(animation);
+	_WalkAction = RepeatForever::create(animate);
+
+	_WalkAction->setTag(TAG_ANIMATION);
+	this->stopActionByTag(TAG_ANIMATION);
+	_PlayerSprite->runAction(_WalkAction);
+}
+
+void Arthur_1::Attack1Animation()
+{
+	Animation* animation = Animation::create();
+	for (int i = 1; i < 4; i++)
+	{
+		std::string name = StringUtils::format("Arthur_0_attack_%d.png", i);
+		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
+	}
+	/*animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("Arthur_0_stand_1.png"));*/
+	animation->setDelayPerUnit(1 / 12.0f);
 
 	Animate* animate = Animate::create(animation);
 	auto seq = Sequence::create(animate, CallFunc::create([=]()
 	{
-		_PlayerSprite->setSpriteFrame("Arthur_0_stand_1.png");
 		this->onFinishAnimation();
 	}), NULL);
 	_PlayerSprite->stopActionByTag(TAG_ANIMATION);

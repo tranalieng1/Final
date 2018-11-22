@@ -37,6 +37,9 @@
     <Filter Include="src\KeyBoard">
       <UniqueIdentifier>{3ea43c91-1726-480a-84f0-af87bacf92ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\UI">
+      <UniqueIdentifier>{20b51c10-7895-43f8-8138-4f4cac60eb17}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -89,6 +92,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\SKeyboard.cpp">
       <Filter>src\KeyBoard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UIGameScene.cpp">
+      <Filter>src\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\SKeyboard.h">
       <Filter>src\KeyBoard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UIGameScene.h">
+      <Filter>src\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

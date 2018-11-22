@@ -38,12 +38,19 @@ bool MoonBlade::init()
 
 void MoonBlade::flySkill()
 {
+	
+	this->setVisible(true);
 	_MBSprite1->setPosition(this->getContentSize()*0.5);
 	_MBSprite2->setPosition(this->getContentSize()*0.5);
 	_MBSprite3->setPosition(this->getContentSize()*0.5);
 	_MBSprite2->runAction(MoveBy::create(0.5, Vec2(_MBSprite1->getContentSize().width*-0.7, 0)));
 	_MBSprite3->runAction(MoveBy::create(0.5, Vec2(_MBSprite1->getContentSize().width*-1.4, 0)));
-	this->runAction(MoveBy::create(0.8, Vec2(900, 0)));
 	
+	auto action =MoveBy::create(0.8, Vec2(900, 0));
+	auto seq = Sequence::create(action, CallFunc::create([=]()
+	{
+		this->setVisible(false);
+	}), NULL);
+	this->runAction(action);
 	
 }
