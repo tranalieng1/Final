@@ -30,6 +30,12 @@ bool SplashScene::init()
 	{
 		return false;
 	}
+	auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+	audio->playBackgroundMusic("Sound/strat16.mp3", false);
+
+	/*CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("Sound/sfx_die.wav");
+	CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("Sound/sfx_point.wav");
+	CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("Sound/sfx_wing.wav");*/
 
 	//auto visibleSize = Director::getInstance()->getVisibleSize();
 	//Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -48,7 +54,7 @@ void SplashScene::createSprSplash()
 {
 	//Back Ground
 	Size winSize = Director::getInstance()->getWinSize();
-	auto backgound = Sprite::create("Background.png");
+	auto backgound = Sprite::create("bgSplash.png");
 	this->addChild(backgound);
 	backgound->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 	backgound->setPosition(this->getContentSize() * 0.5f);
@@ -57,7 +63,7 @@ void SplashScene::createSprSplash()
 	backgound->setScaleX(scaleX);
 	backgound->setScaleY(scaleY);
 	//cái vỏ 
-	auto bgLoading = Sprite::create("LoadingBar1.png");
+	auto bgLoading = Sprite::create("LoadingBar.png");
 	this->addChild(bgLoading);
 	bgLoading->setPosition(Vec2(winSize.width * 0.5f, winSize.height * 0.05f));
 	//cái ruột
@@ -68,18 +74,13 @@ void SplashScene::createSprSplash()
 	this->addChild(loadingBar);
 	this->schedule([=](float delta) {
 		float percen = loadingBar->getPercent();
-		percen+=2;
+		percen++;
 		loadingBar->setPercent(percen);
 		if (percen >= 100.0f)
 		{
 			this->unschedule("updateloadingBar");
 			this->goToMainMenuScene();
 		}
-	}, 0.1f, "updateloadingBar"); //thời gian
-
-								  //this->runAction(Repeat::create(Sequence::createWithTwoActions(countDown,
-								  //	DelayTime::create(0.01f)), 40));
-
-								  //
+	}, 0.05f, "updateloadingBar"); //thời gian
 
 }
