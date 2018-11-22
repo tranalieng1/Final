@@ -12,6 +12,8 @@ FanMan::~FanMan()
 
 FanMan::FanMan()
 {
+	_MaxHealth = 30;
+	_Health = _MaxHealth;
 }
 
 
@@ -100,10 +102,15 @@ void FanMan::StopAction()
 
 void FanMan::onContactBeganWith(GameObject * obj)
 {
+	/*if (obj->getTag() =)
+	{
+		this->setVisible(false);
+	}*/
 }
 
 void FanMan::onContactPostSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, const cocos2d::PhysicsContactPostSolve & solve)
 {
+
 }
 
 void FanMan::onContactPreSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, cocos2d::PhysicsContactPreSolve & solve)

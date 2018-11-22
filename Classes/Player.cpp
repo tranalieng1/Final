@@ -1,5 +1,6 @@
 #include "Player.h"
 
+
 Player::Player()
 {
 	_state.resize(2);
@@ -48,6 +49,11 @@ void Player::SetState(_State state)
 	_state[1] = _state[2];
 
 	this->_state[2] = state;
+}
+
+float Player::getDamage()
+{
+	return 0.0f;
 }
 
 void Player::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)

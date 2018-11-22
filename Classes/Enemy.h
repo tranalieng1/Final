@@ -2,6 +2,7 @@
 #define __ENEMY_H__
 #include "cocos2d.h"
 #include "GameObject.h"
+
 class Enemy : public GameObject
 {
 
@@ -39,6 +40,8 @@ protected:
 	int _Health;
 	int _Strenght;
 
+	int _MaxHealth;
+	
 	
 };
 #endif //

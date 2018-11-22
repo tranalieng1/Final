@@ -13,7 +13,9 @@ public:
 	virtual void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) = 0;
 	virtual bool init() override;
 private:
-
+protected:
+	float _damage;
+	virtual float getDamage();
 };
 
 

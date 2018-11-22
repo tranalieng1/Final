@@ -54,8 +54,17 @@ protected:
 	int _Strenght;
 	int _Mana;
 
+	int _MaxHealth;
+	int _MaxMana;
+
 	float _Score;	
 	_State GetState();
 	virtual void SetState(_State state);
+
+	cocos2d::Node *_NodeAttack;
+	cocos2d::PhysicsBody *_PhysicbodyAttack;
+
+protected:
+	virtual float getDamage();
 };
 #endif //

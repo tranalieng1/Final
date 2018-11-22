@@ -14,3 +14,11 @@ bool GameObject::init()
 		return false;
 	return true;
 }
+
+float GameObject::getDamage()
+{
+	return 0.0f;
+
+}
+
+

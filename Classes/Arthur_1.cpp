@@ -5,7 +5,6 @@
 USING_NS_CC;
 
 #define TAG_ANIMATION 10
-
 std::map<AnimationType, AnimationInfo> Arthur_1::s_mapAnimations = 
 {
 	{AnimationType::WALKING, AnimationInfo(4, "Arthur_0_walk_%d.png", 1.0f / 12.0f, CC_REPEAT_FOREVER)},
@@ -29,6 +28,11 @@ Arthur_1::Arthur_1()
 	_verticalDirection = Direction::TOP;
 	_left = false;
 	_right = true;
+
+	_MaxHealth = 100;
+	_MaxMana = 100;
+	_Health = _MaxHealth;
+	_Mana = _MaxMana;
 }
 
 
@@ -67,6 +71,7 @@ bool Arthur_1::init()
 	_PlayerSprite->setPosition(Vec2(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.0f));
 	this->setScale(2.0);
 
+	this->setTag(TAG_ARTHUR);
 	//Setbody
 	_Physicbody = cocos2d::PhysicsBody::createBox(this->getContentSize());
 	this->setPhysicsBody(_Physicbody);
@@ -76,7 +81,25 @@ bool Arthur_1::init()
 	_Physicbody->setCategoryBitmask(ARTHUR_CATEGORY_BITMASK);
 	_Physicbody->setCollisionBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
 	_Physicbody->setContactTestBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
-	
+
+	//Node attack
+	_NodeAttack = cocos2d::Node::create();
+	_NodeAttack->setContentSize(Size(20, 40));
+	_NodeAttack->setAnchorPoint(Vec2::ANCHOR_MIDDLE_LEFT);
+	_NodeAttack->setPosition(this->getContentSize().width , this->getContentSize().height * 0.5f);
+	this->addChild(_NodeAttack);
+
+	//Node attack physic body
+	_PhysicbodyAttack = cocos2d::PhysicsBody::createBox(_NodeAttack->getContentSize());
+	_NodeAttack->setPhysicsBody(_PhysicbodyAttack);
+	_PhysicbodyAttack->setDynamic(false);
+	_PhysicbodyAttack->setGravityEnable(false);
+	_PhysicbodyAttack->setRotationEnable(false);
+	_PhysicbodyAttack->setCategoryBitmask(ARTHUR_CATEGORY_BITMASK);
+	_PhysicbodyAttack->setCollisionBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
+	_PhysicbodyAttack->setContactTestBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
+	_NodeAttack->setVisible(true);
+	_NodeAttack->setTag(TAG_ATTACK);
 	//scheduleUpdate();
 	return true;
 }
@@ -219,6 +242,7 @@ void Arthur_1::onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event 
 
 void Arthur_1::onContactBeganWith(GameObject * obj)
 {
+	
 }
 
 void Arthur_1::onContactPostSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, const cocos2d::PhysicsContactPostSolve & solve)
@@ -374,10 +398,16 @@ void Arthur_1::onFinishAnimation()
 	}
 }
 
+float Arthur_1::getDamage()
+{
+	return this->_Strenght;
+}
+
 void Arthur_1::PlayAnimation(AnimationType type)
 {
 	AnimationInfo info = s_mapAnimations.at(type);
 	Animation* animation = Animation::create();
+	
 	for (int i = 1; i < info.numFrame; i++)
 	{
 		std::string name = StringUtils::format(info.filePath.c_str(), i);
@@ -388,6 +418,7 @@ void Arthur_1::PlayAnimation(AnimationType type)
 	Animate* animate = Animate::create(animation);
 	auto seq = Sequence::create(Repeat::create(animate, info.loopTime), CallFunc::create([=]()
 	{
+		//if (type == AnimationType::ATTACKING)
 		//_PlayerSprite->setSpriteFrame("Arthur_0_stand_1.png");
 		this->onFinishAnimation();
 	}), NULL);

@@ -105,7 +105,8 @@ bool GameScene_1::init()
 		}
 	}
 	//UIScene
-	//_UIGameScene = UIGameScene::create();
+	_UIGameScene = UIGameScene::create();
+	this->addChild(_UIGameScene);
 	//_Arthur
 	_Arthur = Arthur_1::create();
 

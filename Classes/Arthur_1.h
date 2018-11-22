@@ -71,7 +71,11 @@ private:
 	bool _right;
 	bool _left;
 
-private:
+	
+
 	void onFinishAnimation();
+protected:
+	float getDamage() override;
+
 };
 #endif //
