@@ -1,0 +1,22 @@
+<TextureAtlas imagePath="sprites.png">
+	<SubTexture name="BusteS_Hp.png" x="0" y="234" width="66" height="15"/>
+	<SubTexture name="BusterS_Attack_1.png" x="0" y="251" width="63" height="59"/>
+	<SubTexture name="BusterS_Attack_2.png" x="127" y="403" width="55" height="71"/>
+	<SubTexture name="BusterS_Attack_3.png" x="64" y="384" width="61" height="70"/>
+	<SubTexture name="BusterS_Attack_4.png" x="127" y="325" width="57" height="76"/>
+	<SubTexture name="BusterS_Attack_5.png" x="0" y="74" width="94" height="67"/>
+	<SubTexture name="BusterS_Die_1.png" x="0" y="176" width="74" height="56"/>
+	<SubTexture name="BusterS_Die_2.png" x="0" y="143" width="79" height="31"/>
+	<SubTexture name="BusterS_FallDown_1.png" x="62" y="456" width="58" height="38"/>
+	<SubTexture name="BusterS_FallDown_2.png" x="0" y="453" width="60" height="56"/>
+	<SubTexture name="BusterS_FallDown_3.png" x="0" y="29" width="94" height="43"/>
+	<SubTexture name="BusterS_FallDown_4.png" x="0" y="0" width="103" height="27"/>
+	<SubTexture name="BusterS_Jump_1.png" x="0" y="312" width="63" height="70"/>
+	<SubTexture name="BusterS_Jump_2.png" x="65" y="325" width="60" height="55"/>
+	<SubTexture name="BusterS_Stand.png" x="0" y="384" width="62" height="67"/>
+	<SubTexture name="BusterS_Walk_1.png" x="76" y="176" width="61" height="71"/>
+	<SubTexture name="BusterS_Walk_2.png" x="96" y="29" width="57" height="72"/>
+	<SubTexture name="BusterS_Walk_3.png" x="96" y="103" width="57" height="71"/>
+	<SubTexture name="BusterS_Walk_4.png" x="65" y="251" width="61" height="72"/>
+	<SubTexture name="BusterS_Win.png" x="139" y="176" width="53" height="103"/>
+</TextureAtlas>

@@ -1,0 +1,26 @@
+<TextureAtlas imagePath="sprites.png">
+	<SubTexture name="TallMan_Attack_1.png" x="159" y="233" width="62" height="72"/>
+	<SubTexture name="TallMan_Attack_2.png" x="0" y="0" width="127" height="59"/>
+	<SubTexture name="TallMan_ComBoAttack_1.png" x="0" y="214" width="86" height="72"/>
+	<SubTexture name="TallMan_ComBoAttack_2.png" x="88" y="230" width="69" height="80"/>
+	<SubTexture name="TallMan_ComBoAttack_3.png" x="225" y="0" width="38" height="92"/>
+	<SubTexture name="TallMan_ComBoAttack_4.png" x="0" y="61" width="88" height="84"/>
+	<SubTexture name="TallMan_ComBoAttack_5.png" x="84" y="363" width="73" height="74"/>
+	<SubTexture name="TallMan_Die.png" x="0" y="147" width="86" height="31"/>
+	<SubTexture name="TallMan_FallDown_1.png" x="159" y="307" width="61" height="82"/>
+	<SubTexture name="TallMan_FallDown_2.png" x="0" y="305" width="83" height="56"/>
+	<SubTexture name="TallMan_FallDown_3.png" x="0" y="450" width="68" height="45"/>
+	<SubTexture name="TallMan_GetUp_1.png" x="70" y="450" width="64" height="55"/>
+	<SubTexture name="TallMan_GetUp_2.png" x="159" y="170" width="64" height="61"/>
+	<SubTexture name="TallMan_GetUp_3.png" x="136" y="439" width="64" height="64"/>
+	<SubTexture name="TallMan_HP_1.png" x="0" y="288" width="86" height="15"/>
+	<SubTexture name="TallMan_HP_2.png" x="0" y="180" width="86" height="15"/>
+	<SubTexture name="TallMan_HP_3.png" x="0" y="197" width="86" height="15"/>
+	<SubTexture name="TallMan_Kick.png" x="0" y="363" width="82" height="85"/>
+	<SubTexture name="TallMan_Stand_1.png" x="223" y="233" width="55" height="87"/>
+	<SubTexture name="TallMan_Stand_2.png" x="202" y="391" width="55" height="85"/>
+	<SubTexture name="TallMan_Walk_1.png" x="158" y="0" width="64" height="83"/>
+	<SubTexture name="TallMan_Walk_2.png" x="159" y="85" width="64" height="83"/>
+	<SubTexture name="TallMan_Walk_3.png" x="90" y="61" width="66" height="81"/>
+	<SubTexture name="TallMan_Walk_4.png" x="88" y="147" width="69" height="81"/>
+</TextureAtlas>

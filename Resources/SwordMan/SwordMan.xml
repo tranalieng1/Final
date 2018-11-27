@@ -1,0 +1,20 @@
+<TextureAtlas imagePath="sprites.png">
+	<SubTexture name="SwordMan_Attack_1.png" x="75" y="335" width="44" height="72"/>
+	<SubTexture name="SwordMan_Attack_2.png" x="75" y="250" width="67" height="83"/>
+	<SubTexture name="SwordMan_Attack_3.png" x="0" y="94" width="85" height="55"/>
+	<SubTexture name="SwordMan_FallDown_1.png" x="76" y="185" width="42" height="50"/>
+	<SubTexture name="SwordMan_FallDown_2.png" x="0" y="464" width="54" height="42"/>
+	<SubTexture name="SwordMan_FallDown_3.png" x="0" y="64" width="88" height="28"/>
+	<SubTexture name="SwordMan_GetUp_1.png" x="0" y="151" width="83" height="32"/>
+	<SubTexture name="SwordMan_GetUp_2.png" x="72" y="447" width="63" height="47"/>
+	<SubTexture name="SwordMan_HP.png" x="0" y="447" width="70" height="15"/>
+	<SubTexture name="SwordMan_Hit.png" x="0" y="0" width="90" height="62"/>
+	<SubTexture name="SwordMan_Stand_1.png" x="90" y="64" width="41" height="91"/>
+	<SubTexture name="SwordMan_Stand_2.png" x="90" y="64" width="41" height="91"/>
+	<SubTexture name="SwordMan_Stand_3.png" x="90" y="64" width="41" height="91"/>
+	<SubTexture name="SwordMan_Stand_4.png" x="90" y="64" width="41" height="91"/>
+	<SubTexture name="SwordMan_Walk_1.png" x="0" y="185" width="74" height="63"/>
+	<SubTexture name="SwordMan_Walk_2.png" x="0" y="315" width="73" height="64"/>
+	<SubTexture name="SwordMan_Walk_3.png" x="0" y="381" width="73" height="64"/>
+	<SubTexture name="SwordMan_Walk_4.png" x="0" y="250" width="73" height="63"/>
+</TextureAtlas>
