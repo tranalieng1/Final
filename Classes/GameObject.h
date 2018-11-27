@@ -12,10 +12,12 @@ public:
 	virtual void onContactPreSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve) = 0;
 	virtual void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) = 0;
 	virtual bool init() override;
+	float getDamage();
+	void setDamage(float temp);
 private:
 protected:
 	float _damage;
-	virtual float getDamage();
+	
 };
 
 

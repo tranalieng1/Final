@@ -37,10 +37,10 @@ protected:
 	
 	cocos2d::PhysicsBody *_Physicbody;
 
-	int _Health;
-	int _Strenght;
+	float _Health;
+	float _Strenght;
 
-	int _MaxHealth;
+	float _MaxHealth;
 	
 	
 };

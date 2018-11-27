@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "UIGameScene.h"
 class UIGameScene;
+class HandlePhysics;
 class GameScene_1 : public cocos2d::Layer
 {
 public:
@@ -35,7 +36,7 @@ private:
 	cocos2d::Vec3 campos;
 	
 	UIGameScene *_UIGameScene;
-	
+	HandlePhysics* _physichandler;
 
 
 

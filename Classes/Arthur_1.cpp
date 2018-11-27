@@ -82,25 +82,27 @@ bool Arthur_1::init()
 	_Physicbody->setCollisionBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
 	_Physicbody->setContactTestBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
 
-	//Node attack
-	_NodeAttack = cocos2d::Node::create();
-	_NodeAttack->setContentSize(Size(20, 40));
-	_NodeAttack->setAnchorPoint(Vec2::ANCHOR_MIDDLE_LEFT);
-	_NodeAttack->setPosition(this->getContentSize().width , this->getContentSize().height * 0.5f);
-	this->addChild(_NodeAttack);
+	
 
 	//Node attack physic body
-	_PhysicbodyAttack = cocos2d::PhysicsBody::createBox(_NodeAttack->getContentSize());
-	_NodeAttack->setPhysicsBody(_PhysicbodyAttack);
-	_PhysicbodyAttack->setDynamic(false);
-	_PhysicbodyAttack->setGravityEnable(false);
-	_PhysicbodyAttack->setRotationEnable(false);
-	_PhysicbodyAttack->setCategoryBitmask(ARTHUR_CATEGORY_BITMASK);
-	_PhysicbodyAttack->setCollisionBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
-	_PhysicbodyAttack->setContactTestBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
-	_NodeAttack->setVisible(true);
-	_NodeAttack->setTag(TAG_ATTACK);
+	//_PhysicbodyAttack = cocos2d::PhysicsBody::createBox(_NodeAttack->getContentSize());
+	//_NodeAttack->setPhysicsBody(_PhysicbodyAttack);
+	//_PhysicbodyAttack->setDynamic(false);
+	//_PhysicbodyAttack->setGravityEnable(false);
+	//_PhysicbodyAttack->setRotationEnable(false);
+	//_PhysicbodyAttack->setCategoryBitmask(ARTHUR_CATEGORY_BITMASK);
+	//_PhysicbodyAttack->setCollisionBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
+	//_PhysicbodyAttack->setContactTestBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
+	//_NodeAttack->setVisible(true);
+	//_NodeAttack->setTag(TAG_ATTACK);
 	//scheduleUpdate();
+	//Sethit
+	_hit = Hit::create();
+	_hit->setAnchorPoint(Vec2::ANCHOR_MIDDLE_LEFT);
+	this->addChild(_hit);
+	_hit->setTag(TAG_ATTACK_PLAYER);
+	_hit->setPosition(Vec2(this->getContentSize().width, this->getContentSize().height * 0.5f));
+	_hit->setVisible(false);
 	return true;
 }
 
@@ -261,6 +263,7 @@ void Arthur_1::SetState(_State state)
 {
 	if (_state[2] != state)
 	{
+		_hit->setVisible(false);
 		_state[1] = _state[2];
 		_state[2] = state;
 		switch (state)
@@ -269,6 +272,7 @@ void Arthur_1::SetState(_State state)
 			this->PlayAnimation(AnimationType::ATTACKING);
 			//this->Attack1Animation();
 			this->_Physicbody->setVelocity(Vec2(0, 0));
+			_hit->setVisible(true);
 			break;
 		case STATE_JUMPING:
 			break;

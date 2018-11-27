@@ -2,6 +2,7 @@
 #define __ARTHUR_1_H__
 #include "cocos2d.h"
 #include "Player.h"
+#include "Hit.h"
 struct AnimationInfo
 {
 	int numFrame;
@@ -71,7 +72,7 @@ private:
 	bool _right;
 	bool _left;
 
-	
+	Hit *_hit;
 
 	void onFinishAnimation();
 protected:

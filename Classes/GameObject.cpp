@@ -21,4 +21,9 @@ float GameObject::getDamage()
 
 }
 
+void GameObject::setDamage(float temp)
+{
+	this->_damage = temp;
+}
+
 

@@ -4,7 +4,6 @@
 USING_NS_CC;
 
 
-
 FanMan::~FanMan()
 {
 
@@ -50,6 +49,11 @@ bool FanMan::init()
 	this->setPhysicsBody(_physicsBody);
 	_physicsBody->setGravityEnable(false);
 	_physicsBody->setDynamic(false);
+	_physicsBody->setRotationEnable(false);
+	_physicsBody->setCategoryBitmask(FATMAN_CATEGORY_BITMASK);
+	_physicsBody->setCollisionBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+	_physicsBody->setContactTestBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+	this->setTag(TAG_CREEP);
 
 	return true;
 }
@@ -102,10 +106,10 @@ void FanMan::StopAction()
 
 void FanMan::onContactBeganWith(GameObject * obj)
 {
-	/*if (obj->getTag() =)
+	if (obj->getTag() == TAG_ARTHUR)
 	{
 		this->setVisible(false);
-	}*/
+	}
 }
 
 void FanMan::onContactPostSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, const cocos2d::PhysicsContactPostSolve & solve)

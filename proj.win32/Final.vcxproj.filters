@@ -40,6 +40,12 @@
     <Filter Include="src\UI">
       <UniqueIdentifier>{20b51c10-7895-43f8-8138-4f4cac60eb17}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMenu">
+      <UniqueIdentifier>{55dd9508-e32b-4bd9-87fd-a39adf78db1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Attack">
+      <UniqueIdentifier>{3945604c-bb2f-43ea-9d19-b3baa2d1a70e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -75,9 +81,6 @@
     <ClCompile Include="..\Classes\SplashScene.cpp">
       <Filter>src\GameScene</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\MainMenuScene.cpp">
-      <Filter>src\GameScene</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Wall.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
@@ -95,6 +98,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\UIGameScene.cpp">
       <Filter>src\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MainMenuScene.cpp">
+      <Filter>src\GameMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\GitHub\Final\Classes\GameOptions.cpp">
+      <Filter>src\GameMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Hit.cpp">
+      <Filter>src\Attack</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -134,9 +146,6 @@
     <ClInclude Include="..\Classes\SplashScene.h">
       <Filter>src\GameScene</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\MainMenuScene.h">
-      <Filter>src\GameScene</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Wall.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
@@ -154,6 +163,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\UIGameScene.h">
       <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainMenuScene.h">
+      <Filter>src\GameMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\GitHub\Final\Classes\GameOptions.h">
+      <Filter>src\GameMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Hit.h">
+      <Filter>src\Attack</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -8,6 +8,7 @@
 #include "Wall.h"
 #include "SKeyboard.h"
 #include "UIGameScene.h"
+#include "HandlePhysics.h"
 //#define schedule_selector CC_SCHEDULE_SELECTOR
 USING_NS_CC;
 using namespace cocos2d;
@@ -104,6 +105,8 @@ bool GameScene_1::init()
 			//node->setPhysicsBody(tilePhysics);
 		}
 	}
+	//Physic handler
+	_physichandler = new HandlePhysics();
 	//UIScene
 	_UIGameScene = UIGameScene::create();
 	this->addChild(_UIGameScene);
@@ -146,6 +149,13 @@ bool GameScene_1::init()
 
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	this->scheduleUpdate();
+	// set listener vat ly
+	auto ePhysics = EventListenerPhysicsContact::create();
+	ePhysics->onContactBegin = CC_CALLBACK_1(HandlePhysics::onContactBegin, _physichandler);
+	ePhysics->onContactPostSolve = CC_CALLBACK_2(HandlePhysics::onContactPostSolve, _physichandler);
+	ePhysics->onContactPreSolve = CC_CALLBACK_2(HandlePhysics::onContactPreSolve, _physichandler);
+	ePhysics->onContactSeparate = CC_CALLBACK_1(HandlePhysics::onContactSeperated, _physichandler);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(ePhysics, this);
 
 	/*listener->onKeyPressed = [](EventKeyboard::KeyCode keyCode, Event* event)
 	{
