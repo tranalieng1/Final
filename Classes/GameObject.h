@@ -1,6 +1,28 @@
 #ifndef __GAMEOBJECT_H__
 #define __GAMEOBJECT_H__
 #include "cocos2d.h"
+struct AnimationInfo
+{
+	int numFrame;
+	std::string filePath;
+	float fps;
+	int loopTime;
+
+	AnimationInfo(int num, std::string path, float f, int loop)
+	{
+		numFrame = num;
+		filePath = path;
+		fps = f;
+		loopTime = loop;
+	}
+};
+
+enum class AnimationType
+{
+	WALKING,
+	ATTACKING,
+	JUMPING
+};
 class GameObject: public cocos2d::Node
 {
 public:

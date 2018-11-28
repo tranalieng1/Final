@@ -102,7 +102,9 @@ bool Arthur_1::init()
 	this->addChild(_hit);
 	_hit->setTag(TAG_ATTACK_PLAYER);
 	_hit->setPosition(Vec2(this->getContentSize().width, this->getContentSize().height * 0.5f));
-	_hit->setVisible(false);
+	_hit->setcollisin(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+	_hit->setcatory(FATMAN_CATEGORY_BITMASK);
+
 	return true;
 }
 
@@ -263,16 +265,20 @@ void Arthur_1::SetState(_State state)
 {
 	if (_state[2] != state)
 	{
-		_hit->setVisible(false);
+		/*_hit->setVisible(false);*/
 		_state[1] = _state[2];
 		_state[2] = state;
+		_hit->setcollisin(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+		_hit->setcatory(FATMAN_CATEGORY_BITMASK);
 		switch (state)
 		{
 		case STATE_ATTACKING:
 			this->PlayAnimation(AnimationType::ATTACKING);
 			//this->Attack1Animation();
 			this->_Physicbody->setVelocity(Vec2(0, 0));
-			_hit->setVisible(true);
+			//_hit->setVisible(true);
+			_hit->setcollisin(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
+			_hit->setcatory(ARTHUR_CATEGORY_BITMASK);
 			break;
 		case STATE_JUMPING:
 			break;
@@ -293,12 +299,10 @@ void Arthur_1::SetState(_State state)
 	}
 }
 
-//void Arthur_1::update(float delta)
-//{
-//	//processInput();
-//	//releaseInput();
-//	//cocos2d::log("checkwalk = %d", +_checkwalk);
-//}
+void Arthur_1::update(float delta)
+{
+	
+}
 
 //void Arthur_1::processInput()
 //{

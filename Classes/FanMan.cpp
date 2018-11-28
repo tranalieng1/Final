@@ -54,7 +54,7 @@ bool FanMan::init()
 	_physicsBody->setCollisionBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
 	_physicsBody->setContactTestBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
 	this->setTag(TAG_CREEP);
-
+	//Setmau
 	return true;
 }
 
@@ -106,10 +106,10 @@ void FanMan::StopAction()
 
 void FanMan::onContactBeganWith(GameObject * obj)
 {
-	if (obj->getTag() == TAG_ARTHUR)
+	/*if (obj->getTag() == TAG_ARTHUR)
 	{
 		this->setVisible(false);
-	}
+	}*/
 }
 
 void FanMan::onContactPostSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, const cocos2d::PhysicsContactPostSolve & solve)
@@ -122,5 +122,9 @@ void FanMan::onContactPreSolveWith(GameObject * obj, cocos2d::PhysicsContact & c
 }
 
 void FanMan::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact & contact)
+{
+}
+
+void FanMan::PlayAnimation(AnimationType type)
 {
 }
