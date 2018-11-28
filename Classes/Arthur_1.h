@@ -3,28 +3,7 @@
 #include "cocos2d.h"
 #include "Player.h"
 #include "Hit.h"
-struct AnimationInfo
-{
-	int numFrame;
-	std::string filePath;
-	float fps;
-	int loopTime;
 
-	AnimationInfo(int num, std::string path, float f, int loop)
-	{
-		numFrame = num;
-		filePath = path;
-		fps = f;
-		loopTime = loop;
-	}
-};
-
-enum class AnimationType
-{
-	WALKING,
-	ATTACKING,
-	JUMPING
-};
 class Arthur_1: public Player
 {
 	enum class Direction
@@ -60,7 +39,7 @@ public:
 	void onContactPreSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve) override;
 	void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) override;
 	virtual void SetState(_State state) override;
-	//void update(float delta);
+	void update(float delta);
 	/*void processInput();
 	void releaseInput();*/
 private:

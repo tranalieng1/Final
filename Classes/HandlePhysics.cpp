@@ -55,6 +55,18 @@ bool HandlePhysics::onContactBegin(cocos2d::PhysicsContact & contact)
 
 void HandlePhysics::onContactSeperated(cocos2d::PhysicsContact & contact)
 {
+	auto bodyA = contact.getShapeA()->getBody();
+	auto bodyB = contact.getShapeB()->getBody();
+
+	// Cach 2
+	auto obj1 = dynamic_cast<GameObject*>(bodyA->getNode());
+	auto obj2 = dynamic_cast<GameObject*>(bodyB->getNode());
+
+	if (obj1 && obj2)
+	{
+		obj1->onContactSeparateWith(obj2,contact);
+		obj2->onContactSeparateWith(obj1, contact);
+	}
 }
 
 bool HandlePhysics::onContactPreSolve(cocos2d::PhysicsContact & contact, cocos2d::PhysicsContactPreSolve & solve)

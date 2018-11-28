@@ -16,9 +16,12 @@ public:
 	virtual void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) override;
 	CREATE_FUNC(Hit);
 	void setSize_body(cocos2d::Size temp);
-
+	void setcatory(int temp);
+	void setcollisin(int temp);
+	
 private:
 	cocos2d::PhysicsBody *_Physicbody;
+	cocos2d::PhysicsBody *_Physicbody2;
 
 
 };
