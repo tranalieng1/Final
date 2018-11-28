@@ -4,13 +4,7 @@
 #include "GameObject.h"
 #include <vector>
 
-enum _State
-{
-	STATE_ATTACKING,
-	STATE_JUMPING,
-	STATE_STANDING,
-	STATE_WALKING
-};
+
 class Player : public GameObject
 {
 

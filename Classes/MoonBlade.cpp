@@ -24,33 +24,71 @@ bool MoonBlade::init()
 	_MBSprite1->setFlippedX(true);
 	_MBSprite2->setFlippedX(true);
 	_MBSprite3->setFlippedX(true);
-	_MBSprite1->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-	_MBSprite2->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-	_MBSprite3->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+	_MBSprite1->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
+	_MBSprite2->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
+	_MBSprite3->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
 	this->setContentSize(_MBSprite1->getContentSize());
-	this->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-	_MBSprite1->setPosition(this->getContentSize()*0.5);
-	_MBSprite2->setPosition(this->getContentSize()*0.5);
-	_MBSprite3->setPosition(this->getContentSize()*0.5);
-	this->setScale(2.0);
+	this->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
+	_MBSprite1->setPosition(Vec2(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.0f));
+	_MBSprite2->setPosition(Vec2(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.0f));
+	_MBSprite3->setPosition(Vec2(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.0f));
+	this->setScale(1.2);
+	
+	_Physicbody = cocos2d::PhysicsBody::createBox(this->getContentSize());
+	this->setPhysicsBody(_Physicbody);
+	_Physicbody->setDynamic(false);
+	_Physicbody->setGravityEnable(false);
+	_Physicbody->setRotationEnable(false);
+	_Physicbody->setCategoryBitmask(FATMAN_CATEGORY_BITMASK);
+	_Physicbody->setCollisionBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+	_Physicbody->setContactTestBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+	this->setTag(TAG_SKILL_MB);
+
+	//this->setVisible(false);
 	return true;
 }
 
 void MoonBlade::flySkill()
 {
+	//this->setVisible(true);
+	_Physicbody->setCategoryBitmask(ARTHUR_CATEGORY_BITMASK);
+	_Physicbody->setCollisionBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
+	_Physicbody->setContactTestBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
 	
-	this->setVisible(true);
-	_MBSprite1->setPosition(this->getContentSize()*0.5);
-	_MBSprite2->setPosition(this->getContentSize()*0.5);
-	_MBSprite3->setPosition(this->getContentSize()*0.5);
+	_MBSprite1->setPosition(Vec2(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.0f));
+	_MBSprite2->setPosition(Vec2(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.0f));
+	_MBSprite3->setPosition(Vec2(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.0f));
 	_MBSprite2->runAction(MoveBy::create(0.5, Vec2(_MBSprite1->getContentSize().width*-0.7, 0)));
 	_MBSprite3->runAction(MoveBy::create(0.5, Vec2(_MBSprite1->getContentSize().width*-1.4, 0)));
 	
-	auto action =MoveBy::create(0.8, Vec2(900, 0));
+	auto action =MoveBy::create(1, Vec2(200, 0));
 	auto seq = Sequence::create(action, CallFunc::create([=]()
 	{
-		this->setVisible(false);
+		_Physicbody->setCategoryBitmask(FATMAN_CATEGORY_BITMASK);
+		_Physicbody->setCollisionBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+		_Physicbody->setContactTestBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+		//this->setVisible(false);
 	}), NULL);
 	this->runAction(action);
 	
+}
+
+void MoonBlade::onContactBeganWith(GameObject * obj)
+{
+	if (obj->getTag() == TAG_CREEP)
+	{
+		obj->setVisible(false);
+	}
+}
+
+void MoonBlade::onContactPostSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, const cocos2d::PhysicsContactPostSolve & solve)
+{
+}
+
+void MoonBlade::onContactPreSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, cocos2d::PhysicsContactPreSolve & solve)
+{
+}
+
+void MoonBlade::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact & contact)
+{
 }

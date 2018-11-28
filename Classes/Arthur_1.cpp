@@ -4,7 +4,7 @@
 #include "SKeyboard.h"
 USING_NS_CC;
 
-#define TAG_ANIMATION 10
+
 std::map<AnimationType, AnimationInfo> Arthur_1::s_mapAnimations = 
 {
 	{AnimationType::WALKING, AnimationInfo(4, "Arthur_0_walk_%d.png", 1.0f / 12.0f, CC_REPEAT_FOREVER)},
@@ -33,6 +33,8 @@ Arthur_1::Arthur_1()
 	_MaxMana = 100;
 	_Health = _MaxHealth;
 	_Mana = _MaxMana;
+
+	
 }
 
 
@@ -104,7 +106,10 @@ bool Arthur_1::init()
 	_hit->setPosition(Vec2(this->getContentSize().width, this->getContentSize().height * 0.5f));
 	_hit->setcollisin(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
 	_hit->setcatory(FATMAN_CATEGORY_BITMASK);
-
+	//Set skill
+	_MBlade = MoonBlade::create();
+	_MBlade->setPosition(Vec2(this->getContentSize().width , this->getContentSize().height * 0.0f));
+	this->addChild(_MBlade);
 	return true;
 }
 
@@ -193,6 +198,13 @@ void Arthur_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event *
 	{
 		SetState(_State::STATE_ATTACKING);
 		
+	}
+	else if (kc == EventKeyboard::KeyCode::KEY_J)
+	{
+		//SetState(_State::STATE_ATTACKING);
+		_MBlade->setPosition(Vec2(this->getContentSize().width, this->getContentSize().height * 0.0f));
+		_MBlade->flySkill();
+	
 	}
 
 }
