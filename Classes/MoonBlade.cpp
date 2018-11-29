@@ -77,7 +77,8 @@ void MoonBlade::onContactBeganWith(GameObject * obj)
 {
 	if (obj->getTag() == TAG_CREEP)
 	{
-		obj->setVisible(false);
+		//obj->setVisible(false);
+		obj->takeDamage();
 	}
 }
 
@@ -90,5 +91,9 @@ void MoonBlade::onContactPreSolveWith(GameObject * obj, cocos2d::PhysicsContact 
 }
 
 void MoonBlade::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact & contact)
+{
+}
+
+void MoonBlade::takeDamage()
 {
 }

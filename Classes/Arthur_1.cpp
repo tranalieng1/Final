@@ -5,7 +5,7 @@
 USING_NS_CC;
 
 
-std::map<AnimationType, AnimationInfo> Arthur_1::s_mapAnimations = 
+std::map<AnimationType, AnimationInfo> Arthur_1::s_mapAnimations =
 {
 	{AnimationType::WALKING, AnimationInfo(4, "Arthur_0_walk_%d.png", 1.0f / 12.0f, CC_REPEAT_FOREVER)},
 	{ AnimationType::ATTACKING, AnimationInfo(4, "Arthur_0_attack_%d.png", 1.0f / 12.0f, 1) },
@@ -34,7 +34,7 @@ Arthur_1::Arthur_1()
 	_Health = _MaxHealth;
 	_Mana = _MaxMana;
 
-	
+
 }
 
 
@@ -49,7 +49,7 @@ void Arthur_1::Attack()
 		std::string name = StringUtils::format("Arthur_0_attack_%d.png", i);
 		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
 	}
-	animation->setDelayPerUnit(1 /12);
+	animation->setDelayPerUnit(1 / 12);
 
 	Animate* animate = Animate::create(animation);
 	_PlayerSprite->runAction(RepeatForever::create(animate));
@@ -57,12 +57,12 @@ void Arthur_1::Attack()
 
 bool Arthur_1::init()
 {
-	
+
 	if (!Node::init())
 		return false;
 	//_state = STATE_STANDING;
 	_checkwalk = 0;
-	
+
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl1.plist", "ArthurLvl1.png");
 	_PlayerSprite = Sprite::createWithSpriteFrameName("Arthur_0_stand_1.png");
 	//Set sprite
@@ -84,7 +84,7 @@ bool Arthur_1::init()
 	_Physicbody->setCollisionBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
 	_Physicbody->setContactTestBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
 
-	
+
 
 	//Node attack physic body
 	//_PhysicbodyAttack = cocos2d::PhysicsBody::createBox(_NodeAttack->getContentSize());
@@ -108,7 +108,7 @@ bool Arthur_1::init()
 	_hit->setcatory(FATMAN_CATEGORY_BITMASK);
 	//Set skill
 	_MBlade = MoonBlade::create();
-	_MBlade->setPosition(Vec2(this->getContentSize().width , this->getContentSize().height * 0.0f));
+	_MBlade->setPosition(Vec2(this->getContentSize().width, this->getContentSize().height * 0.0f));
 	this->addChild(_MBlade);
 	return true;
 }
@@ -118,7 +118,7 @@ void Arthur_1::Jump()
 	//_ArthurSprite->setSpriteFrame("Arthur_0_stand_1.png");
 	_PlayerSprite->stopAllActions();
 	_PlayerSprite->setSpriteFrame("Arthur_0_jump_1.png");
-	_Jump = JumpBy::create(1.0f, Vec2(0.0f,0.0f),  this->getContentSize().height*PLAYER_JUMP, 1);
+	_Jump = JumpBy::create(1.0f, Vec2(0.0f, 0.0f), this->getContentSize().height*PLAYER_JUMP, 1);
 	this->runAction(_Jump);
 
 }
@@ -130,14 +130,14 @@ void Arthur_1::Jump()
 void Arthur_1::StopAction()
 {
 	_PlayerSprite->stopActionByTag(TAG_ANIMATION);
-	
+
 	_PlayerSprite->setSpriteFrame("Arthur_0_stand_1.png");
 }
 
 void Arthur_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
 {
 
-		
+
 
 	if (kc == EventKeyboard::KeyCode::KEY_A)
 	{
@@ -163,8 +163,8 @@ void Arthur_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event *
 			SetState(_State::STATE_WALKING);
 		}
 		_velocityY -= VELOCITY_VALUE_Y;
-	/*	if (_checkwalk == 0)
-			this->WalkAnimation();*/
+		/*	if (_checkwalk == 0)
+				this->WalkAnimation();*/
 		_checkwalk++;
 		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
 	}
@@ -197,14 +197,14 @@ void Arthur_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event *
 	else if (kc == EventKeyboard::KeyCode::KEY_K)
 	{
 		SetState(_State::STATE_ATTACKING);
-		
+
 	}
 	else if (kc == EventKeyboard::KeyCode::KEY_J)
 	{
 		//SetState(_State::STATE_ATTACKING);
 		_MBlade->setPosition(Vec2(this->getContentSize().width, this->getContentSize().height * 0.0f));
 		_MBlade->flySkill();
-	
+
 	}
 
 }
@@ -222,7 +222,7 @@ void Arthur_1::onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event 
 		if (_checkwalk == 0)
 			SetState(_State::STATE_STANDING);
 
-		
+
 	}
 	else if (kc == EventKeyboard::KeyCode::KEY_S)
 	{
@@ -232,7 +232,7 @@ void Arthur_1::onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event 
 		_checkwalk--;
 		if (_checkwalk == 0)
 			SetState(_State::STATE_STANDING);
-		
+
 	}
 	else if (kc == EventKeyboard::KeyCode::KEY_D)
 	{
@@ -244,7 +244,7 @@ void Arthur_1::onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event 
 		_checkwalk--;
 		if (_checkwalk == 0)
 			SetState(_State::STATE_STANDING);
-		
+
 	}
 	else if (kc == EventKeyboard::KeyCode::KEY_W)
 	{
@@ -258,7 +258,7 @@ void Arthur_1::onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event 
 
 void Arthur_1::onContactBeganWith(GameObject * obj)
 {
-	
+
 }
 
 void Arthur_1::onContactPostSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, const cocos2d::PhysicsContactPostSolve & solve)
@@ -313,7 +313,11 @@ void Arthur_1::SetState(_State state)
 
 void Arthur_1::update(float delta)
 {
-	
+
+}
+
+void Arthur_1::takeDamage()
+{
 }
 
 //void Arthur_1::processInput()
@@ -427,7 +431,7 @@ void Arthur_1::PlayAnimation(AnimationType type)
 {
 	AnimationInfo info = s_mapAnimations.at(type);
 	Animation* animation = Animation::create();
-	
+
 	for (int i = 1; i < info.numFrame; i++)
 	{
 		std::string name = StringUtils::format(info.filePath.c_str(), i);
@@ -442,7 +446,7 @@ void Arthur_1::PlayAnimation(AnimationType type)
 		//_PlayerSprite->setSpriteFrame("Arthur_0_stand_1.png");
 		this->onFinishAnimation();
 	}), NULL);
-	
+
 	seq->setTag(TAG_ANIMATION);
 	_PlayerSprite->stopActionByTag(TAG_ANIMATION);
 	_PlayerSprite->runAction(seq);

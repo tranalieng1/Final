@@ -73,3 +73,7 @@ void Hit::setcollisin(int temp)
 	_physicsBody->setContactTestBitmask(temp);
 }
 
+void Hit::takeDamage()
+{
+}
+

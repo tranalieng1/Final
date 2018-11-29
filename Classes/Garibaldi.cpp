@@ -67,3 +67,7 @@ void Garibaldi::onContactPreSolveWith(GameObject * obj, cocos2d::PhysicsContact 
 void Garibaldi::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact & contact)
 {
 }
+
+void Garibaldi::takeDamage()
+{
+}

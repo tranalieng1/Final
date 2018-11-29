@@ -115,3 +115,7 @@ void SwordMan::onContactPreSolveWith(GameObject * obj, cocos2d::PhysicsContact &
 void SwordMan::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact & contact)
 {
 }
+
+void SwordMan::takeDamage()
+{
+}

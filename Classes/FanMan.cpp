@@ -44,6 +44,7 @@ bool FanMan::init()
 	if (!Node::init())
 		return false;
 	//Set sprite
+	_state[2] = STATE_STANDING;
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("FatMan.plist", "FatMan.png");
 	_EnemySprite = Sprite::createWithSpriteFrameName("FatMan_default_3.png");
 	this->addChild(_EnemySprite);
@@ -108,8 +109,9 @@ void FanMan::WalkAnimation()
 
 void FanMan::StopAction()
 {
-	_EnemySprite->stopAllActions();
-	_EnemySprite->setSpriteFrame("FatMan_stand_1.png");
+	_Physicbody->setVelocity(Vec2(0, 0));
+	_EnemySprite->stopActionByTag(TAG_ANIMATION);
+	_EnemySprite->setSpriteFrame("FatMan_default_3.png");
 }
 
 void FanMan::onContactBeganWith(GameObject * obj)
@@ -138,7 +140,7 @@ void FanMan::PlayAnimation(AnimationType type)
 	AnimationInfo info = s_mapAnimations.at(type);
 	Animation* animation = Animation::create();
 	std::string name = "";
-	for (int i = 1; i < info.numFrame; i++)
+	for (int i = 1; i <= info.numFrame; i++)
 	{
 		name = StringUtils::format(info.filePath.c_str(), i);
 		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
@@ -176,13 +178,28 @@ void FanMan::SetState(_State state)
 		case STATE_JUMPING:
 			break;
 		case STATE_STANDING:
+			this->StopAction();
 			break;
 		case STATE_WALKING:
 			break;
 		case STATE_HITTED:
+			this->PlayAnimation(AnimationType::HITTED);
 			break;
 		default:
 			break;
 		}
+	}
+}
+
+void FanMan::takeDamage()
+{
+	this->SetState(STATE_HITTED);
+}
+
+void FanMan::onFinishAnimation()
+{
+	if (_state[1] == STATE_HITTED)
+	{
+		this->SetState(_state[1]);
 	}
 }

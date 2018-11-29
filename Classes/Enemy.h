@@ -25,8 +25,8 @@ public:
 	virtual void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) = 0;
 
 	virtual void SetState(_State state);
-	
 
+	virtual void takeDamage() override ;
 protected:
 	
 	cocos2d::Sprite *_EnemySprite;
@@ -42,7 +42,7 @@ protected:
 
 	float _MaxHealth;
 	_State GetState();
-	void onFinishAnimation();
+	
 	
 	std::vector<_State> _state;
 	

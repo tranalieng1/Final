@@ -14,3 +14,7 @@ bool Boss::init()
 		return false;
 	return true;
 }
+
+void Boss::takeDamage()
+{
+}

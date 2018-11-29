@@ -45,6 +45,8 @@ public:
 	virtual bool init() override;
 	float getDamage();
 	void setDamage(float temp);
+	virtual void takeDamage() =0;
+
 private:
 protected:
 	float _damage;

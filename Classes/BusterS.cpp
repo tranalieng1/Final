@@ -115,3 +115,7 @@ void BusterS::onContactPreSolveWith(GameObject * obj, cocos2d::PhysicsContact & 
 void BusterS::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact & contact)
 {
 }
+
+void BusterS::takeDamage()
+{
+}

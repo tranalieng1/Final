@@ -21,12 +21,10 @@ _State Enemy::GetState()
 	return _state[1];
 }
 
-void Enemy::onFinishAnimation()
+
+
+void Enemy::takeDamage()
 {
-	if (_state[2] == _State::STATE_ATTACKING)
-	{
-		SetState(_state[1]);
-	}
 }
 
 void Enemy::SetState(_State state)

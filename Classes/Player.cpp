@@ -63,3 +63,7 @@ void Player::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * e
 void Player::onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
 {
 }
+
+void Player::takeDamage()
+{
+}

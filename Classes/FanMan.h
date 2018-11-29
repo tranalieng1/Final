@@ -22,7 +22,8 @@ public:
 	void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) override;
 	void PlayAnimation(AnimationType type);
 	void SetState(_State state) override;
-	
+	virtual void takeDamage() override;
+	void onFinishAnimation();
 
 	CREATE_FUNC(FanMan);
 private:

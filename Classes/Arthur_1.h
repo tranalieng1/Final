@@ -40,6 +40,8 @@ public:
 	void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) override;
 	virtual void SetState(_State state) override;
 	void update(float delta);
+
+	virtual void takeDamage() override;
 	/*void processInput();
 	void releaseInput();*/
 private:
