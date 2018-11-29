@@ -3,9 +3,9 @@
 
 Player::Player()
 {
-	_state.resize(2);
+	/*_state.resize(2);
 	_state.push_back(_State::STATE_STANDING);
-	_state.push_back(_State::STATE_STANDING);
+	_state.push_back(_State::STATE_STANDING);*/
 }
 
 Player::~Player()

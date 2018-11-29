@@ -18,7 +18,7 @@ Arthur_1::~Arthur_1()
 
 Arthur_1::Arthur_1()
 {
-	_state.resize(2);
+	//_state.resize(2);
 	_state.push_back(_State::STATE_STANDING);
 	_state.push_back(_State::STATE_STANDING);
 	_checkwalk = 0;
@@ -275,11 +275,11 @@ void Arthur_1::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact &
 
 void Arthur_1::SetState(_State state)
 {
-	if (_state[2] != state)
+	if (_state[1] != state)
 	{
 		/*_hit->setVisible(false);*/
-		_state[1] = _state[2];
-		_state[2] = state;
+		_state[0] = _state[1];
+		_state[1] = state;
 		_hit->setcollisin(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
 		_hit->setcatory(FATMAN_CATEGORY_BITMASK);
 		switch (state)
@@ -416,9 +416,9 @@ void Arthur_1::takeDamage()
 
 void Arthur_1::onFinishAnimation()
 {
-	if (_state[2] == _State::STATE_ATTACKING)
+	if (_state[1] == _State::STATE_ATTACKING)
 	{
-		SetState(_state[1]);
+		SetState(_state[0]);
 	}
 }
 
