@@ -7,7 +7,7 @@ std::map<AnimationType, AnimationInfo> FanMan::s_mapAnimations =
 {
 	{AnimationType::WALKING, AnimationInfo(4, "%d.png", 1.0f / 12.0f, CC_REPEAT_FOREVER)},
 	{ AnimationType::ATTACKING, AnimationInfo(4, "%d.png", 1.0f / 12.0f, 1) },
-	{AnimationType::HITTED,AnimationInfo(1,"FatMan_stand_%d.png", 1.0f / 12.0f,1)},
+	{AnimationType::HITTED,AnimationInfo(1,"FatMan_stand_%d.png", 1.0f / 4.0f,1)},
 };
 FanMan::~FanMan()
 {
@@ -18,7 +18,7 @@ FanMan::FanMan()
 {
 	_MaxHealth = 50;
 	_Health = _MaxHealth;
-	_state.resize(2);
+	//_state.resize(2);
 	_state.push_back(_State::STATE_STANDING);
 	_state.push_back(_State::STATE_STANDING);
 }
@@ -44,7 +44,7 @@ bool FanMan::init()
 	if (!Node::init())
 		return false;
 	//Set sprite
-	_state[2] = STATE_STANDING;
+	//_state[2] = STATE_STANDING;
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("FatMan.plist", "FatMan.png");
 	_EnemySprite = Sprite::createWithSpriteFrameName("FatMan_default_3.png");
 	this->addChild(_EnemySprite);
@@ -109,7 +109,7 @@ void FanMan::WalkAnimation()
 
 void FanMan::StopAction()
 {
-	_Physicbody->setVelocity(Vec2(0, 0));
+	//_Physicbody->setVelocity(Vec2(0, 0));
 	_EnemySprite->stopActionByTag(TAG_ANIMATION);
 	_EnemySprite->setSpriteFrame("FatMan_default_3.png");
 }
@@ -165,11 +165,11 @@ void FanMan::PlayAnimation(AnimationType type)
 
 void FanMan::SetState(_State state)
 {
-	if (_state[2] != state)
+	if (_state[1] != state)
 	{
 		/*_hit->setVisible(false);*/
-		_state[1] = _state[2];
-		_state[2] = state;
+		_state[0] = _state[1];
+		_state[1] = state;
 
 		switch (state)
 		{
@@ -200,6 +200,6 @@ void FanMan::onFinishAnimation()
 {
 	if (_state[1] == STATE_HITTED)
 	{
-		this->SetState(_state[1]);
+		this->SetState(_state[0]);
 	}
 }
