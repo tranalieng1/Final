@@ -108,6 +108,18 @@
     <ClCompile Include="..\Classes\Hit.cpp">
       <Filter>src\Attack</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\BirdMan.cpp">
+      <Filter>src\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BusterS.cpp">
+      <Filter>src\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SwordMan.cpp">
+      <Filter>src\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TallMan.cpp">
+      <Filter>src\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -172,6 +184,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Hit.h">
       <Filter>src\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BirdMan.h">
+      <Filter>src\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BusterS.h">
+      <Filter>src\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SwordMan.h">
+      <Filter>src\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TallMan.h">
+      <Filter>src\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

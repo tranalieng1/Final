@@ -19,7 +19,7 @@
 #define VELOCITY_VALUE_X 200.0f
 #define VELOCITY_VALUE_Y 100.0f
 #define TAG_ARTHUR 2
-//Attacl
+//Attack
 #define TAG_ATTACK_PLAYER 40
 
 //WALL
@@ -31,9 +31,11 @@
 #define FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK 0x001
 #define TAG_CREEP 20
 
-//
+//skill
+#define TAG_SKILL_MB 50
 
-
+//animation
+#define TAG_ANIMATION 10
 enum	KeyState
 {
 	KS_UP = 0,

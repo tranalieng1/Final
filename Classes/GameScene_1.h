@@ -30,7 +30,7 @@ private:
 	Player *_Arthur;
 	Enemy *_FanMan;
 	cocos2d::PhysicsWorld *sceneWorld;
-	MoonBlade *moonblade;
+
 
 	cocos2d::Camera *cam;
 	cocos2d::Vec3 campos;
@@ -40,7 +40,7 @@ private:
 
 
 
-	cocos2d::Node *_nodePosPlayer;
+
 	bool CheckJump(cocos2d::Node *v1,cocos2d::Node *v2);
 };
 

@@ -115,3 +115,7 @@ void BirdMan::onContactPreSolveWith(GameObject * obj, cocos2d::PhysicsContact & 
 void BirdMan::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact & contact)
 {
 }
+
+void BirdMan::takeDamage()
+{
+}

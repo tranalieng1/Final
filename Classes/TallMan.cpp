@@ -115,3 +115,7 @@ void TallMan::onContactPreSolveWith(GameObject * obj, cocos2d::PhysicsContact & 
 void TallMan::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact & contact)
 {
 }
+
+void TallMan::takeDamage()
+{
+}

@@ -187,3 +187,7 @@ void Percival::onContactPreSolveWith(GameObject * obj, cocos2d::PhysicsContact &
 void Percival::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact & contact)
 {
 }
+
+void Percival::takeDamage()
+{
+}

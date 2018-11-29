@@ -5,27 +5,7 @@
 
 class FanMan : public Enemy
 {
-	/*struct AnimationInfo
-	{
-		int numFrame;
-		std::string filePath;
-		float fps;
-		int loopTime;
-
-		AnimationInfo(int num, std::string path, float f, int loop)
-		{
-			numFrame = num;
-			filePath = path;
-			fps = f;
-			loopTime = loop;
-		}
-	};
-	enum class AnimationType
-	{
-		WALKING,
-		ATTACKING,
-		JUMPING
-	};*/
+	
 public:
 	FanMan();
 	~FanMan();
@@ -41,8 +21,9 @@ public:
 	void onContactPreSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve)override;
 	void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) override;
 	void PlayAnimation(AnimationType type);
-
-	
+	void SetState(_State state) override;
+	virtual void takeDamage() override;
+	void onFinishAnimation();
 
 	CREATE_FUNC(FanMan);
 private:

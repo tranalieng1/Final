@@ -4,13 +4,7 @@
 #include "GameObject.h"
 #include <vector>
 
-enum _State
-{
-	STATE_ATTACKING,
-	STATE_JUMPING,
-	STATE_STANDING,
-	STATE_WALKING
-};
+
 class Player : public GameObject
 {
 
@@ -35,6 +29,7 @@ public:
 
 	virtual void onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)  =0;
 	virtual void onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event) =0;
+	virtual void takeDamage() override;
 	
 protected:
 	std::vector<_State> _state;

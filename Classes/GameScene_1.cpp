@@ -109,6 +109,7 @@ bool GameScene_1::init()
 	_physichandler = new HandlePhysics();
 	//UIScene
 	_UIGameScene = UIGameScene::create();
+	//_UIGameScene->setPosition(Vec2(visibleSize.width*0.0f,visibleSize.height*0.0f));
 	this->addChild(_UIGameScene);
 	//_Arthur
 	_Arthur = Arthur_1::create();
@@ -120,21 +121,6 @@ bool GameScene_1::init()
 
 	_FanMan->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH+200, visibleSize.height*POSITION_BEGIN_HEIGHT));
 	this->addChild(_FanMan,1);
-	//_nodeposplayer
-
-	_nodePosPlayer = Sprite::create("Skill_MoonBlade.png");
-	_nodePosPlayer->setPosition(_Arthur->getPosition());
-	_nodePosPlayer->setContentSize(Size(30,40));
-	
-	addChild(_nodePosPlayer,22);
-	// create skill moonblade
-	moonblade = MoonBlade::create();
-	
-	moonblade->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
-
-	this->addChild(moonblade);
-	moonblade->setVisible(false);
-
 
 
 	// dunglq3
@@ -229,6 +215,8 @@ void GameScene_1::update(float dt)
 		campos.x = visibleSize.width / 2;
 	campos.y = this->getContentSize().height/2;
 	cam->setPosition3D(campos);
+	//_UIGameScene->setPosition(Vec2(visibleSize.width*0.0f, visibleSize.height*0.0f));
+	_UIGameScene->setPosition(Vec2(campos.x-visibleSize.width/2,0));
 	//if (_Arthur->GetState() == STATE_STANDING)
 	//{
 	//	if (moveright == true)

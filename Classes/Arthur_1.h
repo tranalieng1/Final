@@ -3,7 +3,7 @@
 #include "cocos2d.h"
 #include "Player.h"
 #include "Hit.h"
-
+#include "MoonBlade.h"
 class Arthur_1: public Player
 {
 	enum class Direction
@@ -40,6 +40,8 @@ public:
 	void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) override;
 	virtual void SetState(_State state) override;
 	void update(float delta);
+
+	virtual void takeDamage() override;
 	/*void processInput();
 	void releaseInput();*/
 private:
@@ -52,7 +54,7 @@ private:
 	bool _left;
 
 	Hit *_hit;
-
+	MoonBlade *_MBlade;
 	void onFinishAnimation();
 protected:
 	float getDamage() override;

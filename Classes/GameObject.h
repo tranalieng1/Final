@@ -1,6 +1,14 @@
 #ifndef __GAMEOBJECT_H__
 #define __GAMEOBJECT_H__
 #include "cocos2d.h"
+enum _State
+{
+	STATE_ATTACKING,
+	STATE_JUMPING,
+	STATE_STANDING,
+	STATE_WALKING,
+	STATE_HITTED
+};
 struct AnimationInfo
 {
 	int numFrame;
@@ -21,7 +29,8 @@ enum class AnimationType
 {
 	WALKING,
 	ATTACKING,
-	JUMPING
+	JUMPING,
+	HITTED
 };
 class GameObject: public cocos2d::Node
 {
@@ -36,6 +45,8 @@ public:
 	virtual bool init() override;
 	float getDamage();
 	void setDamage(float temp);
+	virtual void takeDamage() =0;
+
 private:
 protected:
 	float _damage;

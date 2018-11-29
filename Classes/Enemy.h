@@ -10,7 +10,7 @@ public:
 	Enemy();
 	~Enemy();
 
-
+	static std::map<AnimationType, AnimationInfo>s_mapAnimations;
 
 	virtual void Attack() = 0;
 	virtual bool init()  override;
@@ -18,15 +18,15 @@ public:
 	virtual void Attack1Animation() = 0;
 	virtual void WalkAnimation() = 0;
 	virtual void StopAction() = 0;
-
+	
 	virtual void onContactBeganWith(GameObject* obj) = 0;
 	virtual void onContactPostSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, const cocos2d::PhysicsContactPostSolve& solve) = 0;
 	virtual void onContactPreSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve) = 0;
 	virtual void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) = 0;
 
+	virtual void SetState(_State state);
 
-	
-
+	virtual void takeDamage() override ;
 protected:
 	
 	cocos2d::Sprite *_EnemySprite;
@@ -41,7 +41,10 @@ protected:
 	float _Strenght;
 
 	float _MaxHealth;
+	_State GetState();
 	
+	
+	std::vector<_State> _state;
 	
 };
 #endif //

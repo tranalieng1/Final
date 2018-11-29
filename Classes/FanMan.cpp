@@ -3,7 +3,12 @@
 #include"Defnition.h"
 USING_NS_CC;
 
-
+std::map<AnimationType, AnimationInfo> FanMan::s_mapAnimations =
+{
+	{AnimationType::WALKING, AnimationInfo(4, "%d.png", 1.0f / 12.0f, CC_REPEAT_FOREVER)},
+	{ AnimationType::ATTACKING, AnimationInfo(4, "%d.png", 1.0f / 12.0f, 1) },
+	{AnimationType::HITTED,AnimationInfo(1,"FatMan_stand_%d.png", 1.0f / 12.0f,1)},
+};
 FanMan::~FanMan()
 {
 
@@ -11,8 +16,11 @@ FanMan::~FanMan()
 
 FanMan::FanMan()
 {
-	_MaxHealth = 30;
+	_MaxHealth = 50;
 	_Health = _MaxHealth;
+	_state.resize(2);
+	_state.push_back(_State::STATE_STANDING);
+	_state.push_back(_State::STATE_STANDING);
 }
 
 
@@ -36,6 +44,7 @@ bool FanMan::init()
 	if (!Node::init())
 		return false;
 	//Set sprite
+	_state[2] = STATE_STANDING;
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("FatMan.plist", "FatMan.png");
 	_EnemySprite = Sprite::createWithSpriteFrameName("FatMan_default_3.png");
 	this->addChild(_EnemySprite);
@@ -100,8 +109,9 @@ void FanMan::WalkAnimation()
 
 void FanMan::StopAction()
 {
-	_EnemySprite->stopAllActions();
-	_EnemySprite->setSpriteFrame("FatMan_stand_1.png");
+	_Physicbody->setVelocity(Vec2(0, 0));
+	_EnemySprite->stopActionByTag(TAG_ANIMATION);
+	_EnemySprite->setSpriteFrame("FatMan_default_3.png");
 }
 
 void FanMan::onContactBeganWith(GameObject * obj)
@@ -127,4 +137,69 @@ void FanMan::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact & c
 
 void FanMan::PlayAnimation(AnimationType type)
 {
+	AnimationInfo info = s_mapAnimations.at(type);
+	Animation* animation = Animation::create();
+	std::string name = "";
+	for (int i = 1; i <= info.numFrame; i++)
+	{
+		name = StringUtils::format(info.filePath.c_str(), i);
+		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
+	}
+	animation->setDelayPerUnit(info.fps);
+	if (type == AnimationType::HITTED)
+	{
+		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
+	}
+	Animate* animate = Animate::create(animation);
+	auto seq = Sequence::create(Repeat::create(animate, info.loopTime), CallFunc::create([=]()
+	{
+		//if (type == AnimationType::ATTACKING)
+		//_PlayerSprite->setSpriteFrame("Arthur_0_stand_1.png");
+		this->onFinishAnimation();
+	}), NULL);
+
+	seq->setTag(TAG_ANIMATION);
+	_EnemySprite->stopActionByTag(TAG_ANIMATION);
+	_EnemySprite->runAction(seq);
+}
+
+void FanMan::SetState(_State state)
+{
+	if (_state[2] != state)
+	{
+		/*_hit->setVisible(false);*/
+		_state[1] = _state[2];
+		_state[2] = state;
+
+		switch (state)
+		{
+		case STATE_ATTACKING:
+			break;
+		case STATE_JUMPING:
+			break;
+		case STATE_STANDING:
+			this->StopAction();
+			break;
+		case STATE_WALKING:
+			break;
+		case STATE_HITTED:
+			this->PlayAnimation(AnimationType::HITTED);
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+void FanMan::takeDamage()
+{
+	this->SetState(STATE_HITTED);
+}
+
+void FanMan::onFinishAnimation()
+{
+	if (_state[1] == STATE_HITTED)
+	{
+		this->SetState(_state[1]);
+	}
 }
