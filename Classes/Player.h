@@ -29,7 +29,7 @@ public:
 
 	virtual void onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)  =0;
 	virtual void onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event) =0;
-	virtual void takeDamage() override;
+	virtual void takeDamage(float dmg) override;
 	
 protected:
 	std::vector<_State> _state;

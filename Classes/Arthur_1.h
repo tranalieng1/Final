@@ -41,7 +41,7 @@ public:
 	virtual void SetState(_State state) override;
 	void update(float delta);
 
-	virtual void takeDamage() override;
+	virtual void takeDamage(float dmg) override;
 	/*void processInput();
 	void releaseInput();*/
 private:
@@ -53,8 +53,8 @@ private:
 	bool _right;
 	bool _left;
 
-	Hit *_hit;
-	MoonBlade *_MBlade;
+	
+	
 	void onFinishAnimation();
 protected:
 	float getDamage() override;

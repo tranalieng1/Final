@@ -188,6 +188,6 @@ void Percival::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact &
 {
 }
 
-void Percival::takeDamage()
+void Percival::takeDamage(float dmg)
 {
 }

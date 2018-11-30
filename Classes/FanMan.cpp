@@ -63,7 +63,14 @@ bool FanMan::init()
 	_physicsBody->setCollisionBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
 	_physicsBody->setContactTestBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
 	this->setTag(TAG_CREEP);
-	//Setmau
+	//Set HPbar
+	_HealthBar = ui::LoadingBar::create("hp_bar.png");
+	_HealthBar->setPosition(Vec2(this->getContentSize().width * 0.5f, -5.0f));
+	_HealthBar->setDirection(ui::LoadingBar::Direction::LEFT);
+	_HealthBar->setScaleX(0.3f);
+	_HealthBar->setScaleY(0.5f);
+	_HealthBar->setPercent(100);
+	this->addChild(_HealthBar);
 	return true;
 }
 
@@ -191,7 +198,7 @@ void FanMan::SetState(_State state)
 	}
 }
 
-void FanMan::takeDamage()
+void FanMan::takeDamage(float dmg)
 {
 	this->SetState(STATE_HITTED);
 }

@@ -2,7 +2,7 @@
 #define __ENEMY_H__
 #include "cocos2d.h"
 #include "GameObject.h"
-
+#include "ui/CocosGUI.h"
 class Enemy : public GameObject
 {
 
@@ -26,7 +26,7 @@ public:
 
 	virtual void SetState(_State state);
 
-	virtual void takeDamage() override ;
+	virtual void takeDamage(float dmg) override ;
 protected:
 	
 	cocos2d::Sprite *_EnemySprite;
@@ -43,6 +43,7 @@ protected:
 	float _MaxHealth;
 	_State GetState();
 	
+	cocos2d::ui::LoadingBar* _HealthBar;
 	
 	std::vector<_State> _state;
 	

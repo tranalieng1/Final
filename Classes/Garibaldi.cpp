@@ -68,6 +68,6 @@ void Garibaldi::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact 
 {
 }
 
-void Garibaldi::takeDamage()
+void Garibaldi::takeDamage(float dmg)
 {
 }

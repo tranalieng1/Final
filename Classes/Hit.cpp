@@ -25,6 +25,7 @@ bool Hit::init()
 	_Physicbody->setContactTestBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
 
 	_Physicbody2 = _Physicbody;
+
 	return true;
 }
 
@@ -32,22 +33,18 @@ void Hit::onContactBeganWith(GameObject * obj)
 {
 	if (obj->getTag() == TAG_CREEP)
 	{
-		obj->setVisible(false);
+		obj->takeDamage(_damage);
 	}
-
 }
 
 void Hit::onContactPostSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, const cocos2d::PhysicsContactPostSolve & solve)
 {
-	if (obj->getTag() == TAG_CREEP)
-	{
-		obj->setVisible(false);
-	}
+	
 }
 
 void Hit::onContactPreSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, cocos2d::PhysicsContactPreSolve & solve)
 {
-	
+
 }
 
 void Hit::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact & contact)
@@ -57,9 +54,6 @@ void Hit::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact & cont
 void Hit::setSize_body(cocos2d::Size temp)
 {
 	this->setContentSize(temp);
-	
-	
-	
 }
 
 void Hit::setcatory(int temp)
@@ -73,7 +67,8 @@ void Hit::setcollisin(int temp)
 	_physicsBody->setContactTestBitmask(temp);
 }
 
-void Hit::takeDamage()
+void Hit::takeDamage(float dmg)
 {
+
 }
 

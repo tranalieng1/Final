@@ -116,6 +116,6 @@ void BirdMan::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact & 
 {
 }
 
-void BirdMan::takeDamage()
+void BirdMan::takeDamage(float dmg)
 {
 }

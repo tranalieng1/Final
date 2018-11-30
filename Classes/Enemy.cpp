@@ -23,7 +23,7 @@ _State Enemy::GetState()
 
 
 
-void Enemy::takeDamage()
+void Enemy::takeDamage(float dmg)
 {
 }
 

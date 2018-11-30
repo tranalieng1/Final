@@ -116,6 +116,6 @@ void BusterS::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact & 
 {
 }
 
-void BusterS::takeDamage()
+void BusterS::takeDamage(float dmg)
 {
 }

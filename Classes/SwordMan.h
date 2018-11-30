@@ -21,7 +21,7 @@ public:
 	void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) override;
 
 
-	virtual void takeDamage() override;
+	virtual void takeDamage(float dmg) override;
 
 	CREATE_FUNC(SwordMan);
 private:

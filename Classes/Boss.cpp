@@ -15,6 +15,6 @@ bool Boss::init()
 	return true;
 }
 
-void Boss::takeDamage()
+void Boss::takeDamage(float dmg)
 {
 }

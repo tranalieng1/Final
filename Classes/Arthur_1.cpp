@@ -99,17 +99,10 @@ bool Arthur_1::init()
 	//_NodeAttack->setTag(TAG_ATTACK);
 	//scheduleUpdate();
 	//Sethit
-	_hit = Hit::create();
-	_hit->setAnchorPoint(Vec2::ANCHOR_MIDDLE_LEFT);
-	this->addChild(_hit);
-	_hit->setTag(TAG_ATTACK_PLAYER);
-	_hit->setPosition(Vec2(this->getContentSize().width, this->getContentSize().height * 0.5f));
-	_hit->setcollisin(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
-	_hit->setcatory(FATMAN_CATEGORY_BITMASK);
-	//Set skill
-	_MBlade = MoonBlade::create();
-	_MBlade->setPosition(Vec2(this->getContentSize().width, this->getContentSize().height * 0.0f));
-	this->addChild(_MBlade);
+
+
+	
+	
 	return true;
 }
 
@@ -202,8 +195,8 @@ void Arthur_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event *
 	else if (kc == EventKeyboard::KeyCode::KEY_J)
 	{
 		//SetState(_State::STATE_ATTACKING);
-		_MBlade->setPosition(Vec2(this->getContentSize().width, this->getContentSize().height * 0.0f));
-		_MBlade->flySkill();
+		//_MBlade->setPosition(Vec2(this->getContentSize().width, this->getContentSize().height * 0.0f));
+		
 
 	}
 
@@ -280,8 +273,8 @@ void Arthur_1::SetState(_State state)
 		/*_hit->setVisible(false);*/
 		_state[0] = _state[1];
 		_state[1] = state;
-		_hit->setcollisin(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
-		_hit->setcatory(FATMAN_CATEGORY_BITMASK);
+		//_hit->setcollisin(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+		//_hit->setcatory(FATMAN_CATEGORY_BITMASK);
 		switch (state)
 		{
 		case STATE_ATTACKING:
@@ -289,8 +282,18 @@ void Arthur_1::SetState(_State state)
 			//this->Attack1Animation();
 			this->_Physicbody->setVelocity(Vec2(0, 0));
 			//_hit->setVisible(true);
-			_hit->setcollisin(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
-			_hit->setcatory(ARTHUR_CATEGORY_BITMASK);
+			/*_hit->setcollisin(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
+			_hit->setcatory(ARTHUR_CATEGORY_BITMASK);*/
+		{
+			auto hit = Hit::create();
+			this->addChild(hit);
+			hit->setTag(TAG_ATTACK_PLAYER);
+			hit->setPosition(Vec2(this->getContentSize().width, this->getContentSize().height * 0.5f-10));
+			hit->runAction(Sequence::create(DelayTime::create(0.2f), CallFunc::create([=]()
+			{
+				hit->removeFromParent();
+			}), nullptr));
+		}
 			break;
 		case STATE_JUMPING:
 			break;
@@ -316,8 +319,9 @@ void Arthur_1::update(float delta)
 
 }
 
-void Arthur_1::takeDamage()
+void Arthur_1::takeDamage(float dmg)
 {
+
 }
 
 //void Arthur_1::processInput()

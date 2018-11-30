@@ -116,6 +116,6 @@ void SwordMan::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact &
 {
 }
 
-void SwordMan::takeDamage()
+void SwordMan::takeDamage(float dmg)
 {
 }

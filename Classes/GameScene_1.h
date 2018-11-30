@@ -38,6 +38,7 @@ private:
 	UIGameScene *_UIGameScene;
 	HandlePhysics* _physichandler;
 
+	MoonBlade *_MBlade;
 
 
 

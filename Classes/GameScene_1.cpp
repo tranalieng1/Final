@@ -143,6 +143,11 @@ bool GameScene_1::init()
 	ePhysics->onContactSeparate = CC_CALLBACK_1(HandlePhysics::onContactSeperated, _physichandler);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(ePhysics, this);
 
+
+	//Set skill
+	_MBlade = MoonBlade::create();
+	_MBlade->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY()));
+	this->addChild(_MBlade);
 	/*listener->onKeyPressed = [](EventKeyboard::KeyCode keyCode, Event* event)
 	{
 		
@@ -197,11 +202,26 @@ void GameScene_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Even
 {
 	_Arthur->onKeyPressed(kc, event);
 	
+	if (kc == EventKeyboard::KeyCode::KEY_J)
+	{
+		if (_Arthur->getScaleX() > 0)
+		{
+			_MBlade->setScaleX(2.7f);
+		}
+		else
+		{
+			_MBlade->setScaleX(-2.7f);
+		}
+		_MBlade->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY()));
+		_MBlade->flySkill();
+	}
+	
 }
 
 void GameScene_1::onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
 {
 	_Arthur->onKeyReleased(kc, event);
+
 }
 
 void GameScene_1::update(float dt)

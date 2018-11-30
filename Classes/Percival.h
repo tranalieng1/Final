@@ -25,7 +25,7 @@ public:
 	void onContactPostSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, const cocos2d::PhysicsContactPostSolve& solve) override;
 	void onContactPreSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve) override;
 	void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) override;
-	virtual void takeDamage() override;
+	virtual void takeDamage(float dmg) override;
 	CREATE_FUNC(Percival);
 private:
 

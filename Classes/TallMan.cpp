@@ -116,6 +116,6 @@ void TallMan::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact & 
 {
 }
 
-void TallMan::takeDamage()
+void TallMan::takeDamage(float dmg)
 {
 }
