@@ -8,7 +8,10 @@ std::map<AnimationType, AnimationInfo> FanMan::s_mapAnimations =
 	{AnimationType::WALKING, AnimationInfo(4, "%d.png", 1.0f / 12.0f, CC_REPEAT_FOREVER)},
 	{ AnimationType::ATTACKING, AnimationInfo(4, "%d.png", 1.0f / 12.0f, 1) },
 	{AnimationType::HITTED,AnimationInfo(1,"FatMan_stand_%d.png", 1.0f / 4.0f,1)},
-	{AnimationType::DEATH,AnimationInfo(4,"FatMan_fall_%d.png",1.0f/12.0f,1)},
+	{AnimationType::DEATH,AnimationInfo(4,"FatMan_fall_%d.png",1.0f/4.0f,1)},
+	{AnimationType::FALLING,AnimationInfo(4,"FatMan_fall_%d.png",1.0f / 4.0f,1)},
+	{AnimationType::GETUP,AnimationInfo(2,"FatMan_defeat_%d.png",1.0f / 4.0f,1)},
+	
 };
 FanMan::~FanMan()
 {
@@ -17,7 +20,7 @@ FanMan::~FanMan()
 
 FanMan::FanMan()
 {
-	_MaxHealth = 50;
+	_MaxHealth = 200;
 	_Health = _MaxHealth;
 	//_state.resize(2);
 	_state.push_back(_State::STATE_STANDING);
@@ -163,10 +166,9 @@ void FanMan::PlayAnimation(AnimationType type)
 	{
 		//if (type == AnimationType::ATTACKING)
 		//_PlayerSprite->setSpriteFrame("Arthur_0_stand_1.png");
-		if (type != AnimationType::DEATH)
-		{
-			this->onFinishAnimation();
-		}
+		
+		this->onFinishAnimation();
+		
 	}), NULL);
 
 	seq->setTag(TAG_ANIMATION);
@@ -176,7 +178,7 @@ void FanMan::PlayAnimation(AnimationType type)
 
 void FanMan::SetState(_State state)
 {
-	cocos2d::Action *jum;
+
 	cocos2d::Spawn *spawn;
 	if (_state[1] != state)
 	{
@@ -202,14 +204,27 @@ void FanMan::SetState(_State state)
 			break;
 		case STATE_DEATH:
 			/*this->PlayAnimation(AnimationType::DEATH);*/
-			jum = cocos2d::JumpBy::create(0.8f, Vec2(100, 0), 50, 1);
+			
 			spawn = cocos2d::Spawn::create(CallFunc::create([=]()
 			{
 				this->PlayAnimation(AnimationType::DEATH);
-			}), jum, NULL);
+			}), cocos2d::JumpBy::create(0.8f, Vec2(100, 0), 50, 1),cocos2d::Blink::create(1.2f,10), NULL);
 			//this->runAction(jum);
-			this->runAction(spawn);
+			this->runAction(Sequence::create(spawn,DelayTime::create(0.5f),RemoveSelf::create(),NULL));
 			
+			break;
+		case STATE_FALLING:
+			spawn = cocos2d::Spawn::create(CallFunc::create([=]()
+			{
+				this->PlayAnimation(AnimationType::DEATH);
+			}), cocos2d::JumpBy::create(0.8f, Vec2(100, 0), 50, 1), NULL);
+			this->runAction(spawn);
+			break;
+		case STATE_GETUP:
+			this->runAction(Sequence::create(DelayTime::create(1.0f), CallFunc::create([=]()
+			{
+				this->PlayAnimation(AnimationType::GETUP);
+			}), NULL));
 			break;
 		default:
 			break;
@@ -220,14 +235,30 @@ void FanMan::SetState(_State state)
 void FanMan::takeDamage(float dmg)
 {
 	_Health = _Health - dmg;
-	_HealthBar->setPercent((_Health / _MaxHealth)*100);
-	if (_Health > 0)
+	_HealthBar->setPercent((_Health / _MaxHealth) * 100);
+	if(this->_state[1]==STATE_HITTED)
 	{
-		this->SetState(STATE_HITTED);
+		
+		if (_Health > 0)
+		{
+			this->SetState(STATE_FALLING);
+		}
+		else
+		{
+			this->SetState(STATE_DEATH);
+		}
 	}
 	else
 	{
-		this->SetState(STATE_DEATH);
+		
+		if (_Health > 0)
+		{
+			this->SetState(STATE_HITTED);
+		}
+		else
+		{
+			this->SetState(STATE_DEATH);
+		}
 	}
 }
 
@@ -236,5 +267,17 @@ void FanMan::onFinishAnimation()
 	if (_state[1] == STATE_HITTED)
 	{
 		this->SetState(_state[0]);
+	}
+	else if (_state[1] == STATE_FALLING)
+	{
+		this->SetState(STATE_GETUP);
+	}
+	else if (_state[1] == STATE_GETUP)
+	{
+		this->SetState(STATE_STANDING);
+	}
+	else if (_state[1] == STATE_DEATH)
+	{
+
 	}
 }
