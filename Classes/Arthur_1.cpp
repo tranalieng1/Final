@@ -33,7 +33,7 @@ Arthur_1::Arthur_1()
 	_MaxMana = 100;
 	_Health = _MaxHealth;
 	_Mana = _MaxMana;
-
+	_damage = 20;
 
 }
 
@@ -288,6 +288,7 @@ void Arthur_1::SetState(_State state)
 			auto hit = Hit::create();
 			this->addChild(hit);
 			hit->setTag(TAG_ATTACK_PLAYER);
+			hit->setDamage(_damage);
 			hit->setPosition(Vec2(this->getContentSize().width, this->getContentSize().height * 0.5f-10));
 			hit->runAction(Sequence::create(DelayTime::create(0.2f), CallFunc::create([=]()
 			{

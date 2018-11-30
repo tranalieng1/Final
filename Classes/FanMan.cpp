@@ -8,6 +8,7 @@ std::map<AnimationType, AnimationInfo> FanMan::s_mapAnimations =
 	{AnimationType::WALKING, AnimationInfo(4, "%d.png", 1.0f / 12.0f, CC_REPEAT_FOREVER)},
 	{ AnimationType::ATTACKING, AnimationInfo(4, "%d.png", 1.0f / 12.0f, 1) },
 	{AnimationType::HITTED,AnimationInfo(1,"FatMan_stand_%d.png", 1.0f / 4.0f,1)},
+	{AnimationType::DEATH,AnimationInfo(4,"FatMan_fall_%d.png",1.0f/12.0f,1)},
 };
 FanMan::~FanMan()
 {
@@ -162,7 +163,10 @@ void FanMan::PlayAnimation(AnimationType type)
 	{
 		//if (type == AnimationType::ATTACKING)
 		//_PlayerSprite->setSpriteFrame("Arthur_0_stand_1.png");
-		this->onFinishAnimation();
+		if (type != AnimationType::DEATH)
+		{
+			this->onFinishAnimation();
+		}
 	}), NULL);
 
 	seq->setTag(TAG_ANIMATION);
@@ -172,6 +176,8 @@ void FanMan::PlayAnimation(AnimationType type)
 
 void FanMan::SetState(_State state)
 {
+	cocos2d::Action *jum;
+	cocos2d::Spawn *spawn;
 	if (_state[1] != state)
 	{
 		/*_hit->setVisible(false);*/
@@ -191,6 +197,19 @@ void FanMan::SetState(_State state)
 			break;
 		case STATE_HITTED:
 			this->PlayAnimation(AnimationType::HITTED);
+		
+
+			break;
+		case STATE_DEATH:
+			/*this->PlayAnimation(AnimationType::DEATH);*/
+			jum = cocos2d::JumpBy::create(0.8f, Vec2(100, 0), 50, 1);
+			spawn = cocos2d::Spawn::create(CallFunc::create([=]()
+			{
+				this->PlayAnimation(AnimationType::DEATH);
+			}), jum, NULL);
+			//this->runAction(jum);
+			this->runAction(spawn);
+			
 			break;
 		default:
 			break;
@@ -200,7 +219,16 @@ void FanMan::SetState(_State state)
 
 void FanMan::takeDamage(float dmg)
 {
-	this->SetState(STATE_HITTED);
+	_Health = _Health - dmg;
+	_HealthBar->setPercent((_Health / _MaxHealth)*100);
+	if (_Health > 0)
+	{
+		this->SetState(STATE_HITTED);
+	}
+	else
+	{
+		this->SetState(STATE_DEATH);
+	}
 }
 
 void FanMan::onFinishAnimation()
