@@ -156,6 +156,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Enemy.cpp" />
     <ClCompile Include="..\Classes\FanMan.cpp" />
     <ClCompile Include="..\Classes\GameObject.cpp" />
+    <ClCompile Include="..\Classes\GameOptions.cpp" />
     <ClCompile Include="..\Classes\GameScene_1.cpp" />
     <ClCompile Include="..\Classes\Garibaldi.cpp" />
     <ClCompile Include="..\Classes\HandlePhysics.cpp" />
@@ -182,6 +183,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Enemy.h" />
     <ClInclude Include="..\Classes\FanMan.h" />
     <ClInclude Include="..\Classes\GameObject.h" />
+    <ClInclude Include="..\Classes\GameOptions.h" />
     <ClInclude Include="..\Classes\GameScene_1.h" />
     <ClInclude Include="..\Classes\Garibaldi.h" />
     <ClInclude Include="..\Classes\HandlePhysics.h" />
