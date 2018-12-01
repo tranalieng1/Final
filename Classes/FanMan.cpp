@@ -204,11 +204,7 @@ void FanMan::SetState(_State state)
 			break;
 		case STATE_DEATH:
 			/*this->PlayAnimation(AnimationType::DEATH);*/
-			// action a: nhay
-			// action b : di toi 200 pixel
-
-			// spawn ( a, b , null)
-			//Seq(a,b,null)
+			
 			spawn = cocos2d::Spawn::create(CallFunc::create([=]()
 			{
 				this->PlayAnimation(AnimationType::DEATH);
