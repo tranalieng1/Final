@@ -26,15 +26,18 @@ public:
 
 	virtual void SetState(_State state);
 
-	virtual void takeDamage(float dmg) override ;
+	virtual void takeDamage(float dmg) override;
+	virtual void enalbeAI(GameObject* player) override;
+	virtual void scheduleUpdateAI(float delta);
+	virtual void update(float delta);
 protected:
-	
+	GameObject* _playerPtr;
 	cocos2d::Sprite *_EnemySprite;
 	cocos2d::Action *_WalkAction;
 	cocos2d::JumpBy *_Jump;
 	int _checkwalk;
 
-	
+	float _timeUpdateAI;
 	cocos2d::PhysicsBody *_Physicbody;
 
 	float _Health;

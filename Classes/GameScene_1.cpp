@@ -118,8 +118,8 @@ bool GameScene_1::init()
 	this->addChild(_Arthur,2);
 	//FanMan
 	_FanMan = FanMan::create();
-
 	_FanMan->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH+200, visibleSize.height*POSITION_BEGIN_HEIGHT));
+	_FanMan->enalbeAI(_Arthur);
 	this->addChild(_FanMan,1);
 
 

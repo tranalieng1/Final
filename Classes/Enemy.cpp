@@ -2,7 +2,8 @@
 
 Enemy::Enemy()
 {
-	
+	_playerPtr = nullptr;
+	_timeUpdateAI = 0.0f;
 }
 
 Enemy::~Enemy()
@@ -30,4 +31,19 @@ void Enemy::takeDamage(float dmg)
 void Enemy::SetState(_State state)
 {
 	
+}
+
+void Enemy::scheduleUpdateAI(float delta)
+{
+	
+}
+
+void Enemy::enalbeAI(GameObject* player)
+{
+	this->_playerPtr = player;
+	this->schedule(CC_SCHEDULE_SELECTOR(Enemy::scheduleUpdateAI), _timeUpdateAI, CC_REPEAT_FOREVER, 0.0f);
+}
+
+void Enemy::update(float delta)
+{
 }

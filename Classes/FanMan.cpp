@@ -3,6 +3,11 @@
 #include"Defnition.h"
 USING_NS_CC;
 
+#define TAG_ACTION_AI_CHASE_PLAYER 100
+#define SPEED_X 150.0f
+#define SPEED_Y SPEED_X
+#define TIME_UPDATE_AI 0.2f
+
 std::map<AnimationType, AnimationInfo> FanMan::s_mapAnimations =
 {
 	{AnimationType::WALKING, AnimationInfo(4, "%d.png", 1.0f / 12.0f, CC_REPEAT_FOREVER)},
@@ -18,13 +23,14 @@ FanMan::~FanMan()
 
 }
 
-FanMan::FanMan()
+FanMan::FanMan() : Enemy()
 {
 	_MaxHealth = 200;
 	_Health = _MaxHealth;
 	//_state.resize(2);
 	_state.push_back(_State::STATE_STANDING);
 	_state.push_back(_State::STATE_STANDING);
+	_timeUpdateAI = TIME_UPDATE_AI;
 }
 
 
@@ -45,7 +51,7 @@ void FanMan::Attack()
 
 bool FanMan::init()
 {
-	if (!Node::init())
+	if (!Enemy::init())
 		return false;
 	//Set sprite
 	//_state[2] = STATE_STANDING;
@@ -280,4 +286,34 @@ void FanMan::onFinishAnimation()
 	{
 
 	}
+}
+
+void FanMan::scheduleUpdateAI(float delta)
+{
+	if (_playerPtr != nullptr)
+	{
+		auto distanceX = std::abs(this->getPosition().x - _playerPtr->getPosition().x);
+		if (distanceX < _EnemySprite->getContentSize().width * 0.5f + 50.0f)
+		{
+			this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
+			PlayAnimation(AnimationType::ATTACKING);
+		}
+		else
+		{
+			chasePlayer();
+		}
+	}
+}
+
+void FanMan::chasePlayer()
+{
+	auto targetPos = _playerPtr->getPosition();
+	auto distance = targetPos - this->getPosition();
+	auto timeX = std::abs(distance.x / SPEED_X);
+	auto timeY = std::abs(distance.y / SPEED_Y);
+	auto time = timeX > timeY ? timeX : timeY;
+	auto aMove = MoveBy::create(time, distance);
+	aMove->setTag(TAG_ACTION_AI_CHASE_PLAYER);
+	this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
+	this->runAction(aMove);
 }

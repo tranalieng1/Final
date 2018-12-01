@@ -26,4 +26,8 @@ void GameObject::setDamage(float temp)
 	this->_damage = temp;
 }
 
+void GameObject::enalbeAI(GameObject* player)
+{
+
+}
 

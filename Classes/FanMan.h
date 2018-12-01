@@ -25,8 +25,12 @@ public:
 	virtual void takeDamage(float dmg) override;
 	void onFinishAnimation();
 
+	virtual void scheduleUpdateAI(float delta) override;
+
+
 	CREATE_FUNC(FanMan);
 private:
+	void chasePlayer();
 
 	
 

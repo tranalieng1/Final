@@ -2,6 +2,7 @@
 #include"Defnition.h"
 #include"cocos2d.h"
 USING_NS_CC;
+
 MoonBlade::MoonBlade()
 {
 	_damage = 100.0f;
@@ -78,7 +79,7 @@ void MoonBlade::flySkill()
 	{
 		temp = -1000.0f;
 	}
-	auto action =MoveBy::create(1, Vec2(temp, 0));
+	auto action = MoveBy::create(1, Vec2(temp, 0));
 	auto seq = Sequence::create(action, CallFunc::create([=]()
 	{
 		_Physicbody->setCategoryBitmask(FATMAN_CATEGORY_BITMASK);
@@ -87,7 +88,6 @@ void MoonBlade::flySkill()
 		this->setVisible(false);
 	}), NULL);
 	this->runAction(seq);
-	
 }
 
 void MoonBlade::onContactBeganWith(GameObject * obj)
