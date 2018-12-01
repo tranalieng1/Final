@@ -102,9 +102,6 @@
     <ClCompile Include="..\Classes\MainMenuScene.cpp">
       <Filter>src\GameMenu</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\GitHub\Final\Classes\GameOptions.cpp">
-      <Filter>src\GameMenu</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Hit.cpp">
       <Filter>src\Attack</Filter>
     </ClCompile>
@@ -177,9 +174,6 @@
       <Filter>src\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\MainMenuScene.h">
-      <Filter>src\GameMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\GitHub\Final\Classes\GameOptions.h">
       <Filter>src\GameMenu</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Hit.h">

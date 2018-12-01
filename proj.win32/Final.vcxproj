@@ -148,7 +148,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\GitHub\Final\Classes\GameOptions.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\Arthur_1.cpp" />
     <ClCompile Include="..\Classes\BirdMan.cpp" />
@@ -174,7 +173,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\GitHub\Final\Classes\GameOptions.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\Arthur_1.h" />
     <ClInclude Include="..\Classes\BirdMan.h" />
