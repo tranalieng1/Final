@@ -10,7 +10,8 @@ enum _State
 	STATE_HITTED,
 	STATE_DEATH,
 	STATE_FALLING,
-	STATE_GETUP
+	STATE_GETUP,
+	STATE_SWAPING
 };
 struct AnimationInfo
 {
@@ -36,7 +37,11 @@ enum class AnimationType
 	HITTED,
 	DEATH,
 	FALLING,
-	GETUP
+	GETUP,
+	ATTACKING_2,
+	ATTACKING_3,
+	ATTACKING_4,
+	SWAPING
 };
 class GameObject: public cocos2d::Node
 {
