@@ -52,7 +52,7 @@ protected:
 	float _MaxHealth;
 	float _MaxMana;
 
-	float _Score;	
+	float _score;	
 	_State GetState();
 	virtual void SetState(_State state);
 

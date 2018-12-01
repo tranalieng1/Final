@@ -7,6 +7,7 @@
 #include "FanMan.h"
 #include "Player.h"
 #include "UIGameScene.h"
+#include "score.h"
 class UIGameScene;
 class HandlePhysics;
 class GameScene_1 : public cocos2d::Layer
@@ -31,7 +32,7 @@ private:
 	Enemy *_FanMan;
 	cocos2d::PhysicsWorld *sceneWorld;
 
-
+	
 	cocos2d::Camera *cam;
 	cocos2d::Vec3 campos;
 	
