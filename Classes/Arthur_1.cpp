@@ -11,7 +11,9 @@ std::map<AnimationType, AnimationInfo> Arthur_1::s_mapAnimations =
 	{ AnimationType::ATTACKING, AnimationInfo(3, "Arthur_0_attack_%d.png", 1.0f / 12.0f, 1) },
 	//{ AnimationType::SWAPING, AnimationInfo(1, "Arthur_0_comboattack3_%d.png", 1.0f / 4.0f, 1) },
 	{ AnimationType::JUMPING, AnimationInfo(1, "Arthur_0_jump_%d.png", 1.0f / 4.0f, 4) },
-	{ AnimationType::HITTED, AnimationInfo(1, "Arthur_0_fall_%d.png", 1.0f / 4.0f, 1) },
+	{ AnimationType::HITTED, AnimationInfo(1, "Arthur_0_hitted_%d.png", 1.0f / 4.0f, 1) },
+	{AnimationType::FALLING, AnimationInfo(2, "Arthur_0_fall_%d.png", 1.0f / 4.0f, 1)},
+	{AnimationType::GETUP, AnimationInfo(3, "Arthur_0_getup_%d.png", 1.0f / 4.0f, 1)},
 };
 
 Arthur_1::~Arthur_1()
@@ -32,7 +34,7 @@ Arthur_1::Arthur_1()
 	_left = false;
 	_right = false;
 
-	_MaxHealth = 10000;
+	_MaxHealth = 1000;
 	_MaxMana = 100;
 	_Health = _MaxHealth;
 	_Mana = _MaxMana;
@@ -284,6 +286,7 @@ void Arthur_1::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact &
 
 void Arthur_1::SetState(_State state)
 {
+	cocos2d::Spawn *spawn;
 	if (_state[1] != state)
 	{
 		/*_hit->setVisible(false);*/
@@ -333,6 +336,35 @@ void Arthur_1::SetState(_State state)
 		{
 			this->PlayAnimation(AnimationType::HITTED);
 		}
+		break;
+		case STATE_FALLING:
+		{
+			spawn = cocos2d::Spawn::create(CallFunc::create([=]()
+			{
+				this->PlayAnimation(AnimationType::FALLING);
+			}), cocos2d::JumpBy::create(0.8f, Vec2(-100, 0), 50, 1), NULL);
+			this->runAction(spawn);
+		}
+		break;
+		case STATE_GETUP:
+		{
+			this->runAction(Sequence::create(DelayTime::create(1.0f), CallFunc::create([=]()
+			{
+				this->PlayAnimation(AnimationType::GETUP);
+			}), NULL));
+		}
+		break;
+		case STATE_DEATH:
+			spawn = cocos2d::Spawn::create(CallFunc::create([=]()
+			{
+				this->PlayAnimation(AnimationType::FALLING);
+			}), cocos2d::JumpBy::create(0.8f, Vec2(-100, 0), 50, 1), cocos2d::Blink::create(1.2f, 10), NULL);
+			//this->runAction(jum);
+			this->runAction(Sequence::create(spawn, DelayTime::create(0.5f), CallFunc::create([=]()
+			{
+				this->setVisible(false);
+			}), NULL));
+			break;
 		default:
 			break;
 		}
@@ -493,6 +525,22 @@ void Arthur_1::onFinishAnimation()
 	else if (_state[1] == STATE_JUMPING && _checkwalk == 0)
 	{
 		SetState(STATE_STANDING);
+	}
+	else if (_state[1] == STATE_HITTED)
+	{
+		this->SetState(STATE_STANDING);
+	}
+	else if (_state[1] == STATE_FALLING)
+	{
+		this->SetState(STATE_GETUP);
+	}
+	else if (_state[1] == STATE_GETUP)
+	{
+		this->SetState(STATE_STANDING);
+	}
+	else if (_state[1] == STATE_DEATH)
+	{
+
 	}
 }
 
