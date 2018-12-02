@@ -16,19 +16,6 @@ SwordMan::SwordMan()
 
 
 
-void SwordMan::Attack()
-{
-	Animation* animation = Animation::create();
-	for (int i = 1; i < 3; i++)
-	{
-		std::string name = StringUtils::format("SwordMan_Attack_1_%d.png", i);
-		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
-	}
-	animation->setDelayPerUnit(1 /12);//1:12
-
-	Animate* animate = Animate::create(animation);
-	_EnemySprite->runAction(RepeatForever::create(animate));
-}
 
 bool SwordMan::init()
 {

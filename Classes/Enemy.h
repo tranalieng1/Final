@@ -13,7 +13,7 @@ public:
 
 	
 
-	virtual void Attack() = 0;
+	
 	virtual bool init()  override;
 	virtual void Jump() = 0;
 	virtual void Attack1Animation() = 0;

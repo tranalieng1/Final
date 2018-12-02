@@ -35,6 +35,10 @@ void Hit::onContactBeganWith(GameObject * obj)
 	{
 		obj->takeDamage(_damage);
 	}
+	else if (obj->getTag() == TAG_ARTHUR && this->getTag() == TAG_ATTACK_ENEMY)
+	{
+		obj->takeDamage(_damage);
+	}
 }
 
 void Hit::onContactPostSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, const cocos2d::PhysicsContactPostSolve & solve)

@@ -8,7 +8,7 @@ class TallMan : public Enemy
 public:
 	TallMan();
 	~TallMan();
-	void Attack() override;
+
 	virtual bool init() override;
 	void Jump() override;
 	void Attack1Animation() override;

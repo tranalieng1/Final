@@ -26,8 +26,7 @@ public:
 	void Attack();
 	virtual bool init();
 	void Jump();
-	void Attack1Animation();
-	void WalkAnimation();
+
 	void StopAction();
 	void PlayAnimation(AnimationType type);
 	
@@ -57,7 +56,7 @@ private:
 	
 	void onFinishAnimation();
 protected:
-	float getDamage() override;
+	
 
 };
 #endif //

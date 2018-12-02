@@ -8,7 +8,7 @@ class BusterS : public Enemy
 public:
 	BusterS();
 	~BusterS();
-	void Attack() override;
+
 	virtual bool init() override;
 	void Jump() override;
 	void Attack1Animation() override;

@@ -7,6 +7,19 @@ Player::Player()
 	/*_state.resize(2);
 	_state.push_back(_State::STATE_STANDING);
 	_state.push_back(_State::STATE_STANDING);*/
+	movedown = false;
+	moveup = false;
+	moveright = false;
+	moveleft = false;
+	_checkwalk = 0;
+	_Health =1;
+
+	_Mana=2;
+
+	_MaxHealth=2;
+	_MaxMana=1;
+
+	_score;
 }
 
 Player::~Player()
@@ -52,10 +65,7 @@ void Player::SetState(_State state)
 	this->_state[2] = state;
 }
 
-float Player::getDamage()
-{
-	return 0.0f;
-}
+
 
 void Player::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
 {
@@ -77,4 +87,9 @@ void Player::addScore(float temp)
 float Player::getScore()
 {
 	return _score;
+}
+
+float Player::getHealth()
+{
+	return _Health / _MaxHealth;
 }

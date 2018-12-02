@@ -8,7 +8,7 @@ class BirdMan : public Enemy
 public:
 	BirdMan();
 	~BirdMan();
-	void Attack() override;
+	
 	virtual bool init() override;
 	void Jump() override;
 	void Attack1Animation() override;

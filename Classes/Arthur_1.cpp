@@ -11,6 +11,7 @@ std::map<AnimationType, AnimationInfo> Arthur_1::s_mapAnimations =
 	{ AnimationType::ATTACKING, AnimationInfo(3, "Arthur_0_attack_%d.png", 1.0f / 12.0f, 1) },
 	//{ AnimationType::SWAPING, AnimationInfo(1, "Arthur_0_comboattack3_%d.png", 1.0f / 4.0f, 1) },
 	{ AnimationType::JUMPING, AnimationInfo(1, "Arthur_0_jump_%d.png", 1.0f / 4.0f, 4) },
+	{ AnimationType::HITTED, AnimationInfo(1, "Arthur_0_fall_%d.png", 1.0f / 4.0f, 1) },
 };
 
 Arthur_1::~Arthur_1()
@@ -31,7 +32,7 @@ Arthur_1::Arthur_1()
 	_left = false;
 	_right = false;
 
-	_MaxHealth = 100;
+	_MaxHealth = 10000;
 	_MaxMana = 100;
 	_Health = _MaxHealth;
 	_Mana = _MaxMana;
@@ -328,6 +329,10 @@ void Arthur_1::SetState(_State state)
 			this->_physicsBody->setVelocity(Vec2(_velocityX, _velocityY));
 		}
 		break;
+		case STATE_HITTED:
+		{
+			this->PlayAnimation(AnimationType::HITTED);
+		}
 		default:
 			break;
 		}
@@ -341,7 +346,32 @@ void Arthur_1::update(float delta)
 
 void Arthur_1::takeDamage(float dmg)
 {
+	_Health = _Health - dmg;
+	
+	if (this->_state[1] == STATE_HITTED)
+	{
 
+		if (_Health > 0)
+		{
+			this->SetState(STATE_FALLING);
+		}
+		else
+		{
+			this->SetState(STATE_DEATH);
+		}
+	}
+	else
+	{
+
+		if (_Health > 0)
+		{
+			this->SetState(STATE_HITTED);
+		}
+		else
+		{
+			this->SetState(STATE_DEATH);
+		}
+	}
 }
 
 //void Arthur_1::processInput()
@@ -466,10 +496,7 @@ void Arthur_1::onFinishAnimation()
 	}
 }
 
-float Arthur_1::getDamage()
-{
-	return this->_Strenght;
-}
+
 
 void Arthur_1::PlayAnimation(AnimationType type)
 {

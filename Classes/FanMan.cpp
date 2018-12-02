@@ -38,19 +38,7 @@ FanMan::FanMan() : Enemy()
 
 
 
-void FanMan::Attack()
-{
-	Animation* animation = Animation::create();
-	for (int i = 1; i < 4; i++)
-	{
-		std::string name = StringUtils::format("FatMan_attack1_%d.png", i);
-		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
-	}
-	animation->setDelayPerUnit(1 /12);//1:12
 
-	Animate* animate = Animate::create(animation);
-	_EnemySprite->runAction(RepeatForever::create(animate));
-}
 
 bool FanMan::init()
 {
@@ -206,6 +194,8 @@ void FanMan::SetState(_State state)
 				hit->setScaleX(3.0f);
 				hit->setTag(TAG_ATTACK_ENEMY);
 				hit->setDamage(_damage);
+				hit->setcollisin(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+				hit->setcatory(FATMAN_CATEGORY_BITMASK);
 				hit->setPosition(Vec2(-2*this->getContentSize().width, this->getContentSize().height * 0.5f - 10));
 				hit->runAction(Sequence::create(DelayTime::create(0.2f), CallFunc::create([=]()
 				{

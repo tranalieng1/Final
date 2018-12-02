@@ -32,6 +32,7 @@ public:
 	virtual void takeDamage(float dmg) override;
 	void addScore(float temp);
 	float getScore();
+	float getHealth();
 	
 protected:
 	std::vector<_State> _state;
@@ -61,6 +62,6 @@ protected:
 	
 
 protected:
-	virtual float getDamage();
+	
 };
 #endif //

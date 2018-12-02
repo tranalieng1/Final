@@ -16,20 +16,6 @@ TallMan::TallMan()
 
 
 
-void TallMan::Attack()
-{
-	Animation* animation = Animation::create();
-	for (int i = 1; i < 2; i++)
-	{
-		std::string name = StringUtils::format("TallMan_Attack_1_%d.png", i);
-		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
-	}
-	animation->setDelayPerUnit(1 /12);//1:12
-
-	Animate* animate = Animate::create(animation);
-	_EnemySprite->runAction(RepeatForever::create(animate));
-}
-
 bool TallMan::init()
 {
 	if (!Node::init())
