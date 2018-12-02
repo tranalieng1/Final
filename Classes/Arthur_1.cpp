@@ -301,6 +301,8 @@ void Arthur_1::SetState(_State state)
 			_hit->setcatory(ARTHUR_CATEGORY_BITMASK);*/
 			{
 				auto hit = Hit::create();
+				hit->setScaleX(1.2f);
+				hit->setScaleY(2.0f);
 				this->addChild(hit);
 				hit->setTag(TAG_ATTACK_PLAYER);
 				hit->setDamage(_damage);

@@ -21,7 +21,7 @@
 #define TAG_ARTHUR 2
 //Attack
 #define TAG_ATTACK_PLAYER 40
-
+#define TAG_ATTACK_ENEMY 45
 //WALL
 #define TAG_WALL 33
 #define WALL_CATEGORY_BITMASK 0x003

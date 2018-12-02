@@ -14,7 +14,7 @@ bool Hit::init()
 		return false;
 	
 	
-	this->setContentSize(cocos2d::Size(20, 40));
+	this->setContentSize(cocos2d::Size(20, 20));
 	_Physicbody = cocos2d::PhysicsBody::createBox(this->getContentSize());
 	this->setPhysicsBody(_Physicbody);
 	_Physicbody->setDynamic(false);
@@ -31,7 +31,7 @@ bool Hit::init()
 
 void Hit::onContactBeganWith(GameObject * obj)
 {
-	if (obj->getTag() == TAG_CREEP)
+	if (obj->getTag() == TAG_CREEP&& this->getTag()== TAG_ATTACK_PLAYER)
 	{
 		obj->takeDamage(_damage);
 	}

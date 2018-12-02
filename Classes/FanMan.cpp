@@ -1,6 +1,7 @@
 #include "FanMan.h"
 #include "cocos2d.h"
 #include"Defnition.h"
+#include"Hit.h"
 USING_NS_CC;
 
 #define TAG_ACTION_AI_CHASE_PLAYER 100
@@ -32,6 +33,7 @@ FanMan::FanMan() : Enemy()
 	_state.push_back(_State::STATE_STANDING);
 	_timeUpdateAI = TIME_UPDATE_AI;
 	_score = 200.f;
+	_damage = 20;
 }
 
 
@@ -196,6 +198,22 @@ void FanMan::SetState(_State state)
 		switch (state)
 		{
 		case STATE_ATTACKING:
+			
+			
+			{
+				auto hit = Hit::create();
+				this->addChild(hit);
+				hit->setScaleX(3.0f);
+				hit->setTag(TAG_ATTACK_ENEMY);
+				hit->setDamage(_damage);
+				hit->setPosition(Vec2(-2*this->getContentSize().width, this->getContentSize().height * 0.5f - 10));
+				hit->runAction(Sequence::create(DelayTime::create(0.2f), CallFunc::create([=]()
+				{
+					hit->removeFromParent();
+				}), nullptr));
+			}
+			this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
+			this->PlayAnimation(AnimationType::ATTACKING);
 			break;
 		case STATE_JUMPING:
 			break;
@@ -329,8 +347,8 @@ void FanMan::scheduleUpdateAI(float delta)
 			auto distanceX = std::abs(this->getPosition().x - _playerPtr->getPosition().x);
 			if (distanceX < _EnemySprite->getContentSize().width * 0.5f + 100.0f)
 			{
-				this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
-				PlayAnimation(AnimationType::ATTACKING);
+				//this->PlayAnimation(AnimationType::ATTACKING);
+				this->SetState(STATE_ATTACKING);
 			}
 			else
 			{
