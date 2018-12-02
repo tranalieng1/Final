@@ -30,6 +30,8 @@ public:
 	virtual void onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)  =0;
 	virtual void onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event) =0;
 	virtual void takeDamage(float dmg) override;
+	void addScore(float temp);
+	float getScore();
 	
 protected:
 	std::vector<_State> _state;

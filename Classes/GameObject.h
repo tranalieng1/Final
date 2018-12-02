@@ -52,7 +52,7 @@ public:
 	float getDamage();
 	void setDamage(float temp);
 	virtual void takeDamage(float dmg) = 0;
-	virtual void enalbeAI(GameObject* player);
+	//virtual void enalbeAI(GameObject* player);
 private:
 protected:
 	float _damage;

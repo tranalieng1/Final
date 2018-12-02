@@ -2,6 +2,7 @@
 #define __ENEMY_H__
 #include "cocos2d.h"
 #include "GameObject.h"
+#include "Player.h"
 #include "ui/CocosGUI.h"
 class Enemy : public GameObject
 {
@@ -10,7 +11,7 @@ public:
 	Enemy();
 	~Enemy();
 
-	static std::map<AnimationType, AnimationInfo>s_mapAnimations;
+	
 
 	virtual void Attack() = 0;
 	virtual bool init()  override;
@@ -27,11 +28,11 @@ public:
 	virtual void SetState(_State state);
 
 	virtual void takeDamage(float dmg) override;
-	virtual void enalbeAI(GameObject* player) override;
+	virtual void enalbeAI(Player* player);
 	virtual void scheduleUpdateAI(float delta);
 	virtual void update(float delta);
 protected:
-	GameObject* _playerPtr;
+	Player* _playerPtr;
 	cocos2d::Sprite *_EnemySprite;
 	cocos2d::Action *_WalkAction;
 	cocos2d::JumpBy *_Jump;
@@ -49,6 +50,6 @@ protected:
 	cocos2d::ui::LoadingBar* _HealthBar;
 	
 	std::vector<_State> _state;
-	
+	float _score;
 };
 #endif //

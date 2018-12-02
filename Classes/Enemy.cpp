@@ -38,7 +38,7 @@ void Enemy::scheduleUpdateAI(float delta)
 	
 }
 
-void Enemy::enalbeAI(GameObject* player)
+void Enemy::enalbeAI(Player* player)
 {
 	this->_playerPtr = player;
 	this->schedule(CC_SCHEDULE_SELECTOR(Enemy::scheduleUpdateAI), _timeUpdateAI, CC_REPEAT_FOREVER, 0.0f);

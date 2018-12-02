@@ -237,6 +237,7 @@ void GameScene_1::update(float dt)
 	cam->setPosition3D(campos);
 	//_UIGameScene->setPosition(Vec2(visibleSize.width*0.0f, visibleSize.height*0.0f));
 	_UIGameScene->setPosition(Vec2(campos.x-visibleSize.width/2,0));
+	_UIGameScene->setScore(_Arthur->getScore());
 	//if (_Arthur->GetState() == STATE_STANDING)
 	//{
 	//	if (moveright == true)

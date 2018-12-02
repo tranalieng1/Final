@@ -3,6 +3,7 @@
 
 Player::Player()
 {
+	_score = 0.f;
 	/*_state.resize(2);
 	_state.push_back(_State::STATE_STANDING);
 	_state.push_back(_State::STATE_STANDING);*/
@@ -66,4 +67,14 @@ void Player::onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * 
 
 void Player::takeDamage(float dmg)
 {
+}
+
+void Player::addScore(float temp)
+{
+	_score += temp;
+}
+
+float Player::getScore()
+{
+	return _score;
 }

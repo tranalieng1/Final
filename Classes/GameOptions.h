@@ -9,7 +9,7 @@ public:
 	virtual bool init();
 #define TRANSITTION_TIME 0.5
 	void onTouchBegan(Ref *senser, cocos2d::ui::Widget::TouchEventType type);
-	void onTouchBegan_2(Ref *senser, cocos2d::ui::Widget::TouchEventType type);
+	//void onTouchBegan_2(Ref *senser, cocos2d::ui::Widget::TouchEventType type);
 	CREATE_FUNC(GameOptions);
 private:
 	void CombackMainMenuScene(cocos2d::Ref *sender);

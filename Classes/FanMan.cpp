@@ -10,8 +10,8 @@ USING_NS_CC;
 
 std::map<AnimationType, AnimationInfo> FanMan::s_mapAnimations =
 {
-	{AnimationType::WALKING, AnimationInfo(4, "%d.png", 1.0f / 12.0f, CC_REPEAT_FOREVER)},
-	{ AnimationType::ATTACKING, AnimationInfo(4, "%d.png", 1.0f / 12.0f, 1) },
+	{AnimationType::WALKING, AnimationInfo(4, "FatMan_walk_%d.png", 1.0f / 12.0f, CC_REPEAT_FOREVER)},
+	{ AnimationType::ATTACKING, AnimationInfo(2, "FatMan_attack1_%d.png", 1.0f / 12.0f, 1) },
 	{AnimationType::HITTED,AnimationInfo(1,"FatMan_stand_%d.png", 1.0f / 4.0f,1)},
 	{AnimationType::DEATH,AnimationInfo(4,"FatMan_fall_%d.png",1.0f/4.0f,1)},
 	{AnimationType::FALLING,AnimationInfo(4,"FatMan_fall_%d.png",1.0f / 4.0f,1)},
@@ -31,6 +31,7 @@ FanMan::FanMan() : Enemy()
 	_state.push_back(_State::STATE_STANDING);
 	_state.push_back(_State::STATE_STANDING);
 	_timeUpdateAI = TIME_UPDATE_AI;
+	_score = 200.f;
 }
 
 
@@ -202,15 +203,19 @@ void FanMan::SetState(_State state)
 			this->StopAction();
 			break;
 		case STATE_WALKING:
+			this->PlayAnimation(AnimationType::WALKING);
+			this->chasePlayer();
 			break;
 		case STATE_HITTED:
+			this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
 			this->PlayAnimation(AnimationType::HITTED);
 		
 
 			break;
 		case STATE_DEATH:
 			/*this->PlayAnimation(AnimationType::DEATH);*/
-			
+			this->_playerPtr->addScore(_score);
+			this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
 			spawn = cocos2d::Spawn::create(CallFunc::create([=]()
 			{
 				this->PlayAnimation(AnimationType::DEATH);
@@ -220,6 +225,7 @@ void FanMan::SetState(_State state)
 			
 			break;
 		case STATE_FALLING:
+			this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
 			spawn = cocos2d::Spawn::create(CallFunc::create([=]()
 			{
 				this->PlayAnimation(AnimationType::DEATH);
@@ -227,6 +233,7 @@ void FanMan::SetState(_State state)
 			this->runAction(spawn);
 			break;
 		case STATE_GETUP:
+			this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
 			this->runAction(Sequence::create(DelayTime::create(1.0f), CallFunc::create([=]()
 			{
 				this->PlayAnimation(AnimationType::GETUP);
@@ -272,7 +279,7 @@ void FanMan::onFinishAnimation()
 {
 	if (_state[1] == STATE_HITTED)
 	{
-		this->SetState(_state[0]);
+		this->SetState(STATE_STANDING);
 	}
 	else if (_state[1] == STATE_FALLING)
 	{
@@ -286,27 +293,58 @@ void FanMan::onFinishAnimation()
 	{
 
 	}
+	else if (_state[1] == STATE_WALKING)
+	{
+		//this->stopAllActions();
+		SetState(STATE_STANDING);
+	}
+	else if (_state[1] == STATE_ATTACKING)
+	{
+		this->SetState(STATE_STANDING);
+	}
 }
 
 void FanMan::scheduleUpdateAI(float delta)
 {
 	if (_playerPtr != nullptr)
 	{
-		auto distanceX = std::abs(this->getPosition().x - _playerPtr->getPosition().x);
-		if (distanceX < _EnemySprite->getContentSize().width * 0.5f + 50.0f)
+		
+		if (this->getPosition().x > _playerPtr->getPosition().x)
 		{
-			this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
-			PlayAnimation(AnimationType::ATTACKING);
+			this->setScaleX(2.0f);
 		}
 		else
 		{
-			chasePlayer();
+			this->setScaleX(-2.0f);
 		}
+		if (_state[1] == STATE_FALLING || _state[1] == STATE_DEATH || _state[1] == STATE_HITTED
+			|| _state[1] == STATE_GETUP)
+		{
+
+		}
+		else
+		{
+
+		
+			auto distanceX = std::abs(this->getPosition().x - _playerPtr->getPosition().x);
+			if (distanceX < _EnemySprite->getContentSize().width * 0.5f + 100.0f)
+			{
+				this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
+				PlayAnimation(AnimationType::ATTACKING);
+			}
+			else
+			{
+				//this->SetState(STATE_WALKING);
+				chasePlayer();
+			}
+		}
+		
 	}
 }
 
 void FanMan::chasePlayer()
 {
+	
 	auto targetPos = _playerPtr->getPosition();
 	auto distance = targetPos - this->getPosition();
 	auto timeX = std::abs(distance.x / SPEED_X);

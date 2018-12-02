@@ -13,6 +13,7 @@ public:
 	
 	CREATE_FUNC(UIGameScene);
 	void scoreChange();
+	void setScore(float temp);
 
 
 private:

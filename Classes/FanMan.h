@@ -24,7 +24,7 @@ public:
 	void SetState(_State state) override;
 	virtual void takeDamage(float dmg) override;
 	void onFinishAnimation();
-
+	static std::map<AnimationType, AnimationInfo>s_mapAnimations;
 	virtual void scheduleUpdateAI(float delta) override;
 
 

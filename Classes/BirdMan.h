@@ -14,7 +14,7 @@ public:
 	void Attack1Animation() override;
 	void WalkAnimation() override;
 	void StopAction() override;
-
+	static std::map<AnimationType, AnimationInfo>s_mapAnimations;
 	void onContactBeganWith(GameObject* obj) override ;
 	void onContactPostSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, const cocos2d::PhysicsContactPostSolve& solve)override;
 	void onContactPreSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve)override;

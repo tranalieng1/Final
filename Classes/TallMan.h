@@ -20,7 +20,7 @@ public:
 	void onContactPreSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve)override;
 	void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) override;
 
-
+	static std::map<AnimationType, AnimationInfo>s_mapAnimations;
 	virtual void takeDamage(float dmg) override;
 
 	CREATE_FUNC(TallMan);

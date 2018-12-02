@@ -74,3 +74,9 @@ void UIGameScene::scoreChange()
 	_totalScore = _totalScore + 100;
 	_Score->setscore(_totalScore);
 }
+
+void UIGameScene::setScore(float temp)
+{
+	_totalScore = (int)temp;
+	_Score->setscore(_totalScore);
+}

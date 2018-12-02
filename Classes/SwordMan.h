@@ -19,7 +19,7 @@ public:
 	void onContactPostSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, const cocos2d::PhysicsContactPostSolve& solve)override;
 	void onContactPreSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve)override;
 	void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) override;
-
+	static std::map<AnimationType, AnimationInfo>s_mapAnimations;
 
 	virtual void takeDamage(float dmg) override;
 
