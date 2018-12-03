@@ -33,7 +33,8 @@ public:
 	void addScore(float temp);
 	float getScore();
 	float getHealth();
-	
+	bool addMana(float temp);
+	float getMana();
 protected:
 	std::vector<_State> _state;
 	

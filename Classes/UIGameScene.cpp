@@ -79,4 +79,16 @@ void UIGameScene::setScore(float temp)
 {
 	_totalScore = (int)temp;
 	_Score->setscore(_totalScore);
+
 }
+
+void UIGameScene::updatePlayer(Player * player)
+{
+	if (player != nullptr)
+	{
+		this->setScore(player->getScore());
+		_HealthBar1->setPercent(player->getHealth());
+	}
+}
+
+

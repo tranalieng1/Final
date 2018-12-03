@@ -19,6 +19,7 @@ public:
 	CREATE_FUNC(MoonBlade);
 private:
 
+	float _ManaR;
 	cocos2d::Sprite* _MBSprite1;
 	cocos2d::Sprite* _MBSprite2;
 	cocos2d::Sprite* _MBSprite3;

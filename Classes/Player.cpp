@@ -91,5 +91,32 @@ float Player::getScore()
 
 float Player::getHealth()
 {
-	return _Health / _MaxHealth;
+	return (_Health / _MaxHealth)*100;
 }
+
+bool Player::addMana(float temp)
+{
+	if (temp < 0)
+	{
+		if (abs(temp) > _Mana)
+			return false;
+		else
+		{
+			_Mana = _Mana + temp;
+			return true;
+		}
+	}
+	else
+	{
+		_Mana = _Mana + temp;
+		if (_Mana > _MaxMana)
+			_Mana = _MaxMana;
+	}
+	return true;
+}
+
+float Player::getMana()
+{
+	return (_Mana/_MaxMana)*100;
+}
+

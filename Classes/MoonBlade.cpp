@@ -6,6 +6,7 @@ USING_NS_CC;
 MoonBlade::MoonBlade()
 {
 	_damage = 100.0f;
+	_ManaR = -20.0f;
 }
 
 MoonBlade::~MoonBlade()

@@ -3,6 +3,7 @@
 #include "ui/CocosGUI.h"
 #include "cocos2d.h"
 #include "Score.h"
+#include "Player.h"
 class UIGameScene : public cocos2d::Layer
 {
 public:
@@ -14,8 +15,8 @@ public:
 	CREATE_FUNC(UIGameScene);
 	void scoreChange();
 	void setScore(float temp);
-
-
+	void updatePlayer(Player *player);
+	
 private:
 	
 
