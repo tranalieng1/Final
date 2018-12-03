@@ -67,7 +67,7 @@ void Score::setscore(int score)
 		}
 
 	}
-	
+
 	else if (score >= TENSOFTHOUSANDS)
 	{
 		int unit = score % UNIT;
@@ -152,7 +152,7 @@ void Score::setscore(int score)
 		int hundreds = score / HUNDREDS;
 		int thousands = score / THOUSANDS;
 		int tensofthousands = score / TENSOFTHOUSANDS;
-	
+
 		std::string tempscore1 = StringUtils::format("%i.png", score);
 		_listSprite.at(4)->setSpriteFrame(tempscore1);
 		std::string tempscore2 = StringUtils::format("%i.png", dozens);

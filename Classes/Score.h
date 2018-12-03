@@ -12,7 +12,7 @@ public:
 	virtual bool init();
 	static int _scoreFrist;
 	void setscore(int);
-	
+
 	void scoreChange(int score);
 
 private:

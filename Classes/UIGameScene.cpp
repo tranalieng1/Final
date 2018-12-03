@@ -1,4 +1,4 @@
-#include"UIGameScene.h"
+﻿#include"UIGameScene.h"
 #include"score.h"
 USING_NS_CC;
 
@@ -19,20 +19,29 @@ bool UIGameScene::init()
 	{
 		return false;
 	}
-	//add avatar
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl1.plist", "ArthurLvl1.png");
+	////add avatar
 	_winSize = Director::getInstance()->getWinSize();
-	auto size = Size(70, 80);
-	_Avatarp1 = cocos2d::Sprite::createWithSpriteFrameName("Arthur_0_avatar.png");
-	
-	float ScaleX = size.width / _Avatarp1->getContentSize().width;
-	float ScaleY = size.height / _Avatarp1->getContentSize().height;
-	_Avatarp1->setScaleX(ScaleX);
-	_Avatarp1->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
-	_Avatarp1->setScaleY(ScaleY);
-	_Avatarp1->setPosition(Vec2(0, _winSize.height*0.9));
-	//10, _winSize.height*0.9
-	this->addChild(_Avatarp1);
+	Size winSize = Director::getInstance()->getWinSize();
+	auto _Bg = Sprite::create("images/bg.png");
+	this->addChild(_Bg);
+	_Bg->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+	_Bg->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
+	_Bg->setPosition(Vec2(0, _winSize.height*0.85));
+	float scaleX = winSize.width*0.4 / (_Bg->getContentSize().width);
+	float scaleY = winSize.height*0.15 / (_Bg->getContentSize().height);
+	_Bg->setScaleX(scaleX);
+	_Bg->setScaleY(scaleY);
+	// Số lv
+	auto labelLV = Label::createWithTTF("1", "fonts/a.ttf", 12);
+	labelLV->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+	labelLV->setPosition(Vec2(155, _winSize.height*0.858));
+	this->addChild(labelLV);
+	// Số điểm lên lv
+	auto labelScore = Label::createWithTTF("1200", "fonts/a.ttf", 12);
+	labelScore->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+	labelScore->setPosition(Vec2(290, _winSize.height*0.858));
+	this->addChild(labelScore);
+
 	//add score
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("images/numbers.plist", "images/numbers.png");
 	_Score = Score::create();
@@ -40,32 +49,27 @@ bool UIGameScene::init()
 	this->addChild(_Score);
 
 
-	//add HP
-	_HealthBar1 = ui::LoadingBar::create("HP.png");
-	_HealthBar1->setScaleX(ScaleX);
-	_HealthBar1->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
-	_HealthBar1->setScaleY(ScaleY);
-	_HealthBar1->setPosition(Vec2(70, _winSize.height*0.93));
-	_HealthBar1->setPercent(100);
-	this->addChild(_HealthBar1);
-	//add Mana
-	_ManaBar = ui::LoadingBar::create("Mana.png");
-	_ManaBar->setScaleX(ScaleX);
+	// set cai ruot hp
+	_HP1 = ui::LoadingBar::create("images/hp.png");
+	//_HP1->setScaleX(scaleX);
+	_HP1->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
+	//_HP1->setScaleY(scaleY);
+	_HP1->setPosition(Vec2(145, _winSize.height*0.895));
+	_HP1->setPercent(100);
+	this->addChild(_HP1,3);
+	//add ruot Mana
+	_ManaBar = ui::LoadingBar::create("images/mp.png");
+	//_ManaBar->setScaleX(scaleX);
 	_ManaBar->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
-	_ManaBar->setScaleY(ScaleY);
-	_ManaBar->setPosition(Vec2(70, _winSize.height*0.9));
+	//_ManaBar->setScaleY(scaleY);
+	_ManaBar->setPosition(Vec2(145, _winSize.height*0.875));
 	_ManaBar->setPercent(100);
-	this->addChild(_ManaBar);
-	//add lv
-	//_Level = Sprite::createWithSpriteFrameName("images/Lv.png");
-
-	//
-	//_Level->setPosition(Vec2(_winSize.width*0.5, _winSize.height*0.5));
-	//_Level->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-	//_Level->setScale(0.5f);
-
-	//this->addChild(_Level);
-	//_HPbar1 = Sprite::create("LoadingBar.png");
+	this->addChild(_ManaBar,4);
+	//add Số mạng
+	auto labelLife = Label::createWithTTF("01", "fonts/a.ttf", 18);
+	labelLife->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+	labelLife->setPosition(Vec2(180, _winSize.height*0.94));
+	this->addChild(labelLife);
 
 	return true;
 }
@@ -87,8 +91,6 @@ void UIGameScene::updatePlayer(Player * player)
 	if (player != nullptr)
 	{
 		this->setScore(player->getScore());
-		_HealthBar1->setPercent(player->getHealth());
+		_HP1->setPercent(player->getHealth()); // day la set mau cua nhan vat khi bi enemy danh
 	}
 }
-
-
