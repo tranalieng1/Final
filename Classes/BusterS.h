@@ -5,6 +5,7 @@
 
 class BusterS : public Enemy
 {
+	
 public:
 	BusterS();
 	~BusterS();
@@ -19,12 +20,17 @@ public:
 	void onContactPostSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, const cocos2d::PhysicsContactPostSolve& solve)override;
 	void onContactPreSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve)override;
 	void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) override;
+	void PlayAnimation(AnimationType type);
+	void SetState(_State state) override;
 	virtual void takeDamage(float dmg) override;
-	static std::map<AnimationType, AnimationInfo>s_mapAnimations;
-	
+	void onFinishAnimation();
+	static std::map<AnimationType, AnimationInfo> s_mapAnimations;
+	virtual void scheduleUpdateAI(float delta) override;
+
 
 	CREATE_FUNC(BusterS);
 private:
+	void chasePlayer();
 
 	
 

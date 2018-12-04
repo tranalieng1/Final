@@ -3,7 +3,9 @@
 #include "MainMenuScene.h"
 #include "Defnition.h"
 #include "Arthur_1.h"
+#include "Percival.h"
 #include "MoonBlade.h"
+#include "BirdMan.h"
 #include <string>
 #include "Wall.h"
 #include "SKeyboard.h"
@@ -116,11 +118,27 @@ bool GameScene_1::init()
 
 	_Arthur->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH,visibleSize.height*POSITION_BEGIN_HEIGHT));
 	this->addChild(_Arthur,2);
+
+	//Percival
+	_Percival = Percival::create();
+
+	_Percival->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH - 50, visibleSize.height*POSITION_BEGIN_HEIGHT - 50));
+	this->addChild(_Percival, 2);
+
+
 	//FanMan
 	_FanMan = FanMan::create();
 	_FanMan->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH+200, visibleSize.height*POSITION_BEGIN_HEIGHT));
 	_FanMan->enalbeAI(_Arthur);
 	this->addChild(_FanMan,1);
+
+
+
+	//_BirdMan
+	_BirdMan = BirdMan::create();
+	_BirdMan->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH - 100, visibleSize.height*POSITION_BEGIN_HEIGHT));
+	_BirdMan->enalbeAI(_Arthur);
+	this->addChild(_BirdMan, 1);
 
 
 	// dunglq3
@@ -148,6 +166,11 @@ bool GameScene_1::init()
 	_MBlade = MoonBlade::create();
 	_MBlade->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY()));
 	this->addChild(_MBlade);
+
+	_MBlade2 = MoonBlade::create();
+	_MBlade2->setPosition(Vec2(_Percival->getPositionX(), _Percival->getPositionY()));
+	this->addChild(_MBlade2);
+
 	/*listener->onKeyPressed = [](EventKeyboard::KeyCode keyCode, Event* event)
 	{
 		
@@ -200,6 +223,7 @@ void GameScene_1::menuCloseCallback(Ref* pSender)
 }
 void GameScene_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
 {
+	_Percival->onKeyPressed(kc, event);
 	_Arthur->onKeyPressed(kc, event);
 	
 	if (kc == EventKeyboard::KeyCode::KEY_J)
@@ -214,13 +238,28 @@ void GameScene_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Even
 		}
 		_MBlade->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY()));
 		_MBlade->flySkill();
+
+		if (_Percival->getScaleX() > 0)
+		{
+			_MBlade2->setScaleX(2.7f);
+		}
+		else
+		{
+			_MBlade2->setScaleX(-2.7f);
+		}
+		_MBlade2->setPosition(Vec2(_Percival->getPositionX(), _Percival->getPositionY()));
+		_MBlade2->flySkill();
 	}
-	
+
+
+
+
 }
 
 void GameScene_1::onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
 {
 	_Arthur->onKeyReleased(kc, event);
+	_Percival->onKeyReleased(kc, event);
 
 }
 

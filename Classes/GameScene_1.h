@@ -29,7 +29,12 @@ private:
 	cocos2d::Size visibleSize;
 	cocos2d::TMXTiledMap *_tileMap;
 	Player *_Arthur;
+	Player *_Percival;
 	Enemy *_FanMan;
+	Enemy *_BirdMan;
+	Enemy *_BusterS;
+	Enemy *_TallMan;
+	Enemy *_SwordMan;
 	cocos2d::PhysicsWorld *sceneWorld;
 
 	
@@ -40,6 +45,7 @@ private:
 	HandlePhysics* _physichandler;
 
 	MoonBlade *_MBlade;
+	MoonBlade *_MBlade2;
 
 
 
