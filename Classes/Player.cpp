@@ -19,7 +19,8 @@ Player::Player()
 	_MaxHealth=2;
 	_MaxMana=1;
 
-	_score;
+	_score = 0;
+	_Level = 1;
 }
 
 Player::~Player()
@@ -118,5 +119,22 @@ bool Player::addMana(float temp)
 float Player::getMana()
 {
 	return (_Mana/_MaxMana)*100;
+}
+
+void Player::setLevel(int temp)
+{
+	_Level = temp;
+}
+
+int Player::getLevel()
+{
+	return _Level;
+}
+
+void Player::LevelUp()
+{
+	_Level++;
+	_damage += 10;
+	_Health += 10;
 }
 

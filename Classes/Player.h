@@ -35,6 +35,11 @@ public:
 	float getHealth();
 	bool addMana(float temp);
 	float getMana();
+
+	void setLevel(int temp);
+	int getLevel();
+
+	void LevelUp();
 protected:
 	std::vector<_State> _state;
 	
@@ -50,7 +55,7 @@ protected:
 	cocos2d::PhysicsBody *_Physicbody;
 
 	float _Health;
-	float _Strenght;
+	
 	float _Mana;
 
 	float _MaxHealth;
@@ -60,6 +65,7 @@ protected:
 	_State GetState();
 	virtual void SetState(_State state);
 
+	int _Level;
 	
 
 protected:

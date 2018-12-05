@@ -32,7 +32,7 @@ FanMan::FanMan() : Enemy()
 	_state.push_back(_State::STATE_STANDING);
 	_state.push_back(_State::STATE_STANDING);
 	_timeUpdateAI = TIME_UPDATE_AI;
-	_score = 200.f;
+	_score = 3000.f;
 	_damage = 20;
 }
 

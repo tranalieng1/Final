@@ -40,6 +40,7 @@ Arthur_1::Arthur_1()
 	_Mana = _MaxMana;
 	_damage = 20;
 	_score =0.f;
+	_Level = 1;
 }
 
 
