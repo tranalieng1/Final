@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "UIGameScene.h"
 #include "score.h"
+#include "Flame.h"
 class UIGameScene;
 class HandlePhysics;
 class GameScene_1 : public cocos2d::Layer
@@ -47,7 +48,7 @@ private:
 	MoonBlade *_MBlade;
 	MoonBlade *_MBlade2;
 
-	
+	Flame *_FlameSkill;
 
 	bool CheckJump(cocos2d::Node *v1,cocos2d::Node *v2);
 };

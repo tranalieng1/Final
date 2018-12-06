@@ -54,6 +54,7 @@ void SplashScene::createSprSplash()
 {
 	//
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl1.plist", "ArthurLvl1.png");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Skill/Flame.plist", "Skill/Flame.png");
 	//Back Ground
 	Size winSize = Director::getInstance()->getWinSize();
 	auto backgound = Sprite::create("bgSplash.png");

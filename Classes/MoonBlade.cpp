@@ -16,14 +16,14 @@ MoonBlade::~MoonBlade()
 
 bool MoonBlade::init()
 {
-	if (!Node::init())
+	if (!GameObject::init())
 		return false;
 	_MBSprite1 = Sprite::create("Skill_MoonBlade.png");
 	_MBSprite2 = Sprite::create("Skill_MoonBlade.png");
 	_MBSprite3 = Sprite::create("Skill_MoonBlade.png");
-	this->addChild(_MBSprite1,0);
-	this->addChild(_MBSprite2,0);
-	this->addChild(_MBSprite3,0);
+	this->addChild(_MBSprite1,1);
+	this->addChild(_MBSprite2,2);
+	this->addChild(_MBSprite3,3);
 	_MBSprite1->setFlippedX(true);
 	_MBSprite2->setFlippedX(true);
 	_MBSprite3->setFlippedX(true);

@@ -78,9 +78,6 @@
     <ClCompile Include="..\Classes\GameScene_1.cpp">
       <Filter>src\GameScene</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\SplashScene.cpp">
-      <Filter>src\GameScene</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Wall.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
@@ -123,6 +120,12 @@
     <ClCompile Include="..\Classes\Score.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Flame.cpp">
+      <Filter>src\Skills</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SplashScene.cpp">
+      <Filter>src\GameMenu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -156,9 +159,6 @@
       <Filter>src\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameScene_1.h">
-      <Filter>src\GameScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SplashScene.h">
       <Filter>src\GameScene</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Wall.h">
@@ -202,6 +202,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Score.h">
       <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Flame.h">
+      <Filter>src\Skills</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SplashScene.h">
+      <Filter>src\GameMenu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

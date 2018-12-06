@@ -166,7 +166,9 @@ bool GameScene_1::init()
 	_MBlade = MoonBlade::create();
 	_MBlade->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY()));
 	this->addChild(_MBlade);
-
+	_FlameSkill = Flame::create();
+	_MBlade->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY()));
+	this->addChild(_FlameSkill);
 	/*_MBlade2 = MoonBlade::create();
 	_MBlade2->setPosition(Vec2(_Percival->getPositionX(), _Percival->getPositionY()));
 	this->addChild(_MBlade2);
@@ -238,6 +240,8 @@ void GameScene_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Even
 		}
 		_MBlade->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY()));
 		_MBlade->flySkill();
+		_FlameSkill->setPosition(_Arthur->getPosition());
+		_FlameSkill->active();
 
 		/*if (_Percival->getScaleX() > 0)
 		{

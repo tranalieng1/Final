@@ -46,6 +46,7 @@
 
 //skill
 #define TAG_SKILL_MB 50
+#define TAG_SKILL_FLAME 51
 
 //animation
 #define TAG_ANIMATION 10
