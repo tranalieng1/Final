@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "Score.h"
 #include "Player.h"
+#include <vector>
 class UIGameScene : public cocos2d::Layer
 {
 public:
@@ -32,12 +33,23 @@ private:
 	cocos2d::ui::LoadingBar *_HP2;
 
 	cocos2d::Size _winSize;
+
+	cocos2d::Label* labelLV;
+	cocos2d::Label* labelScore;
 protected:
 	//cocos2d::ui::LoadingBar* _HealthBar1;
 	cocos2d::ui::LoadingBar* _ManaBar;
 	cocos2d::ui::LoadingBar* _ManaBar1;
 	int _totalScore = 0;
+<<<<<<< HEAD
 	int _totalScore1 = 0;
+=======
+	
+	
+	void updateLevel(Player* player);
+private:
+	std::vector<float> listLv;
+>>>>>>> 0fd72153dd26c02eced9aebd2c6fd0621bbb3e32
 };
 
 

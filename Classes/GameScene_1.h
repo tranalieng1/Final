@@ -47,7 +47,7 @@ private:
 	MoonBlade *_MBlade;
 	MoonBlade *_MBlade2;
 
-
+	
 
 	bool CheckJump(cocos2d::Node *v1,cocos2d::Node *v2);
 };

@@ -14,6 +14,8 @@ std::map<AnimationType, AnimationInfo> Arthur_1::s_mapAnimations =
 	{ AnimationType::HITTED, AnimationInfo(1, "Arthur_0_hitted_%d.png", 1.0f / 4.0f, 1) },
 	{AnimationType::FALLING, AnimationInfo(2, "Arthur_0_fall_%d.png", 1.0f / 4.0f, 1)},
 	{AnimationType::GETUP, AnimationInfo(3, "Arthur_0_getup_%d.png", 1.0f / 4.0f, 1)},
+	{AnimationType::LEVELUP, AnimationInfo(2, "Arthur_0_win_%d.png", 1.0f / 4.0f, 1)},
+
 };
 
 Arthur_1::~Arthur_1()
@@ -40,6 +42,7 @@ Arthur_1::Arthur_1()
 	_Mana = _MaxMana;
 	_damage = 20;
 	_score =0.f;
+	_Level = 1;
 }
 
 
@@ -365,6 +368,9 @@ void Arthur_1::SetState(_State state)
 				this->setVisible(false);
 			}), NULL));
 			break;
+		case STATE_LEVELUP:
+			this->PlayAnimation(AnimationType::LEVELUP);
+			break;
 		default:
 			break;
 		}
@@ -541,6 +547,10 @@ void Arthur_1::onFinishAnimation()
 	else if (_state[1] == STATE_DEATH)
 	{
 
+	}
+	else if (_state[1] == STATE_LEVELUP)
+	{
+		this->SetState(STATE_STANDING);
 	}
 }
 

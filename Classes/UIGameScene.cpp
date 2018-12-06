@@ -1,5 +1,6 @@
 ﻿#include"UIGameScene.h"
 #include"score.h"
+
 USING_NS_CC;
 
 
@@ -7,6 +8,17 @@ using namespace cocos2d::ui;
 
 UIGameScene::UIGameScene()
 {
+	listLv.push_back(0);//lv0
+	listLv.push_back(0);//lv1
+	listLv.push_back(1200);//lv2
+	listLv.push_back(2500);//lv3
+	listLv.push_back(4000);//lv4
+	listLv.push_back(6000);//lv5
+	listLv.push_back(9000);//lv6
+	listLv.push_back(12000);//lv7
+	listLv.push_back(15000);//lv8
+	listLv.push_back(19000);//lv9
+
 }
 
 UIGameScene::~UIGameScene()
@@ -19,7 +31,11 @@ bool UIGameScene::init()
 	{
 		return false;
 	}
+<<<<<<< HEAD
 ////////////Authur
+=======
+
+>>>>>>> 0fd72153dd26c02eced9aebd2c6fd0621bbb3e32
 	////add avatar
 	_winSize = Director::getInstance()->getWinSize();
 	Size winSize = Director::getInstance()->getWinSize();
@@ -33,12 +49,12 @@ bool UIGameScene::init()
 	_Bg->setScaleX(scaleX);
 	_Bg->setScaleY(scaleY);
 	// Số lv
-	auto labelLV = Label::createWithTTF("1", "fonts/a.ttf", 12);
+	labelLV = Label::createWithTTF("1", "fonts/a.ttf", 12);
 	labelLV->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 	labelLV->setPosition(Vec2(155, _winSize.height*0.858));
 	this->addChild(labelLV);
 	// Số điểm lên lv
-	auto labelScore = Label::createWithTTF("1200", "fonts/a.ttf", 12);
+	labelScore = Label::createWithTTF("1200", "fonts/a.ttf", 12);
 	labelScore->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 	labelScore->setPosition(Vec2(280, _winSize.height*0.858));
 	this->addChild(labelScore);
@@ -140,6 +156,18 @@ void UIGameScene::updatePlayer(Player * player)
 	if (player != nullptr)
 	{
 		this->setScore(player->getScore());
-		_HP1->setPercent(player->getHealth()); // day la set mau cua nhan vat khi bi enemy danh
+		_HP1->setPercent(player->getHealth());// day la set mau cua nhan vat khi bi enemy danh
+		updateLevel(player);
+		
+		labelLV->setString(std::to_string(player->getLevel()));
+	}
+}
+
+void UIGameScene::updateLevel(Player * player)
+{
+	if (player->getScore() >= this->listLv[player->getLevel()+1])
+	{
+		player->LevelUp();
+		labelScore->setString(std::to_string((int)this->listLv[player->getLevel() + 1]));
 	}
 }
