@@ -7,7 +7,7 @@
 			<key>Arthur_8_attack1_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{142,0},{54,79}}</string>
+				<string>{{138,243},{54,79}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -15,7 +15,7 @@
 				<key>sourceColorRect</key>
 				<string>{{0,0},{54,79}}</string>
 				<key>sourceSize</key>
-				<string>{54,79}</string>
+				<string>{70,79}</string>
 			</dict>
 
 			<key>Arthur_8_attack1_2.png</key>
@@ -27,29 +27,29 @@
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{18,0},{75,73}}</string>
+				<string>{{27,0},{75,73}}</string>
 				<key>sourceSize</key>
-				<string>{93,73}</string>
+				<string>{102,73}</string>
 			</dict>
 
 			<key>Arthur_8_attack2_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,211},{82,61}}</string>
+				<string>{{0,152},{82,61}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{30,0},{82,61}}</string>
+				<string>{{40,0},{82,61}}</string>
 				<key>sourceSize</key>
-				<string>{112,61}</string>
+				<string>{122,61}</string>
 			</dict>
 
 			<key>Arthur_8_attack2_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,152},{82,58}}</string>
+				<string>{{0,214},{82,58}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -83,9 +83,9 @@
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{20,0},{75,73}}</string>
+				<string>{{29,0},{75,73}}</string>
 				<key>sourceSize</key>
-				<string>{95,73}</string>
+				<string>{104,73}</string>
 			</dict>
 
 			<key>Arthur_8_comboattack1_3.png</key>
@@ -97,9 +97,9 @@
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{14,0},{68,47}}</string>
+				<string>{{18,0},{68,47}}</string>
 				<key>sourceSize</key>
-				<string>{82,47}</string>
+				<string>{86,47}</string>
 			</dict>
 
 			<key>Arthur_8_comboattack2_1.png</key>
@@ -113,13 +113,13 @@
 				<key>sourceColorRect</key>
 				<string>{{0,0},{85,82}}</string>
 				<key>sourceSize</key>
-				<string>{121,82}</string>
+				<string>{128,82}</string>
 			</dict>
 
 			<key>Arthur_8_comboattack2_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{138,238},{54,62}}</string>
+				<string>{{144,323},{54,62}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -127,7 +127,7 @@
 				<key>sourceColorRect</key>
 				<string>{{0,0},{54,62}}</string>
 				<key>sourceSize</key>
-				<string>{78,62}</string>
+				<string>{70,62}</string>
 			</dict>
 
 			<key>Arthur_8_comboattack2_3.png</key>
@@ -147,7 +147,7 @@
 			<key>Arthur_8_comboattack3_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{145,402},{51,62}}</string>
+				<string>{{145,386},{51,62}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -155,13 +155,13 @@
 				<key>sourceColorRect</key>
 				<string>{{0,0},{51,62}}</string>
 				<key>sourceSize</key>
-				<string>{51,62}</string>
+				<string>{68,62}</string>
 			</dict>
 
 			<key>Arthur_8_comboattack3_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{144,345},{51,56}}</string>
+				<string>{{145,449},{51,56}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -169,7 +169,7 @@
 				<key>sourceColorRect</key>
 				<string>{{0,0},{51,56}}</string>
 				<key>sourceSize</key>
-				<string>{71,56}</string>
+				<string>{63,56}</string>
 			</dict>
 
 			<key>Arthur_8_comboattack3_3.png</key>
@@ -189,7 +189,7 @@
 			<key>Arthur_8_default_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{240,311},{38,96}}</string>
+				<string>{{242,120},{38,96}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -203,7 +203,7 @@
 			<key>Arthur_8_default_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{197,344},{42,76}}</string>
+				<string>{{199,126},{42,76}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -217,7 +217,7 @@
 			<key>Arthur_8_default_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{197,421},{41,64}}</string>
+				<string>{{199,282},{41,64}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -231,7 +231,7 @@
 			<key>Arthur_8_defence.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{145,137},{48,78}}</string>
+				<string>{{193,203},{48,78}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -242,21 +242,7 @@
 				<string>{48,78}</string>
 			</dict>
 
-			<key>Arthur_8_getdown_1.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{142,80},{53,56}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{{14,0},{53,56}}</string>
-				<key>sourceSize</key>
-				<string>{67,56}</string>
-			</dict>
-
-			<key>Arthur_8_getdown_2.png</key>
+			<key>Arthur_8_fall_1.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{74,473},{60,37}}</string>
@@ -270,10 +256,10 @@
 				<string>{60,37}</string>
 			</dict>
 
-			<key>Arthur_8_getdown_3.png</key>
+			<key>Arthur_8_fall_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{83,152},{61,48}}</string>
+				<string>{{76,273},{61,48}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -284,7 +270,7 @@
 				<string>{61,48}</string>
 			</dict>
 
-			<key>Arthur_8_getdown_4.png</key>
+			<key>Arthur_8_fall_3.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{0,477},{72,26}}</string>
@@ -301,7 +287,7 @@
 			<key>Arthur_8_getup_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{83,201},{57,36}}</string>
+				<string>{{84,83},{57,36}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -315,7 +301,7 @@
 			<key>Arthur_8_getup_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{84,83},{57,35}}</string>
+				<string>{{83,207},{57,35}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -329,7 +315,7 @@
 			<key>Arthur_8_getup_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{138,301},{53,43}}</string>
+				<string>{{142,102},{53,43}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -338,6 +324,20 @@
 				<string>{{14,0},{53,43}}</string>
 				<key>sourceSize</key>
 				<string>{67,43}</string>
+			</dict>
+
+			<key>Arthur_8_hit_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{145,146},{53,56}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{14,0},{53,56}}</string>
+				<key>sourceSize</key>
+				<string>{67,56}</string>
 			</dict>
 
 			<key>Arthur_8_jump_1.png</key>
@@ -357,21 +357,21 @@
 			<key>Arthur_8_jump_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{76,273},{61,54}}</string>
+				<string>{{83,152},{61,54}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{30,0},{61,54}}</string>
+				<string>{{25,0},{61,54}}</string>
 				<key>sourceSize</key>
-				<string>{91,54}</string>
+				<string>{86,54}</string>
 			</dict>
 
 			<key>Arthur_8_stand_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{238,214},{38,96}}</string>
+				<string>{{241,282},{38,96}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -385,7 +385,7 @@
 			<key>Arthur_8_stand_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{238,120},{38,93}}</string>
+				<string>{{242,379},{38,93}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -399,29 +399,29 @@
 			<key>Arthur_8_walk_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{194,137},{43,61}}</string>
+				<string>{{197,64},{43,61}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{43,61}}</string>
+				<string>{{10,0},{43,61}}</string>
 				<key>sourceSize</key>
-				<string>{43,61}</string>
+				<string>{53,61}</string>
 			</dict>
 
 			<key>Arthur_8_walk_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{193,280},{44,63}}</string>
+				<string>{{197,0},{44,63}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{44,63}}</string>
+				<string>{{12,0},{44,63}}</string>
 				<key>sourceSize</key>
-				<string>{44,63}</string>
+				<string>{56,63}</string>
 			</dict>
 
 			<key>Arthur_8_walk_3.png</key>
@@ -433,29 +433,43 @@
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{55,61}}</string>
+				<string>{{19,0},{55,61}}</string>
 				<key>sourceSize</key>
-				<string>{55,61}</string>
+				<string>{74,61}</string>
 			</dict>
 
 			<key>Arthur_8_walk_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{193,216},{44,63}}</string>
+				<string>{{197,386},{44,63}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{44,63}}</string>
+				<string>{{17,0},{44,63}}</string>
 				<key>sourceSize</key>
-				<string>{44,63}</string>
+				<string>{61,63}</string>
 			</dict>
 
-			<key>Arthur_8_win.png</key>
+			<key>Arthur_8_win_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{197,0},{42,119}}</string>
+				<string>{{142,0},{54,101}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{1,0},{54,101}}</string>
+				<key>sourceSize</key>
+				<string>{59,104}</string>
+			</dict>
+
+			<key>Arthur_8_win_2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{242,0},{42,119}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
