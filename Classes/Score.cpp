@@ -77,15 +77,15 @@ void Score::setscore(int score)
 		int tensofthousands = score / TENSOFTHOUSANDS;
 
 		std::string tempscore1 = StringUtils::format("%i.png", unit);
-		_listSprite.at(4)->setSpriteFrame(tempscore1);
+		_listSprite.at(0)->setSpriteFrame(tempscore1);
 		std::string tempscore2 = StringUtils::format("%i.png", dozens);
-		_listSprite.at(3)->setSpriteFrame(tempscore2);
+		_listSprite.at(1)->setSpriteFrame(tempscore2);
 		std::string tempscore3 = StringUtils::format("%i.png", hundreds);
 		_listSprite.at(2)->setSpriteFrame(tempscore3);
 		std::string tempscore4 = StringUtils::format("%i.png", thousands);
-		_listSprite.at(1)->setSpriteFrame(tempscore4);
+		_listSprite.at(3)->setSpriteFrame(tempscore4);
 		std::string tempscore5 = StringUtils::format("%i.png", tensofthousands);
-		_listSprite.at(0)->setSpriteFrame(tempscore5);
+		_listSprite.at(4)->setSpriteFrame(tempscore5);
 
 	}
 	else if (score >= THOUSANDS)
@@ -116,16 +116,15 @@ void Score::setscore(int score)
 		int thousands = score / THOUSANDS;
 		int tensofthousands = score / TENSOFTHOUSANDS;
 		std::string tempscore1 = StringUtils::format("%i.png", unit);
-		_listSprite.at(4)->setSpriteFrame(tempscore1);
+		_listSprite.at(0)->setSpriteFrame(tempscore1);
 		std::string tempscore2 = StringUtils::format("%i.png", dozens);
-		_listSprite.at(3)->setSpriteFrame(tempscore2);
+		_listSprite.at(1)->setSpriteFrame(tempscore2);
 		std::string tempscore3 = StringUtils::format("%i.png", hundreds);
 		_listSprite.at(2)->setSpriteFrame(tempscore3);
 		std::string tempscore4 = StringUtils::format("%i.png", thousands);
-		_listSprite.at(1)->setSpriteFrame(tempscore4);
+		_listSprite.at(3)->setSpriteFrame(tempscore4);
 		std::string tempscore5 = StringUtils::format("%i.png", tensofthousands);
-		_listSprite.at(0)->setSpriteFrame(tempscore5);
-
+		_listSprite.at(4)->setSpriteFrame(tempscore5);
 	}
 	else if (score >= DOZENS)
 	{
@@ -135,16 +134,15 @@ void Score::setscore(int score)
 		int thousands = score / THOUSANDS;
 		int tensofthousands = score / TENSOFTHOUSANDS;
 		std::string tempscore1 = StringUtils::format("%i.png", unit);
-		_listSprite.at(4)->setSpriteFrame(tempscore1);
+		_listSprite.at(0)->setSpriteFrame(tempscore1);
 		std::string tempscore2 = StringUtils::format("%i.png", dozens);
-		_listSprite.at(3)->setSpriteFrame(tempscore2);
+		_listSprite.at(1)->setSpriteFrame(tempscore2);
 		std::string tempscore3 = StringUtils::format("%i.png", hundreds);
 		_listSprite.at(2)->setSpriteFrame(tempscore3);
 		std::string tempscore4 = StringUtils::format("%i.png", thousands);
-		_listSprite.at(1)->setSpriteFrame(tempscore4);
+		_listSprite.at(3)->setSpriteFrame(tempscore4);
 		std::string tempscore5 = StringUtils::format("%i.png", tensofthousands);
-		_listSprite.at(0)->setSpriteFrame(tempscore5);
-
+		_listSprite.at(4)->setSpriteFrame(tempscore5);
 	}
 	else
 	{
@@ -154,15 +152,15 @@ void Score::setscore(int score)
 		int tensofthousands = score / TENSOFTHOUSANDS;
 
 		std::string tempscore1 = StringUtils::format("%i.png", score);
-		_listSprite.at(4)->setSpriteFrame(tempscore1);
+		_listSprite.at(0)->setSpriteFrame(tempscore1);
 		std::string tempscore2 = StringUtils::format("%i.png", dozens);
-		_listSprite.at(3)->setSpriteFrame(tempscore2);
+		_listSprite.at(1)->setSpriteFrame(tempscore2);
 		std::string tempscore3 = StringUtils::format("%i.png", hundreds);
 		_listSprite.at(2)->setSpriteFrame(tempscore3);
 		std::string tempscore4 = StringUtils::format("%i.png", thousands);
-		_listSprite.at(1)->setSpriteFrame(tempscore4);
+		_listSprite.at(3)->setSpriteFrame(tempscore4);
 		std::string tempscore5 = StringUtils::format("%i.png", tensofthousands);
-		_listSprite.at(0)->setSpriteFrame(tempscore5);
+		_listSprite.at(4)->setSpriteFrame(tempscore5);
 	}
 	_scoreFrist = score;
 }

@@ -105,20 +105,17 @@ void UIGameScene::updatePlayer(Player * player)
 	{
 		this->setScore(player->getScore());
 		_HP1->setPercent(player->getHealth());// day la set mau cua nhan vat khi bi enemy danh
-		//updateLevel(player);
-		if (player->getScore() >= listLv[player->getLevel() + 1])
-		{
-			player->LevelUp();
-			labelScore->setString(std::to_string((int)listLv[player->getLevel() + 1]));
-		}
+		updateLevel(player);
+		
 		labelLV->setString(std::to_string(player->getLevel()));
 	}
 }
 
 void UIGameScene::updateLevel(Player * player)
 {
-	if (player->getScore() >= listLv[player->getLevel()+1])
+	if (player->getScore() >= this->listLv[player->getLevel()+1])
 	{
 		player->LevelUp();
+		labelScore->setString(std::to_string((int)this->listLv[player->getLevel() + 1]));
 	}
 }

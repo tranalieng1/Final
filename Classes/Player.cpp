@@ -135,6 +135,14 @@ void Player::LevelUp()
 {
 	_Level++;
 	_damage += 10;
-	_Health += 10;
+	_MaxHealth += 10;
+	_MaxMana += 10;
+	_Health = _MaxHealth;
+	_Mana = _MaxMana;
+	this->SetState(STATE_LEVELUP);
+	/*if (_state[1] != STATE_LEVELUP)
+	{
+		
+	}*/
 }
 
