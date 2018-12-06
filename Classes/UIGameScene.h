@@ -23,11 +23,12 @@ private:
 
 	//cocos2d::Sprite * _Avatarp1;
 	cocos2d::Sprite * _Bg;
+	cocos2d::Sprite * _Bg1;
 	cocos2d::Sprite * _Level;
 	cocos2d::Sprite *_BgBar;
 	cocos2d::Sprite *_HPbar2;
 	Score* _Score;
-
+	Score* _Score1;
 	cocos2d::ui::LoadingBar *_HP1;
 	cocos2d::ui::LoadingBar *_HP2;
 
@@ -38,13 +39,17 @@ private:
 protected:
 	//cocos2d::ui::LoadingBar* _HealthBar1;
 	cocos2d::ui::LoadingBar* _ManaBar;
-
+	cocos2d::ui::LoadingBar* _ManaBar1;
 	int _totalScore = 0;
+<<<<<<< HEAD
+	int _totalScore1 = 0;
+=======
 	
 	
 	void updateLevel(Player* player);
 private:
 	std::vector<float> listLv;
+>>>>>>> 0fd72153dd26c02eced9aebd2c6fd0621bbb3e32
 };
 
 
