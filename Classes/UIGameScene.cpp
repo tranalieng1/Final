@@ -31,11 +31,11 @@ bool UIGameScene::init()
 	{
 		return false;
 	}
-<<<<<<< HEAD
-////////////Authur
-=======
 
->>>>>>> 0fd72153dd26c02eced9aebd2c6fd0621bbb3e32
+////////////Authur
+
+
+
 	////add avatar
 	_winSize = Director::getInstance()->getWinSize();
 	Size winSize = Director::getInstance()->getWinSize();

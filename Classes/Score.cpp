@@ -37,12 +37,12 @@ bool Score::init()
 		_score->setScaleX(ScaleX);
 
 		_score->setScaleY(ScaleY);
-<<<<<<< HEAD
-=======
+
+
 		_score->setPosition(Vec2(winSize.width*0.35 - (25*i), winSize.height*0.98));
 		/*_score->setPosition(Vec2(winSize.width*(NUMBER_GAMEPLAY_POSITION_WIDTH + (NUMBER_DISTANT*i)), winSize.height*NUMBER_GAMEPLAY_POSITION_HEIGHT));*/
 		_score->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
->>>>>>> 0fd72153dd26c02eced9aebd2c6fd0621bbb3e32
+
 		_score->setScale(0.5f);
 		this->addChild(_score);
 		_listSprite.pushBack(_score);

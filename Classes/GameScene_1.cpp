@@ -138,13 +138,8 @@ bool GameScene_1::init()
 	/*_BirdMan = BirdMan::create();
 	_BirdMan->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH - 100, visibleSize.height*POSITION_BEGIN_HEIGHT));
 	_BirdMan->enalbeAI(_Arthur);
-<<<<<<< HEAD
-	this->addChild(_BirdMan, 1);*/
-
-=======
 	this->addChild(_BirdMan, 1);
 */
->>>>>>> 0fd72153dd26c02eced9aebd2c6fd0621bbb3e32
 
 	// dunglq3
 	// IMPORTANT: The scheduleUpdate must be called right before this->addChild(SKeyboard::get()),
