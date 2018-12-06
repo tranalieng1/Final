@@ -135,10 +135,10 @@ bool GameScene_1::init()
 
 
 	//_BirdMan
-	_BirdMan = BirdMan::create();
+	/*_BirdMan = BirdMan::create();
 	_BirdMan->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH - 100, visibleSize.height*POSITION_BEGIN_HEIGHT));
 	_BirdMan->enalbeAI(_Arthur);
-	this->addChild(_BirdMan, 1);
+	this->addChild(_BirdMan, 1);*/
 
 
 	// dunglq3
