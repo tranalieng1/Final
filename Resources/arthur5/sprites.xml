@@ -1,0 +1,35 @@
+<TextureAtlas imagePath="sprites.png">
+	<SubTexture name="Arthur_8_attack1_1.png" x="144" y="37" width="54" height="79"/>
+	<SubTexture name="Arthur_8_attack1_2.png" x="0" y="277" width="75" height="73"/>
+	<SubTexture name="Arthur_8_attack2_1.png" x="0" y="154" width="82" height="61"/>
+	<SubTexture name="Arthur_8_attack2_2.png" x="0" y="217" width="82" height="58"/>
+	<SubTexture name="Arthur_8_comboattack1_1.png" x="0" y="352" width="74" height="64"/>
+	<SubTexture name="Arthur_8_comboattack1_2.png" x="0" y="277" width="75" height="73"/>
+	<SubTexture name="Arthur_8_comboattack1_3.png" x="76" y="352" width="68" height="47"/>
+	<SubTexture name="Arthur_8_comboattack2_1.png" x="0" y="0" width="85" height="82"/>
+	<SubTexture name="Arthur_8_comboattack2_2.png" x="146" y="306" width="54" height="62"/>
+	<SubTexture name="Arthur_8_comboattack2_3.png" x="0" y="418" width="73" height="64"/>
+	<SubTexture name="Arthur_8_comboattack3_1.png" x="147" y="118" width="51" height="62"/>
+	<SubTexture name="Arthur_8_comboattack3_2.png" x="147" y="428" width="51" height="56"/>
+	<SubTexture name="Arthur_8_comboattack3_3.png" x="0" y="84" width="83" height="68"/>
+	<SubTexture name="Arthur_8_default_1.png" x="247" y="95" width="38" height="96"/>
+	<SubTexture name="Arthur_8_default_2.png" x="245" y="383" width="42" height="76"/>
+	<SubTexture name="Arthur_8_default_3.png" x="246" y="262" width="41" height="64"/>
+	<SubTexture name="Arthur_8_defence.png" x="197" y="182" width="48" height="78"/>
+	<SubTexture name="Arthur_8_getdown_1.png" x="147" y="370" width="53" height="56"/>
+	<SubTexture name="Arthur_8_getdown_2.png" x="84" y="204" width="60" height="37"/>
+	<SubTexture name="Arthur_8_getdown_3.png" x="84" y="154" width="61" height="48"/>
+	<SubTexture name="Arthur_8_getdown_4.png" x="0" y="484" width="72" height="26"/>
+	<SubTexture name="Arthur_8_getup_1.png" x="85" y="84" width="57" height="36"/>
+	<SubTexture name="Arthur_8_getup_2.png" x="87" y="0" width="57" height="35"/>
+	<SubTexture name="Arthur_8_getup_3.png" x="87" y="37" width="53" height="43"/>
+	<SubTexture name="Arthur_8_jump_1.png" x="75" y="418" width="70" height="60"/>
+	<SubTexture name="Arthur_8_jump_2.png" x="77" y="277" width="61" height="54"/>
+	<SubTexture name="Arthur_8_stand_1.png" x="287" y="0" width="38" height="96"/>
+	<SubTexture name="Arthur_8_stand_2.png" x="246" y="0" width="38" height="93"/>
+	<SubTexture name="Arthur_8_walk_1.png" x="200" y="428" width="43" height="61"/>
+	<SubTexture name="Arthur_8_walk_2.png" x="200" y="0" width="44" height="63"/>
+	<SubTexture name="Arthur_8_walk_3.png" x="140" y="243" width="55" height="61"/>
+	<SubTexture name="Arthur_8_walk_4.png" x="200" y="65" width="44" height="63"/>
+	<SubTexture name="Arthur_8_win.png" x="202" y="262" width="42" height="119"/>
+</TextureAtlas>
