@@ -42,14 +42,14 @@ protected:
 	cocos2d::ui::LoadingBar* _ManaBar1;
 	int _totalScore = 0;
 
-	int _totalScore1 = 0;
+		int _totalScore1 = 0;
+	
 
-	
-	
-	void updateLevel(Player* player);
+
+		void updateLevel(Player* player);
 private:
 	std::vector<float> listLv;
-
+	
 };
 
 

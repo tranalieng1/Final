@@ -2,8 +2,8 @@
 #define __MOONBLADE_H__
 #include "cocos2d.h"
 #include "GameObject.h"
-
-
+class MoonBlade;
+typedef std::function<void(MoonBlade* MB)> OnHitDestroyCallback;
 class MoonBlade : public GameObject
 {
 public:
@@ -25,6 +25,9 @@ private:
 	cocos2d::Sprite* _MBSprite3;
 	cocos2d::PhysicsBody* _Physicbody;
 	float temp;
+
+	bool _willBeDestroy;
+	OnHitDestroyCallback _onHitDestroyCallback;
 };
 
 

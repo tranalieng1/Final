@@ -31,12 +31,12 @@ bool UIGameScene::init()
 	{
 		return false;
 	}
+	
+		////////////Authur
+	
 
-////////////Authur
-
-
-
-	////add avatar
+	
+		////add avatar
 	_winSize = Director::getInstance()->getWinSize();
 	Size winSize = Director::getInstance()->getWinSize();
 	auto _Bg = Sprite::create("images/bg.png");
@@ -59,12 +59,16 @@ bool UIGameScene::init()
 	labelScore->setPosition(Vec2(280, _winSize.height*0.858));
 	this->addChild(labelScore);
 	//add score
+	_totalScore = 0;
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("images/numbers.plist", "images/numbers.png");
 	_Score = Score::create();
-	_Score->setPosition(Vec2(winSize.width*0.35, winSize.height*0.98));
+	//_Score->setPosition(Vec2(winSize.width*0.35, winSize.height*0.98));
 	_Score->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 	_Score->setscore(_totalScore);
+	
+	//_Score->getPosition();
 	this->addChild(_Score);
+	//_Score->getPosition().y;
 	// set cai ruot hp
 	_HP1 = ui::LoadingBar::create("images/hp.png");
 	//_HP1->setScaleX(scaleX);
@@ -72,7 +76,7 @@ bool UIGameScene::init()
 	//_HP1->setScaleY(scaleY);
 	_HP1->setPosition(Vec2(145, _winSize.height*0.895));
 	_HP1->setPercent(100);
-	this->addChild(_HP1,3);
+	this->addChild(_HP1, 3);
 	//add ruot Mana
 	_ManaBar = ui::LoadingBar::create("images/mp.png");
 	//_ManaBar->setScaleX(scaleX);
@@ -80,13 +84,13 @@ bool UIGameScene::init()
 	//_ManaBar->setScaleY(scaleY);
 	_ManaBar->setPosition(Vec2(145, _winSize.height*0.875));
 	_ManaBar->setPercent(100);
-	this->addChild(_ManaBar,4);
+	this->addChild(_ManaBar, 4);
 	//add Số mạng
 	auto labelLife = Label::createWithTTF("01", "fonts/a.ttf", 18);
 	labelLife->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 	labelLife->setPosition(Vec2(180, _winSize.height*0.94));
 	this->addChild(labelLife);
-/////////Percival
+	/////////Percival
 
 	auto _Bg1 = Sprite::create("images/Percival.png");
 	this->addChild(_Bg1);
@@ -110,10 +114,11 @@ bool UIGameScene::init()
 	//add score
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("images/numbers.plist", "images/numbers.png");
 	_Score1 = Score::create();
-	_Score1->setPosition(Vec2(winSize.width*0.95, winSize.height*0.98));
+	_Score1->setPosition(Vec2(winSize.width*0.6, 0));
 	_Score1->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 	_Score1->setscore(_totalScore);
 	this->addChild(_Score1);
+	
 	// set cai ruot hp
 	_HP2 = ui::LoadingBar::create("images/hp.png");
 	//_HP1->setScaleX(scaleX);
@@ -158,14 +163,14 @@ void UIGameScene::updatePlayer(Player * player)
 		this->setScore(player->getScore());
 		_HP1->setPercent(player->getHealth());// day la set mau cua nhan vat khi bi enemy danh
 		updateLevel(player);
-		
+
 		labelLV->setString(std::to_string(player->getLevel()));
 	}
 }
 
 void UIGameScene::updateLevel(Player * player)
 {
-	if (player->getScore() >= this->listLv[player->getLevel()+1])
+	if (player->getScore() >= this->listLv[player->getLevel() + 1])
 	{
 		player->LevelUp();
 		labelScore->setString(std::to_string((int)this->listLv[player->getLevel() + 1]));

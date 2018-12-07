@@ -7,14 +7,15 @@ USING_NS_CC;
 
 std::map<AnimationType, AnimationInfo> Arthur_1::s_mapAnimations =
 {
-	{AnimationType::WALKING, AnimationInfo(4, "Arthur_0_walk_%d.png", 1.0f / 12.0f, CC_REPEAT_FOREVER)},
-	{ AnimationType::ATTACKING, AnimationInfo(3, "Arthur_0_attack_%d.png", 1.0f / 12.0f, 1) },
+	{AnimationType::WALKING, AnimationInfo(4, "Arthur_%d_walk_%d.png", 1.0f / 12.0f, CC_REPEAT_FOREVER)},
+	{ AnimationType::ATTACKING, AnimationInfo(3, "Arthur_%d_attack_%d.png", 1.0f / 12.0f, 1) },
 	//{ AnimationType::SWAPING, AnimationInfo(1, "Arthur_0_comboattack3_%d.png", 1.0f / 4.0f, 1) },
-	{ AnimationType::JUMPING, AnimationInfo(1, "Arthur_0_jump_%d.png", 1.0f / 4.0f, 4) },
-	{ AnimationType::HITTED, AnimationInfo(1, "Arthur_0_hitted_%d.png", 1.0f / 4.0f, 1) },
-	{AnimationType::FALLING, AnimationInfo(2, "Arthur_0_fall_%d.png", 1.0f / 4.0f, 1)},
-	{AnimationType::GETUP, AnimationInfo(3, "Arthur_0_getup_%d.png", 1.0f / 4.0f, 1)},
-	{AnimationType::LEVELUP, AnimationInfo(2, "Arthur_0_win_%d.png", 1.0f / 4.0f, 1)},
+	{ AnimationType::JUMPING, AnimationInfo(1, "Arthur_%d_jump_%d.png", 1.0f / 4.0f, 4) },
+	{ AnimationType::HITTED, AnimationInfo(1, "Arthur_%d_hitted_%d.png", 1.0f / 4.0f, 1) },
+	{AnimationType::FALLING, AnimationInfo(3, "Arthur_%d_fall_%d.png", 1.0f / 4.0f, 1)},
+	{AnimationType::GETUP, AnimationInfo(3, "Arthur_%d_getup_%d.png", 1.0f / 4.0f, 1)},
+	{AnimationType::LEVELUP, AnimationInfo(2, "Arthur_%d_win_%d.png", 1.0f / 4.0f, 1)},
+	{AnimationType::STANDING, AnimationInfo(1, "Arthur_%d_stand_%d.png", 1.0f / 8.0f, 1)},
 
 };
 
@@ -51,16 +52,7 @@ Arthur_1::Arthur_1()
 
 void Arthur_1::Attack()
 {
-	Animation* animation = Animation::create();
-	for (int i = 1; i < 4; i++)
-	{
-		std::string name = StringUtils::format("Arthur_0_attack_%d.png", i);
-		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
-	}
-	animation->setDelayPerUnit(1 / 12);
-
-	Animate* animate = Animate::create(animation);
-	_PlayerSprite->runAction(RepeatForever::create(animate));
+	
 }
 
 bool Arthur_1::init()
@@ -72,7 +64,10 @@ bool Arthur_1::init()
 	_checkwalk = 0;
 
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl1.plist", "ArthurLvl1.png");
-	_PlayerSprite = Sprite::createWithSpriteFrameName("Arthur_0_stand_1.png");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl2.plist", "ArthurLvl2.png");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl3.plist", "ArthurLvl3.png");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl4.plist", "ArthurLvl4.png");
+	_PlayerSprite = Sprite::createWithSpriteFrameName("Arthur_1_stand_1.png");
 	//Set sprite
 	this->addChild(_PlayerSprite);
 	_PlayerSprite->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
@@ -117,10 +112,7 @@ bool Arthur_1::init()
 void Arthur_1::Jump()
 {
 	//_ArthurSprite->setSpriteFrame("Arthur_0_stand_1.png");
-	_PlayerSprite->stopAllActions();
-	_PlayerSprite->setSpriteFrame("Arthur_0_jump_1.png");
-	_Jump = JumpBy::create(1.0f, Vec2(0.0f, 0.0f), this->getContentSize().height*PLAYER_JUMP, 1);
-	this->runAction(_Jump);
+	
 
 }
 
@@ -131,8 +123,8 @@ void Arthur_1::Jump()
 void Arthur_1::StopAction()
 {
 	_PlayerSprite->stopActionByTag(TAG_ANIMATION);
-
-	_PlayerSprite->setSpriteFrame("Arthur_0_stand_1.png");
+	this->PlayAnimation(AnimationType::STANDING);
+	//_PlayerSprite->setSpriteFrame("Arthur_1_stand_1.png");
 }
 
 void Arthur_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
@@ -345,7 +337,7 @@ void Arthur_1::SetState(_State state)
 			spawn = cocos2d::Spawn::create(CallFunc::create([=]()
 			{
 				this->PlayAnimation(AnimationType::FALLING);
-			}), cocos2d::JumpBy::create(0.8f, Vec2(-100, 0), 50, 1), NULL);
+			}), cocos2d::JumpBy::create(3/4.0f, Vec2(-100, 0), 50, 1), NULL);
 			this->runAction(spawn);
 		}
 		break;
@@ -563,7 +555,7 @@ void Arthur_1::PlayAnimation(AnimationType type)
 
 	for (int i = 1; i <= info.numFrame; i++)
 	{
-		std::string name = StringUtils::format(info.filePath.c_str(), i);
+		std::string name = StringUtils::format(info.filePath.c_str(),this->_Level, i);
 		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
 	}
 	animation->setDelayPerUnit(info.fps);

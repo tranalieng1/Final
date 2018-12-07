@@ -46,6 +46,9 @@
     <Filter Include="src\Attack">
       <UniqueIdentifier>{3945604c-bb2f-43ea-9d19-b3baa2d1a70e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\pool">
+      <UniqueIdentifier>{92413ab1-567d-4355-9f50-b32ff432a0b8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -125,6 +128,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\SplashScene.cpp">
       <Filter>src\GameMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PoolMoonBlade.cpp">
+      <Filter>src\pool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +214,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\SplashScene.h">
       <Filter>src\GameMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PoolMoonBlade.h">
+      <Filter>src\pool</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

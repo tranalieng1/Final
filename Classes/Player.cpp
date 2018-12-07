@@ -133,7 +133,7 @@ int Player::getLevel()
 
 void Player::LevelUp()
 {
-	_Level++;
+	
 	_damage += 10;
 	_MaxHealth += 10;
 	_MaxMana += 10;
@@ -144,5 +144,6 @@ void Player::LevelUp()
 	{
 		
 	}*/
+	_Level++;
 }
 

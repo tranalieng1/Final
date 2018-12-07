@@ -39,6 +39,7 @@ enum class AnimationType
 	FALLING,
 	GETUP,
 	LEVELUP,
+	STANDING,
 };
 class GameObject: public cocos2d::Node
 {

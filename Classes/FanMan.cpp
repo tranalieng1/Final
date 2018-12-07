@@ -32,7 +32,7 @@ FanMan::FanMan() : Enemy()
 	_state.push_back(_State::STATE_STANDING);
 	_state.push_back(_State::STATE_STANDING);
 	_timeUpdateAI = TIME_UPDATE_AI;
-	_score = 3000.f;
+	_score = 1200.f;
 	_damage = 20;
 }
 
@@ -77,43 +77,21 @@ bool FanMan::init()
 
 void FanMan::Jump()
 {
-	_EnemySprite->setSpriteFrame("FatMan_stand_1.png");
-	_Jump = JumpBy::create(1.0f, Vec2(0.0f, 0.0f), this->getContentSize().height*PLAYER_JUMP, 1);
-	this->runAction(_Jump);
 }
 
 void FanMan::Attack1Animation()
 {
-
-	Animation* animation = Animation::create();
-	for (int i = 1; i < 4; i++)
-	{
-		std::string name = StringUtils::format("FatMan_attack1_%d.png", i);
-		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
-	}
-	animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("FatMan_stand_1.png"));
-	animation->setDelayPerUnit(1 / 20.0f);
-
-	Animate* animate = Animate::create(animation);
-	//_WalkAction = RepeatForever::create(animate);
-	_EnemySprite->runAction(animate);
-
 }
 
 void FanMan::WalkAnimation()
 {
-	Animation* animation = Animation::create();
-	for (int i = 1; i < 4; i++)
-	{
-		std::string name = StringUtils::format("FatMan_walk_%d.png", i);
-		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
-	}
-	animation->setDelayPerUnit(1 / 12.0f);
-
-	Animate* animate = Animate::create(animation);
-	_WalkAction = RepeatForever::create(animate);
-	_EnemySprite->runAction(_WalkAction);
 }
+
+
+
+
+
+
 
 void FanMan::StopAction()
 {
@@ -191,12 +169,12 @@ void FanMan::SetState(_State state)
 			{
 				auto hit = Hit::create();
 				this->addChild(hit);
-				hit->setScaleX(3.0f);
+				hit->setScaleX(1.0f);
 				hit->setTag(TAG_ATTACK_ENEMY);
 				hit->setDamage(_damage);
 				hit->setcollisin(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
 				hit->setcatory(FATMAN_CATEGORY_BITMASK);
-				hit->setPosition(Vec2(-2*this->getContentSize().width, this->getContentSize().height * 0.5f - 10));
+				hit->setPosition(Vec2(-this->getContentSize().width, this->getContentSize().height * 0.5f - 10));
 				hit->runAction(Sequence::create(DelayTime::create(0.2f), CallFunc::create([=]()
 				{
 					hit->removeFromParent();
@@ -342,7 +320,7 @@ void FanMan::scheduleUpdateAI(float delta)
 			}
 			else
 			{
-				//this->SetState(STATE_WALKING);
+				this->SetState(STATE_WALKING);
 				chasePlayer();
 			}
 		}

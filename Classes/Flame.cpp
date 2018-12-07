@@ -28,14 +28,8 @@ bool Flame::init()
 	this->addChild(_Flame1);
 	this->addChild(_Flame2);
 	this->setScale(1.3f);
-	_Physicbody = cocos2d::PhysicsBody::createBox(this->getContentSize());
-	this->setPhysicsBody(_Physicbody);
-	_Physicbody->setDynamic(false);
-	_Physicbody->setGravityEnable(false);
-	_Physicbody->setRotationEnable(false);
-	_Physicbody->setCategoryBitmask(FATMAN_CATEGORY_BITMASK);
-	_Physicbody->setCollisionBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
-	_Physicbody->setContactTestBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+	
+	
 	this->setTag(TAG_SKILL_FLAME);
 
 	this->setVisible(false);
@@ -65,16 +59,32 @@ void Flame::takeDamage(float dmg)
 
 void Flame::active()
 {
+	
+	_Physicbody = cocos2d::PhysicsBody::createBox(this->getContentSize());
+	this->setPhysicsBody(_Physicbody);
+	_Physicbody->setDynamic(false);
+	_Physicbody->setGravityEnable(false);
+	_Physicbody->setRotationEnable(false);
+	_Physicbody->setCategoryBitmask(FATMAN_CATEGORY_BITMASK);
+	_Physicbody->setCollisionBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+	_Physicbody->setContactTestBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+
+
 	this->setVisible(true);
 	auto seq = Sequence::create( CallFunc::create([=]()
 	{
+
 		/*_Physicbody->setCategoryBitmask(FATMAN_CATEGORY_BITMASK);
 		_Physicbody->setCollisionBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
 		_Physicbody->setContactTestBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
 		this->setVisible(false);*/
 		this->playanimation();
-	}),DelayTime::create(1), CallFunc::create([=]()
+	}), DelayTime::create(0.5), CallFunc::create([=]()
 	{
+		this->getPhysicsBody()->removeFromWorld();
+	}), DelayTime::create(0.5), CallFunc::create([=]()
+	{
+		
 		this->setVisible(false);
 	}),NULL);
 	this->runAction(seq);
