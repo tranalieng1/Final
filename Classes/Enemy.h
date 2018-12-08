@@ -26,7 +26,7 @@ public:
 	virtual void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) = 0;
 
 	virtual void SetState(_State state);
-
+	void setDeathLess(bool temp);
 	virtual void takeDamage(float dmg) override;
 	virtual void enalbeAI(Player* player);
 	virtual void scheduleUpdateAI(float delta);

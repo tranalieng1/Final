@@ -3,7 +3,7 @@
 #include"cocos2d.h"
 USING_NS_CC;
 
-MoonBlade::MoonBlade()
+MoonBlade::MoonBlade() : _willBeDestroy(false)
 {
 	_damage = 100.0f;
 	_ManaR = -20.0f;
@@ -48,6 +48,7 @@ bool MoonBlade::init()
 	this->setTag(TAG_SKILL_MB);
 
 	this->setVisible(false);
+	scheduleUpdate();
 	return true;
 }
 
@@ -63,6 +64,7 @@ void MoonBlade::flySkill()
 	}
 
 	this->setVisible(true);
+	this->scheduleUpdate();
 	_Physicbody->setCategoryBitmask(ARTHUR_CATEGORY_BITMASK);
 	_Physicbody->setCollisionBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
 	_Physicbody->setContactTestBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
@@ -83,10 +85,7 @@ void MoonBlade::flySkill()
 	auto action = MoveBy::create(1, Vec2(temp, 0));
 	auto seq = Sequence::create(action, CallFunc::create([=]()
 	{
-		_Physicbody->setCategoryBitmask(FATMAN_CATEGORY_BITMASK);
-		_Physicbody->setCollisionBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
-		_Physicbody->setContactTestBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
-		this->setVisible(false);
+		this->_willBeDestroy = true;
 	}), NULL);
 	this->runAction(seq);
 }
@@ -114,4 +113,26 @@ void MoonBlade::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact 
 
 void MoonBlade::takeDamage(float dmg)
 {
+}
+
+void MoonBlade::setOnDestroyCallback(OnHitDestroyCallback callback)
+{
+	_onHitDestroyCallback = callback;
+}
+
+void MoonBlade::update(float delta)
+{
+	if (_willBeDestroy)
+	{
+		_Physicbody->setCategoryBitmask(FATMAN_CATEGORY_BITMASK);
+		_Physicbody->setCollisionBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+		_Physicbody->setContactTestBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+		this->setVisible(false);
+		if (_onHitDestroyCallback)
+		{
+			_onHitDestroyCallback(this);
+		}
+		this->removeFromParent();
+		this->_willBeDestroy = false;
+	}
 }

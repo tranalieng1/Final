@@ -11,10 +11,12 @@
 #include "Flame.h"
 class UIGameScene;
 class HandlePhysics;
+class PoolMoonBlade;
 class GameScene_1 : public cocos2d::Layer
 {
 public:
-
+	GameScene_1();
+	~GameScene_1();
 	static cocos2d::Scene *createScene();
 	virtual bool init();
 
@@ -49,6 +51,8 @@ private:
 	MoonBlade *_MBlade2;
 
 	Flame *_FlameSkill;
+
+	PoolMoonBlade *_poolMoonBlade;
 
 	bool CheckJump(cocos2d::Node *v1,cocos2d::Node *v2);
 };

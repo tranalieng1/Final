@@ -32,7 +32,7 @@ FanMan::FanMan() : Enemy()
 	_state.push_back(_State::STATE_STANDING);
 	_state.push_back(_State::STATE_STANDING);
 	_timeUpdateAI = TIME_UPDATE_AI;
-	_score = 1200.f;
+	_score = 3000.f;
 	_damage = 20;
 }
 
@@ -186,6 +186,7 @@ void FanMan::SetState(_State state)
 		case STATE_JUMPING:
 			break;
 		case STATE_STANDING:
+			this->setDeathLess(false);
 			this->StopAction();
 			break;
 		case STATE_WALKING:
@@ -199,6 +200,7 @@ void FanMan::SetState(_State state)
 
 			break;
 		case STATE_DEATH:
+			this->setDeathLess(true);
 			/*this->PlayAnimation(AnimationType::DEATH);*/
 			this->_playerPtr->addScore(_score);
 			this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
@@ -211,6 +213,7 @@ void FanMan::SetState(_State state)
 			
 			break;
 		case STATE_FALLING:
+			this->setDeathLess(true);
 			this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
 			spawn = cocos2d::Spawn::create(CallFunc::create([=]()
 			{
@@ -219,6 +222,7 @@ void FanMan::SetState(_State state)
 			this->runAction(spawn);
 			break;
 		case STATE_GETUP:
+			this->setDeathLess(true);
 			this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
 			this->runAction(Sequence::create(DelayTime::create(1.0f), CallFunc::create([=]()
 			{

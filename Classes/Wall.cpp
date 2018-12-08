@@ -32,3 +32,7 @@ bool Wall::init()
 	return true;
 
 }
+
+void Wall::takeDamage(float dmg)
+{
+}

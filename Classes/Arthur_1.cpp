@@ -80,7 +80,7 @@ bool Arthur_1::init()
 	//Setbody
 	_Physicbody = cocos2d::PhysicsBody::createBox(this->getContentSize());
 	this->setPhysicsBody(_Physicbody);
-	_Physicbody->setDynamic(false);
+	_Physicbody->setDynamic(true);
 	_Physicbody->setGravityEnable(false);
 	_Physicbody->setRotationEnable(false);
 	_Physicbody->setCategoryBitmask(ARTHUR_CATEGORY_BITMASK);
@@ -318,6 +318,7 @@ void Arthur_1::SetState(_State state)
 			break;
 		case STATE_STANDING:
 			this->_Physicbody->setVelocity(Vec2(0, 0));
+			this->setDeathLess(false);
 			this->StopAction();
 			break;
 		case STATE_WALKING:
@@ -334,6 +335,7 @@ void Arthur_1::SetState(_State state)
 		break;
 		case STATE_FALLING:
 		{
+			this->setDeathLess(true);
 			spawn = cocos2d::Spawn::create(CallFunc::create([=]()
 			{
 				this->PlayAnimation(AnimationType::FALLING);
@@ -350,6 +352,7 @@ void Arthur_1::SetState(_State state)
 		}
 		break;
 		case STATE_DEATH:
+			this->setDeathLess(true);
 			spawn = cocos2d::Spawn::create(CallFunc::create([=]()
 			{
 				this->PlayAnimation(AnimationType::FALLING);
@@ -361,6 +364,7 @@ void Arthur_1::SetState(_State state)
 			}), NULL));
 			break;
 		case STATE_LEVELUP:
+			this->setDeathLess(true);
 			this->PlayAnimation(AnimationType::LEVELUP);
 			break;
 		default:

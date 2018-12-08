@@ -11,12 +11,20 @@
 #include "SKeyboard.h"
 #include "UIGameScene.h"
 #include "HandlePhysics.h"
+#include "PoolMoonBlade.h"
 //#define schedule_selector CC_SCHEDULE_SELECTOR
 USING_NS_CC;
 using namespace cocos2d;
 //#define schedule_selector
 
-
+GameScene_1::GameScene_1()
+{
+	_poolMoonBlade = new PoolMoonBlade();
+}
+GameScene_1::~GameScene_1()
+{
+	CC_SAFE_DELETE(_poolMoonBlade);
+}
 
 Scene* GameScene_1::createScene()
 {
@@ -67,8 +75,10 @@ bool GameScene_1::init()
 
 	auto _tileMap = TMXTiledMap::create("Game_1_1.tmx");
 	
-	_tileMap->setScale(3.0f);
+	_tileMap->setScale(SCALE_MAP);
 	addChild(_tileMap,0,99);
+	float x = _tileMap->getContentSize().width;
+	float y = _tileMap->getContentSize().height;
 	auto ObjectWall = _tileMap->getObjectGroup("Wall");
 	auto Wall = ObjectWall->getObjects();
 
@@ -117,6 +127,7 @@ bool GameScene_1::init()
 	_Arthur = Arthur_1::create();
 
 	_Arthur->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH,visibleSize.height*POSITION_BEGIN_HEIGHT));
+	//_Arthur->setPosition(Vec2(MAP_WIDTH-1000,100));
 	this->addChild(_Arthur,2);
 
 	//Percival
@@ -238,8 +249,15 @@ void GameScene_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Even
 		{
 			_MBlade->setScaleX(-2.7f);
 		}
-		_MBlade->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY()));
-		_MBlade->flySkill();
+		/*_MBlade->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY()));
+		_MBlade->flySkill();*/
+		auto mb = _poolMoonBlade->createMB();
+		if (mb)
+		{
+			this->addChild(mb);
+			mb->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY()));
+			mb->flySkill();
+		}
 		_FlameSkill->setPosition(_Arthur->getPosition());
 		_FlameSkill->active();
 
@@ -272,14 +290,32 @@ void GameScene_1::update(float dt)
 	cam = Camera::getDefaultCamera();
 
 	campos = cam->getPosition3D();
-	if (_Arthur->getPositionX() > visibleSize.width / 2)
-		campos.x = _Arthur->getPositionX();
-	else
+	if (_Arthur->getPositionX() <= visibleSize.width / 2)//lock ben trai
+		
 		campos.x = visibleSize.width / 2;
+	else if (_Arthur->getPositionX() >= MAP_WIDTH - visibleSize.width / 2 - 2*_Arthur->getContentSize().width)//lock ben phai
+	{
+		campos.x = MAP_WIDTH - visibleSize.width / 2 - 2*_Arthur->getContentSize().width;
+	}
+	else // lock theo nhan vat
+		campos.x = _Arthur->getPositionX();
 	campos.y = this->getContentSize().height/2;
 	cam->setPosition3D(campos);
 	//_UIGameScene->setPosition(Vec2(visibleSize.width*0.0f, visibleSize.height*0.0f));
 	////Set UI Gamescene
+	if (_Arthur->getPositionX()  <= campos.x-400+ _Arthur->getContentSize().width)
+	{
+		_Arthur->setPositionX(campos.x-400+_Arthur->getContentSize().width);
+	}
+	if (_Arthur->getPositionY() >= 220)
+	{
+		_Arthur->setPositionY(220);
+			
+	}
+	/*if (_Arthur->getPositionX() >= campos.x - 400 + _Arthur->getContentSize().width)
+	{
+		_Arthur->setPositionX(campos.x - 400 + _Arthur->getContentSize().width);
+	}*/
 	_UIGameScene->setPosition(Vec2(campos.x-visibleSize.width/2,0));
 	//_UIGameScene->setScore(_Arthur->getScore());
 	_UIGameScene->updatePlayer(_Arthur);

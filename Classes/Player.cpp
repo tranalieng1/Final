@@ -1,5 +1,5 @@
 #include "Player.h"
-
+#include "Defnition.h"
 
 Player::Player()
 {
@@ -119,6 +119,22 @@ bool Player::addMana(float temp)
 float Player::getMana()
 {
 	return (_Mana/_MaxMana)*100;
+}
+
+void Player::setDeathLess(bool temp)
+{
+	if (temp == true)
+	{
+		this->getPhysicsBody()->setCategoryBitmask(FATMAN_CATEGORY_BITMASK);
+		this->getPhysicsBody()->setCollisionBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+		this->getPhysicsBody()->setContactTestBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+	}
+	else
+	{
+		this->getPhysicsBody()->setCategoryBitmask(ARTHUR_CATEGORY_BITMASK);
+		this->getPhysicsBody()->setCollisionBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
+		this->getPhysicsBody()->setContactTestBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
+	}
 }
 
 void Player::setLevel(int temp)
