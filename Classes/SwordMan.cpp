@@ -12,11 +12,11 @@ USING_NS_CC;
 std::map<AnimationType, AnimationInfo> SwordMan::s_mapAnimations =
 {
 	{AnimationType::WALKING, AnimationInfo(4, "SwordMan_Walk_%d.png", 1.0f / 12.0f, CC_REPEAT_FOREVER)},
-	{ AnimationType::ATTACKING, AnimationInfo(3, "SwordMan_Attack_1_%d.png", 1.0f / 12.0f, 1) },
-	{AnimationType::HITTED,AnimationInfo(1,"SwordMan_FallDown_2_%d.png", 1.0f / 4.0f,1)},
-	{AnimationType::DEATH,AnimationInfo(3,"SwordMan_FallDown_1_%d.png",1.0f/4.0f,1)},
-	{AnimationType::FALLING,AnimationInfo(3,"SwordMan_FallDown_1_%d.png",1.0f / 4.0f,1)},
-	{AnimationType::GETUP,AnimationInfo(2,"SwordMan_GetUp_1_%d.png",1.0f / 4.0f,1)},
+	{ AnimationType::ATTACKING, AnimationInfo(3, "SwordMan_Attack_%d.png", 1.0f / 12.0f, 1) },
+	{AnimationType::HITTED,AnimationInfo(1,"SwordMan_FallDown_%d.png", 1.0f / 4.0f,1)},
+	{AnimationType::DEATH,AnimationInfo(3,"SwordMan_FallDown_%d.png",1.0f / 4.0f,1)},
+	{AnimationType::FALLING,AnimationInfo(3,"SwordMan_FallDown_%d.png",1.0f / 4.0f,1)},
+	{AnimationType::GETUP,AnimationInfo(2,"SwordMan_GetUp_%d.png",1.0f / 4.0f,1)},
 	
 };
 SwordMan::~SwordMan()
@@ -32,7 +32,7 @@ SwordMan::SwordMan() : Enemy()
 	_state.push_back(_State::STATE_STANDING);
 	_state.push_back(_State::STATE_STANDING);
 	_timeUpdateAI = TIME_UPDATE_AI;
-	_score = 200.f;
+	_score = 1200.f;
 	_damage = 20;
 }
 
@@ -55,7 +55,7 @@ bool SwordMan::init()
 	_EnemySprite->setPosition(Vec2(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.0f));
 	this->setScale(2.0);
 	//Set physicbody
-	_physicsBody = PhysicsBody::createBox(this->getContentSize());
+	_physicsBody = PhysicsBody::createBox(Size(this->getContentSize().width-30, this->getContentSize().height-20));
 	this->setPhysicsBody(_physicsBody);
 	_physicsBody->setGravityEnable(false);
 	_physicsBody->setDynamic(false);
@@ -77,43 +77,21 @@ bool SwordMan::init()
 
 void SwordMan::Jump()
 {
-	_EnemySprite->setSpriteFrame("SwordMan_Stand_1.png");
-	_Jump = JumpBy::create(1.0f, Vec2(0.0f, 0.0f), this->getContentSize().height*PLAYER_JUMP, 1);
-	this->runAction(_Jump);
 }
 
 void SwordMan::Attack1Animation()
 {
-
-	Animation* animation = Animation::create();
-	for (int i = 1; i < 3; i++)
-	{
-		std::string name = StringUtils::format("SwordMan_Attack_1_%d.png", i);
-		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
-	}
-	animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("SwordMan_Stand_1.png"));
-	animation->setDelayPerUnit(1 / 20.0f);
-
-	Animate* animate = Animate::create(animation);
-	//_WalkAction = RepeatForever::create(animate);
-	_EnemySprite->runAction(animate);
-
 }
 
 void SwordMan::WalkAnimation()
 {
-	Animation* animation = Animation::create();
-	for (int i = 1; i < 4; i++)
-	{
-		std::string name = StringUtils::format("SwordMan_Walk_1_%d.png", i);
-		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
-	}
-	animation->setDelayPerUnit(1 / 12.0f);
-
-	Animate* animate = Animate::create(animation);
-	_WalkAction = RepeatForever::create(animate);
-	_EnemySprite->runAction(_WalkAction);
 }
+
+
+
+
+
+
 
 void SwordMan::StopAction()
 {
@@ -191,12 +169,13 @@ void SwordMan::SetState(_State state)
 			{
 				auto hit = Hit::create();
 				this->addChild(hit);
-				hit->setScaleX(3.0f);
+				hit->setScaleX(2.0f);
+				hit->setScaleY(1.5f);
 				hit->setTag(TAG_ATTACK_ENEMY);
 				hit->setDamage(_damage);
 				hit->setcollisin(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
 				hit->setcatory(FATMAN_CATEGORY_BITMASK);
-				hit->setPosition(Vec2(-2*this->getContentSize().width, this->getContentSize().height * 0.5f - 10));
+				hit->setPosition(Vec2(-30, this->getContentSize().height * 0.5f - 10));
 				hit->runAction(Sequence::create(DelayTime::create(0.2f), CallFunc::create([=]()
 				{
 					hit->removeFromParent();
@@ -342,7 +321,7 @@ void SwordMan::scheduleUpdateAI(float delta)
 			}
 			else
 			{
-				//this->SetState(STATE_WALKING);
+				this->SetState(STATE_WALKING);
 				chasePlayer();
 			}
 		}
