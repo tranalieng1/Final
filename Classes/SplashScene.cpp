@@ -32,7 +32,8 @@ bool SplashScene::init()
 	}
 	auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
 	audio->playBackgroundMusic("Sound/strat16.mp3", false);
-
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl1.plist", "ArthurLvl1.png");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Skill/Flame.plist", "Skill/Flame.png");
 	/*CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("Sound/sfx_die.wav");
 	CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("Sound/sfx_point.wav");
 	CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("Sound/sfx_wing.wav");*/
@@ -53,8 +54,7 @@ void SplashScene::goToMainMenuScene()
 void SplashScene::createSprSplash()
 {
 	//
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl1.plist", "ArthurLvl1.png");
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Skill/Flame.plist", "Skill/Flame.png");
+	
 	//Back Ground
 	Size winSize = Director::getInstance()->getWinSize();
 	auto backgound = Sprite::create("bgSplash.png");

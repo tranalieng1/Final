@@ -13,6 +13,8 @@ std::map<AnimationType, AnimationInfo> Percival::s_mapAnimations =
 	{ AnimationType::HITTED, AnimationInfo(1, "Percival_1_getdown_%d.png", 1.0f / 4.0f, 1) },
 	{AnimationType::FALLING, AnimationInfo(5, "Percival_1_getdown_%d.png", 1.0f / 4.0f, 1)},
 	{AnimationType::GETUP, AnimationInfo(1, "Percival_1_win_%d.png", 1.0f / 4.0f, 1)},
+	{AnimationType::LEVELUP, AnimationInfo(2, "Percival_%d_win_%d.png", 1.0f / 4.0f, 1)},
+	{AnimationType::STANDING, AnimationInfo(1, "percival_%d_stand_%d.png", 1.0f / 8.0f, 1)},
 };
 
 Percival::~Percival()
@@ -39,6 +41,7 @@ Percival::Percival()
 	_Mana = _MaxMana;
 	_damage = 20;
 	_score =0.f;
+	_Level = 1;
 }
 
 
@@ -47,16 +50,7 @@ Percival::Percival()
 
 void Percival::Attack()
 {
-	Animation* animation = Animation::create();
-	for (int i = 1; i < 4; i++)
-	{
-		std::string name = StringUtils::format("Percival_1_comboattack1_%d.png", i);
-		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
-	}
-	animation->setDelayPerUnit(1 / 12);
-
-	Animate* animate = Animate::create(animation);
-	_PlayerSprite->runAction(RepeatForever::create(animate));
+	
 }
 
 bool Percival::init()
@@ -68,6 +62,10 @@ bool Percival::init()
 	_checkwalk = 0;
 
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("PercivalLvl1.plist", "PercivalLvl1.png");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("PercivalLvl3.plist", "PercivalLvl3.png");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("PercivalLvl4.plist", "PercivalLvl4.png");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("PercivalLvl8.plist", "PercivalLvl8.png");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("PercivalLvl12.plist", "PercivalLvl12.png");
 	_PlayerSprite = Sprite::createWithSpriteFrameName("Percival_1_ default_1.png");
 
 
@@ -100,11 +98,6 @@ bool Percival::init()
 void Percival::Jump()
 {
 
-	_PlayerSprite->stopAllActions();
-	_PlayerSprite->setSpriteFrame("Percival_1_jump_1.png");
-	_Jump = JumpBy::create(1.0f, Vec2(0.0f, 0.0f), this->getContentSize().height*PLAYER_JUMP, 1);
-	this->runAction(_Jump);
-
 }
 
 
@@ -114,8 +107,7 @@ void Percival::Jump()
 void Percival::StopAction()
 {
 	_PlayerSprite->stopActionByTag(TAG_ANIMATION);
-
-	_PlayerSprite->setSpriteFrame("Percival_1_ default_1.png");
+	this->PlayAnimation(AnimationType::STANDING);
 }
 
 void Percival::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
@@ -340,6 +332,9 @@ void Percival::SetState(_State state)
 				this->setVisible(false);
 			}), NULL));
 			break;
+		case STATE_LEVELUP:
+			this->PlayAnimation(AnimationType::LEVELUP);
+			break;
 		default:
 			break;
 		}
@@ -422,6 +417,10 @@ void Percival::onFinishAnimation()
 	else if (_state[1] == STATE_DEATH)
 	{
 
+	}
+	else if (_state[1] == STATE_LEVELUP)
+	{
+		this->SetState(STATE_STANDING);
 	}
 }
 

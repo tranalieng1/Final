@@ -28,6 +28,11 @@ void Enemy::takeDamage(float dmg)
 {
 }
 
+void Enemy::attack(float delta)
+{
+	this->SetState(STATE_ATTACKING);
+}
+
 void Enemy::SetState(_State state)
 {
 	
@@ -58,7 +63,7 @@ void Enemy::scheduleUpdateAI(float delta)
 void Enemy::enalbeAI(Player* player)
 {
 	this->_playerPtr = player;
-	this->schedule(CC_SCHEDULE_SELECTOR(Enemy::scheduleUpdateAI), _timeUpdateAI, CC_REPEAT_FOREVER, 0.0f);
+	this->schedule(CC_SCHEDULE_SELECTOR(Enemy::scheduleUpdateAI), _timeUpdateAI, CC_REPEAT_FOREVER,0.0f);
 }
 
 void Enemy::update(float delta)

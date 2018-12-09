@@ -557,6 +557,7 @@ void Arthur_1::PlayAnimation(AnimationType type)
 	AnimationInfo info = s_mapAnimations.at(type);
 	Animation* animation = Animation::create();
 
+
 	for (int i = 1; i <= info.numFrame; i++)
 	{
 		std::string name = StringUtils::format(info.filePath.c_str(),this->_Level, i);

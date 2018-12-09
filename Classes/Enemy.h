@@ -25,6 +25,8 @@ public:
 	virtual void onContactPreSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve) = 0;
 	virtual void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) = 0;
 
+	void attack(float delta);
+
 	virtual void SetState(_State state);
 	void setDeathLess(bool temp);
 	virtual void takeDamage(float dmg) override;

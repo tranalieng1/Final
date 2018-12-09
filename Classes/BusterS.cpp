@@ -12,9 +12,9 @@ USING_NS_CC;
 std::map<AnimationType, AnimationInfo> BusterS::s_mapAnimations =
 {
 	{AnimationType::WALKING, AnimationInfo(4, "BusterS_Walk_%d.png", 1.0f / 12.0f, CC_REPEAT_FOREVER)},
-	{ AnimationType::ATTACKING, AnimationInfo(2, "BusterS_Attack_1_%d.png", 1.0f / 12.0f, 1) },
-	{AnimationType::HITTED,AnimationInfo(1,"BusterS_FallDown_2_%d.png", 1.0f / 4.0f,1)},
-	{AnimationType::DEATH,AnimationInfo(4,"BusterS_FallDown_%d.png",1.0f/4.0f,1)},
+	{ AnimationType::ATTACKING, AnimationInfo(2, "BusterS_Attack_%d.png", 1.0f / 12.0f, 1) },
+	{AnimationType::HITTED,AnimationInfo(1,"BusterS_FallDown_%d.png", 1.0f / 4.0f,1)},
+	{AnimationType::DEATH,AnimationInfo(4,"BusterS_FallDown_%d.png",1.0f / 4.0f,1)},
 	{AnimationType::FALLING,AnimationInfo(4,"BusterS_FallDown_%d.png",1.0f / 4.0f,1)},
 	{AnimationType::GETUP,AnimationInfo(1,"BusterS_Win_%d.png",1.0f / 4.0f,1)},
 	
@@ -32,7 +32,7 @@ BusterS::BusterS() : Enemy()
 	_state.push_back(_State::STATE_STANDING);
 	_state.push_back(_State::STATE_STANDING);
 	_timeUpdateAI = TIME_UPDATE_AI;
-	_score = 200.f;
+	_score = 1200.f;
 	_damage = 20;
 }
 
@@ -77,43 +77,21 @@ bool BusterS::init()
 
 void BusterS::Jump()
 {
-	_EnemySprite->setSpriteFrame("BusterS_Stand.png");
-	_Jump = JumpBy::create(1.0f, Vec2(0.0f, 0.0f), this->getContentSize().height*PLAYER_JUMP, 1);
-	this->runAction(_Jump);
 }
 
 void BusterS::Attack1Animation()
 {
-
-	Animation* animation = Animation::create();
-	for (int i = 1; i < 4; i++)
-	{
-		std::string name = StringUtils::format("BusterS_Attack_1_%d.png", i);
-		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
-	}
-	animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("BusterS_Stand.png"));
-	animation->setDelayPerUnit(1 / 20.0f);
-
-	Animate* animate = Animate::create(animation);
-	//_WalkAction = RepeatForever::create(animate);
-	_EnemySprite->runAction(animate);
-
 }
 
 void BusterS::WalkAnimation()
 {
-	Animation* animation = Animation::create();
-	for (int i = 1; i < 4; i++)
-	{
-		std::string name = StringUtils::format("BusterS_Walk_%d.png", i);
-		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
-	}
-	animation->setDelayPerUnit(1 / 12.0f);
-
-	Animate* animate = Animate::create(animation);
-	_WalkAction = RepeatForever::create(animate);
-	_EnemySprite->runAction(_WalkAction);
 }
+
+
+
+
+
+
 
 void BusterS::StopAction()
 {
@@ -191,12 +169,12 @@ void BusterS::SetState(_State state)
 			{
 				auto hit = Hit::create();
 				this->addChild(hit);
-				hit->setScaleX(3.0f);
+				hit->setScaleX(1.0f);
 				hit->setTag(TAG_ATTACK_ENEMY);
 				hit->setDamage(_damage);
 				hit->setcollisin(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
 				hit->setcatory(FATMAN_CATEGORY_BITMASK);
-				hit->setPosition(Vec2(-2*this->getContentSize().width, this->getContentSize().height * 0.5f - 10));
+				hit->setPosition(Vec2(-this->getContentSize().width, this->getContentSize().height * 0.5f - 10));
 				hit->runAction(Sequence::create(DelayTime::create(0.2f), CallFunc::create([=]()
 				{
 					hit->removeFromParent();
@@ -342,7 +320,7 @@ void BusterS::scheduleUpdateAI(float delta)
 			}
 			else
 			{
-				//this->SetState(STATE_WALKING);
+				this->SetState(STATE_WALKING);
 				chasePlayer();
 			}
 		}

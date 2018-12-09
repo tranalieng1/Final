@@ -7,7 +7,7 @@
 			<key>FatMan_HP.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,250},{59,15}}</string>
+				<string>{{0,458},{59,15}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -21,13 +21,13 @@
 			<key>FatMan_attack1_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,48},{60,48}}</string>
+				<string>{{0,48},{78,48}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{18,0},{60,48}}</string>
+				<string>{{0,0},{78,48}}</string>
 				<key>sourceSize</key>
 				<string>{78,48}</string>
 			</dict>
@@ -35,13 +35,13 @@
 			<key>FatMan_attack1_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,0},{76,47}}</string>
+				<string>{{0,0},{136,47}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{76,47}}</string>
+				<string>{{0,0},{136,47}}</string>
 				<key>sourceSize</key>
 				<string>{136,47}</string>
 			</dict>
@@ -49,7 +49,7 @@
 			<key>FatMan_attack2_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,97},{60,48}}</string>
+				<string>{{0,228},{60,48}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -63,13 +63,13 @@
 			<key>FatMan_attack2_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{60,405},{32,80}}</string>
+				<string>{{71,97},{44,80}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{12,0},{32,80}}</string>
+				<string>{{0,0},{44,80}}</string>
 				<key>sourceSize</key>
 				<string>{44,80}</string>
 			</dict>
@@ -77,13 +77,13 @@
 			<key>FatMan_default_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{61,48},{32,72}}</string>
+				<string>{{114,415},{38,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{6,0},{32,72}}</string>
+				<string>{{0,0},{38,72}}</string>
 				<key>sourceSize</key>
 				<string>{38,72}</string>
 			</dict>
@@ -91,7 +91,7 @@
 			<key>FatMan_default_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{94,0},{28,80}}</string>
+				<string>{{120,234},{28,80}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -105,7 +105,7 @@
 			<key>FatMan_default_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{100,324},{26,80}}</string>
+				<string>{{120,315},{26,80}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -119,13 +119,13 @@
 			<key>FatMan_defeat_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{60,324},{39,80}}</string>
+				<string>{{60,415},{53,80}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{39,80}}</string>
+				<string>{{0,0},{53,80}}</string>
 				<key>sourceSize</key>
 				<string>{53,80}</string>
 			</dict>
@@ -133,7 +133,7 @@
 			<key>FatMan_defeat_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{93,405},{32,80}}</string>
+				<string>{{116,48},{32,80}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -147,7 +147,7 @@
 			<key>FatMan_fall_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{60,146},{58,47}}</string>
+				<string>{{60,367},{58,47}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -161,7 +161,7 @@
 			<key>FatMan_fall_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{60,222},{51,45}}</string>
+				<string>{{61,228},{51,45}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -175,7 +175,7 @@
 			<key>FatMan_fall_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{60,268},{43,55}}</string>
+				<string>{{113,178},{43,55}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -189,7 +189,7 @@
 			<key>FatMan_fall_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{60,194},{56,27}}</string>
+				<string>{{0,474},{56,27}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -200,10 +200,24 @@
 				<string>{56,27}</string>
 			</dict>
 
+			<key>FatMan_icon.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,97},{70,71}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{0,0},{70,71}}</string>
+				<key>sourceSize</key>
+				<string>{70,71}</string>
+			</dict>
+
 			<key>FatMan_stand_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,205},{59,44}}</string>
+				<string>{{60,322},{59,44}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -217,7 +231,7 @@
 			<key>FatMan_stand_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,447},{59,44}}</string>
+				<string>{{60,277},{59,44}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -231,13 +245,13 @@
 			<key>FatMan_walk_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,146},{59,58}}</string>
+				<string>{{0,169},{67,58}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{8,0},{59,58}}</string>
+				<string>{{0,0},{67,58}}</string>
 				<key>sourceSize</key>
 				<string>{67,58}</string>
 			</dict>
@@ -245,7 +259,7 @@
 			<key>FatMan_walk_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,386},{59,60}}</string>
+				<string>{{0,397},{59,60}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -259,7 +273,7 @@
 			<key>FatMan_walk_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,327},{59,58}}</string>
+				<string>{{0,338},{59,58}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -273,7 +287,7 @@
 			<key>FatMan_walk_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,266},{59,60}}</string>
+				<string>{{0,277},{59,60}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -291,9 +305,9 @@
 			<key>format</key>
 			<integer>2</integer>
 			<key>size</key>
-			<string>{128,512}</string>
+			<string>{256,512}</string>
 			<key>textureFileName</key>
-			<string>sprites.png</string>
+			<string>ArthurLvl2.png</string>
 			</dict>
 		</dict>
 </plist>

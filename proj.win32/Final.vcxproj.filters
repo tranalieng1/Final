@@ -49,6 +49,15 @@
     <Filter Include="src\pool">
       <UniqueIdentifier>{92413ab1-567d-4355-9f50-b32ff432a0b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\test">
+      <UniqueIdentifier>{df0fd5e1-1e59-465c-9161-7447103b5cd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EndScene">
+      <UniqueIdentifier>{323a75ff-2ac0-4aa0-9237-e1028b50a12d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\CreditScene">
+      <UniqueIdentifier>{572cba49-e8dd-49a9-9784-eb4bb4465678}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -131,6 +140,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\PoolMoonBlade.cpp">
       <Filter>src\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\test.cpp">
+      <Filter>src\test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EndScene.cpp">
+      <Filter>src\EndScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CreditScene.cpp">
+      <Filter>src\CreditScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -217,6 +235,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\PoolMoonBlade.h">
       <Filter>src\pool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\test.h">
+      <Filter>src\test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EndScene.h">
+      <Filter>src\EndScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CreditScene.h">
+      <Filter>src\CreditScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

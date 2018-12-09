@@ -12,15 +12,13 @@ public:
 
 	virtual bool init() override;
 	void Jump() override;
-	void Attack1Animation() override;
-	void WalkAnimation() override;
+	virtual void Attack1Animation() override;
+	virtual void WalkAnimation() override;
 	void StopAction() override;
 
 	void onContactBeganWith(GameObject* obj) override ;
 	void onContactPostSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, const cocos2d::PhysicsContactPostSolve& solve)override;
-	void onContactPreSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, cocos2d::
-	
-	PhysicsContactPreSolve& solve)override;
+	void onContactPreSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve)override;
 	void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) override;
 	void PlayAnimation(AnimationType type);
 	void SetState(_State state) override;

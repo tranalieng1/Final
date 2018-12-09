@@ -13,7 +13,7 @@ std::map<AnimationType, AnimationInfo> FanMan::s_mapAnimations =
 {
 	{AnimationType::WALKING, AnimationInfo(4, "FatMan_walk_%d.png", 1.0f / 12.0f, CC_REPEAT_FOREVER)},
 	{ AnimationType::ATTACKING, AnimationInfo(2, "FatMan_attack1_%d.png", 1.0f / 12.0f, 1) },
-	{AnimationType::HITTED,AnimationInfo(1,"FatMan_stand_%d.png", 1.0f / 4.0f,1)},
+	{AnimationType::HITTED,AnimationInfo(1,"FatMan_stand_%d.png", 1.0f / 4.0f,2)},
 	{AnimationType::DEATH,AnimationInfo(4,"FatMan_fall_%d.png",1.0f/4.0f,1)},
 	{AnimationType::FALLING,AnimationInfo(4,"FatMan_fall_%d.png",1.0f / 4.0f,1)},
 	{AnimationType::GETUP,AnimationInfo(2,"FatMan_defeat_%d.png",1.0f / 4.0f,1)},
@@ -81,6 +81,7 @@ void FanMan::Jump()
 
 void FanMan::Attack1Animation()
 {
+	
 }
 
 void FanMan::WalkAnimation()
@@ -132,12 +133,15 @@ void FanMan::PlayAnimation(AnimationType type)
 		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
 	}
 	animation->setDelayPerUnit(info.fps);
-	if (type == AnimationType::HITTED)
+	
+	if (type == AnimationType::ATTACKING)
 	{
-		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
+		attackdelay = 0.5f;
 	}
+	else
+		attackdelay = 0;
 	Animate* animate = Animate::create(animation);
-	auto seq = Sequence::create(Repeat::create(animate, info.loopTime), CallFunc::create([=]()
+	auto seq = Sequence::create(Repeat::create(animate, info.loopTime), DelayTime::create(attackdelay), CallFunc::create([=]()
 	{
 		//if (type == AnimationType::ATTACKING)
 		//_PlayerSprite->setSpriteFrame("Arthur_0_stand_1.png");
@@ -169,12 +173,12 @@ void FanMan::SetState(_State state)
 			{
 				auto hit = Hit::create();
 				this->addChild(hit);
-				hit->setScaleX(1.0f);
+				hit->setScaleX(2.0f);
 				hit->setTag(TAG_ATTACK_ENEMY);
 				hit->setDamage(_damage);
 				hit->setcollisin(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
 				hit->setcatory(FATMAN_CATEGORY_BITMASK);
-				hit->setPosition(Vec2(-this->getContentSize().width, this->getContentSize().height * 0.5f - 10));
+				hit->setPosition(Vec2(-2*this->getContentSize().width, this->getContentSize().height * 0.5f - 10));
 				hit->runAction(Sequence::create(DelayTime::create(0.2f), CallFunc::create([=]()
 				{
 					hit->removeFromParent();
@@ -290,6 +294,7 @@ void FanMan::onFinishAnimation()
 	}
 	else if (_state[1] == STATE_ATTACKING)
 	{
+		
 		this->SetState(STATE_STANDING);
 	}
 }
@@ -320,6 +325,8 @@ void FanMan::scheduleUpdateAI(float delta)
 			if (distanceX < _EnemySprite->getContentSize().width * 0.5f + 100.0f)
 			{
 				//this->PlayAnimation(AnimationType::ATTACKING);
+				
+
 				this->SetState(STATE_ATTACKING);
 			}
 			else
@@ -330,6 +337,10 @@ void FanMan::scheduleUpdateAI(float delta)
 		}
 		
 	}
+}
+
+void FanMan::update(float delta)
+{
 }
 
 void FanMan::chasePlayer()

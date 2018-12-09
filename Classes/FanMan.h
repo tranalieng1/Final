@@ -26,12 +26,12 @@ public:
 	void onFinishAnimation();
 	static std::map<AnimationType, AnimationInfo> s_mapAnimations;
 	virtual void scheduleUpdateAI(float delta) override;
-
-
+	
+	void update(float delta);
 	CREATE_FUNC(FanMan);
 private:
 	void chasePlayer();
-
+	float attackdelay;
 	
 
 };
