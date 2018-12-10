@@ -7,77 +7,77 @@
 			<key>Percival_4_attack_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{62,404},{60,64}}</string>
+				<string>{{158,424},{69,64}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{14,0},{60,64}}</string>
+				<string>{{0,0},{69,64}}</string>
 				<key>sourceSize</key>
-				<string>{74,64}</string>
+				<string>{69,64}</string>
 			</dict>
 
 			<key>Percival_4_attack_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,225},{67,67}}</string>
+				<string>{{0,196},{88,67}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{33,0},{67,67}}</string>
+				<string>{{0,0},{88,67}}</string>
 				<key>sourceSize</key>
-				<string>{100,67}</string>
+				<string>{88,67}</string>
 			</dict>
 
 			<key>Percival_4_comboattack1_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{183,276},{48,66}}</string>
+				<string>{{186,0},{64,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{48,66}}</string>
+				<string>{{0,0},{64,66}}</string>
 				<key>sourceSize</key>
-				<string>{70,66}</string>
+				<string>{64,66}</string>
 			</dict>
 
 			<key>Percival_4_comboattack1_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,0},{85,64}}</string>
+				<string>{{0,70},{106,64}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{42,0},{85,64}}</string>
+				<string>{{0,0},{106,64}}</string>
 				<key>sourceSize</key>
-				<string>{127,64}</string>
+				<string>{106,64}</string>
 			</dict>
 
 			<key>Percival_4_comboattack1_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,135},{69,60}}</string>
+				<string>{{0,135},{95,60}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{15,0},{69,60}}</string>
+				<string>{{0,0},{95,60}}</string>
 				<key>sourceSize</key>
-				<string>{88,60}</string>
+				<string>{95,60}</string>
 			</dict>
 
 			<key>Percival_4_comboattack1_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{128,142},{41,45}}</string>
+				<string>{{289,139},{41,45}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -91,7 +91,7 @@
 			<key>Percival_4_comboattack2_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{232,177},{41,62}}</string>
+				<string>{{289,185},{41,62}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -99,69 +99,69 @@
 				<key>sourceColorRect</key>
 				<string>{{0,0},{41,62}}</string>
 				<key>sourceSize</key>
-				<string>{45,62}</string>
+				<string>{41,62}</string>
 			</dict>
 
 			<key>Percival_4_comboattack2_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{180,427},{50,69}}</string>
+				<string>{{164,212},{67,69}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{50,69}}</string>
+				<string>{{0,0},{67,69}}</string>
 				<key>sourceSize</key>
-				<string>{76,69}</string>
+				<string>{67,69}</string>
 			</dict>
 
 			<key>Percival_4_comboattack2_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,65},{80,69}}</string>
+				<string>{{0,0},{113,69}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{37,0},{80,69}}</string>
+				<string>{{0,0},{113,69}}</string>
 				<key>sourceSize</key>
-				<string>{117,69}</string>
+				<string>{113,69}</string>
 			</dict>
 
 			<key>Percival_4_comboattack2_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,404},{61,69}}</string>
+				<string>{{0,264},{86,69}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{24,0},{61,69}}</string>
+				<string>{{0,0},{86,69}}</string>
 				<key>sourceSize</key>
-				<string>{85,69}</string>
+				<string>{86,69}</string>
 			</dict>
 
 			<key>Percival_4_default_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{123,372},{56,76}}</string>
+				<string>{{0,334},{80,76}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{56,76}}</string>
+				<string>{{0,0},{80,76}}</string>
 				<key>sourceSize</key>
-				<string>{64,76}</string>
+				<string>{80,76}</string>
 			</dict>
 
 			<key>Percival_4_default_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{232,289},{37,70}}</string>
+				<string>{{326,332},{37,70}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -175,49 +175,49 @@
 			<key>Percival_4_default_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{239,0},{36,71}}</string>
+				<string>{{288,0},{47,71}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{36,71}}</string>
+				<string>{{0,0},{47,71}}</string>
 				<key>sourceSize</key>
-				<string>{40,71}</string>
+				<string>{47,71}</string>
 			</dict>
 
 			<key>Percival_4_defence.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{232,110},{42,66}}</string>
+				<string>{{228,424},{64,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{42,66}}</string>
+				<string>{{0,0},{64,72}}</string>
 				<key>sourceSize</key>
-				<string>{42,66}</string>
+				<string>{64,72}</string>
 			</dict>
 
-			<key>Percival_4_getdown_1.png</key>
+			<key>Percival_4_down_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{184,214},{41,60}}</string>
+				<string>{{164,282},{58,60}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{14,0},{41,60}}</string>
+				<string>{{0,0},{58,60}}</string>
 				<key>sourceSize</key>
-				<string>{55,60}</string>
+				<string>{58,60}</string>
 			</dict>
 
-			<key>Percival_4_getdown_2.png</key>
+			<key>Percival_4_down_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{232,289},{37,70}}</string>
+				<string>{{326,332},{37,70}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -228,24 +228,24 @@
 				<string>{37,70}</string>
 			</dict>
 
-			<key>Percival_4_getdown_3.png</key>
+			<key>Percival_4_down_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{70,142},{57,53}}</string>
+				<string>{{107,80},{57,53}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{4,0},{57,53}}</string>
+				<string>{{0,0},{57,53}}</string>
 				<key>sourceSize</key>
-				<string>{61,53}</string>
+				<string>{57,53}</string>
 			</dict>
 
-			<key>Percival_4_getdown_4.png</key>
+			<key>Percival_4_down_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,366},{66,37}}</string>
+				<string>{{89,212},{66,37}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -256,10 +256,10 @@
 				<string>{66,37}</string>
 			</dict>
 
-			<key>Percival_4_getdown_5.png</key>
+			<key>Percival_4_down_5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,196},{67,28}}</string>
+				<string>{{81,347},{67,28}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -273,21 +273,21 @@
 			<key>Percival_4_jump_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{184,141},{47,72}}</string>
+				<string>{{229,282},{58,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{47,72}}</string>
+				<string>{{0,0},{58,72}}</string>
 				<key>sourceSize</key>
-				<string>{50,72}</string>
+				<string>{58,72}</string>
 			</dict>
 
 			<key>Percival_4_jump_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{232,240},{38,48}}</string>
+				<string>{{293,412},{38,48}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -301,7 +301,7 @@
 			<key>Percival_4_jump_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{86,0},{46,43}}</string>
+				<string>{{171,156},{46,43}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -312,10 +312,24 @@
 				<string>{46,43}</string>
 			</dict>
 
+			<key>Percival_4_jump_4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{288,72},{42,66}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{0,0},{42,66}}</string>
+				<key>sourceSize</key>
+				<string>{42,66}</string>
+			</dict>
+
 			<key>Percival_4_jump_5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{123,449},{44,56}}</string>
+				<string>{{281,355},{44,56}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -329,7 +343,7 @@
 			<key>Percival_4_run_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{180,359},{51,67}}</string>
+				<string>{{229,355},{51,67}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -343,7 +357,7 @@
 			<key>Percival_4_run_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{231,427},{42,65}}</string>
+				<string>{{288,266},{42,65}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -357,7 +371,7 @@
 			<key>Percival_4_run_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{140,73},{51,67}}</string>
+				<string>{{236,67},{51,67}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -368,58 +382,86 @@
 				<string>{51,67}</string>
 			</dict>
 
-			<key>Percival_4_walk_1.png</key>
+			<key>Percival_4_stand_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{81,65},{58,76}}</string>
+				<string>{{114,0},{71,79}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{58,76}}</string>
+				<string>{{0,0},{71,79}}</string>
 				<key>sourceSize</key>
-				<string>{75,76}</string>
+				<string>{71,79}</string>
+			</dict>
+
+			<key>Percival_4_stand_2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{96,135},{74,76}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{0,0},{74,76}}</string>
+				<key>sourceSize</key>
+				<string>{74,76}</string>
+			</dict>
+
+			<key>Percival_4_walk_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{80,411},{77,76}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{0,0},{77,76}}</string>
+				<key>sourceSize</key>
+				<string>{77,76}</string>
 			</dict>
 
 			<key>Percival_4_walk_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,293},{66,72}}</string>
+				<string>{{171,80},{64,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{66,72}}</string>
+				<string>{{0,0},{64,75}}</string>
 				<key>sourceSize</key>
-				<string>{66,72}</string>
+				<string>{64,75}</string>
 			</dict>
 
 			<key>Percival_4_walk_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{68,196},{58,76}}</string>
+				<string>{{158,347},{70,76}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{58,76}}</string>
+				<string>{{0,0},{70,76}}</string>
 				<key>sourceSize</key>
-				<string>{76,76}</string>
+				<string>{70,76}</string>
 			</dict>
 
 			<key>Percival_4_walk_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{67,293},{59,78}}</string>
+				<string>{{0,411},{79,78}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{59,78}}</string>
+				<string>{{0,0},{79,78}}</string>
 				<key>sourceSize</key>
 				<string>{79,78}</string>
 			</dict>
@@ -427,71 +469,29 @@
 			<key>Percival_4_win_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{193,0},{45,109}}</string>
+				<string>{{87,264},{76,82}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{45,109}}</string>
+				<string>{{0,0},{76,82}}</string>
 				<key>sourceSize</key>
-				<string>{57,109}</string>
+				<string>{76,82}</string>
 			</dict>
 
 			<key>Percival_4_win_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{127,276},{55,82}}</string>
+				<string>{{232,156},{56,109}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{55,82}}</string>
+				<string>{{0,0},{56,109}}</string>
 				<key>sourceSize</key>
-				<string>{72,82}</string>
-			</dict>
-
-			<key>SNES - Knights of the Round - Percival Lvl4_28.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{140,0},{52,72}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{{0,0},{52,72}}</string>
-				<key>sourceSize</key>
-				<string>{64,72}</string>
-			</dict>
-
-			<key>SNES - Knights of the Round - Percival Lvl4_29.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{127,196},{56,79}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{{0,0},{56,79}}</string>
-				<key>sourceSize</key>
-				<string>{61,79}</string>
-			</dict>
-
-			<key>SNES - Knights of the Round - Percival Lvl4_30.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{123,372},{56,76}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{{0,0},{56,76}}</string>
-				<key>sourceSize</key>
-				<string>{66,76}</string>
+				<string>{56,109}</string>
 			</dict>
 
 		</dict>
