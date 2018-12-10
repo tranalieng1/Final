@@ -53,7 +53,7 @@ void Flame::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact & co
 {
 }
 
-void Flame::takeDamage(float dmg)
+void Flame::takeDamage(float dmg, int temp)
 {
 }
 

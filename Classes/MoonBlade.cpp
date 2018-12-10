@@ -45,7 +45,7 @@ bool MoonBlade::init()
 	_Physicbody->setCategoryBitmask(ENEMY_CATE);
 	_Physicbody->setCollisionBitmask(ENEMY_COLL);
 	_Physicbody->setContactTestBitmask(ENEMY_COLL);
-	this->setTag(TAG_SKILL_MB);
+	this->setTag(TAG_ATTACK_ARTHUR);
 
 	this->setVisible(false);
 	scheduleUpdate();
@@ -95,7 +95,7 @@ void MoonBlade::onContactBeganWith(GameObject * obj)
 	if (obj->getTag() == TAG_CREEP)
 	{
 		//obj->setVisible(false);
-		obj->takeDamage(_damage);
+		obj->takeDamage(_damage, TAG_ATTACK_ARTHUR );
 	}
 }
 
@@ -111,7 +111,7 @@ void MoonBlade::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact 
 {
 }
 
-void MoonBlade::takeDamage(float dmg)
+void MoonBlade::takeDamage(float dmg, int temp)
 {
 }
 

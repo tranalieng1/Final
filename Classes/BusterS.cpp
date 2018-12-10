@@ -200,7 +200,7 @@ void BusterS::SetState(_State state)
 			break;
 		case STATE_DEATH:
 			/*this->PlayAnimation(AnimationType::DEATH);*/
-			this->_playerPtr->addScore(_score);
+			this->_Arthurptr->addScore(_score);
 			this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
 			spawn = cocos2d::Spawn::create(CallFunc::create([=]()
 			{
@@ -231,7 +231,7 @@ void BusterS::SetState(_State state)
 	}
 }
 
-void BusterS::takeDamage(float dmg)
+void BusterS::takeDamage(float dmg, int temp)
 {
 	_Health = _Health - dmg;
 	_HealthBar->setPercent((_Health / _MaxHealth) * 100);
@@ -292,10 +292,10 @@ void BusterS::onFinishAnimation()
 
 void BusterS::scheduleUpdateAI(float delta)
 {
-	if (_playerPtr != nullptr)
+	if (_Arthurptr != nullptr)
 	{
 		
-		if (this->getPosition().x > _playerPtr->getPosition().x)
+		if (this->getPosition().x > _Arthurptr->getPosition().x)
 		{
 			this->setScaleX(2.0f);
 		}
@@ -312,7 +312,7 @@ void BusterS::scheduleUpdateAI(float delta)
 		{
 
 		
-			auto distanceX = std::abs(this->getPosition().x - _playerPtr->getPosition().x);
+			auto distanceX = std::abs(this->getPosition().x - _Arthurptr->getPosition().x);
 			if (distanceX < _EnemySprite->getContentSize().width * 0.5f + 100.0f)
 			{
 				//this->PlayAnimation(AnimationType::ATTACKING);
@@ -331,7 +331,7 @@ void BusterS::scheduleUpdateAI(float delta)
 void BusterS::chasePlayer()
 {
 	
-	auto targetPos = _playerPtr->getPosition();
+	auto targetPos = _Arthurptr->getPosition();
 	auto distance = targetPos - this->getPosition();
 	auto timeX = std::abs(distance.x / SPEED_X);
 	auto timeY = std::abs(distance.y / SPEED_Y);

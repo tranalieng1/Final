@@ -29,12 +29,13 @@ public:
 
 	virtual void SetState(_State state);
 	void setDeathLess(bool temp);
-	virtual void takeDamage(float dmg) override;
+	virtual void takeDamage(float dmg, int temp) override;
 	virtual void enalbeAI(Player* player);
 	virtual void scheduleUpdateAI(float delta);
 	virtual void update(float delta);
 protected:
-	Player* _playerPtr;
+	Player* _Arthurptr;
+	Player* _Percialptr;
 	cocos2d::Sprite *_EnemySprite;
 	cocos2d::Action *_WalkAction;
 	cocos2d::JumpBy *_Jump;

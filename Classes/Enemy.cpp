@@ -2,7 +2,7 @@
 #include "Defnition.h"
 Enemy::Enemy()
 {
-	_playerPtr = nullptr;
+	_Arthurptr = nullptr;
 	_timeUpdateAI = 0.0f;
 }
 
@@ -24,7 +24,7 @@ _State Enemy::GetState()
 
 
 
-void Enemy::takeDamage(float dmg)
+void Enemy::takeDamage(float dmg, int temp)
 {
 }
 
@@ -62,7 +62,7 @@ void Enemy::scheduleUpdateAI(float delta)
 
 void Enemy::enalbeAI(Player* player)
 {
-	this->_playerPtr = player;
+	this->_Arthurptr = player;
 	this->schedule(CC_SCHEDULE_SELECTOR(Enemy::scheduleUpdateAI), _timeUpdateAI, CC_REPEAT_FOREVER,0.0f);
 }
 

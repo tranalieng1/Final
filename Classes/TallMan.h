@@ -22,7 +22,7 @@ public:
 	void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) override;
 	void PlayAnimation(AnimationType type);
 	void SetState(_State state) override;
-	virtual void takeDamage(float dmg) override;
+	virtual void takeDamage(float dmg, int temp) override;
 	void onFinishAnimation();
 	static std::map<AnimationType, AnimationInfo> s_mapAnimations;
 	virtual void scheduleUpdateAI(float delta) override;

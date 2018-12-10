@@ -76,7 +76,7 @@ bool Arthur_1::init()
 	_PlayerSprite->setPosition(Vec2(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.0f));
 	this->setScale(2.0);
 
-	this->setTag(TAG_ARTHUR);
+	this->setTag(TAG_PLAYER);
 	//Setbody
 	_Physicbody = cocos2d::PhysicsBody::createBox(this->getContentSize());
 	this->setPhysicsBody(_Physicbody);
@@ -312,7 +312,7 @@ void Arthur_1::SetState(_State state)
 				hit->setScaleX(1.2f);//1.2
 				hit->setScaleY(2.0f);//2.0
 				this->addChild(hit);
-				hit->setTag(TAG_ATTACK_PLAYER);
+				hit->setTag(TAG_ATTACK_ARTHUR);
 				hit->setcatory(HIT_PLAYER_CATE);
 				hit->setcollisin(HIT_PLAYER_COLL);
 				hit->setDamage(_damage);
@@ -389,7 +389,7 @@ void Arthur_1::update(float delta)
 
 }
 
-void Arthur_1::takeDamage(float dmg)
+void Arthur_1::takeDamage(float dmg, int temp)
 {
 	_Health = _Health - dmg;
 	

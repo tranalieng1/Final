@@ -31,14 +31,28 @@ bool Hit::init()
 
 void Hit::onContactBeganWith(GameObject * obj)
 {
-	
-	if (obj->getTag() == TAG_CREEP&& this->getTag()== TAG_ATTACK_PLAYER)
+	///chem enemy
+	if (obj->getTag() == TAG_CREEP&& this->getTag()== TAG_ATTACK_ARTHUR)
 	{
-		obj->takeDamage(_damage);
+		obj->takeDamage(_damage, TAG_ATTACK_ARTHUR);
 	}
-	else if (obj->getTag() == TAG_ARTHUR && this->getTag() == TAG_ATTACK_ENEMY)
+	else if (obj->getTag() == TAG_CREEP && this->getTag() == TAG_ATTACK_PERCIVAL)
 	{
-		obj->takeDamage(_damage);
+		obj->takeDamage(_damage, TAG_ATTACK_PERCIVAL);
+	}
+	//// enemy chem player
+	else if (obj->getTag() == TAG_PLAYER && this->getTag() == TAG_ATTACK_ENEMY)
+	{
+		obj->takeDamage(_damage, TAG_ATTACK_ENEMY);
+	}
+	//player chem Secret
+	else if (obj->getTag() == TAG_SECRET && this->getTag() == TAG_ATTACK_ARTHUR)
+	{
+		obj->takeDamage(_damage, TAG_ATTACK_ARTHUR);
+	}
+	else if (obj->getTag() == TAG_SECRET && this->getTag() == TAG_ATTACK_PERCIVAL)
+	{
+		obj->takeDamage(_damage, TAG_ATTACK_PERCIVAL);
 	}
 	
 }
@@ -73,7 +87,7 @@ void Hit::setcollisin(int temp)
 	_physicsBody->setContactTestBitmask(temp);
 }
 
-void Hit::takeDamage(float dmg)
+void Hit::takeDamage(float dmg,int temp)
 {
 
 }

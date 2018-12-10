@@ -12,7 +12,7 @@ public:
 	virtual void onContactPostSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, const cocos2d::PhysicsContactPostSolve& solve) override;
 	virtual void onContactPreSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve) override;
 	virtual void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) override;
-	virtual void takeDamage(float dmg) override;
+	virtual void takeDamage(float dmg, int temp) override;
 	void active();
 	CREATE_FUNC(Flame);
 private:

@@ -77,7 +77,7 @@ bool Percival::init()
 	_PlayerSprite->setPosition(Vec2(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.0f));
 	this->setScale(2.0);
 
-	this->setTag(TAG_PERCIVAL);
+	this->setTag(TAG_PLAYER);
 
 	//Setbody
 	_Physicbody = cocos2d::PhysicsBody::createBox(this->getContentSize());
@@ -85,9 +85,9 @@ bool Percival::init()
 	_Physicbody->setDynamic(false);
 	_Physicbody->setGravityEnable(false);
 	_Physicbody->setRotationEnable(false);
-	_Physicbody->setCategoryBitmask(PERCIVAL_CATEGORY_BITMASK);
-	_Physicbody->setCollisionBitmask(PERCIVAL_COLLISION_AND_CONTACT_TEST_BITMASK);
-	_Physicbody->setContactTestBitmask(PERCIVAL_COLLISION_AND_CONTACT_TEST_BITMASK);
+	_Physicbody->setCategoryBitmask(PLAYER_CATE);
+	_Physicbody->setCollisionBitmask(PLAYER_COLL);
+	_Physicbody->setContactTestBitmask(PLAYER_COLL);
 
 
 
@@ -275,7 +275,7 @@ void Percival::SetState(_State state)
 				hit->setScaleX(1.2f);
 				hit->setScaleY(2.0f);
 				this->addChild(hit);
-				hit->setTag(TAG_ATTACK_PLAYER);
+				hit->setTag(TAG_ATTACK_PERCIVAL);
 				hit->setDamage(_damage);
 				hit->setPosition(Vec2(this->getContentSize().width, this->getContentSize().height * 0.5f - 10));
 				hit->runAction(Sequence::create(DelayTime::create(0.2f), CallFunc::create([=]()
@@ -346,7 +346,7 @@ void Percival::update(float delta)
 
 }
 
-void Percival::takeDamage(float dmg)
+void Percival::takeDamage(float dmg, int temp)
 {
 	_Health = _Health - dmg;
 	

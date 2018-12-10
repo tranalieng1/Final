@@ -12,6 +12,7 @@
 #include "UIGameScene.h"
 #include "HandlePhysics.h"
 #include "PoolMoonBlade.h"
+#include "Secret.h"
 //#define schedule_selector CC_SCHEDULE_SELECTOR
 USING_NS_CC;
 using namespace cocos2d;
@@ -70,7 +71,9 @@ bool GameScene_1::init()
 	
 	
 	//cam->setAnchorPoint(Vec2(campos.x*POSITION_BEGIN_WIDTH, campos.y*POSITION_BEGIN_HEIGHT));
-
+	_Arthur = Arthur_1::create();
+	_Arthur->setPosition(Vec2(4000, 100));
+	this->addChild(_Arthur, 2);
 	//Map
 
 	auto _tileMap = TMXTiledMap::create("Game_1_1.tmx");
@@ -132,19 +135,36 @@ bool GameScene_1::init()
 			pipe->setScale(SCALE_MAP);
 			
 		}
+		if (type == 3)//them secret
+		{
+			int x = objInfo.at("x").asInt();
+			int y = objInfo.at("y").asInt();
+			int width = objInfo.at("width").asInt();
+			int height = objInfo.at("height").asInt();
+			auto secret = Secret::create();
+			secret->setPlayer(_Arthur, _Arthur);
+			this->addChild(secret,1);
+			secret->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+			secret->setPosition(SCALE_MAP*(x + width * 0.5f), SCALE_MAP*(y + height * 0.5f));
+			//secret->setScale(SCALE_MAP);
+		}
 	}
 	//Physic handler
 	_physichandler = new HandlePhysics();
 	//UIScene
 	_UIGameScene = UIGameScene::create();
 	//_UIGameScene->setPosition(Vec2(visibleSize.width*0.0f,visibleSize.height*0.0f));
-	this->addChild(_UIGameScene,99);
-	//_Arthur
-	_Arthur = Arthur_1::create();
 
+	this->addChild(_UIGameScene,99);
+
+	//secret
+	//auto secret = Secret::create();
+	//secret->setPosition(Vec2(3000, 100));
+	//this->addChild(secret);
+	//_Arthur
+	
 	//_Arthur->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH,visibleSize.height*POSITION_BEGIN_HEIGHT));
-	_Arthur->setPosition(Vec2(3000,100));
-	this->addChild(_Arthur,2);
+	
 
 	//Percival
 	/*_Percival = Percival::create();

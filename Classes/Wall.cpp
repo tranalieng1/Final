@@ -33,6 +33,6 @@ bool Wall::init()
 
 }
 
-void Wall::takeDamage(float dmg)
+void Wall::takeDamage(float dmg, int temp)
 {
 }

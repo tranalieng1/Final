@@ -23,7 +23,7 @@ public:
 	virtual void onContactPreSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve) = 0;
 	virtual void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) = 0;
 
-	virtual void takeDamage(float dmg) override;
+	virtual void takeDamage(float dmg,int temp) override;
 
 
 protected:

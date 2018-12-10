@@ -57,9 +57,9 @@ bool BirdMan::init()
 	//Set physicbody
 	_physicsBody = PhysicsBody::createBox(Size(this->getContentSize().width -40, this->getContentSize().height +40));
 	this->setPhysicsBody(_physicsBody);
-	/*_physicsBody->setGravityEnable(false);
-	_physicsBody->setDynamic(false);
-	_physicsBody->setRotationEnable(false);*/
+	_physicsBody->setGravityEnable(false);
+	_physicsBody->setDynamic(true);
+	_physicsBody->setRotationEnable(false);
 	_physicsBody->setCategoryBitmask(ENEMY_CATE);
 	_physicsBody->setCollisionBitmask(ENEMY_COLL);
 	_physicsBody->setContactTestBitmask(ENEMY_COLL);
@@ -200,7 +200,7 @@ void BirdMan::SetState(_State state)
 			break;
 		case STATE_DEATH:
 			/*this->PlayAnimation(AnimationType::DEATH);*/
-			this->_playerPtr->addScore(_score);
+			this->_Arthurptr->addScore(_score);
 			this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
 			spawn = cocos2d::Spawn::create(CallFunc::create([=]()
 			{
@@ -231,7 +231,7 @@ void BirdMan::SetState(_State state)
 	}
 }
 
-void BirdMan::takeDamage(float dmg)
+void BirdMan::takeDamage(float dmg, int temp)
 {
 	_Health = _Health - dmg;
 	_HealthBar->setPercent((_Health / _MaxHealth) * 100);
@@ -292,10 +292,10 @@ void BirdMan::onFinishAnimation()
 
 void BirdMan::scheduleUpdateAI(float delta)
 {
-	if (_playerPtr != nullptr)
+	if (_Arthurptr != nullptr)
 	{
 		
-		if (this->getPosition().x > _playerPtr->getPosition().x)
+		if (this->getPosition().x > _Arthurptr->getPosition().x)
 		{
 			this->setScaleX(2.0f);
 		}
@@ -312,7 +312,7 @@ void BirdMan::scheduleUpdateAI(float delta)
 		{
 
 		
-			auto distanceX = std::abs(this->getPosition().x - _playerPtr->getPosition().x);
+			auto distanceX = std::abs(this->getPosition().x - _Arthurptr->getPosition().x);
 			if (distanceX < _EnemySprite->getContentSize().width * 0.5f + 100.0f)
 			{
 				//this->PlayAnimation(AnimationType::ATTACKING);
@@ -331,7 +331,7 @@ void BirdMan::scheduleUpdateAI(float delta)
 void BirdMan::chasePlayer()
 {
 	
-	auto targetPos = _playerPtr->getPosition();
+	auto targetPos = _Arthurptr->getPosition();
 	auto distance = targetPos - this->getPosition();
 	auto timeX = std::abs(distance.x / SPEED_X);
 	auto timeY = std::abs(distance.y / SPEED_Y);

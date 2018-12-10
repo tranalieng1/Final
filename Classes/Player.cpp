@@ -76,7 +76,7 @@ void Player::onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * 
 {
 }
 
-void Player::takeDamage(float dmg)
+void Player::takeDamage(float dmg, int temp)
 {
 }
 

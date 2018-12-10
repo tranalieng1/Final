@@ -18,7 +18,7 @@ public:
 	void setSize_body(cocos2d::Size temp);
 	void setcatory(int temp);
 	void setcollisin(int temp);
-	virtual void takeDamage(float dmg) override;
+	virtual void takeDamage(float dmg,int temp) override;
 	
 private:
 	cocos2d::PhysicsBody *_Physicbody;

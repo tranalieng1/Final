@@ -40,7 +40,7 @@ public:
 	virtual void SetState(_State state) override;
 	void update(float delta);
 
-	virtual void takeDamage(float dmg) override;
+	virtual void takeDamage(float dmg, int temp) override;
 	/*void processInput();
 	void releaseInput();*/
 private:

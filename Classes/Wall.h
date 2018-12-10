@@ -14,7 +14,7 @@ public:
  void onContactPreSolveWith(GameObject* obj, cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve) override;
  void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) override;
  bool init() override;
- virtual void takeDamage(float dmg) override;
+ virtual void takeDamage(float dmg, int temp) override;
  CREATE_FUNC(Wall);
 private:
 
