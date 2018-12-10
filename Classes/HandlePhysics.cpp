@@ -83,6 +83,7 @@ bool HandlePhysics::onContactPreSolve(cocos2d::PhysicsContact & contact, cocos2d
 		obj1->onContactPreSolveWith(obj2, contact, solve);
 		obj2->onContactPreSolveWith(obj1, contact, solve);
 	}
+	//solve.ignore();
 	return true;
 }
 

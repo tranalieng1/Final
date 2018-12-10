@@ -42,16 +42,16 @@ void Enemy::setDeathLess(bool temp)
 {
 	if (temp == true)
 	{
-		this->getPhysicsBody()->setCategoryBitmask(ARTHUR_CATEGORY_BITMASK);
-		this->getPhysicsBody()->setCollisionBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
-		this->getPhysicsBody()->setContactTestBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
+		//this->getPhysicsBody()->setCategoryBitmask(PLAYER_CATE);
+		this->getPhysicsBody()->setCollisionBitmask(0);
+		this->getPhysicsBody()->setContactTestBitmask(0);
 	
 	}
 	else
 	{
-		this->getPhysicsBody()->setCategoryBitmask(FATMAN_CATEGORY_BITMASK);
-		this->getPhysicsBody()->setCollisionBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
-		this->getPhysicsBody()->setContactTestBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+		//this->getPhysicsBody()->setCategoryBitmask(ENEMY_CATE);
+		this->getPhysicsBody()->setCollisionBitmask(ENEMY_COLL);
+		this->getPhysicsBody()->setContactTestBitmask(ENEMY_COLL);
 	}
 }
 

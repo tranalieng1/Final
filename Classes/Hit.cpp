@@ -20,9 +20,9 @@ bool Hit::init()
 	_Physicbody->setDynamic(false);
 	_Physicbody->setGravityEnable(false);
 	_Physicbody->setRotationEnable(false);
-	_Physicbody->setCategoryBitmask(ARTHUR_CATEGORY_BITMASK);
-	_Physicbody->setCollisionBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
-	_Physicbody->setContactTestBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
+	_Physicbody->setCategoryBitmask(PLAYER_CATE);
+	_Physicbody->setCollisionBitmask(PLAYER_COLL);
+	_Physicbody->setContactTestBitmask(PLAYER_COLL);
 
 	_Physicbody2 = _Physicbody;
 
@@ -31,6 +31,7 @@ bool Hit::init()
 
 void Hit::onContactBeganWith(GameObject * obj)
 {
+	
 	if (obj->getTag() == TAG_CREEP&& this->getTag()== TAG_ATTACK_PLAYER)
 	{
 		obj->takeDamage(_damage);
@@ -39,6 +40,7 @@ void Hit::onContactBeganWith(GameObject * obj)
 	{
 		obj->takeDamage(_damage);
 	}
+	
 }
 
 void Hit::onContactPostSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, const cocos2d::PhysicsContactPostSolve & solve)
@@ -48,7 +50,7 @@ void Hit::onContactPostSolveWith(GameObject * obj, cocos2d::PhysicsContact & con
 
 void Hit::onContactPreSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, cocos2d::PhysicsContactPreSolve & solve)
 {
-
+	solve.ignore();
 }
 
 void Hit::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact & contact)

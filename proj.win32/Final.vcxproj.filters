@@ -58,6 +58,9 @@
     <Filter Include="src\CreditScene">
       <UniqueIdentifier>{572cba49-e8dd-49a9-9784-eb4bb4465678}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Secret">
+      <UniqueIdentifier>{96358db7-1155-4a9d-96a3-79f3efc09fba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -149,6 +152,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\CreditScene.cpp">
       <Filter>src\CreditScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Secret.cpp">
+      <Filter>src\Secret</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -244,6 +250,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\CreditScene.h">
       <Filter>src\CreditScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Secret.h">
+      <Filter>src\Secret</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

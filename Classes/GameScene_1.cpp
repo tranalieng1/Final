@@ -95,15 +95,18 @@ bool GameScene_1::init()
 
 			auto wall = Wall::create();
 			this->addChild(wall);
-			wall->setPosition(x, y);
+			wall->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+			wall->setPosition(SCALE_MAP*(x+width*0.5f), SCALE_MAP*(y+height*0.5f));
 
-			PhysicsBody* tilePhysics = PhysicsBody::createBox(Size(width, height), PhysicsMaterial(100.0f, 0.0f, 0.0f));
+			PhysicsBody* tilePhysics = PhysicsBody::createBox(Size(SCALE_MAP*width, SCALE_MAP*height), PhysicsMaterial(100.0f, 0.0f, 0.0f));
 			tilePhysics->setDynamic(false);  
 			tilePhysics->setGravityEnable(false);
 			tilePhysics->setRotationEnable(false);
-			tilePhysics->setCategoryBitmask(WALL_CATEGORY_BITMASK);
-			tilePhysics->setCollisionBitmask(WALL_COLLISION_AND_CONTACT_TEST_BIT_MASK);
-			tilePhysics->setContactTestBitmask(WALL_COLLISION_AND_CONTACT_TEST_BIT_MASK);
+		
+			
+			tilePhysics->setCategoryBitmask(WALL_CATE);
+			tilePhysics->setCollisionBitmask(WALL_COLL);
+			tilePhysics->setContactTestBitmask(WALL_COLL);
 			wall->setPhysicsBody(tilePhysics);
 
 			//auto node = Node::create();
@@ -116,18 +119,31 @@ bool GameScene_1::init()
 			//tilePhysics->setRotationEnable(false);
 			//node->setPhysicsBody(tilePhysics);
 		}
+		if (type == 2)
+		{
+			int x = objInfo.at("x").asInt();
+			int y = objInfo.at("y").asInt();
+			int width = objInfo.at("width").asInt();
+			int height = objInfo.at("height").asInt();
+			auto pipe = Sprite::create("Pipe.png");
+			this->addChild(pipe, 10);
+			pipe->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+			pipe->setPosition(SCALE_MAP*(x + width * 0.5f), SCALE_MAP*(y + height * 0.5f));
+			pipe->setScale(SCALE_MAP);
+			
+		}
 	}
 	//Physic handler
 	_physichandler = new HandlePhysics();
 	//UIScene
 	_UIGameScene = UIGameScene::create();
 	//_UIGameScene->setPosition(Vec2(visibleSize.width*0.0f,visibleSize.height*0.0f));
-	this->addChild(_UIGameScene);
+	this->addChild(_UIGameScene,99);
 	//_Arthur
 	_Arthur = Arthur_1::create();
 
-	_Arthur->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH,visibleSize.height*POSITION_BEGIN_HEIGHT));
-	//_Arthur->setPosition(Vec2(MAP_WIDTH-1000,100));
+	//_Arthur->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH,visibleSize.height*POSITION_BEGIN_HEIGHT));
+	_Arthur->setPosition(Vec2(3000,100));
 	this->addChild(_Arthur,2);
 
 	//Percival
@@ -307,11 +323,11 @@ void GameScene_1::update(float dt)
 	{
 		_Arthur->setPositionX(campos.x-400+_Arthur->getContentSize().width);
 	}
-	if (_Arthur->getPositionY() >= 220)
+	/*if (_Arthur->getPositionY() >= 220)
 	{
 		_Arthur->setPositionY(220);
 			
-	}
+	}*/
 	/*if (_Arthur->getPositionX() >= campos.x - 400 + _Arthur->getContentSize().width)
 	{
 		_Arthur->setPositionX(campos.x - 400 + _Arthur->getContentSize().width);

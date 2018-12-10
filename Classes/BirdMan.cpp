@@ -57,12 +57,12 @@ bool BirdMan::init()
 	//Set physicbody
 	_physicsBody = PhysicsBody::createBox(Size(this->getContentSize().width -40, this->getContentSize().height +40));
 	this->setPhysicsBody(_physicsBody);
-	_physicsBody->setGravityEnable(false);
+	/*_physicsBody->setGravityEnable(false);
 	_physicsBody->setDynamic(false);
-	_physicsBody->setRotationEnable(false);
-	_physicsBody->setCategoryBitmask(FATMAN_CATEGORY_BITMASK);
-	_physicsBody->setCollisionBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
-	_physicsBody->setContactTestBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+	_physicsBody->setRotationEnable(false);*/
+	_physicsBody->setCategoryBitmask(ENEMY_CATE);
+	_physicsBody->setCollisionBitmask(ENEMY_COLL);
+	_physicsBody->setContactTestBitmask(ENEMY_COLL);
 	this->setTag(TAG_CREEP);
 	//Set HPbar
 	_HealthBar = ui::LoadingBar::create("hp_bar.png");
@@ -172,8 +172,8 @@ void BirdMan::SetState(_State state)
 				hit->setScaleX(1.0f);
 				hit->setTag(TAG_ATTACK_ENEMY);
 				hit->setDamage(_damage);
-				hit->setcollisin(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
-				hit->setcatory(FATMAN_CATEGORY_BITMASK);
+				hit->setcollisin(ENEMY_COLL);
+				hit->setcatory(ENEMY_CATE);
 				hit->setPosition(Vec2(-this->getContentSize().width +30, this->getContentSize().height * 0.5f - 10));
 				hit->runAction(Sequence::create(DelayTime::create(0.2f), CallFunc::create([=]()
 				{

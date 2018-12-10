@@ -80,12 +80,21 @@ bool Arthur_1::init()
 	//Setbody
 	_Physicbody = cocos2d::PhysicsBody::createBox(this->getContentSize());
 	this->setPhysicsBody(_Physicbody);
+
+
+
+
 	_Physicbody->setDynamic(true);
 	_Physicbody->setGravityEnable(false);
 	_Physicbody->setRotationEnable(false);
-	_Physicbody->setCategoryBitmask(ARTHUR_CATEGORY_BITMASK);
-	_Physicbody->setCollisionBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
-	_Physicbody->setContactTestBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
+
+
+
+	int a = PLAYER_CATE;
+
+	_Physicbody->setCategoryBitmask(PLAYER_CATE);
+	_Physicbody->setCollisionBitmask(PLAYER_COLL);
+	_Physicbody->setContactTestBitmask(PLAYER_COLL);
 
 
 
@@ -300,10 +309,12 @@ void Arthur_1::SetState(_State state)
 			_hit->setcatory(ARTHUR_CATEGORY_BITMASK);*/
 			{
 				auto hit = Hit::create();
-				hit->setScaleX(1.2f);
-				hit->setScaleY(2.0f);
+				hit->setScaleX(1.2f);//1.2
+				hit->setScaleY(2.0f);//2.0
 				this->addChild(hit);
 				hit->setTag(TAG_ATTACK_PLAYER);
+				hit->setcatory(HIT_PLAYER_CATE);
+				hit->setcollisin(HIT_PLAYER_COLL);
 				hit->setDamage(_damage);
 				hit->setPosition(Vec2(this->getContentSize().width, this->getContentSize().height * 0.5f - 10));
 				hit->runAction(Sequence::create(DelayTime::create(0.2f), CallFunc::create([=]()

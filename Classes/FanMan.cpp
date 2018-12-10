@@ -58,11 +58,12 @@ bool FanMan::init()
 	_physicsBody = PhysicsBody::createBox(this->getContentSize());
 	this->setPhysicsBody(_physicsBody);
 	_physicsBody->setGravityEnable(false);
-	_physicsBody->setDynamic(false);
+	_physicsBody->setDynamic(true);
 	_physicsBody->setRotationEnable(false);
-	_physicsBody->setCategoryBitmask(FATMAN_CATEGORY_BITMASK);
-	_physicsBody->setCollisionBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
-	_physicsBody->setContactTestBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+	
+	_physicsBody->setCategoryBitmask(ENEMY_CATE);
+	_physicsBody->setCollisionBitmask(ENEMY_COLL);
+	_physicsBody->setContactTestBitmask(ENEMY_COLL);
 	this->setTag(TAG_CREEP);
 	//Set HPbar
 	_HealthBar = ui::LoadingBar::create("hp_bar.png");
@@ -176,8 +177,8 @@ void FanMan::SetState(_State state)
 				hit->setScaleX(2.0f);
 				hit->setTag(TAG_ATTACK_ENEMY);
 				hit->setDamage(_damage);
-				hit->setcollisin(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
-				hit->setcatory(FATMAN_CATEGORY_BITMASK);
+				hit->setcollisin(HIT_ENEMY_COLL);
+				hit->setcatory(HIT_ENEMY_CATE);
 				hit->setPosition(Vec2(-2*this->getContentSize().width, this->getContentSize().height * 0.5f - 10));
 				hit->runAction(Sequence::create(DelayTime::create(0.2f), CallFunc::create([=]()
 				{

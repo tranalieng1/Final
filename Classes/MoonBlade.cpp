@@ -42,9 +42,9 @@ bool MoonBlade::init()
 	_Physicbody->setDynamic(false);
 	_Physicbody->setGravityEnable(false);
 	_Physicbody->setRotationEnable(false);
-	_Physicbody->setCategoryBitmask(FATMAN_CATEGORY_BITMASK);
-	_Physicbody->setCollisionBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
-	_Physicbody->setContactTestBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+	_Physicbody->setCategoryBitmask(ENEMY_CATE);
+	_Physicbody->setCollisionBitmask(ENEMY_COLL);
+	_Physicbody->setContactTestBitmask(ENEMY_COLL);
 	this->setTag(TAG_SKILL_MB);
 
 	this->setVisible(false);
@@ -65,9 +65,9 @@ void MoonBlade::flySkill()
 
 	this->setVisible(true);
 	this->scheduleUpdate();
-	_Physicbody->setCategoryBitmask(ARTHUR_CATEGORY_BITMASK);
-	_Physicbody->setCollisionBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
-	_Physicbody->setContactTestBitmask(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
+	_Physicbody->setCategoryBitmask(PLAYER_CATE);
+	_Physicbody->setCollisionBitmask(PLAYER_COLL);
+	_Physicbody->setContactTestBitmask(PLAYER_COLL);
 	
 	_MBSprite1->setPosition(Vec2(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.0f));
 	_MBSprite2->setPosition(Vec2(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.0f));
@@ -124,9 +124,9 @@ void MoonBlade::update(float delta)
 {
 	if (_willBeDestroy)
 	{
-		_Physicbody->setCategoryBitmask(FATMAN_CATEGORY_BITMASK);
-		_Physicbody->setCollisionBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
-		_Physicbody->setContactTestBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+		_Physicbody->setCategoryBitmask(ENEMY_CATE);
+		_Physicbody->setCollisionBitmask(ENEMY_COLL);
+		_Physicbody->setContactTestBitmask(ENEMY_COLL);
 		this->setVisible(false);
 		if (_onHitDestroyCallback)
 		{

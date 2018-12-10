@@ -65,9 +65,9 @@ void Flame::active()
 	_Physicbody->setDynamic(false);
 	_Physicbody->setGravityEnable(false);
 	_Physicbody->setRotationEnable(false);
-	_Physicbody->setCategoryBitmask(FATMAN_CATEGORY_BITMASK);
-	_Physicbody->setCollisionBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
-	_Physicbody->setContactTestBitmask(FATMAN_COLLISION_AND_CONTACT_TEST_BITMASK);
+	_Physicbody->setCategoryBitmask(ENEMY_CATE);
+	_Physicbody->setCollisionBitmask(ENEMY_COLL);
+	_Physicbody->setContactTestBitmask(ENEMY_COLL);
 
 
 	this->setVisible(true);
