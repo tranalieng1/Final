@@ -1,6 +1,7 @@
 #ifndef _PLASH_SCENE_H_
 #define	_PLASH_SCENE_H_
 #include "ui/CocosGUI.h"
+#include "ui/UIWidget.h"
 #include "cocos2d.h"
 class SplashScene : public cocos2d::Scene
 {

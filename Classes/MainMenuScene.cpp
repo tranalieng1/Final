@@ -2,7 +2,7 @@
 #include "GameOptions.h"
 #include "SimpleAudioEngine.h"
 #include "GameScene_1.h"
-
+#include "AudioEngine.h"
 USING_NS_CC;
 
 Scene* MainMenuScene::createScene()
@@ -33,7 +33,9 @@ bool MainMenuScene::init()
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	Size winSize = Director::getInstance()->getWinSize();
 	// add BackGround
-	auto bgMenu = Sprite::create("bgMenu.jpg");
+	experimental::AudioEngine::stopAll();
+	MenuMusic = experimental::AudioEngine::play2d("images/menu.mp3");
+	auto bgMenu = Sprite::create("images/bgMenu.jpg");
 	//bgMenu->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 	this->addChild(bgMenu);
 	bgMenu->setAnchorPoint(Vec2::ANCHOR_MIDDLE);

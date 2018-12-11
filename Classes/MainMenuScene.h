@@ -6,7 +6,7 @@
 class MainMenuScene : public cocos2d::Scene
 {
 public:
-
+	int MenuMusic;
 	static cocos2d::Scene* createScene();
 	void menuCloseCallback(cocos2d::Ref* pSender);
 	void GoToGameScene(cocos2d::Ref* pSender);

@@ -5,7 +5,7 @@ class GameOptions : public cocos2d::Layer
 {
 public:
 	static cocos2d::Scene* createScene();
-
+	int				_musicOptions;
 	virtual bool init();
 #define TRANSITTION_TIME 0.5
 	void onTouchBegan(Ref *senser, cocos2d::ui::Widget::TouchEventType type);

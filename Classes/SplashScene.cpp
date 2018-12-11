@@ -1,4 +1,5 @@
 ﻿#include "SimpleAudioEngine.h"
+#include "AudioEngine.h"
 #include "SplashScene.h"
 #include "ui/CocosGUI.h"
 #include "MainMenuScene.h"
@@ -30,8 +31,20 @@ bool SplashScene::init()
 	{
 		return false;
 	}
-	auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
-	audio->playBackgroundMusic("Sound/strat16.mp3", false);
+	//Load music
+	experimental::AudioEngine::preload("Sound/splash.mp3");
+	experimental::AudioEngine::preload("Sound/menu.mp3");
+	experimental::AudioEngine::preload("Sound/option.mp3");
+	experimental::AudioEngine::preload("Sound/chemm.mp3");
+	experimental::AudioEngine::preload("Sound/credit.mp3");
+	experimental::AudioEngine::preload("Sound/splash.mp3");
+	experimental::AudioEngine::preload("Sound/nhacgame.mp3");
+	experimental::AudioEngine::preload("Sound/no.mp3");
+	experimental::AudioEngine::preload("Sound/jump.mp3");
+	//sound Spl
+	experimental::AudioEngine::play2d("Sound/splash.mp3");
+	/*auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+	audio->playBackgroundMusic("Sound/strat16.mp3", false);*/
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl1.plist", "ArthurLvl1.png");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Skill/Flame.plist", "Skill/Flame.png");
 	/*CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("Sound/sfx_die.wav");

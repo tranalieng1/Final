@@ -19,7 +19,7 @@ public:
 	~GameScene_1();
 	static cocos2d::Scene *createScene();
 	virtual bool init();
-
+	int				_musicGame;
 	void menuCloseCallback(cocos2d::Ref* pSender);
 	void onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event* event);
 	void onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event* event);

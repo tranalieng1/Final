@@ -2,6 +2,7 @@
 #include "cocos2d.h"
 #include"Defnition.h"
 #include "SKeyboard.h"
+#include "AudioEngine.h"
 USING_NS_CC;
 
 
@@ -211,6 +212,7 @@ void Arthur_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event *
 	}
 	else if (kc == EventKeyboard::KeyCode::KEY_L)
 	{
+		int _jump = experimental::AudioEngine::play2d("Sound/jump.mp3");
 		SetState(_State::STATE_JUMPING);
 	}
 
@@ -308,6 +310,7 @@ void Arthur_1::SetState(_State state)
 			/*_hit->setcollisin(ARTHUR_COLLISION_AND_CONTACT_TEST_BITMASK);
 			_hit->setcatory(ARTHUR_CATEGORY_BITMASK);*/
 			{
+				int _chem = experimental::AudioEngine::play2d("Sound/chemm.mp3");
 				auto hit = Hit::create();
 				hit->setScaleX(1.2f);//1.2
 				hit->setScaleY(2.0f);//2.0

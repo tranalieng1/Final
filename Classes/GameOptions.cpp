@@ -3,6 +3,7 @@
 #include"GameOptions.h"
 #include "SimpleAudioEngine.h"
 #include "ui/CocosGUI.h"
+#include "AudioEngine.h"
 USING_NS_CC;
 using namespace cocos2d;
 //#define schedule_selector
@@ -23,11 +24,13 @@ bool GameOptions::init()
 	{
 		return false;
 	}
+	experimental::AudioEngine::stopAll();
+	_musicOptions = experimental::AudioEngine::play2d("Sound/option.mp3");
 	Size winSize = Director::getInstance()->getWinSize();
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	auto bgOptions = Sprite::create("bgOptions.jpg");
+	auto bgOptions = Sprite::create("images/bgOp.jpg");
 	//bgMenu->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 	this->addChild(bgOptions);
 	bgOptions->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
@@ -74,6 +77,7 @@ bool GameOptions::init()
 	playbutton->setPosition(Vec2(visibleSize.width*0.5, visibleSize.height*0.5));
 	auto menu = Menu::create(playbutton, NULL);
 	menu->setPosition(Vec2::ZERO);
+	menu->setScale(0.35f);
 	this->addChild(menu, 2);
 	// add a "close" icon to exit the progress. it's an autorelease object
 

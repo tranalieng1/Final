@@ -13,6 +13,7 @@
 #include "HandlePhysics.h"
 #include "PoolMoonBlade.h"
 #include "Secret.h"
+#include "AudioEngine.h"
 //#define schedule_selector CC_SCHEDULE_SELECTOR
 USING_NS_CC;
 using namespace cocos2d;
@@ -59,7 +60,8 @@ bool GameScene_1::init()
 		return false;
 	}
 
-	
+	experimental::AudioEngine::stopAll();
+	_musicGame = experimental::AudioEngine::play2d("Sound/nhacgame.mp3", true, 3.0f);
 	
 	
 	

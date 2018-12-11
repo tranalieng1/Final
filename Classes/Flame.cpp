@@ -1,5 +1,6 @@
 #include "Flame.h"
 #include "Defnition.h"
+#include "AudioEngine.h"
 USING_NS_CC;
 Flame::Flame()
 {
@@ -15,6 +16,7 @@ bool Flame::init()
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Skill/Flame.plist", "Skill/Flame.png");
 	if (!GameObject::init())
 		return false;
+
 	_Flame1 = Sprite::createWithSpriteFrameName("Flame_1.png");
 	_Flame2 = Sprite::createWithSpriteFrameName("Flame_1.png");
 	_Flame1->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
@@ -99,6 +101,7 @@ void Flame::playanimation()
 
 	for (int i = 1; i <= 14; i++)
 	{
+		int Flame = experimental::AudioEngine::play2d("Sound/no.mp3", false, 0.1f);
 		std::string name = StringUtils::format("Flame_%d.png", i);
 		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
 		animation2->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
