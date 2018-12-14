@@ -13,6 +13,7 @@
 #include "HandlePhysics.h"
 #include "PoolMoonBlade.h"
 #include "Secret.h"
+#include "EndScene.h"
 #include "AudioEngine.h"
 //#define schedule_selector CC_SCHEDULE_SELECTOR
 USING_NS_CC;
@@ -59,9 +60,9 @@ bool GameScene_1::init()
 	{
 		return false;
 	}
-
 	experimental::AudioEngine::stopAll();
 	_musicGame = experimental::AudioEngine::play2d("Sound/nhacgame.mp3", true, 3.0f);
+	
 	
 	
 	
@@ -74,8 +75,12 @@ bool GameScene_1::init()
 	
 	//cam->setAnchorPoint(Vec2(campos.x*POSITION_BEGIN_WIDTH, campos.y*POSITION_BEGIN_HEIGHT));
 	_Arthur = Arthur_1::create();
-	_Arthur->setPosition(Vec2(4000, 100));
+	//_Arthur->setPosition(Vec2(4000, 100));
+	_Arthur->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH,visibleSize.height*POSITION_BEGIN_HEIGHT));
 	this->addChild(_Arthur, 2);
+	_Percival = Percival::create();
+	_Percival->setPosition(Vec2(4000 + 100, 100));
+	this->addChild(_Percival, 2);
 	//Map
 
 	auto _tileMap = TMXTiledMap::create("Game_1_1.tmx");
@@ -150,6 +155,23 @@ bool GameScene_1::init()
 			secret->setPosition(SCALE_MAP*(x + width * 0.5f), SCALE_MAP*(y + height * 0.5f));
 			//secret->setScale(SCALE_MAP);
 		}
+		if (type == 10)//them secret
+		{
+			int x = objInfo.at("x").asInt();
+			int y = objInfo.at("y").asInt();
+			int width = objInfo.at("width").asInt();
+			int height = objInfo.at("height").asInt();
+
+			
+
+			auto secret = FanMan::create();
+			secret->enalbeAI(_Arthur);
+			//FanMan->setPlayer(_Arthur, _Arthur);
+			this->addChild(secret, 1);
+			secret->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+			secret->setPosition(SCALE_MAP*(x + width * 0.5f), SCALE_MAP*(y + height * 0.5f));
+			//secret->setScale(SCALE_MAP);
+		}
 	}
 	//Physic handler
 	_physichandler = new HandlePhysics();
@@ -165,7 +187,7 @@ bool GameScene_1::init()
 	//this->addChild(secret);
 	//_Arthur
 	
-	//_Arthur->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH,visibleSize.height*POSITION_BEGIN_HEIGHT));
+
 	
 
 	//Percival
@@ -212,12 +234,12 @@ bool GameScene_1::init()
 
 
 	//Set skill
-	_MBlade = MoonBlade::create();
+	//_MBlade = MoonBlade::create();
+	//_MBlade->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY()));
+	//this->addChild(_MBlade);
+	/*_FlameSkill = Flame::create();
 	_MBlade->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY()));
-	this->addChild(_MBlade);
-	_FlameSkill = Flame::create();
-	_MBlade->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY()));
-	this->addChild(_FlameSkill);
+	this->addChild(_FlameSkill);*/
 	/*_MBlade2 = MoonBlade::create();
 	_MBlade2->setPosition(Vec2(_Percival->getPositionX(), _Percival->getPositionY()));
 	this->addChild(_MBlade2);
@@ -279,25 +301,39 @@ void GameScene_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Even
 	
 	if (kc == EventKeyboard::KeyCode::KEY_J)
 	{
-		if (_Arthur->getScaleX() > 0)
+		/*if (_Arthur->getScaleX() > 0)
 		{
 			_MBlade->setScaleX(2.7f);
 		}
 		else
 		{
 			_MBlade->setScaleX(-2.7f);
-		}
+		}*/
 		/*_MBlade->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY()));
 		_MBlade->flySkill();*/
 		auto mb = _poolMoonBlade->createMB();
+		
 		if (mb)
 		{
-			this->addChild(mb);
-			mb->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY()));
-			mb->flySkill();
+
+			if (_Arthur->addMana(mb->getMana()))
+			{
+				if (_Arthur->getScaleX() > 0)
+				{
+					mb->setScaleX(2.7f);
+				}
+				else
+				{
+					mb->setScaleX(-2.7f);
+				}
+				this->addChild(mb);
+					mb->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY()));
+				mb->flySkill();
+			}
 		}
-		_FlameSkill->setPosition(_Arthur->getPosition());
-		_FlameSkill->active();
+		
+		/*_FlameSkill->setPosition(_Arthur->getPosition());
+		_FlameSkill->active();*/
 
 		/*if (_Percival->getScaleX() > 0)
 		{
@@ -309,6 +345,10 @@ void GameScene_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Even
 		}
 		_MBlade2->setPosition(Vec2(_Percival->getPositionX(), _Percival->getPositionY()));
 		_MBlade2->flySkill();*/
+	}
+	else if (kc == EventKeyboard::KeyCode::KEY_9)
+	{
+		this->goToEndScene();
 	}
 
 
@@ -433,6 +473,12 @@ void GameScene_1::update(float dt)
 									,(float)_nodePosPlayer->getPositionX(), (float)_nodePosPlayer->getPositionY());*/
 	//cocos2d::log("%d ", _state);
 
+}
+
+void GameScene_1::goToEndScene()
+{
+	auto scene = EndScene::createScene();
+	Director::getInstance()->replaceScene(/*TransitionFade::create(1.5, */scene);
 }
 
 void GameScene_1::SetPhysicsWorld(cocos2d::PhysicsWorld * world)

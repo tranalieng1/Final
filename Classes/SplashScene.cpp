@@ -41,6 +41,7 @@ bool SplashScene::init()
 	experimental::AudioEngine::preload("Sound/nhacgame.mp3");
 	experimental::AudioEngine::preload("Sound/no.mp3");
 	experimental::AudioEngine::preload("Sound/jump.mp3");
+	experimental::AudioEngine::preload("Sound/creadit.mp3");
 	//sound Spl
 	experimental::AudioEngine::play2d("Sound/splash.mp3");
 	/*auto audio = CocosDenshion::SimpleAudioEngine::getInstance();

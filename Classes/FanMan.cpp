@@ -12,7 +12,7 @@ USING_NS_CC;
 std::map<AnimationType, AnimationInfo> FanMan::s_mapAnimations =
 {
 	{AnimationType::WALKING, AnimationInfo(4, "FatMan_walk_%d.png", 1.0f / 12.0f, CC_REPEAT_FOREVER)},
-	{ AnimationType::ATTACKING, AnimationInfo(2, "FatMan_attack1_%d.png", 1.0f / 12.0f, 1) },
+	{ AnimationType::ATTACKING, AnimationInfo(2, "FatMan_attack1_%d.png", 1.0f / 4.0f, 1) },
 	{AnimationType::HITTED,AnimationInfo(1,"FatMan_stand_%d.png", 1.0f / 4.0f,2)},
 	{AnimationType::DEATH,AnimationInfo(4,"FatMan_fall_%d.png",1.0f/4.0f,1)},
 	{AnimationType::FALLING,AnimationInfo(4,"FatMan_fall_%d.png",1.0f / 4.0f,1)},
@@ -32,7 +32,7 @@ FanMan::FanMan() : Enemy()
 	_state.push_back(_State::STATE_STANDING);
 	_state.push_back(_State::STATE_STANDING);
 	_timeUpdateAI = TIME_UPDATE_AI;
-	_score = 3000.f;
+	_score = 200.f;
 	_damage = 20;
 }
 
@@ -169,8 +169,7 @@ void FanMan::SetState(_State state)
 		switch (state)
 		{
 		case STATE_ATTACKING:
-			
-			
+			this->runAction(Sequence::create(DelayTime::create(0.4f), CallFunc::create([=]()
 			{
 				auto hit = Hit::create();
 				this->addChild(hit);
@@ -179,14 +178,20 @@ void FanMan::SetState(_State state)
 				hit->setDamage(_damage);
 				hit->setcollisin(HIT_ENEMY_COLL);
 				hit->setcatory(HIT_ENEMY_CATE);
-				hit->setPosition(Vec2(-2*this->getContentSize().width, this->getContentSize().height * 0.5f - 10));
+				hit->setPosition(Vec2(-2 * this->getContentSize().width, this->getContentSize().height * 0.5f - 10));
 				hit->runAction(Sequence::create(DelayTime::create(0.2f), CallFunc::create([=]()
 				{
 					hit->removeFromParent();
 				}), nullptr));
-			}
+			}), NULL));
+			
 			this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
-			this->PlayAnimation(AnimationType::ATTACKING);
+			//this->SetState(STATE_STANDING);
+			/*this->runAction(Sequence::create(DelayTime::create(0.5f), CallFunc::create([=]()
+			{*/
+				this->PlayAnimation(AnimationType::ATTACKING);
+		/*	}), NULL));*/
+			//this->PlayAnimation(AnimationType::ATTACKING);
 			break;
 		case STATE_JUMPING:
 			break;
@@ -327,7 +332,6 @@ void FanMan::scheduleUpdateAI(float delta)
 			{
 				//this->PlayAnimation(AnimationType::ATTACKING);
 				
-
 				this->SetState(STATE_ATTACKING);
 			}
 			else

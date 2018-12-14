@@ -2,9 +2,10 @@
 #include "Defnition.h"
 #include "AudioEngine.h"
 USING_NS_CC;
-Flame::Flame()
+Flame::Flame(): _willBeDestroy(false)
 {
-	
+	_damage = 120.0f;
+	_ManaR = -30.0f;
 }
 #define SKILL_DELAY 1.0f/14.0f
 Flame::~Flame()
@@ -16,7 +17,6 @@ bool Flame::init()
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Skill/Flame.plist", "Skill/Flame.png");
 	if (!GameObject::init())
 		return false;
-
 	_Flame1 = Sprite::createWithSpriteFrameName("Flame_1.png");
 	_Flame2 = Sprite::createWithSpriteFrameName("Flame_1.png");
 	_Flame1->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
@@ -35,12 +35,17 @@ bool Flame::init()
 	this->setTag(TAG_SKILL_FLAME);
 
 	this->setVisible(false);
+	scheduleUpdate();
 	return true;
 }
 
 void Flame::onContactBeganWith(GameObject * obj)
 {
-
+	if (obj->getTag() == TAG_CREEP)
+	{
+		//obj->setVisible(false);
+		obj->takeDamage(_damage, TAG_ATTACK_PERCIVAL);
+	}
 }
 
 void Flame::onContactPostSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, const cocos2d::PhysicsContactPostSolve & solve)
@@ -57,6 +62,28 @@ void Flame::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact & co
 
 void Flame::takeDamage(float dmg, int temp)
 {
+}
+
+void Flame::setOnDestroyCallback(OnHitDestroyCallback2 callback)
+{
+	_onHitDestroyCallback = callback;
+}
+
+void Flame::update(float delta)
+{
+	if (_willBeDestroy)
+	{
+		_Physicbody->setCategoryBitmask(ENEMY_CATE);
+		_Physicbody->setCollisionBitmask(ENEMY_COLL);
+		_Physicbody->setContactTestBitmask(ENEMY_COLL);
+		this->setVisible(false);
+		if (_onHitDestroyCallback)
+		{
+			_onHitDestroyCallback(this);
+		}
+		this->removeFromParent();
+		this->_willBeDestroy = false;
+	}
 }
 
 void Flame::active()
@@ -83,12 +110,13 @@ void Flame::active()
 		this->playanimation();
 	}), DelayTime::create(0.5), CallFunc::create([=]()
 	{
-		this->getPhysicsBody()->removeFromWorld();
-	}), DelayTime::create(0.5), CallFunc::create([=]()
+		//this->getPhysicsBody()->removeFromWorld();
+		this->_willBeDestroy = true;
+	}),/* DelayTime::create(0.5), CallFunc::create([=]()
 	{
 		
 		this->setVisible(false);
-	}),NULL);
+	})*/NULL);
 	this->runAction(seq);
 
 }
@@ -98,10 +126,9 @@ void Flame::playanimation()
 	
 	Animation* animation = Animation::create();
 	Animation* animation2 = Animation::create();
-
+	int Flame = experimental::AudioEngine::play2d("Sound/no.mp3", false, 0.1f);
 	for (int i = 1; i <= 14; i++)
 	{
-		int Flame = experimental::AudioEngine::play2d("Sound/no.mp3", false, 0.1f);
 		std::string name = StringUtils::format("Flame_%d.png", i);
 		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
 		animation2->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));

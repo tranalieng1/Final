@@ -21,12 +21,18 @@ public:
 	void onContactSeparateWith(GameObject* obj, cocos2d::PhysicsContact& contact) override;
 
 	virtual void takeDamage(float dmg, int temp) override;
+	void PlayAnimation(AnimationType type);
+	void SetState(_State state) override;
+	void onFinishAnimation();
+	static std::map<AnimationType, AnimationInfo> s_mapAnimations;
+	virtual void scheduleUpdateAI(float delta) override;
 
-
+	void update(float delta);
 	CREATE_FUNC(Garibaldi);
 private:
 
-
+	void chasePlayer();
+	float attackdelay;
 
 };
 #endif //

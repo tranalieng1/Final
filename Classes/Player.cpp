@@ -100,11 +100,14 @@ bool Player::addMana(float temp)
 	if (temp < 0)
 	{
 		if (abs(temp) > _Mana)
+		{
 			return false;
+		}
 		else
 		{
 			_Mana = _Mana + temp;
 			return true;
+	
 		}
 	}
 	else
@@ -112,8 +115,9 @@ bool Player::addMana(float temp)
 		_Mana = _Mana + temp;
 		if (_Mana > _MaxMana)
 			_Mana = _MaxMana;
+		return true;
 	}
-	return true;
+
 }
 
 float Player::getMana()
@@ -126,8 +130,8 @@ void Player::setDeathLess(bool temp)
 	if (temp == true)
 	{
 		//this->getPhysicsBody()->setCategoryBitmask(ENEMY_CATE);
-		this->getPhysicsBody()->setCollisionBitmask(0);
-		this->getPhysicsBody()->setContactTestBitmask(0);
+		this->getPhysicsBody()->setCollisionBitmask(ENEMY_COLL);
+		this->getPhysicsBody()->setContactTestBitmask(ENEMY_COLL);
 	}
 	else
 	{

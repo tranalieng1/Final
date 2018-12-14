@@ -44,8 +44,7 @@ bool BusterS::init()
 {
 	if (!Enemy::init())
 		return false;
-	//Set sprite
-	//_state[2] = STATE_STANDING;
+	
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("BusterS.plist", "BusterS.png");
 	_EnemySprite = Sprite::createWithSpriteFrameName("BusterS_Stand.png");
 	this->addChild(_EnemySprite);
@@ -58,8 +57,9 @@ bool BusterS::init()
 	_physicsBody = PhysicsBody::createBox(this->getContentSize());
 	this->setPhysicsBody(_physicsBody);
 	_physicsBody->setGravityEnable(false);
-	_physicsBody->setDynamic(false);
+	_physicsBody->setDynamic(true);
 	_physicsBody->setRotationEnable(false);
+
 	_physicsBody->setCategoryBitmask(ENEMY_CATE);
 	_physicsBody->setCollisionBitmask(ENEMY_COLL);
 	_physicsBody->setContactTestBitmask(ENEMY_COLL);
@@ -95,17 +95,14 @@ void BusterS::WalkAnimation()
 
 void BusterS::StopAction()
 {
-	//_Physicbody->setVelocity(Vec2(0, 0));
+	
 	_EnemySprite->stopActionByTag(TAG_ANIMATION);
 	_EnemySprite->setSpriteFrame("BusterS_Stand.png");
 }
 
 void BusterS::onContactBeganWith(GameObject * obj)
 {
-	/*if (obj->getTag() == TAG_ARTHUR)
-	{
-		this->setVisible(false);
-	}*/
+	
 }
 
 void BusterS::onContactPostSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, const cocos2d::PhysicsContactPostSolve & solve)
@@ -139,8 +136,7 @@ void BusterS::PlayAnimation(AnimationType type)
 	Animate* animate = Animate::create(animation);
 	auto seq = Sequence::create(Repeat::create(animate, info.loopTime), CallFunc::create([=]()
 	{
-		//if (type == AnimationType::ATTACKING)
-		//_PlayerSprite->setSpriteFrame("Arthur_0_stand_1.png");
+	
 		
 		this->onFinishAnimation();
 		
@@ -157,7 +153,7 @@ void BusterS::SetState(_State state)
 	cocos2d::Spawn *spawn;
 	if (_state[1] != state)
 	{
-		/*_hit->setVisible(false);*/
+		
 		_state[0] = _state[1];
 		_state[1] = state;
 
@@ -199,7 +195,7 @@ void BusterS::SetState(_State state)
 
 			break;
 		case STATE_DEATH:
-			/*this->PlayAnimation(AnimationType::DEATH);*/
+			
 			this->_Arthurptr->addScore(_score);
 			this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
 			spawn = cocos2d::Spawn::create(CallFunc::create([=]()
@@ -231,7 +227,7 @@ void BusterS::SetState(_State state)
 	}
 }
 
-void BusterS::takeDamage(float dmg, int temp)
+void BusterS::takeDamage(float dmg, int n)
 {
 	_Health = _Health - dmg;
 	_HealthBar->setPercent((_Health / _MaxHealth) * 100);
@@ -327,6 +323,10 @@ void BusterS::scheduleUpdateAI(float delta)
 		
 	}
 }
+void BusterS::update(float delta)
+{
+}
+
 
 void BusterS::chasePlayer()
 {

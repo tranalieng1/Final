@@ -58,8 +58,9 @@ bool SwordMan::init()
 	_physicsBody = PhysicsBody::createBox(Size(this->getContentSize().width-30, this->getContentSize().height-20));
 	this->setPhysicsBody(_physicsBody);
 	_physicsBody->setGravityEnable(false);
-	_physicsBody->setDynamic(false);
+	_physicsBody->setDynamic(true);
 	_physicsBody->setRotationEnable(false);
+
 	_physicsBody->setCategoryBitmask(ENEMY_CATE);
 	_physicsBody->setCollisionBitmask(ENEMY_COLL);
 	_physicsBody->setContactTestBitmask(ENEMY_COLL);
@@ -95,17 +96,14 @@ void SwordMan::WalkAnimation()
 
 void SwordMan::StopAction()
 {
-	//_Physicbody->setVelocity(Vec2(0, 0));
+	
 	_EnemySprite->stopActionByTag(TAG_ANIMATION);
 	_EnemySprite->setSpriteFrame("SwordMan_Stand_1.png");
 }
 
 void SwordMan::onContactBeganWith(GameObject * obj)
 {
-	/*if (obj->getTag() == TAG_ARTHUR)
-	{
-		this->setVisible(false);
-	}*/
+
 }
 
 void SwordMan::onContactPostSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, const cocos2d::PhysicsContactPostSolve & solve)
@@ -139,8 +137,6 @@ void SwordMan::PlayAnimation(AnimationType type)
 	Animate* animate = Animate::create(animation);
 	auto seq = Sequence::create(Repeat::create(animate, info.loopTime), CallFunc::create([=]()
 	{
-		//if (type == AnimationType::ATTACKING)
-		//_PlayerSprite->setSpriteFrame("Arthur_0_stand_1.png");
 		
 		this->onFinishAnimation();
 		
@@ -232,7 +228,7 @@ void SwordMan::SetState(_State state)
 	}
 }
 
-void SwordMan::takeDamage(float dmg, int temp)
+void SwordMan::takeDamage(float dmg, int n)
 {
 	_Health = _Health - dmg;
 	_HealthBar->setPercent((_Health / _MaxHealth) * 100);
@@ -327,6 +323,10 @@ void SwordMan::scheduleUpdateAI(float delta)
 		}
 		
 	}
+}
+
+void SwordMan::update(float delta)
+{
 }
 
 void SwordMan::chasePlayer()

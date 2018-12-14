@@ -15,16 +15,18 @@ class PoolMoonBlade;
 class GameScene_1 : public cocos2d::Layer
 {
 public:
+	int			_musicGame;
 	GameScene_1();
 	~GameScene_1();
 	static cocos2d::Scene *createScene();
 	virtual bool init();
-	int				_musicGame;
+
 	void menuCloseCallback(cocos2d::Ref* pSender);
 	void onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event* event);
 	void onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event* event);
 	CREATE_FUNC(GameScene_1);
 	void update(float dt);
+	void goToEndScene();
 	void SetPhysicsWorld(cocos2d::PhysicsWorld *world);
 	
 
@@ -47,8 +49,8 @@ private:
 	UIGameScene *_UIGameScene;
 	HandlePhysics* _physichandler;
 
-	MoonBlade *_MBlade;
-	MoonBlade *_MBlade2;
+	/*MoonBlade *_MBlade;
+	MoonBlade *_MBlade2;*/
 
 	Flame *_FlameSkill;
 

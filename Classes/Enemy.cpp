@@ -43,8 +43,8 @@ void Enemy::setDeathLess(bool temp)
 	if (temp == true)
 	{
 		//this->getPhysicsBody()->setCategoryBitmask(PLAYER_CATE);
-		this->getPhysicsBody()->setCollisionBitmask(0);
-		this->getPhysicsBody()->setContactTestBitmask(0);
+		this->getPhysicsBody()->setCollisionBitmask(PLAYER_COLL);
+		this->getPhysicsBody()->setContactTestBitmask(PLAYER_COLL);
 	
 	}
 	else

@@ -1,5 +1,6 @@
 #include "EndScene.h"
 #include "CreditScene.h"
+#include "AudioEngine.h"
 USING_NS_CC;
 
 EndScene::EndScene()
@@ -24,6 +25,8 @@ bool EndScene::init()
 	Vec2 origin = cocos2d::Director::getInstance()->getVisibleOrigin();
 	if (!Scene::init())
 		return false;
+	experimental::AudioEngine::stopAll();
+	_musicEnd = experimental::AudioEngine::play2d("Sound/credit.mp3", true, 3.0f);
 	auto background = Sprite::create("Endgame_Background.png");
 	float tempx =  visibleSize.width/ background->getContentSize().width ;
 	float tempy =   visibleSize.height/ background->getContentSize().height;
@@ -32,39 +35,39 @@ bool EndScene::init()
 	background->setScaleY(tempy);
 	background->setPosition(visibleSize*0.5f);
 	this->addChild(background,0);
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl1.plist", "ArthurLvl1.png");
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("PercivalLvl1.plist", "PercivalLvl1.png");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl5.plist", "ArthurLvl5.png");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("PercivalLvl5.plist", "PercivalLvl5.png");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Merlin.plist", "Merlin.png");
 	////////////////////////////////////
-	_ArthurSprite = Sprite::createWithSpriteFrameName("Arthur_1_stand_1.png");
+	_ArthurSprite = Sprite::createWithSpriteFrameName("Arthur_5_stand_1.png");
 	_ArthurSprite->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
 	_ArthurSprite->setPosition(Vec2(0, visibleSize.height*0.3));
 	_ArthurSprite->setScale(2.0f);
 	this->addChild(_ArthurSprite,1);
 
 	
-	_ArthurSprite->runAction(RepeatForever::create(createAnimate("Arthur_1_walk_%d.png", 4, 1/8.0f)));
+	_ArthurSprite->runAction(RepeatForever::create(createAnimate("Arthur_5_walk_%d.png", 4, 1/8.0f)));
 	auto action = MoveBy::create(2.0f, Vec2(300, 0));
 	_ArthurSprite->runAction(Sequence::create(action, CallFunc::create([=]()
 	{
 		_ArthurSprite->stopAllActions();
-		_ArthurSprite->setSpriteFrame("Arthur_1_default_3.png");
+		_ArthurSprite->setSpriteFrame("Arthur_5_default_3.png");
 	}),NULL));
 
 	////////////////////////////////
 
-	_PercivalSprite = Sprite::createWithSpriteFrameName("Percival_1_ default_1.png");
+	_PercivalSprite = Sprite::createWithSpriteFrameName("Percival_5_defaul_2.png");
 	_PercivalSprite->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
 	_PercivalSprite->setPosition(Vec2(-50, visibleSize.height*0.2));
 	_PercivalSprite->setScale(2.0f);
 	this->addChild(_PercivalSprite, 3);
 
-	_PercivalSprite->runAction(RepeatForever::create(createAnimate("Percival_1_walk_%d.png", 4, 1 / 8.0f)));
+	_PercivalSprite->runAction(RepeatForever::create(createAnimate("Percival_5_walk_%d.png", 4, 1 / 8.0f)));
 	auto action2 = MoveBy::create(2.0f, Vec2(300, 0));
 	_PercivalSprite->runAction(Sequence::create(action2, CallFunc::create([=]()
 	{
 		_PercivalSprite->stopAllActions();
-		_PercivalSprite->setSpriteFrame("Percival_1_getdown_2.png");
+		_PercivalSprite->setSpriteFrame("Percival_5_defaul_2.png");
 	}), NULL));
 	//////////////////////////////////////////////////
 	_MerlinSprite = Sprite::createWithSpriteFrameName("Merlin_stand.png");

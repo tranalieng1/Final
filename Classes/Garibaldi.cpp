@@ -71,3 +71,27 @@ void Garibaldi::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact 
 void Garibaldi::takeDamage(float dmg,int temp)
 {
 }
+
+void Garibaldi::PlayAnimation(AnimationType type)
+{
+}
+
+void Garibaldi::SetState(_State state)
+{
+}
+
+void Garibaldi::onFinishAnimation()
+{
+}
+
+void Garibaldi::scheduleUpdateAI(float delta)
+{
+}
+
+void Garibaldi::update(float delta)
+{
+}
+
+void Garibaldi::chasePlayer()
+{
+}

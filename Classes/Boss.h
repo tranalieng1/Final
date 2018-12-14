@@ -2,6 +2,7 @@
 #define __BOSS_H__
 #include "cocos2d.h"
 #include "GameObject.h"
+#include "Player.h"
 class Boss : public GameObject
 {
 
@@ -25,20 +26,33 @@ public:
 
 	virtual void takeDamage(float dmg,int temp) override;
 
+	virtual void SetState(_State state);
+	void setDeathLess(bool temp);
+	virtual void enalbeAI(Player* player);
+	virtual void scheduleUpdateAI(float delta);
+	virtual void update(float delta);
 
 protected:
 
 	cocos2d::Sprite *_BossSprite;
+	Player* _Arthurptr;
+	Player* _Percialptr;
+	
 	cocos2d::Action *_WalkAction;
 	cocos2d::JumpBy *_Jump;
 	int _checkwalk;
 
-
+	float _timeUpdateAI;
 	cocos2d::PhysicsBody *_Physicbody;
 
-	int _Health;
-	int _Strenght;
-	int _Mana;
+	float _Health;
+	float _Strenght;
+
+	float _MaxHealth;
+	
+
+	std::vector<_State> _state;
+	float _score;
 
 };
 #endif //

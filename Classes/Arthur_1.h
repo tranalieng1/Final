@@ -11,7 +11,8 @@ class Arthur_1: public Player
 		TOP,
 		LEFT,
 		RIGHT,
-		BOT
+		BOT,
+		MIDLE
 	};
 
 public:
@@ -47,10 +48,9 @@ private:
 	int _checkwalk;
 	int _velocityX;
 	int _velocityY;
-	Direction _horizonDirection;
-	Direction _verticalDirection;
-	bool _right;
-	bool _left;
+	Direction direct;
+
+	
 
 	
 	

@@ -13,6 +13,7 @@ public:
 	void goToEndScene(float delta);
 	CREATE_FUNC(EndScene);
 	cocos2d::Animate* createAnimate(std::string s, int n,float f);
+	int _musicEnd;
 private:
 	cocos2d::Sprite* _ArthurSprite;
 	cocos2d::Sprite* _PercivalSprite;

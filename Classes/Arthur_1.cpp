@@ -33,10 +33,10 @@ Arthur_1::Arthur_1()
 	_checkwalk = 0;
 	_velocityX = 0;
 	_velocityY = 0;
-	_horizonDirection = Direction::RIGHT;
+	/*_horizonDirection = Direction::RIGHT;
 	_verticalDirection = Direction::TOP;
 	_left = false;
-	_right = false;
+	_right = false;*/
 
 	_MaxHealth = 1000;
 	_MaxMana = 100;
@@ -68,6 +68,8 @@ bool Arthur_1::init()
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl2.plist", "ArthurLvl2.png");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl3.plist", "ArthurLvl3.png");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl4.plist", "ArthurLvl4.png");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl5.plist", "ArthurLvl5.png");
+	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl6.plist", "ArthurLvl6.png");
 	_PlayerSprite = Sprite::createWithSpriteFrameName("Arthur_1_stand_1.png");
 	//Set sprite
 	this->addChild(_PlayerSprite);
@@ -132,145 +134,198 @@ void Arthur_1::Jump()
 
 void Arthur_1::StopAction()
 {
+	/*_velocityX = 0;
+	_velocityY = 0;*/
+	_checkwalk = 0;
+	this->_Physicbody->setVelocity(Vec2(0, 0));
 	_PlayerSprite->stopActionByTag(TAG_ANIMATION);
 	this->PlayAnimation(AnimationType::STANDING);
+	
 	//_PlayerSprite->setSpriteFrame("Arthur_1_stand_1.png");
 }
 
 void Arthur_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
 {
 
-
-
-	if (kc == EventKeyboard::KeyCode::KEY_A)
+	if (_state[1] != STATE_FALLING&& _state[1] != STATE_HITTED&& _state[1] != STATE_GETUP)
 	{
-
-		this->setScaleX(-2.0f);
-
-		if (_checkwalk == 0)
+		if (_state[1] == STATE_STANDING|| _state[1] == STATE_WALKING)
 		{
-			SetState(_State::STATE_WALKING);
-		}
-		_left = true;
-		_checkwalk++;
-		_velocityX -= VELOCITY_VALUE_X;
-		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+			if (kc == EventKeyboard::KeyCode::KEY_A)
+			{
 
-		//if(_checkwalk==0)
-		//	this->WalkAnimation();
-		//_checkwalk++;
-		//_velocityX -= VELOCITY_VALUE_X;
-		//this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
-	}
-	else if (kc == EventKeyboard::KeyCode::KEY_S)
-	{
-		if (_checkwalk == 0)
-		{
-			SetState(_State::STATE_WALKING);
-		}
-		_velocityY -= VELOCITY_VALUE_Y;
-		/*	if (_checkwalk == 0)
-				this->WalkAnimation();*/
-		_checkwalk++;
-		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
-	}
-	else if (kc == EventKeyboard::KeyCode::KEY_D)
-	{
-		_right = true;
-		if (_checkwalk == 0)
-		{
-			SetState(_State::STATE_WALKING);
-		}
-		this->setScaleX(2.0f);
-		_velocityX += VELOCITY_VALUE_X;
-		/*if (_checkwalk == 0)*/
-			/*this->WalkAnimation();*/
-		_checkwalk++;
-		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
-	}
-	else if (kc == EventKeyboard::KeyCode::KEY_W)
-	{
-		if (_checkwalk == 0)
-		{
-			SetState(_State::STATE_WALKING);
-		}
-		_velocityY += VELOCITY_VALUE_Y;
-		/*if (_checkwalk == 0)
-			this->WalkAnimation();*/
-		_checkwalk++;
-		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
-	}
-	else if (kc == EventKeyboard::KeyCode::KEY_K)
-	{
-		SetState(_State::STATE_ATTACKING);
+				this->setScaleX(-2.0f);
+				direct = Direction::LEFT;
+				if (_state[1] == STATE_STANDING)
+				{
+					SetState(_State::STATE_WALKING);
+				}
+				this->_Physicbody->setVelocity(Vec2(-VELOCITY_VALUE_X, 0));
+				//_checkwalk++;
+				//_velocityX -= VELOCITY_VALUE_X;
+				//this->_Physicbody->setVelocity(Vec2(-VELOCITY_VALUE_X, 0));
 
-	}
-	else if (kc == EventKeyboard::KeyCode::KEY_J)
-	{
-		//SetState(_State::STATE_ATTACKING);
-		//_MBlade->setPosition(Vec2(this->getContentSize().width, this->getContentSize().height * 0.0f));		
-	}
-	else if (kc == EventKeyboard::KeyCode::KEY_L)
-	{
-		int _jump = experimental::AudioEngine::play2d("Sound/jump.mp3");
-		SetState(_State::STATE_JUMPING);
+				//if(_checkwalk==0)
+				//	this->WalkAnimation();
+				//_checkwalk++;
+				//_velocityX -= VELOCITY_VALUE_X;
+				//this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+			}
+			else if (kc == EventKeyboard::KeyCode::KEY_S)
+			{
+
+				//if (_checkwalk == 0)
+				//{
+				//	SetState(_State::STATE_WALKING);
+				//}
+				//_velocityY -= VELOCITY_VALUE_Y;
+				///*	if (_checkwalk == 0)
+				//		this->WalkAnimation();*/
+				//_checkwalk++;
+				direct = Direction::BOT;
+				if (_state[1] == STATE_STANDING)
+				{
+					SetState(_State::STATE_WALKING);
+				}
+
+				this->_Physicbody->setVelocity(Vec2(0,- VELOCITY_VALUE_Y));
+			}
+			else if (kc == EventKeyboard::KeyCode::KEY_D)
+			{
+				direct = Direction::RIGHT;
+				//_right = true;
+				//if (_checkwalk == 0)
+				//{
+				//	SetState(_State::STATE_WALKING);
+				//}
+				//this->setScaleX(2.0f);
+				//_velocityX += VELOCITY_VALUE_X;
+				///*if (_checkwalk == 0)*/
+				//	/*this->WalkAnimation();*/
+				//_checkwalk++;
+				this->setScaleX(2.0f);
+				if (_state[1] == STATE_STANDING)
+				{
+					SetState(_State::STATE_WALKING);
+				}
+				this->_Physicbody->setVelocity(Vec2(VELOCITY_VALUE_X, 0));
+			}
+			else if (kc == EventKeyboard::KeyCode::KEY_W)
+			{
+				direct = Direction::TOP;
+				//if (_checkwalk == 0)
+				//{
+				//	SetState(_State::STATE_WALKING);
+				//}
+				//_velocityY += VELOCITY_VALUE_Y;
+				///*if (_checkwalk == 0)
+				//	this->WalkAnimation();*/
+				//_checkwalk++;
+				//this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+				if (_state[1] == STATE_STANDING)
+				{
+					SetState(_State::STATE_WALKING);
+				}
+				this->_Physicbody->setVelocity(Vec2(0, VELOCITY_VALUE_Y));
+			}
+			else if (kc == EventKeyboard::KeyCode::KEY_K)
+			{
+				SetState(_State::STATE_ATTACKING);
+
+			}
+			else if (kc == EventKeyboard::KeyCode::KEY_J)
+			{
+				//SetState(_State::STATE_ATTACKING);
+				//this->PlayAnimation(AnimationType::ATTACKING);
+			}
+			else if (kc == EventKeyboard::KeyCode::KEY_L)
+			{
+				SetState(_State::STATE_JUMPING);
+			}
+		}
 	}
 
 }
 
 void Arthur_1::onKeyReleased(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
 {
-	if (kc == EventKeyboard::KeyCode::KEY_A)
-	{
-		_left = false;
-		if (_right == true)
-			this->setScaleX(2.0f);
-		_velocityX += VELOCITY_VALUE_X;
-		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
-		_checkwalk--;
-		if (_checkwalk == 0 && _state[1] != STATE_JUMPING && _state[1] != STATE_ATTACKING)
+	/*if (_state[1] != STATE_FALLING && _state[1] != STATE_HITTED && _state[1] != STATE_GETUP)
+	{*/
+		if (kc == EventKeyboard::KeyCode::KEY_A)
 		{
-			SetState(_State::STATE_STANDING);
+			/*_left = false;
+			if (_right == true)
+				this->setScaleX(2.0f);
+			_velocityX += VELOCITY_VALUE_X;
+			this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+			_checkwalk--;*/
+			
+			if (direct == Direction::LEFT)
+			{
+				direct = Direction::MIDLE;
+				_Physicbody->setVelocity(Vec2(0, 0));
+				if (/*_checkwalk == 0 &&*/ _state[1] != STATE_JUMPING && _state[1] != STATE_ATTACKING)
+				{
+					SetState(_State::STATE_STANDING);
+				}
+			}
+
+
+
 		}
-
-
-	}
-	else if (kc == EventKeyboard::KeyCode::KEY_S)
-	{
-
-		_velocityY += VELOCITY_VALUE_Y;
-		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
-		_checkwalk--;
-		if (_checkwalk == 0 && _state[1] != STATE_JUMPING && _state[1] != STATE_ATTACKING)
+		else if (kc == EventKeyboard::KeyCode::KEY_S)
 		{
-			SetState(_State::STATE_STANDING);
-		}
 
-	}
-	else if (kc == EventKeyboard::KeyCode::KEY_D)
-	{
-		_right = false;
-		if (_left == true)
-			this->setScaleX(-2.0f);
-		_velocityX -= VELOCITY_VALUE_X;
-		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
-		_checkwalk--;
-		if (_checkwalk == 0 && _state[1] != STATE_JUMPING && _state[1] != STATE_ATTACKING)
-		{
-			SetState(_State::STATE_STANDING);
-		}
+			/*_velocityY += VELOCITY_VALUE_Y;
+			this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+			_checkwalk--;*/
+			if (direct == Direction::BOT)
+			{
+				direct = Direction::MIDLE;
+				_Physicbody->setVelocity(Vec2(0, 0));
+				if (/*_checkwalk == 0 &&*/ _state[1] != STATE_JUMPING && _state[1] != STATE_ATTACKING)
+				{
+					SetState(_State::STATE_STANDING);
+				}
+				
+			}
 
-	}
-	else if (kc == EventKeyboard::KeyCode::KEY_W)
-	{
-		_velocityY -= VELOCITY_VALUE_Y;
-		this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
-		_checkwalk--;
-		if (_checkwalk == 0 && _state[1] != STATE_JUMPING && _state[1] != STATE_ATTACKING)
-		{
-			SetState(_State::STATE_STANDING);
 		}
-	}
+		else if (kc == EventKeyboard::KeyCode::KEY_D)
+		{
+			/*_right = false;
+			if (_left == true)
+				this->setScaleX(-2.0f);
+			_velocityX -= VELOCITY_VALUE_X;
+			this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+			_checkwalk--;*/
+			if (direct == Direction::RIGHT)
+			{
+				direct = Direction::MIDLE;
+				_Physicbody->setVelocity(Vec2(0, 0));
+				if (/*_checkwalk == 0 &&*/ _state[1] != STATE_JUMPING && _state[1] != STATE_ATTACKING)
+				{
+					SetState(_State::STATE_STANDING);
+				}
+			}
+
+		}
+		else if (kc == EventKeyboard::KeyCode::KEY_W)
+		{
+			/*_velocityY -= VELOCITY_VALUE_Y;
+			this->_Physicbody->setVelocity(Vec2(_velocityX, _velocityY));
+			_checkwalk--;*/
+			if (direct == Direction::TOP)
+			{
+				direct = Direction::MIDLE;
+				_Physicbody->setVelocity(Vec2(0, 0));
+				if (/*_checkwalk == 0 &&*/ _state[1] != STATE_JUMPING && _state[1] != STATE_ATTACKING)
+				{
+					SetState(_State::STATE_STANDING);
+				}
+			}
+		}
+	//}
 }
 
 void Arthur_1::onContactBeganWith(GameObject * obj)
@@ -339,11 +394,33 @@ void Arthur_1::SetState(_State state)
 		{
 			//this->WalkAnimation();
 			this->PlayAnimation(AnimationType::WALKING);
-			this->_physicsBody->setVelocity(Vec2(_velocityX, _velocityY));
+			if (direct == Direction::LEFT)
+			{
+				this->_physicsBody->setVelocity(Vec2(-VELOCITY_VALUE_X, 0));
+			}
+			else if (direct == Direction::RIGHT)
+			{
+				this->_physicsBody->setVelocity(Vec2(VELOCITY_VALUE_X, 0));
+			}
+			else if (direct == Direction::TOP)
+			{
+				this->_physicsBody->setVelocity(Vec2(0, VELOCITY_VALUE_Y));
+			}
+			else if (direct == Direction::BOT)
+			{
+				this->_physicsBody->setVelocity(Vec2( 0, -VELOCITY_VALUE_Y));
+			}
+			else
+			{
+				this->_physicsBody->setVelocity(Vec2(0, 0));
+				this->SetState(STATE_STANDING);
+			}
+			
 		}
 		break;
 		case STATE_HITTED:
 		{
+			_Physicbody->setVelocity(Vec2(0, 0));
 			this->PlayAnimation(AnimationType::HITTED);
 		}
 		break;
@@ -518,34 +595,39 @@ void Arthur_1::takeDamage(float dmg, int temp)
 
 void Arthur_1::onFinishAnimation()
 {
-	if (_state[1] == _State::STATE_ATTACKING && _checkwalk != 0)
+	if (_state[1] == _State::STATE_ATTACKING && _state[0] == _State::STATE_WALKING)
 	{
 		SetState(_state[0]);
-	}
-	else if (_state[1] == _State::STATE_ATTACKING && _checkwalk == 0)
-	{
-		SetState(STATE_STANDING);
 	}
 	else if (_state[1] == _State::STATE_ATTACKING && _state[0] == _State::STATE_STANDING)
 	{
-		SetState(_state[0]);
+		SetState(STATE_STANDING);
+	}
+	else if (_state[1] == _State::STATE_ATTACKING )
+	{
+		SetState(STATE_STANDING);
 	}
 	//else if (_state[1] == _State::STATE_SWAPING)
 	//{
 	//	//SetState(_State::STATE_WALKING);
 	//}
-	else if (_state[1] == STATE_JUMPING && _checkwalk != 0)
+	else if (_state[1] == STATE_JUMPING && _state[0]==STATE_WALKING)
 	{
-		SetState(_state[0]);
+		SetState(STATE_WALKING);
 	}
-	else if (_state[1] == STATE_JUMPING && _checkwalk == 0)
+	else if (_state[1] == STATE_JUMPING && _state[1] == STATE_WALKING)
 	{
 		SetState(STATE_STANDING);
 	}
-	else if (_state[1] == STATE_HITTED)
+	else if (_state[1] == STATE_HITTED&& _state[0] == STATE_WALKING)
+	{
+		this->SetState(STATE_WALKING);
+	}
+	else if (_state[1] == STATE_HITTED )
 	{
 		this->SetState(STATE_STANDING);
 	}
+	
 	else if (_state[1] == STATE_FALLING)
 	{
 		this->SetState(STATE_GETUP);

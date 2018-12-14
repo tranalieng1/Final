@@ -14,10 +14,10 @@ UIGameScene::UIGameScene()
 	listLv.push_back(2500);//lv3
 	listLv.push_back(4000);//lv4
 	listLv.push_back(6000);//lv5
-	listLv.push_back(9000);//lv6
-	listLv.push_back(12000);//lv7
-	listLv.push_back(15000);//lv8
-	listLv.push_back(19000);//lv9
+	listLv.push_back(90000);//lv6
+	//listLv.push_back(90000);//lv7
+	//listLv.push_back(15000);//lv8
+	//listLv.push_back(19000);//lv9
 
 }
 
@@ -163,7 +163,7 @@ void UIGameScene::updatePlayer(Player * player)
 		this->setScore(player->getScore());
 		_HP1->setPercent(player->getHealth());// day la set mau cua nhan vat khi bi enemy danh
 		updateLevel(player);
-
+		_ManaBar->setPercent(player->getMana());
 		labelLV->setString(std::to_string(player->getLevel()));
 	}
 }

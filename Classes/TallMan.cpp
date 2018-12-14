@@ -57,8 +57,9 @@ bool TallMan::init()
 	_physicsBody = PhysicsBody::createBox(this->getContentSize());
 	this->setPhysicsBody(_physicsBody);
 	_physicsBody->setGravityEnable(false);
-	_physicsBody->setDynamic(false);
+	_physicsBody->setDynamic(true);
 	_physicsBody->setRotationEnable(false);
+
 	_physicsBody->setCategoryBitmask(ENEMY_CATE);
 	_physicsBody->setCollisionBitmask(ENEMY_COLL);
 	_physicsBody->setContactTestBitmask(ENEMY_COLL);
@@ -101,10 +102,7 @@ void TallMan::StopAction()
 
 void TallMan::onContactBeganWith(GameObject * obj)
 {
-	/*if (obj->getTag() == TAG_ARTHUR)
-	{
-		this->setVisible(false);
-	}*/
+	
 }
 
 void TallMan::onContactPostSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, const cocos2d::PhysicsContactPostSolve & solve)
@@ -198,7 +196,7 @@ void TallMan::SetState(_State state)
 
 			break;
 		case STATE_DEATH:
-			/*this->PlayAnimation(AnimationType::DEATH);*/
+			
 			this->_Arthurptr->addScore(_score);
 			this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
 			spawn = cocos2d::Spawn::create(CallFunc::create([=]()
@@ -230,7 +228,7 @@ void TallMan::SetState(_State state)
 	}
 }
 
-void TallMan::takeDamage(float dmg, int temp)
+void TallMan::takeDamage(float dmg, int n)
 {
 	_Health = _Health - dmg;
 	_HealthBar->setPercent((_Health / _MaxHealth) * 100);
@@ -325,6 +323,10 @@ void TallMan::scheduleUpdateAI(float delta)
 		}
 		
 	}
+}
+
+void TallMan::update(float delta)
+{
 }
 
 void TallMan::chasePlayer()

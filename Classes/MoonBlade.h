@@ -19,6 +19,7 @@ public:
 	void setOnDestroyCallback(OnHitDestroyCallback callback);
 	CREATE_FUNC(MoonBlade);
 	void update(float delta);
+	float getMana();
 private:
 
 	float _ManaR;
