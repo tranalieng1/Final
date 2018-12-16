@@ -69,3 +69,8 @@ void Enemy::enalbeAI(Player* player)
 void Enemy::update(float delta)
 {
 }
+
+void Enemy::setscene(GameScene_1 * Scene)
+{
+	scene = Scene;
+}

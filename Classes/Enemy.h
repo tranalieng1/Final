@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "Player.h"
 #include "ui/CocosGUI.h"
+class GameScene_1;
 class Enemy : public GameObject
 {
 
@@ -33,6 +34,7 @@ public:
 	virtual void enalbeAI(Player* player);
 	virtual void scheduleUpdateAI(float delta);
 	virtual void update(float delta);
+	void setscene(GameScene_1 *Scene);
 protected:
 	Player* _Arthurptr;
 	Player* _Percialptr;
@@ -51,8 +53,9 @@ protected:
 	_State GetState();
 	
 	cocos2d::ui::LoadingBar* _HealthBar;
-	
+	GameScene_1 *scene;
 	std::vector<_State> _state;
 	float _score;
+	float _jumph;
 };
 #endif //

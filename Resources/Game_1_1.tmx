@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="100" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="46">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="100" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="50">
  <tileset firstgid="1" source="Game_1_1.tsx"/>
  <layer id="1" name="Tile Layer 1" width="100" height="50">
   <data encoding="csv">
@@ -72,16 +72,11 @@
   <object id="29" type="2" x="1305" y="1408.17" width="45.5" height="189.5"/>
   <object id="30" type="3" x="1173.5" y="1453.17" width="8.5" height="9.5"/>
   <object id="31" type="3" x="1322.5" y="1581.67" width="10.5" height="9"/>
-  <object id="32" type="10" x="1160" y="1557.67" width="14" height="13.5"/>
-  <object id="33" type="10" x="1085.5" y="1548.67" width="14" height="12.5"/>
-  <object id="34" type="10" x="1398.5" y="1553.17" width="24" height="23"/>
-  <object id="35" type="10" x="1461.5" y="1544.17" width="14.5" height="20"/>
-  <object id="36" type="10" x="1503.5" y="1575.17" width="14.5" height="13.5"/>
-  <object id="37" type="10" x="1004" y="1548.17" width="20.5" height="15.5"/>
-  <object id="41" type="10" x="778.5" y="1546" width="24" height="23"/>
-  <object id="42" type="10" x="883.5" y="1538" width="24" height="23"/>
-  <object id="43" type="10" x="714.5" y="1511" width="24" height="23"/>
-  <object id="44" type="10" x="1827.5" y="1553" width="24" height="23"/>
-  <object id="45" type="10" x="1673" y="1545" width="24" height="23"/>
+ </objectgroup>
+ <objectgroup id="7" name="Enemy">
+  <object id="46" type="2" x="328.5" y="1541.5" width="14" height="15.5"/>
+  <object id="47" type="3" x="362.5" y="1576.5" width="18.5" height="16"/>
+  <object id="48" type="1" x="655.5" y="1530" width="15" height="20"/>
+  <object id="49" type="1" x="661" y="1572.5" width="15.5" height="16"/>
  </objectgroup>
 </map>

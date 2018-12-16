@@ -1,5 +1,7 @@
 #include "Hit.h"
 #include "Defnition.h"
+#include "GameScene_1.h"
+USING_NS_CC;
 Hit::Hit()
 {
 }
@@ -34,16 +36,30 @@ void Hit::onContactBeganWith(GameObject * obj)
 	///chem enemy
 	if (obj->getTag() == TAG_CREEP&& this->getTag()== TAG_ATTACK_ARTHUR)
 	{
-		obj->takeDamage(_damage, TAG_ATTACK_ARTHUR);
+		auto objPos = obj->convertToNodeSpaceAR(Vec2::ZERO);
+		auto thisPos = this->convertToNodeSpaceAR(Vec2::ZERO);
+
+		if (abs(objPos.y - 20 - thisPos.y) <= 20)
+		{
+			obj->takeDamage(_damage, TAG_ATTACK_ARTHUR);
+		}
 	}
 	else if (obj->getTag() == TAG_CREEP && this->getTag() == TAG_ATTACK_PERCIVAL)
 	{
+		auto objPos = obj->convertToNodeSpaceAR(Vec2::ZERO);
+		auto thisPos = this->convertToNodeSpaceAR(Vec2::ZERO);
+
+		if (abs(objPos.y - 20 - thisPos.y) <= 20)
 		obj->takeDamage(_damage, TAG_ATTACK_PERCIVAL);
 	}
 	//// enemy chem player
 	else if (obj->getTag() == TAG_PLAYER && this->getTag() == TAG_ATTACK_ENEMY)
 	{
-		obj->takeDamage(_damage, TAG_ATTACK_ENEMY);
+		auto objPos = obj->convertToNodeSpaceAR(Vec2::ZERO);
+		auto thisPos = this->convertToNodeSpaceAR(Vec2::ZERO);
+		
+		if(abs(objPos.y-20-thisPos.y)<=20)
+			obj->takeDamage(_damage, TAG_ATTACK_ENEMY);
 	}
 	//player chem Secret
 	else if (obj->getTag() == TAG_SECRET && this->getTag() == TAG_ATTACK_ARTHUR)

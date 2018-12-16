@@ -3,6 +3,8 @@
 #include "cocos2d.h"
 #include "GameObject.h"
 #include "Player.h"
+#include "ui/CocosGUI.h"
+class GameScene_1;
 class Boss : public GameObject
 {
 
@@ -31,6 +33,7 @@ public:
 	virtual void enalbeAI(Player* player);
 	virtual void scheduleUpdateAI(float delta);
 	virtual void update(float delta);
+	void setScene(GameScene_1 *temp);
 
 protected:
 
@@ -49,10 +52,10 @@ protected:
 	float _Strenght;
 
 	float _MaxHealth;
-	
-
+	cocos2d::ui::LoadingBar* _HealthBar;
+	float _jumph;
 	std::vector<_State> _state;
 	float _score;
-
+	GameScene_1 *scene;
 };
 #endif //

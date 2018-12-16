@@ -2,6 +2,7 @@
 #include "cocos2d.h"
 #include"Defnition.h"
 #include"Hit.h"
+#include "GameScene_1.h"
 USING_NS_CC;
 
 #define TAG_ACTION_AI_CHASE_PLAYER 100
@@ -32,7 +33,7 @@ FanMan::FanMan() : Enemy()
 	_state.push_back(_State::STATE_STANDING);
 	_state.push_back(_State::STATE_STANDING);
 	_timeUpdateAI = TIME_UPDATE_AI;
-	_score = 200.f;
+	_score = 300.f;
 	_damage = 20;
 }
 
@@ -184,14 +185,14 @@ void FanMan::SetState(_State state)
 					hit->removeFromParent();
 				}), nullptr));
 			}), NULL));
-			
+
 			this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
 			//this->SetState(STATE_STANDING);
 			/*this->runAction(Sequence::create(DelayTime::create(0.5f), CallFunc::create([=]()
-			{*/
+			{
 				this->PlayAnimation(AnimationType::ATTACKING);
-		/*	}), NULL));*/
-			//this->PlayAnimation(AnimationType::ATTACKING);
+			}), NULL));*/
+			this->PlayAnimation(AnimationType::ATTACKING);
 			break;
 		case STATE_JUMPING:
 			break;
@@ -206,7 +207,7 @@ void FanMan::SetState(_State state)
 		case STATE_HITTED:
 			this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
 			this->PlayAnimation(AnimationType::HITTED);
-		
+
 
 			break;
 		case STATE_DEATH:
@@ -217,18 +218,26 @@ void FanMan::SetState(_State state)
 			spawn = cocos2d::Spawn::create(CallFunc::create([=]()
 			{
 				this->PlayAnimation(AnimationType::DEATH);
-			}), cocos2d::JumpBy::create(0.8f, Vec2(100, 0), 50, 1),cocos2d::Blink::create(1.2f,10), NULL);
+			}), cocos2d::JumpBy::create(0.8f, Vec2(100, 0), 50, 1), cocos2d::Blink::create(1.2f, 10), NULL);
 			//this->runAction(jum);
-			this->runAction(Sequence::create(spawn,DelayTime::create(0.5f),RemoveSelf::create(),NULL));
-			
+			this->runAction(Sequence::create(spawn, DelayTime::create(0.5f), RemoveSelf::create(), NULL));
+			scene->dieenemy();
 			break;
 		case STATE_FALLING:
+			if (this->getScaleX() > 0)
+			{
+				_jumph = 100.f;
+			}
+			else
+			{
+				_jumph = -100.f;
+			}
 			this->setDeathLess(true);
 			this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
 			spawn = cocos2d::Spawn::create(CallFunc::create([=]()
 			{
 				this->PlayAnimation(AnimationType::DEATH);
-			}), cocos2d::JumpBy::create(0.8f, Vec2(100, 0), 50, 1), NULL);
+			}), cocos2d::JumpBy::create(0.8f, Vec2(_jumph, 0), 50, 1), NULL);
 			this->runAction(spawn);
 			break;
 		case STATE_GETUP:
@@ -244,6 +253,7 @@ void FanMan::SetState(_State state)
 		}
 	}
 }
+
 
 void FanMan::takeDamage(float dmg, int temp)
 {
@@ -328,7 +338,8 @@ void FanMan::scheduleUpdateAI(float delta)
 
 		
 			auto distanceX = std::abs(this->getPosition().x - _Arthurptr->getPosition().x);
-			if (distanceX < _EnemySprite->getContentSize().width * 0.5f + 100.0f)
+			auto distanceY = std::abs(this->getPosition().y - _Arthurptr->getPosition().y);
+			if (distanceX < _EnemySprite->getContentSize().width * 0.5f + 100.0f && distanceY< 30)
 			{
 				//this->PlayAnimation(AnimationType::ATTACKING);
 				

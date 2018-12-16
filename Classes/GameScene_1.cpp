@@ -15,6 +15,8 @@
 #include "Secret.h"
 #include "EndScene.h"
 #include "AudioEngine.h"
+#include "SwordMan.h"
+#include "Garibaldi.h"
 //#define schedule_selector CC_SCHEDULE_SELECTOR
 USING_NS_CC;
 using namespace cocos2d;
@@ -23,6 +25,12 @@ using namespace cocos2d;
 GameScene_1::GameScene_1()
 {
 	_poolMoonBlade = new PoolMoonBlade();
+	lock1 = false;
+	lock2 = false;
+	check1 = false;
+	check2 = false;
+	lockkey = false;
+	checkenemy = 0;
 }
 GameScene_1::~GameScene_1()
 {
@@ -32,7 +40,7 @@ GameScene_1::~GameScene_1()
 Scene* GameScene_1::createScene()
 {
 	auto scene = Scene::createWithPhysics();
-	scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+	//scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
 	//scene->getPhysicsWorld()->setGravity(Vect(0, 0));
 
 	auto layer = GameScene_1::create();
@@ -75,15 +83,15 @@ bool GameScene_1::init()
 	
 	//cam->setAnchorPoint(Vec2(campos.x*POSITION_BEGIN_WIDTH, campos.y*POSITION_BEGIN_HEIGHT));
 	_Arthur = Arthur_1::create();
-	//_Arthur->setPosition(Vec2(4000, 100));
+	//_Arthur->setPosition(Vec2(6000, 100));
 	_Arthur->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH,visibleSize.height*POSITION_BEGIN_HEIGHT));
 	this->addChild(_Arthur, 2);
-	_Percival = Percival::create();
+	/*_Percival = Percival::create();
 	_Percival->setPosition(Vec2(4000 + 100, 100));
-	this->addChild(_Percival, 2);
+	this->addChild(_Percival, 2);*/
 	//Map
 
-	auto _tileMap = TMXTiledMap::create("Game_1_1.tmx");
+	_tileMap = TMXTiledMap::create("Game_1_1.tmx");
 	
 	_tileMap->setScale(SCALE_MAP);
 	addChild(_tileMap,0,99);
@@ -157,20 +165,20 @@ bool GameScene_1::init()
 		}
 		if (type == 10)//them secret
 		{
-			int x = objInfo.at("x").asInt();
-			int y = objInfo.at("y").asInt();
-			int width = objInfo.at("width").asInt();
-			int height = objInfo.at("height").asInt();
+			//int x = objInfo.at("x").asInt();
+			//int y = objInfo.at("y").asInt();
+			//int width = objInfo.at("width").asInt();
+			//int height = objInfo.at("height").asInt();
 
-			
+			//
 
-			auto secret = FanMan::create();
-			secret->enalbeAI(_Arthur);
-			//FanMan->setPlayer(_Arthur, _Arthur);
-			this->addChild(secret, 1);
-			secret->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-			secret->setPosition(SCALE_MAP*(x + width * 0.5f), SCALE_MAP*(y + height * 0.5f));
-			//secret->setScale(SCALE_MAP);
+			//auto secret = FanMan::create();
+			//secret->enalbeAI(_Arthur);
+			////FanMan->setPlayer(_Arthur, _Arthur);
+			//this->addChild(secret, 1);
+			//secret->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+			//secret->setPosition(SCALE_MAP*(x + width * 0.5f), SCALE_MAP*(y + height * 0.5f));
+			////secret->setScale(SCALE_MAP);
 		}
 	}
 	//Physic handler
@@ -198,20 +206,26 @@ bool GameScene_1::init()
 
 
 	//FanMan
-	_FanMan = FanMan::create();
+	/*_FanMan = FanMan::create();
 	_FanMan->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH+200, visibleSize.height*POSITION_BEGIN_HEIGHT));
 	_FanMan->enalbeAI(_Arthur);
 	this->addChild(_FanMan,1);
-
-
+*/
+	_Boss = Garibaldi::create();
+	_Boss->setPosition(Vec2(7400, 100));
+	//sw->enalbeAI(_Arthur);
+	_Boss->setScene(this);
+	this->addChild(_Boss, 1);
 
 	//_BirdMan
 	/*_BirdMan = BirdMan::create();
 	_BirdMan->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH - 100, visibleSize.height*POSITION_BEGIN_HEIGHT));
 	_BirdMan->enalbeAI(_Arthur);
-	this->addChild(_BirdMan, 1);
-*/
-
+	this->addChild(_BirdMan, 1);*/
+	/*auto sw = SwordMan::create();
+	sw->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH - 100, visibleSize.height*POSITION_BEGIN_HEIGHT));
+	sw->enalbeAI(_Arthur);
+	this->addChild(sw, 1); */
 	// dunglq3
 	// IMPORTANT: The scheduleUpdate must be called right before this->addChild(SKeyboard::get()),
 	// or the SKeyboard::getEvents always return a vector of nothing because of SKeyboard::update
@@ -296,55 +310,58 @@ void GameScene_1::menuCloseCallback(Ref* pSender)
 }
 void GameScene_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
 {
-	/*_Percival->onKeyPressed(kc, event);*/
-	_Arthur->onKeyPressed(kc, event);
-	
-	if (kc == EventKeyboard::KeyCode::KEY_J)
+	if (lockkey == false)
 	{
-		/*if (_Arthur->getScaleX() > 0)
-		{
-			_MBlade->setScaleX(2.7f);
-		}
-		else
-		{
-			_MBlade->setScaleX(-2.7f);
-		}*/
-		/*_MBlade->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY()));
-		_MBlade->flySkill();*/
-		auto mb = _poolMoonBlade->createMB();
-		
-		if (mb)
-		{
+		/*_Percival->onKeyPressed(kc, event);*/
+		_Arthur->onKeyPressed(kc, event);
 
-			if (_Arthur->addMana(mb->getMana()))
+		if (kc == EventKeyboard::KeyCode::KEY_J)
+		{
+			/*if (_Arthur->getScaleX() > 0)
 			{
-				if (_Arthur->getScaleX() > 0)
-				{
-					mb->setScaleX(2.7f);
-				}
-				else
-				{
-					mb->setScaleX(-2.7f);
-				}
-				this->addChild(mb);
-					mb->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY()));
-				mb->flySkill();
+				_MBlade->setScaleX(2.7f);
 			}
-		}
-		
-		/*_FlameSkill->setPosition(_Arthur->getPosition());
-		_FlameSkill->active();*/
+			else
+			{
+				_MBlade->setScaleX(-2.7f);
+			}*/
+			/*_MBlade->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY()));
+			_MBlade->flySkill();*/
+			auto mb = _poolMoonBlade->createMB();
 
-		/*if (_Percival->getScaleX() > 0)
-		{
-			_MBlade2->setScaleX(2.7f);
+			if (mb)
+			{
+
+				if (_Arthur->addMana(mb->getMana()))
+				{
+					if (_Arthur->getScaleX() > 0)
+					{
+						mb->setScaleX(2.7f);
+					}
+					else
+					{
+						mb->setScaleX(-2.7f);
+					}
+					this->addChild(mb);
+					mb->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY()));
+					mb->flySkill();
+				}
+			}
+
+			/*_FlameSkill->setPosition(_Arthur->getPosition());
+			_FlameSkill->active();*/
+
+			/*if (_Percival->getScaleX() > 0)
+			{
+				_MBlade2->setScaleX(2.7f);
+			}
+			else
+			{
+				_MBlade2->setScaleX(-2.7f);
+			}
+			_MBlade2->setPosition(Vec2(_Percival->getPositionX(), _Percival->getPositionY()));
+			_MBlade2->flySkill();*/
 		}
-		else
-		{
-			_MBlade2->setScaleX(-2.7f);
-		}
-		_MBlade2->setPosition(Vec2(_Percival->getPositionX(), _Percival->getPositionY()));
-		_MBlade2->flySkill();*/
 	}
 	else if (kc == EventKeyboard::KeyCode::KEY_9)
 	{
@@ -368,22 +385,37 @@ void GameScene_1::update(float dt)
 	cam = Camera::getDefaultCamera();
 
 	campos = cam->getPosition3D();
-	if (_Arthur->getPositionX() <= visibleSize.width / 2)//lock ben trai
-		
-		campos.x = visibleSize.width / 2;
-	else if (_Arthur->getPositionX() >= MAP_WIDTH - visibleSize.width / 2 - 2*_Arthur->getContentSize().width)//lock ben phai
+	lockcamera();
+	if (lock1 == false&& lock2 == false)
 	{
-		campos.x = MAP_WIDTH - visibleSize.width / 2 - 2*_Arthur->getContentSize().width;
+		if (_Arthur->getPositionX() <= visibleSize.width / 2)//lock ben trai
+		{
+			campos.x = visibleSize.width / 2;
+		}
+		else if (_Arthur->getPositionX() >= MAP_WIDTH - visibleSize.width / 2 - 2 * _Arthur->getContentSize().width)//lock ben phai
+		{
+			campos.x = MAP_WIDTH - visibleSize.width / 2 - 2 * _Arthur->getContentSize().width;
+		}
+	
+		else // lock theo nhan vat
+			campos.x = _Arthur->getPositionX();
 	}
-	else // lock theo nhan vat
-		campos.x = _Arthur->getPositionX();
+	else
+	{
+		//campos.x = 2000;
+	}
 	campos.y = this->getContentSize().height/2;
 	cam->setPosition3D(campos);
+	lockcamera();
 	//_UIGameScene->setPosition(Vec2(visibleSize.width*0.0f, visibleSize.height*0.0f));
 	////Set UI Gamescene
 	if (_Arthur->getPositionX()  <= campos.x-400+ _Arthur->getContentSize().width)
 	{
 		_Arthur->setPositionX(campos.x-400+_Arthur->getContentSize().width);
+	}
+	else if (_Arthur->getPositionX() >= campos.x + 400 - _Arthur->getContentSize().width)
+	{
+		_Arthur->setPositionX(campos.x + 400 - _Arthur->getContentSize().width);
 	}
 	/*if (_Arthur->getPositionY() >= 220)
 	{
@@ -397,6 +429,10 @@ void GameScene_1::update(float dt)
 	_UIGameScene->setPosition(Vec2(campos.x-visibleSize.width/2,0));
 	//_UIGameScene->setScore(_Arthur->getScore());
 	_UIGameScene->updatePlayer(_Arthur);
+	if (checkenemy == 4)
+	{
+		lock1 = false;
+	}
 	//if (_Arthur->GetState() == STATE_STANDING)
 	//{
 	//	if (moveright == true)
@@ -481,9 +517,106 @@ void GameScene_1::goToEndScene()
 	Director::getInstance()->replaceScene(/*TransitionFade::create(1.5, */scene);
 }
 
+void GameScene_1::goToEndScene2(float delta)
+{
+	auto scene = EndScene::createScene();
+	Director::getInstance()->replaceScene(/*TransitionFade::create(1.5, */scene);
+}
+
 void GameScene_1::SetPhysicsWorld(cocos2d::PhysicsWorld * world)
 {
 	sceneWorld = world;
+}
+
+void GameScene_1::lockcamera()
+{
+	if (campos.x > 2000 && check1 == false)
+	{
+
+		campos.x = 2000;
+		lock1 = true;
+		check1 = true;
+		auto ObjectEnemy = _tileMap->getObjectGroup("Enemy");
+		auto Wall = ObjectEnemy->getObjects();
+		for (int i = 0; i < Wall.size(); i++)
+		{
+			auto objInfo = Wall.at(i).asValueMap();
+			int type = objInfo.at("type").asInt();
+			if (type == 1)
+			{
+				int x = objInfo.at("x").asInt();
+				int y = objInfo.at("y").asInt();
+				int width = objInfo.at("width").asInt();
+				int height = objInfo.at("height").asInt();
+
+			
+
+				auto secret = FanMan::create();
+				secret->setscene(this);
+				secret->enalbeAI(_Arthur);
+				//FanMan->setPlayer(_Arthur, _Arthur);
+				this->addChild(secret, 1);
+				secret->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+				secret->setPosition(SCALE_MAP*(x + width * 0.5f), SCALE_MAP*(y + height * 0.5f));
+				//secret->setScale(SCALE_MAP);
+			}
+			else if (type == 2)
+			{
+				int x = objInfo.at("x").asInt();
+				int y = objInfo.at("y").asInt();
+				int width = objInfo.at("width").asInt();
+				int height = objInfo.at("height").asInt();
+
+
+
+				auto secret = SwordMan::create();
+				secret->setscene(this);
+				secret->enalbeAI(_Arthur);
+				//FanMan->setPlayer(_Arthur, _Arthur);
+				this->addChild(secret, 1);
+				secret->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+				secret->setPosition(SCALE_MAP*(x + width * 0.5f), SCALE_MAP*(y + height * 0.5f));
+				//secret->setScale(SCALE_MAP);
+			}
+			else if (type == 3)
+			{
+				int x = objInfo.at("x").asInt();
+				int y = objInfo.at("y").asInt();
+				int width = objInfo.at("width").asInt();
+				int height = objInfo.at("height").asInt();
+
+
+
+				auto secret = BirdMan::create();
+				secret->setscene(this);
+				secret->enalbeAI(_Arthur);
+				//FanMan->setPlayer(_Arthur, _Arthur);
+				this->addChild(secret, 1);
+				secret->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+				secret->setPosition(SCALE_MAP*(x + width * 0.5f), SCALE_MAP*(y + height * 0.5f));
+			}
+
+
+		}
+	}
+	else if (campos.x > 7000 && check2 == false)
+	{
+		_Boss->enalbeAI(_Arthur);
+		campos.x = 7000;
+		lock2 = true;
+		check2 = true;
+	}
+	
+}
+
+void GameScene_1::setlockey()
+{
+	lockkey = true;
+}
+
+void GameScene_1::dieenemy()
+{
+	checkenemy++;
 }
 
 bool GameScene_1::CheckJump(cocos2d::Node * v1, cocos2d::Node * v2)

@@ -94,8 +94,15 @@ void MoonBlade::onContactBeganWith(GameObject * obj)
 {
 	if (obj->getTag() == TAG_CREEP)
 	{
+		auto objPos = obj->convertToNodeSpaceAR(Vec2::ZERO);
+		auto thisPos = this->convertToNodeSpaceAR(Vec2::ZERO);
+		objPos.y;
+			//objPos.x
+		thisPos.y;
+		if (abs(objPos.y +15 - thisPos.y) <= 15)
+		
+			obj->takeDamage(_damage, TAG_ATTACK_ARTHUR );
 		//obj->setVisible(false);
-		obj->takeDamage(_damage, TAG_ATTACK_ARTHUR );
 	}
 }
 
@@ -105,6 +112,7 @@ void MoonBlade::onContactPostSolveWith(GameObject * obj, cocos2d::PhysicsContact
 
 void MoonBlade::onContactPreSolveWith(GameObject * obj, cocos2d::PhysicsContact & contact, cocos2d::PhysicsContactPreSolve & solve)
 {
+	solve.ignore();
 }
 
 void MoonBlade::onContactSeparateWith(GameObject * obj, cocos2d::PhysicsContact & contact)

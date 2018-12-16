@@ -151,6 +151,11 @@ int Player::getLevel()
 	return _Level;
 }
 
+void Player::statewin()
+{
+	this->SetState(STATE_WIN);
+}
+
 void Player::LevelUp()
 {
 	

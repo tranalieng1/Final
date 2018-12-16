@@ -31,7 +31,7 @@ private:
 	Score* _Score1;
 	cocos2d::ui::LoadingBar *_HP1;
 	cocos2d::ui::LoadingBar *_HP2;
-
+	cocos2d::ui::LoadingBar *_HP3;
 	cocos2d::Size _winSize;
 
 	cocos2d::Label* labelLV;

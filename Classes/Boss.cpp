@@ -57,3 +57,8 @@ void Boss::scheduleUpdateAI(float delta)
 void Boss::update(float delta)
 {
 }
+
+void Boss::setScene(GameScene_1 * temp)
+{
+	scene = temp;
+}

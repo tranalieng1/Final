@@ -11,7 +11,8 @@ enum _State
 	STATE_DEATH,
 	STATE_FALLING,
 	STATE_GETUP,
-	STATE_LEVELUP
+	STATE_LEVELUP,
+	STATE_WIN
 };
 struct AnimationInfo
 {

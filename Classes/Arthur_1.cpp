@@ -367,8 +367,8 @@ void Arthur_1::SetState(_State state)
 			{
 				int _chem = experimental::AudioEngine::play2d("Sound/chemm.mp3");
 				auto hit = Hit::create();
-				hit->setScaleX(1.2f);//1.2
-				hit->setScaleY(2.0f);//2.0
+				hit->setScaleX(1.6f);//
+				hit->setScaleY(1.0f);//2.0
 				this->addChild(hit);
 				hit->setTag(TAG_ATTACK_ARTHUR);
 				hit->setcatory(HIT_PLAYER_CATE);
@@ -458,6 +458,11 @@ void Arthur_1::SetState(_State state)
 			this->setDeathLess(true);
 			this->PlayAnimation(AnimationType::LEVELUP);
 			break;
+		case STATE_WIN:
+			this->setDeathLess(true);
+			this->PlayAnimation(AnimationType::LEVELUP);
+			break;
+
 		default:
 			break;
 		}
@@ -643,6 +648,10 @@ void Arthur_1::onFinishAnimation()
 	else if (_state[1] == STATE_LEVELUP)
 	{
 		this->SetState(STATE_STANDING);
+	}
+	else if (_state[1] == STATE_WIN)
+	{
+		
 	}
 }
 

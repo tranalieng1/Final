@@ -2,7 +2,8 @@
 #define __GARIBALDI_H__
 #include "cocos2d.h"
 #include"Boss.h"
-
+#include "GameScene_1.h"
+//class GameScene_1;
 class Garibaldi : public Boss
 {
 public:
@@ -24,6 +25,7 @@ public:
 	void PlayAnimation(AnimationType type);
 	void SetState(_State state) override;
 	void onFinishAnimation();
+	
 	static std::map<AnimationType, AnimationInfo> s_mapAnimations;
 	virtual void scheduleUpdateAI(float delta) override;
 

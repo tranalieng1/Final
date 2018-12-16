@@ -38,7 +38,7 @@ public:
 	void setDeathLess(bool temp);
 	void setLevel(int temp);
 	int getLevel();
-
+	void statewin();
 	void LevelUp();
 protected:
 	std::vector<_State> _state;

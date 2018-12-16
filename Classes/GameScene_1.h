@@ -9,9 +9,11 @@
 #include "UIGameScene.h"
 #include "score.h"
 #include "Flame.h"
+
 class UIGameScene;
 class HandlePhysics;
 class PoolMoonBlade;
+class Garibaldi;
 class GameScene_1 : public cocos2d::Layer
 {
 public:
@@ -27,8 +29,11 @@ public:
 	CREATE_FUNC(GameScene_1);
 	void update(float dt);
 	void goToEndScene();
+	void goToEndScene2(float delta);
 	void SetPhysicsWorld(cocos2d::PhysicsWorld *world);
-	
+	void lockcamera();
+	void setlockey();
+	void dieenemy();
 
 private:
 	cocos2d::Size visibleSize;
@@ -57,6 +62,15 @@ private:
 	PoolMoonBlade *_poolMoonBlade;
 
 	bool CheckJump(cocos2d::Node *v1,cocos2d::Node *v2);
+
+	bool lock1;
+	bool lock2;
+
+	bool check1;
+	bool check2;
+	bool lockkey;
+	Garibaldi *_Boss;
+	int checkenemy;
 };
 
 
