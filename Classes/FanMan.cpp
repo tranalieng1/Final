@@ -13,7 +13,8 @@ USING_NS_CC;
 std::map<AnimationType, AnimationInfo> FanMan::s_mapAnimations =
 {
 	{AnimationType::WALKING, AnimationInfo(4, "FatMan_walk_%d.png", 1.0f / 12.0f, CC_REPEAT_FOREVER)},
-	{ AnimationType::ATTACKING, AnimationInfo(2, "FatMan_attack1_%d.png", 1.0f / 4.0f, 1) },
+	{ AnimationType::ATTACKING, AnimationInfo(1, "FatMan_attack1_%d.png", 10.0f,CC_REPEAT_FOREVER ) },
+	{ AnimationType::PREATTACKING, AnimationInfo(1, "FatMan_preattack1_%d.png", 1.0f / 4.0f, 4) },
 	{AnimationType::HITTED,AnimationInfo(1,"FatMan_stand_%d.png", 1.0f / 4.0f,2)},
 	{AnimationType::DEATH,AnimationInfo(4,"FatMan_fall_%d.png",1.0f/4.0f,1)},
 	{AnimationType::FALLING,AnimationInfo(4,"FatMan_fall_%d.png",1.0f / 4.0f,1)},
@@ -136,14 +137,9 @@ void FanMan::PlayAnimation(AnimationType type)
 	}
 	animation->setDelayPerUnit(info.fps);
 	
-	if (type == AnimationType::ATTACKING)
-	{
-		attackdelay = 0.5f;
-	}
-	else
-		attackdelay = 0;
+	
 	Animate* animate = Animate::create(animation);
-	auto seq = Sequence::create(Repeat::create(animate, info.loopTime), DelayTime::create(attackdelay), CallFunc::create([=]()
+	auto seq = Sequence::create(Repeat::create(animate, info.loopTime), CallFunc::create([=]()
 	{
 		//if (type == AnimationType::ATTACKING)
 		//_PlayerSprite->setSpriteFrame("Arthur_0_stand_1.png");
@@ -169,24 +165,31 @@ void FanMan::SetState(_State state)
 
 		switch (state)
 		{
+		case STATE_PREATTACKING:
+			this->setDeathLess(false);
+			this->PlayAnimation(AnimationType::PREATTACKING);
+			break;
 		case STATE_ATTACKING:
-			this->runAction(Sequence::create(DelayTime::create(0.4f), CallFunc::create([=]()
+			/*this->runAction(Sequence::create(DelayTime::create(0.4f), CallFunc::create([=]()
+			{*/
+			
+		{
+			auto hit = Hit::create();
+			this->addChild(hit);
+			hit->setScaleX(2.0f);
+			hit->setTag(TAG_ATTACK_ENEMY);
+			hit->setDamage(_damage);
+			hit->setcollisin(HIT_ENEMY_COLL);
+			hit->setcatory(HIT_ENEMY_CATE);
+			hit->setPosition(Vec2(-2 * this->getContentSize().width, this->getContentSize().height * 0.5f - 10));
+			hit->runAction(Sequence::create(DelayTime::create(0.2f), CallFunc::create([=]()
 			{
-				auto hit = Hit::create();
-				this->addChild(hit);
-				hit->setScaleX(2.0f);
-				hit->setTag(TAG_ATTACK_ENEMY);
-				hit->setDamage(_damage);
-				hit->setcollisin(HIT_ENEMY_COLL);
-				hit->setcatory(HIT_ENEMY_CATE);
-				hit->setPosition(Vec2(-2 * this->getContentSize().width, this->getContentSize().height * 0.5f - 10));
-				hit->runAction(Sequence::create(DelayTime::create(0.2f), CallFunc::create([=]()
-				{
-					hit->removeFromParent();
-				}), nullptr));
-			}), NULL));
+				hit->removeFromParent();
+			}), nullptr));
+		}
+			/*}), NULL));*/
 
-			this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
+			//this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
 			//this->SetState(STATE_STANDING);
 			/*this->runAction(Sequence::create(DelayTime::create(0.5f), CallFunc::create([=]()
 			{
@@ -313,6 +316,10 @@ void FanMan::onFinishAnimation()
 		
 		this->SetState(STATE_STANDING);
 	}
+	else if (_state[1] == STATE_PREATTACKING)
+	{
+		this->SetState(STATE_ATTACKING);
+	}
 }
 
 void FanMan::scheduleUpdateAI(float delta)
@@ -339,11 +346,11 @@ void FanMan::scheduleUpdateAI(float delta)
 		
 			auto distanceX = std::abs(this->getPosition().x - _Arthurptr->getPosition().x);
 			auto distanceY = std::abs(this->getPosition().y - _Arthurptr->getPosition().y);
-			if (distanceX < _EnemySprite->getContentSize().width * 0.5f + 100.0f && distanceY< 30)
+			if (distanceX < _EnemySprite->getContentSize().width * 0.5f + 100.0f && distanceY<50)
 			{
 				//this->PlayAnimation(AnimationType::ATTACKING);
-				
-				this->SetState(STATE_ATTACKING);
+				this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
+				this->SetState(STATE_PREATTACKING);
 			}
 			else
 			{

@@ -620,7 +620,7 @@ void Arthur_1::onFinishAnimation()
 	{
 		SetState(STATE_WALKING);
 	}
-	else if (_state[1] == STATE_JUMPING && _state[1] == STATE_WALKING)
+	else if (_state[1] == STATE_JUMPING )
 	{
 		SetState(STATE_STANDING);
 	}

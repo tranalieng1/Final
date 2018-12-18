@@ -7,7 +7,7 @@
 			<key>FatMan_HP.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,458},{59,15}}</string>
+				<string>{{0,428},{59,15}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -19,20 +19,6 @@
 			</dict>
 
 			<key>FatMan_attack1_1.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{0,48},{78,48}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{{0,0},{78,48}}</string>
-				<key>sourceSize</key>
-				<string>{78,48}</string>
-			</dict>
-
-			<key>FatMan_attack1_2.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{0,0},{136,47}}</string>
@@ -77,7 +63,7 @@
 			<key>FatMan_default_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{114,415},{38,72}}</string>
+				<string>{{114,414},{38,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -119,7 +105,7 @@
 			<key>FatMan_defeat_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{60,415},{53,80}}</string>
+				<string>{{60,414},{53,80}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -147,7 +133,7 @@
 			<key>FatMan_fall_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{60,367},{58,47}}</string>
+				<string>{{60,338},{58,47}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -189,7 +175,7 @@
 			<key>FatMan_fall_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,474},{56,27}}</string>
+				<string>{{60,386},{56,27}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -214,10 +200,24 @@
 				<string>{70,71}</string>
 			</dict>
 
+			<key>FatMan_preattack1_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,48},{78,48}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{0,0},{78,48}}</string>
+				<key>sourceSize</key>
+				<string>{78,48}</string>
+			</dict>
+
 			<key>FatMan_stand_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{60,322},{59,44}}</string>
+				<string>{{0,322},{59,44}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -231,7 +231,7 @@
 			<key>FatMan_stand_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{60,277},{59,44}}</string>
+				<string>{{0,277},{59,44}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -259,7 +259,7 @@
 			<key>FatMan_walk_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,397},{59,60}}</string>
+				<string>{{0,367},{59,60}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -273,7 +273,7 @@
 			<key>FatMan_walk_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,338},{59,58}}</string>
+				<string>{{0,444},{59,58}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -287,7 +287,7 @@
 			<key>FatMan_walk_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,277},{59,60}}</string>
+				<string>{{60,277},{59,60}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -307,7 +307,7 @@
 			<key>size</key>
 			<string>{256,512}</string>
 			<key>textureFileName</key>
-			<string>ArthurLvl2.png</string>
+			<string>FatMan.png</string>
 			</dict>
 		</dict>
 </plist>

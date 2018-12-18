@@ -40,7 +40,7 @@ GameScene_1::~GameScene_1()
 Scene* GameScene_1::createScene()
 {
 	auto scene = Scene::createWithPhysics();
-	//scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+	scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
 	//scene->getPhysicsWorld()->setGravity(Vect(0, 0));
 
 	auto layer = GameScene_1::create();
@@ -206,11 +206,12 @@ bool GameScene_1::init()
 
 
 	//FanMan
-	/*_FanMan = FanMan::create();
+	_FanMan = FanMan::create();
 	_FanMan->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH+200, visibleSize.height*POSITION_BEGIN_HEIGHT));
 	_FanMan->enalbeAI(_Arthur);
+	_FanMan->setscene(this);
 	this->addChild(_FanMan,1);
-*/
+
 	_Boss = Garibaldi::create();
 	_Boss->setPosition(Vec2(7400, 100));
 	//sw->enalbeAI(_Arthur);
@@ -533,78 +534,78 @@ void GameScene_1::lockcamera()
 	if (campos.x > 2000 && check1 == false)
 	{
 
-		campos.x = 2000;
-		lock1 = true;
-		check1 = true;
-		auto ObjectEnemy = _tileMap->getObjectGroup("Enemy");
-		auto Wall = ObjectEnemy->getObjects();
-		for (int i = 0; i < Wall.size(); i++)
-		{
-			auto objInfo = Wall.at(i).asValueMap();
-			int type = objInfo.at("type").asInt();
-			if (type == 1)
-			{
-				int x = objInfo.at("x").asInt();
-				int y = objInfo.at("y").asInt();
-				int width = objInfo.at("width").asInt();
-				int height = objInfo.at("height").asInt();
+		//campos.x = 2000;
+		//lock1 = true;
+		//check1 = true;
+		//auto ObjectEnemy = _tileMap->getObjectGroup("Enemy");
+		//auto Wall = ObjectEnemy->getObjects();
+		//for (int i = 0; i < Wall.size(); i++)
+		//{
+		//	auto objInfo = Wall.at(i).asValueMap();
+		//	int type = objInfo.at("type").asInt();
+		//	if (type == 1)
+		//	{
+		//		int x = objInfo.at("x").asInt();
+		//		int y = objInfo.at("y").asInt();
+		//		int width = objInfo.at("width").asInt();
+		//		int height = objInfo.at("height").asInt();
 
-			
+		//	
 
-				auto secret = FanMan::create();
-				secret->setscene(this);
-				secret->enalbeAI(_Arthur);
-				//FanMan->setPlayer(_Arthur, _Arthur);
-				this->addChild(secret, 1);
-				secret->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-				secret->setPosition(SCALE_MAP*(x + width * 0.5f), SCALE_MAP*(y + height * 0.5f));
-				//secret->setScale(SCALE_MAP);
-			}
-			else if (type == 2)
-			{
-				int x = objInfo.at("x").asInt();
-				int y = objInfo.at("y").asInt();
-				int width = objInfo.at("width").asInt();
-				int height = objInfo.at("height").asInt();
-
-
-
-				auto secret = SwordMan::create();
-				secret->setscene(this);
-				secret->enalbeAI(_Arthur);
-				//FanMan->setPlayer(_Arthur, _Arthur);
-				this->addChild(secret, 1);
-				secret->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-				secret->setPosition(SCALE_MAP*(x + width * 0.5f), SCALE_MAP*(y + height * 0.5f));
-				//secret->setScale(SCALE_MAP);
-			}
-			else if (type == 3)
-			{
-				int x = objInfo.at("x").asInt();
-				int y = objInfo.at("y").asInt();
-				int width = objInfo.at("width").asInt();
-				int height = objInfo.at("height").asInt();
+		//		auto secret = FanMan::create();
+		//		secret->setscene(this);
+		//		secret->enalbeAI(_Arthur);
+		//		//FanMan->setPlayer(_Arthur, _Arthur);
+		//		this->addChild(secret, 1);
+		//		secret->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+		//		secret->setPosition(SCALE_MAP*(x + width * 0.5f), SCALE_MAP*(y + height * 0.5f));
+		//		//secret->setScale(SCALE_MAP);
+		//	}
+		//	else if (type == 2)
+		//	{
+		//		int x = objInfo.at("x").asInt();
+		//		int y = objInfo.at("y").asInt();
+		//		int width = objInfo.at("width").asInt();
+		//		int height = objInfo.at("height").asInt();
 
 
 
-				auto secret = BirdMan::create();
-				secret->setscene(this);
-				secret->enalbeAI(_Arthur);
-				//FanMan->setPlayer(_Arthur, _Arthur);
-				this->addChild(secret, 1);
-				secret->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-				secret->setPosition(SCALE_MAP*(x + width * 0.5f), SCALE_MAP*(y + height * 0.5f));
-			}
+		//		auto secret = SwordMan::create();
+		//		secret->setscene(this);
+		//		secret->enalbeAI(_Arthur);
+		//		//FanMan->setPlayer(_Arthur, _Arthur);
+		//		this->addChild(secret, 1);
+		//		secret->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+		//		secret->setPosition(SCALE_MAP*(x + width * 0.5f), SCALE_MAP*(y + height * 0.5f));
+		//		//secret->setScale(SCALE_MAP);
+		//	}
+		//	else if (type == 3)
+		//	{
+		//		int x = objInfo.at("x").asInt();
+		//		int y = objInfo.at("y").asInt();
+		//		int width = objInfo.at("width").asInt();
+		//		int height = objInfo.at("height").asInt();
 
 
-		}
+
+		//		auto secret = BirdMan::create();
+		//		secret->setscene(this);
+		//		secret->enalbeAI(_Arthur);
+		//		//FanMan->setPlayer(_Arthur, _Arthur);
+		//		this->addChild(secret, 1);
+		//		secret->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+		//		secret->setPosition(SCALE_MAP*(x + width * 0.5f), SCALE_MAP*(y + height * 0.5f));
+		//	}
+
+
+		//}
 	}
 	else if (campos.x > 7000 && check2 == false)
 	{
-		_Boss->enalbeAI(_Arthur);
+		/*_Boss->enalbeAI(_Arthur);
 		campos.x = 7000;
 		lock2 = true;
-		check2 = true;
+		check2 = true;*/
 	}
 	
 }
@@ -616,7 +617,9 @@ void GameScene_1::setlockey()
 
 void GameScene_1::dieenemy()
 {
-	checkenemy++;
+	/*this->checkenemy =0;
+	this->checkenemy;*/
+	this->checkenemy++;
 }
 
 bool GameScene_1::CheckJump(cocos2d::Node * v1, cocos2d::Node * v2)

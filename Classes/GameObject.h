@@ -12,7 +12,8 @@ enum _State
 	STATE_FALLING,
 	STATE_GETUP,
 	STATE_LEVELUP,
-	STATE_WIN
+	STATE_WIN,
+	STATE_PREATTACKING
 };
 struct AnimationInfo
 {
@@ -41,6 +42,7 @@ enum class AnimationType
 	GETUP,
 	LEVELUP,
 	STANDING,
+	PREATTACKING,
 };
 class GameObject: public cocos2d::Node
 {
