@@ -178,6 +178,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\TallMan.cpp" />
     <ClCompile Include="..\Classes\test.cpp" />
     <ClCompile Include="..\Classes\UIGameScene.cpp" />
+    <ClCompile Include="..\Classes\UIPause.cpp" />
     <ClCompile Include="..\Classes\Wall.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -213,6 +214,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\TallMan.h" />
     <ClInclude Include="..\Classes\test.h" />
     <ClInclude Include="..\Classes\UIGameScene.h" />
+    <ClInclude Include="..\Classes\UIPause.h" />
     <ClInclude Include="..\Classes\Wall.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>

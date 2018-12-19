@@ -1,6 +1,8 @@
 #ifndef __DEFNITION_H__
 #define __DEFNITION_H__
 
+
+
 #define DISPLAY_SPLASH_SCENE 1
 #define TRANSITTION_TIME 1
 
@@ -88,6 +90,11 @@ struct	KeyBoardEvent
 	}
 };
 
+#define CCARRAY_FOREACH(__array__, __object__) \
+    if ((__array__) && (__array__)->data->num > 0) \
+    for(Ref** __arr__ = (__array__)->data->arr, **__end__ = (__array__)->data->arr + (__array__)->data->num-1;\
+    __arr__ <= __end__ && (((__object__) = *__arr__) != NULL/* || true*/);\
+    __arr__++)
 //Map
 #define SCALE_MAP 4.0f
 #define MAP_WIDTH (1970*SCALE_MAP)

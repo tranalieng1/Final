@@ -17,6 +17,7 @@
 #include "AudioEngine.h"
 #include "SwordMan.h"
 #include "Garibaldi.h"
+
 //#define schedule_selector CC_SCHEDULE_SELECTOR
 USING_NS_CC;
 using namespace cocos2d;
@@ -30,6 +31,7 @@ GameScene_1::GameScene_1()
 	check1 = false;
 	check2 = false;
 	lockkey = false;
+	_checkPause = false;
 	checkenemy = 0;
 }
 GameScene_1::~GameScene_1()
@@ -311,6 +313,30 @@ void GameScene_1::menuCloseCallback(Ref* pSender)
 }
 void GameScene_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Event * event)
 {
+	if (kc == EventKeyboard::KeyCode::KEY_ESCAPE)
+	{
+	
+		if (Director::getInstance()->isPaused() == false)
+		{
+			Director::getInstance()->pause();
+			experimental::AudioEngine::pause(_musicGame);
+			lockkey = true;
+
+		}
+		else 
+		{
+			Director::getInstance()->resume();
+			experimental::AudioEngine::resume(_musicGame);
+			lockkey = false;
+		}
+		
+	}
+	else if (kc == EventKeyboard::KeyCode::KEY_F2)
+	{
+		Director::getInstance()->resume();
+		//this->resumeRecursiveAllChildren(this);
+		lockkey = false;
+	}
 	if (lockkey == false)
 	{
 		/*_Percival->onKeyPressed(kc, event);*/
@@ -368,6 +394,7 @@ void GameScene_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Even
 	{
 		this->goToEndScene();
 	}
+	
 
 
 
@@ -629,5 +656,23 @@ bool GameScene_1::CheckJump(cocos2d::Node * v1, cocos2d::Node * v2)
 		return true;
 	else
 		return false;
+}
+void GameScene_1::pauseRecursiveAllChildren(Node *pNode)
+{
+	pNode->pause();
+	for (const auto &child : pNode->getChildren())
+	{
+		this->pauseRecursiveAllChildren(child);
+	}
+
+	
+}
+void GameScene_1::resumeRecursiveAllChildren(Node *pNode)
+{
+	pNode->resume();
+	for (const auto &child : pNode->getChildren())
+	{
+		this->resumeRecursiveAllChildren(child);
+	}
 }
 

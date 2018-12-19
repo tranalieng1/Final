@@ -34,7 +34,8 @@ public:
 	void lockcamera();
 	void setlockey();
 	void dieenemy();
-
+	void pauseRecursiveAllChildren(Node *pNode);
+	void resumeRecursiveAllChildren(Node *pNode);
 private:
 	cocos2d::Size visibleSize;
 	cocos2d::TMXTiledMap *_tileMap;
@@ -71,6 +72,8 @@ private:
 	bool lockkey;
 	Garibaldi *_Boss;
 	int checkenemy;
+
+	bool _checkPause;
 };
 
 

@@ -22,7 +22,7 @@ struct AnimationInfo
 	float fps;
 	int loopTime;
 
-	AnimationInfo(int num, std::string path, float f, int loop)
+	AnimationInfo(int num, std::string path, float f,unsigned int loop)
 	{
 		numFrame = num;
 		filePath = path;

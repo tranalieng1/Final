@@ -305,14 +305,7 @@ void BirdMan::scheduleUpdateAI(float delta)
 	if (_Arthurptr != nullptr)
 	{
 		
-		if (this->getPosition().x > _Arthurptr->getPosition().x)
-		{
-			this->setScaleX(2.0f);
-		}
-		else
-		{
-			this->setScaleX(-2.0f);
-		}
+		
 		if (_state[1] == STATE_FALLING || _state[1] == STATE_DEATH || _state[1] == STATE_HITTED
 			|| _state[1] == STATE_GETUP)
 		{
@@ -345,7 +338,14 @@ void BirdMan::update(float delta)
 
 void BirdMan::chasePlayer()
 {
-	
+	if (this->getPosition().x > _Arthurptr->getPosition().x)
+	{
+		this->setScaleX(2.0f);
+	}
+	else
+	{
+		this->setScaleX(-2.0f);
+	}
 	auto targetPos = _Arthurptr->getPosition();
 	auto distance = targetPos - this->getPosition();
 	auto timeX = std::abs(distance.x / SPEED_X);

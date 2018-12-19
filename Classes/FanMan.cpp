@@ -13,8 +13,8 @@ USING_NS_CC;
 std::map<AnimationType, AnimationInfo> FanMan::s_mapAnimations =
 {
 	{AnimationType::WALKING, AnimationInfo(4, "FatMan_walk_%d.png", 1.0f / 12.0f, CC_REPEAT_FOREVER)},
-	{ AnimationType::ATTACKING, AnimationInfo(1, "FatMan_attack1_%d.png", 10.0f,CC_REPEAT_FOREVER ) },
-	{ AnimationType::PREATTACKING, AnimationInfo(1, "FatMan_preattack1_%d.png", 1.0f / 4.0f, 4) },
+	{ AnimationType::ATTACKING, AnimationInfo(1, "FatMan_attack1_%d.png", 1.0f/4.0f,2 ) },
+	{ AnimationType::PREATTACKING, AnimationInfo(1, "FatMan_preattack1_%d.png", 1.0f / 4.0f, 2) },
 	{AnimationType::HITTED,AnimationInfo(1,"FatMan_stand_%d.png", 1.0f / 4.0f,2)},
 	{AnimationType::DEATH,AnimationInfo(4,"FatMan_fall_%d.png",1.0f/4.0f,1)},
 	{AnimationType::FALLING,AnimationInfo(4,"FatMan_fall_%d.png",1.0f / 4.0f,1)},
@@ -324,33 +324,35 @@ void FanMan::onFinishAnimation()
 
 void FanMan::scheduleUpdateAI(float delta)
 {
+	
 	if (_Arthurptr != nullptr)
 	{
 		
-		if (this->getPosition().x > _Arthurptr->getPosition().x)
-		{
-			this->setScaleX(2.0f);
-		}
-		else
-		{
-			this->setScaleX(-2.0f);
-		}
 		if (_state[1] == STATE_FALLING || _state[1] == STATE_DEATH || _state[1] == STATE_HITTED
-			|| _state[1] == STATE_GETUP)
+			|| _state[1] == STATE_GETUP || _state[1] == STATE_ATTACKING)
 		{
 
 		}
 		else
 		{
-
-		
+			if (this->getPosition().x > _Arthurptr->getPosition().x)
+			{
+				this->setScaleX(2.0f);
+			}
+			else
+			{
+				this->setScaleX(-2.0f);
+			}
 			auto distanceX = std::abs(this->getPosition().x - _Arthurptr->getPosition().x);
 			auto distanceY = std::abs(this->getPosition().y - _Arthurptr->getPosition().y);
-			if (distanceX < _EnemySprite->getContentSize().width * 0.5f + 100.0f && distanceY<50)
+			if (distanceX < _EnemySprite->getContentSize().width * 0.5f + 100.0f && distanceY<50 )
 			{
-				//this->PlayAnimation(AnimationType::ATTACKING);
-				this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
-				this->SetState(STATE_PREATTACKING);
+				/*if (this->_state[1] != STATE_ATTACKING)
+				{*/
+					//this->PlayAnimation(AnimationType::ATTACKING);
+					this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
+					this->SetState(STATE_PREATTACKING);
+				/*}*/
 			}
 			else
 			{
@@ -368,6 +370,7 @@ void FanMan::update(float delta)
 
 void FanMan::chasePlayer()
 {
+
 	
 	auto targetPos = _Arthurptr->getPosition();
 	auto distance = targetPos - this->getPosition();

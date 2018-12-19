@@ -159,6 +159,9 @@
     <ClCompile Include="..\Classes\PoolFlame.cpp">
       <Filter>src\pool</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\UIPause.cpp">
+      <Filter>src\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -259,6 +262,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\PoolFlame.h">
       <Filter>src\pool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UIPause.h">
+      <Filter>src\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
