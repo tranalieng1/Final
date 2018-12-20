@@ -14,6 +14,7 @@ class UIGameScene;
 class HandlePhysics;
 class PoolMoonBlade;
 class Garibaldi;
+class UIPause;
 class GameScene_1 : public cocos2d::Layer
 {
 public:
@@ -72,7 +73,7 @@ private:
 	bool lockkey;
 	Garibaldi *_Boss;
 	int checkenemy;
-
+	UIPause* _uiPause;
 	bool _checkPause;
 };
 

@@ -17,6 +17,7 @@
 #include "AudioEngine.h"
 #include "SwordMan.h"
 #include "Garibaldi.h"
+#include "UIPause.h"
 
 //#define schedule_selector CC_SCHEDULE_SELECTOR
 USING_NS_CC;
@@ -189,8 +190,11 @@ bool GameScene_1::init()
 	_UIGameScene = UIGameScene::create();
 	//_UIGameScene->setPosition(Vec2(visibleSize.width*0.0f,visibleSize.height*0.0f));
 
-	this->addChild(_UIGameScene,99);
-
+	this->addChild(_UIGameScene,50);
+	//Set uipause
+	_uiPause = UIPause::create();
+	this->addChild(_uiPause, 90);
+	_uiPause->setVisible(false);
 	//secret
 	//auto secret = Secret::create();
 	//secret->setPosition(Vec2(3000, 100));
@@ -250,46 +254,7 @@ bool GameScene_1::init()
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(ePhysics, this);
 
 
-	//Set skill
-	//_MBlade = MoonBlade::create();
-	//_MBlade->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY()));
-	//this->addChild(_MBlade);
-	/*_FlameSkill = Flame::create();
-	_MBlade->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY()));
-	this->addChild(_FlameSkill);*/
-	/*_MBlade2 = MoonBlade::create();
-	_MBlade2->setPosition(Vec2(_Percival->getPositionX(), _Percival->getPositionY()));
-	this->addChild(_MBlade2);
-*/
-	/*listener->onKeyPressed = [](EventKeyboard::KeyCode keyCode, Event* event)
-	{
-		
-		switch (keyCode)
-		{
-		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-		case EventKeyboard::KeyCode::KEY_A:
-			
 	
-			break;
-		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-		case EventKeyboard::KeyCode::KEY_D:
-			
-			break;
-		case EventKeyboard::KeyCode::KEY_UP_ARROW:
-		case EventKeyboard::KeyCode::KEY_W:
-
-			break;
-		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-		case EventKeyboard::KeyCode::KEY_S:
-
-			break;
-		}
-	};*/
-	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ArthurLvl1.plist", "ArthurLvl1.png");
-	//auto _ArthurSprite = Sprite::createWithSpriteFrameName("Arthur_0_stand_1.png");
-	//_ArthurSprite->setPosition(visibleSize*0.5);
-	//this->addChild(_ArthurSprite,2);
-	// add a "close" icon to exit the progress. it's an autorelease object
 
 	return true;
 
@@ -321,6 +286,7 @@ void GameScene_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Even
 			Director::getInstance()->pause();
 			experimental::AudioEngine::pause(_musicGame);
 			lockkey = true;
+			_uiPause->setVisible(true);
 
 		}
 		else 
@@ -328,6 +294,7 @@ void GameScene_1::onKeyPressed(cocos2d::EventKeyboard::KeyCode kc, cocos2d::Even
 			Director::getInstance()->resume();
 			experimental::AudioEngine::resume(_musicGame);
 			lockkey = false;
+			_uiPause->setVisible(false);
 		}
 		
 	}
@@ -445,98 +412,15 @@ void GameScene_1::update(float dt)
 	{
 		_Arthur->setPositionX(campos.x + 400 - _Arthur->getContentSize().width);
 	}
-	/*if (_Arthur->getPositionY() >= 220)
-	{
-		_Arthur->setPositionY(220);
-			
-	}*/
-	/*if (_Arthur->getPositionX() >= campos.x - 400 + _Arthur->getContentSize().width)
-	{
-		_Arthur->setPositionX(campos.x - 400 + _Arthur->getContentSize().width);
-	}*/
+	
 	_UIGameScene->setPosition(Vec2(campos.x-visibleSize.width/2,0));
-	//_UIGameScene->setScore(_Arthur->getScore());
+	_uiPause->setPosition(Vec2(campos.x - visibleSize.width / 2, 0));
 	_UIGameScene->updatePlayer(_Arthur);
 	if (checkenemy == 4)
 	{
 		lock1 = false;
 	}
-	//if (_Arthur->GetState() == STATE_STANDING)
-	//{
-	//	if (moveright == true)
-	//	{
-	//		_Arthur->setScaleX(2.0f);
-	//		_nodePosPlayer->setPosition(Vec2(_nodePosPlayer->getPositionX() + visibleSize.width*SPEED_MOVE_HORIZONTAL, _nodePosPlayer->getPositionY()));
-	//		_Arthur->setPosition(Vec2(_Arthur->getPositionX() + visibleSize.width*SPEED_MOVE_HORIZONTAL, _Arthur->getPositionY()));
-	//		
-	//	}
-	//	if (moveleft == true)
-	//	{
-	//		_Arthur->setScaleX(-2.0f);
-	//		if (_Arthur->getPositionX() - _Arthur->getContentSize().width / 2 > 0)
-	//		{
-	//			_nodePosPlayer->setPosition(Vec2(_nodePosPlayer->getPositionX() - visibleSize.width*SPEED_MOVE_HORIZONTAL, _nodePosPlayer->getPositionY()));
-
-	//			_Arthur->setPosition(Vec2(_Arthur->getPositionX() - visibleSize.width*SPEED_MOVE_HORIZONTAL, _Arthur->getPositionY()));
-	//		}
-	//			
-	//		else
-	//		{
-	//			_nodePosPlayer->setPosition(Vec2(0 + _Arthur->getContentSize().width / 2, _nodePosPlayer->getPositionY()));
-	//			_Arthur->setPosition(Vec2(0 + _Arthur->getContentSize().width / 2, _Arthur->getPositionY()));
-	//			
-	//		}
-
-	//	}
-	//	if (moveup == true)
-	//	{
-	//		_nodePosPlayer->setPosition(Vec2(_nodePosPlayer->getPositionX(), _nodePosPlayer->getPositionY() + visibleSize.height*SPEED_MOVE_VERTICAL));
-	//		_Arthur->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY() + visibleSize.height*SPEED_MOVE_VERTICAL));
-	//		
-	//	}
-	//	if (movedown == true)
-	//	{
-	//		if (_Arthur->getPositionY() > 0)
-	//		{
-	//			_nodePosPlayer->setPosition(Vec2(_nodePosPlayer->getPositionX(), _nodePosPlayer->getPositionY() - visibleSize.height*SPEED_MOVE_VERTICAL));
-	//			_Arthur->setPosition(Vec2(_Arthur->getPositionX(), _Arthur->getPositionY() - visibleSize.height*SPEED_MOVE_VERTICAL));
-	//			
-	//		}
-	//		else
-	//		{
-	//			_nodePosPlayer->setPosition(Vec2(_nodePosPlayer->getPositionX(), 0));
-	//			_Arthur->setPosition(Vec2(_Arthur->getPositionX(), 0));
-	//			
-	//		}
-	//	}
-	//}
-	/////--------------------------
-	/*if (_Arthur->getPosition() == _nodePosPlayer->getPosition())
-	{
-		_Arthur->SetState(STATE_STANDING);
-	}
-	else
-	{
-		_Arthur->SetState(STATE_JUMPING);
-	}*/
 	
-	
-	
-	//
-	//_nodePosPlayer->setPosition(_Arthur->getPosition());
-	//if (CheckJump(_Arthur,_nodePosPlayer)==true)
-	//{
-	//	cocos2d::log("1");
-	//}
-	//else
-	//{
-	//	cocos2d::log("0");
-	//}
-	//cocos2d::log("%d  -   %d",_Arthur->getPositionX(),_nodePosPlayer->getPositionX());
-	/*cocos2d::log("%f-%f //   %f-%f",(float)_Arthur->getPositionX(), (float)_Arthur->getPositionY()
-									,(float)_nodePosPlayer->getPositionX(), (float)_nodePosPlayer->getPositionY());*/
-	//cocos2d::log("%d ", _state);
-
 }
 
 void GameScene_1::goToEndScene()

@@ -12,8 +12,10 @@ public:
 	virtual bool init() override;
 	void goToUpgradeScene(cocos2d::Ref * pSender);
 	void goToOptionScene(cocos2d::Ref* pSender);
+	void ResumeEvent(cocos2d::Ref* pSender);
 
 private:
+
 	cocos2d::Size winSize;
 	cocos2d::MenuItemImage *_upgradeBtn;
 	cocos2d::MenuItemImage *_optionBtn;
