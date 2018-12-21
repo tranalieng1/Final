@@ -7,34 +7,6 @@
 			<key>SwordMan_Attack_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{129,184},{61,72}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{{0,0},{61,72}}</string>
-				<key>sourceSize</key>
-				<string>{61,72}</string>
-			</dict>
-
-			<key>SwordMan_Attack_2.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{0,425},{97,83}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{{0,0},{97,83}}</string>
-				<key>sourceSize</key>
-				<string>{97,83}</string>
-			</dict>
-
-			<key>SwordMan_Attack_3.png</key>
-			<dict>
-				<key>frame</key>
 				<string>{{0,128},{130,55}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
@@ -256,6 +228,34 @@
 				<string>{118,63}</string>
 			</dict>
 
+			<key>SwordMan_preAttack_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{129,184},{61,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{0,0},{61,72}}</string>
+				<key>sourceSize</key>
+				<string>{61,72}</string>
+			</dict>
+
+			<key>SwordMan_preAttack_2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,425},{97,83}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{0,0},{97,83}}</string>
+				<key>sourceSize</key>
+				<string>{97,83}</string>
+			</dict>
+
 		</dict>
 
 		<key>metadata</key>
@@ -265,7 +265,7 @@
 			<key>size</key>
 			<string>{256,512}</string>
 			<key>textureFileName</key>
-			<string>sprites.png</string>
+			<string>SwordMan.png</string>
 			</dict>
 		</dict>
 </plist>

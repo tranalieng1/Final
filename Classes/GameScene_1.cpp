@@ -212,11 +212,11 @@ bool GameScene_1::init()
 
 
 	//FanMan
-	_FanMan = FanMan::create();
+	/*_FanMan = FanMan::create();
 	_FanMan->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH+200, visibleSize.height*POSITION_BEGIN_HEIGHT));
 	_FanMan->enalbeAI(_Arthur);
 	_FanMan->setscene(this);
-	this->addChild(_FanMan,1);
+	this->addChild(_FanMan,1);*/
 
 	_Boss = Garibaldi::create();
 	_Boss->setPosition(Vec2(7400, 100));
@@ -228,11 +228,13 @@ bool GameScene_1::init()
 	/*_BirdMan = BirdMan::create();
 	_BirdMan->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH - 100, visibleSize.height*POSITION_BEGIN_HEIGHT));
 	_BirdMan->enalbeAI(_Arthur);
+	_BirdMan->setscene(this);
 	this->addChild(_BirdMan, 1);*/
-	/*auto sw = SwordMan::create();
+	auto sw = SwordMan::create();
 	sw->setPosition(Vec2(visibleSize.width*POSITION_BEGIN_WIDTH - 100, visibleSize.height*POSITION_BEGIN_HEIGHT));
 	sw->enalbeAI(_Arthur);
-	this->addChild(sw, 1); */
+	sw->setscene(this);
+	this->addChild(sw, 1); 
 	// dunglq3
 	// IMPORTANT: The scheduleUpdate must be called right before this->addChild(SKeyboard::get()),
 	// or the SKeyboard::getEvents always return a vector of nothing because of SKeyboard::update

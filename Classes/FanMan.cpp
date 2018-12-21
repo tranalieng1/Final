@@ -214,6 +214,14 @@ void FanMan::SetState(_State state)
 
 			break;
 		case STATE_DEATH:
+			if (this->getScaleX() > 0)
+			{
+				_jumph = 100.f;
+			}
+			else
+			{
+				_jumph = -100.f;
+			}
 			this->setDeathLess(true);
 			/*this->PlayAnimation(AnimationType::DEATH);*/
 			this->_Arthurptr->addScore(_score);
@@ -221,7 +229,7 @@ void FanMan::SetState(_State state)
 			spawn = cocos2d::Spawn::create(CallFunc::create([=]()
 			{
 				this->PlayAnimation(AnimationType::DEATH);
-			}), cocos2d::JumpBy::create(0.8f, Vec2(100, 0), 50, 1), cocos2d::Blink::create(1.2f, 10), NULL);
+			}), cocos2d::JumpBy::create(0.8f, Vec2(_jumph, 0), 50, 1), cocos2d::Blink::create(1.2f, 10), NULL);
 			//this->runAction(jum);
 			this->runAction(Sequence::create(spawn, DelayTime::create(0.5f), RemoveSelf::create(), NULL));
 			scene->dieenemy();
@@ -329,7 +337,7 @@ void FanMan::scheduleUpdateAI(float delta)
 	{
 		
 		if (_state[1] == STATE_FALLING || _state[1] == STATE_DEATH || _state[1] == STATE_HITTED
-			|| _state[1] == STATE_GETUP || _state[1] == STATE_ATTACKING)
+			|| _state[1] == STATE_GETUP || _state[1] == STATE_ATTACKING ||_state[1] == STATE_PREATTACKING)
 		{
 
 		}

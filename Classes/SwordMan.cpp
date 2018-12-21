@@ -13,8 +13,9 @@ USING_NS_CC;
 std::map<AnimationType, AnimationInfo> SwordMan::s_mapAnimations =
 {
 	{AnimationType::WALKING, AnimationInfo(4, "SwordMan_Walk_%d.png", 1.0f / 12.0f, CC_REPEAT_FOREVER)},
-	{ AnimationType::ATTACKING, AnimationInfo(3, "SwordMan_Attack_%d.png", 1.0f / 4.0f, 1) },
-	{AnimationType::HITTED,AnimationInfo(1,"SwordMan_FallDown_%d.png", 1.0f / 4.0f,1)},
+	{ AnimationType::ATTACKING, AnimationInfo(1, "SwordMan_Attack_%d.png", 1.0f / 4.0f, 2) },
+	{ AnimationType::PREATTACKING, AnimationInfo(2, "SwordMan_preAttack_%d.png", 1.0f / 8.0f, 1) },
+	{AnimationType::HITTED,AnimationInfo(1,"SwordMan_FallDown_%d.png", 1.0f / 4.0f,2)},
 	{AnimationType::DEATH,AnimationInfo(3,"SwordMan_FallDown_%d.png",1.0f / 4.0f,1)},
 	{AnimationType::FALLING,AnimationInfo(3,"SwordMan_FallDown_%d.png",1.0f / 4.0f,1)},
 	{AnimationType::GETUP,AnimationInfo(2,"SwordMan_GetUp_%d.png",1.0f / 4.0f,1)},
@@ -131,10 +132,7 @@ void SwordMan::PlayAnimation(AnimationType type)
 		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
 	}
 	animation->setDelayPerUnit(info.fps);
-	if (type == AnimationType::HITTED)
-	{
-		animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
-	}
+	
 	Animate* animate = Animate::create(animation);
 	auto seq = Sequence::create(Repeat::create(animate, info.loopTime), CallFunc::create([=]()
 	{
@@ -160,24 +158,28 @@ void SwordMan::SetState(_State state)
 
 		switch (state)
 		{
+		case STATE_PREATTACKING:
+			this->setDeathLess(false);
+			this->PlayAnimation(AnimationType::PREATTACKING);
+			break;
 		case STATE_ATTACKING:
 			
-			this->runAction(Sequence::create(DelayTime::create(0.4f), CallFunc::create([=]()
+			
+		{
+			auto hit = Hit::create();
+			this->addChild(hit);
+			hit->setScaleX(2.0f);
+			hit->setTag(TAG_ATTACK_ENEMY);
+			hit->setDamage(_damage);
+			hit->setcollisin(HIT_ENEMY_COLL);
+			hit->setcatory(HIT_ENEMY_CATE);
+			hit->setPosition(Vec2(-25, this->getContentSize().height * 0.5f - 10));
+			hit->runAction(Sequence::create(DelayTime::create(0.2f), CallFunc::create([=]()
 			{
-				auto hit = Hit::create();
-				this->addChild(hit);
-				hit->setScaleX(2.0f);
-				hit->setTag(TAG_ATTACK_ENEMY);
-				hit->setDamage(_damage);
-				hit->setcollisin(HIT_ENEMY_COLL);
-				hit->setcatory(HIT_ENEMY_CATE);
-				hit->setPosition(Vec2(-25, this->getContentSize().height * 0.5f -10));
-				hit->runAction(Sequence::create(DelayTime::create(0.2f), CallFunc::create([=]()
-				{
-					hit->removeFromParent();
-				}), nullptr));
-			}), NULL));
-			this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
+				hit->removeFromParent();
+			}), nullptr));
+		}
+			
 			this->PlayAnimation(AnimationType::ATTACKING);
 			/*this->runAction(Sequence::create(DelayTime::create(0.4f), CallFunc::create([=]()
 			{
@@ -201,6 +203,14 @@ void SwordMan::SetState(_State state)
 
 			break;
 		case STATE_DEATH:
+			if (this->getScaleX() > 0)
+			{
+				_jumph = 100.f;
+			}
+			else
+			{
+				_jumph = -100.f;
+			}
 			this->setDeathLess(true);
 			/*this->PlayAnimation(AnimationType::DEATH);*/
 			this->_Arthurptr->addScore(_score);
@@ -208,12 +218,13 @@ void SwordMan::SetState(_State state)
 			spawn = cocos2d::Spawn::create(CallFunc::create([=]()
 			{
 				this->PlayAnimation(AnimationType::DEATH);
-			}), cocos2d::JumpBy::create(0.8f, Vec2(100, 0), 50, 1),cocos2d::Blink::create(1.2f,10), NULL);
+			}), cocos2d::JumpBy::create(0.8f, Vec2(_jumph, 0), 50, 1),cocos2d::Blink::create(1.2f,10), NULL);
 			//this->runAction(jum);
 			this->runAction(Sequence::create(spawn,DelayTime::create(0.5f),RemoveSelf::create(),NULL));
 			scene->dieenemy();
 			break;
 		case STATE_FALLING:
+
 			this->setDeathLess(true);
 			if (this->getScaleX() > 0)
 			{
@@ -302,6 +313,10 @@ void SwordMan::onFinishAnimation()
 	{
 		this->SetState(STATE_STANDING);
 	}
+	else if (_state[1] == STATE_PREATTACKING)
+	{
+		this->SetState(STATE_ATTACKING);
+	}
 }
 
 void SwordMan::scheduleUpdateAI(float delta)
@@ -309,29 +324,28 @@ void SwordMan::scheduleUpdateAI(float delta)
 	if (_Arthurptr != nullptr)
 	{
 		
-		if (this->getPosition().x > _Arthurptr->getPosition().x)
-		{
-			this->setScaleX(2.0f);
-		}
-		else
-		{
-			this->setScaleX(-2.0f);
-		}
 		if (_state[1] == STATE_FALLING || _state[1] == STATE_DEATH || _state[1] == STATE_HITTED
-			|| _state[1] == STATE_GETUP)
+			|| _state[1] == STATE_GETUP || _state[1] == STATE_ATTACKING || _state[1] == STATE_PREATTACKING)
 		{
 
 		}
 		else
 		{
-
-		
+			if (this->getPosition().x > _Arthurptr->getPosition().x)
+			{
+				this->setScaleX(2.0f);
+			}
+			else
+			{
+				this->setScaleX(-2.0f);
+			}
 			auto distanceX = std::abs(this->getPosition().x - _Arthurptr->getPosition().x);
 			auto distanceY = std::abs(this->getPosition().y - _Arthurptr->getPosition().y);
 			if (distanceX < _EnemySprite->getContentSize().width * 0.5f + 100.0f && distanceY < 30)
 			{
 				//this->PlayAnimation(AnimationType::ATTACKING);
-				this->SetState(STATE_ATTACKING);
+				this->stopActionByTag(TAG_ACTION_AI_CHASE_PLAYER);
+				this->SetState(STATE_PREATTACKING);
 			}
 			else
 			{
